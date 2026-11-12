@@ -1,0 +1,858 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jennieration / Projects</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Archivo:wght@400;500&amp;family=Bebas+Neue&amp;display=swap">
+<style>
+.pg-projects /* no visible scrollbars anywhere (scrolling still works) */
+html,body,.pg-projects *{scrollbar-width:none;-ms-overflow-style:none}
+html::-webkit-scrollbar,body::-webkit-scrollbar,.pg-projects *::-webkit-scrollbar{display:none;width:0;height:0}
+body{margin:0;background:#fff}
+.pg-projects a{color:#929292}.pg-projects a:hover{color:#000}
+.jr.pg-projects{--u:min(calc(100vw / 2000), calc(100vh / 1414));background:#fff;color:#000;animation:jrIn .7s cubic-bezier(.2,.7,.2,1) both}
+@keyframes jrIn{from{opacity:0}to{opacity:1}}
+.pg-projects.bb,.pg-projects .bb{font-family:'Bebas Neue',Impact,'Arial Narrow',sans-serif;font-weight:400}
+.pg-projects .horse{position:fixed;z-index:1100;right:clamp(12px,2vw,32px);bottom:clamp(12px,2vw,28px);width:clamp(48px,4.5vw,80px);aspect-ratio:373/300;background-image:url('assets/8dc2f4922cc572d4f09003656d908a3e.png');background-repeat:no-repeat;background-size:1200% 100%;background-position:0% 0;pointer-events:none;opacity:0;transform:translateY(8px);transition:opacity .25s ease,transform .3s ease}
+.pg-projects .horse.on{opacity:1;transform:none}
+.jr.pg-projects,.jr.pg-projects *{cursor:url('assets/60d61bf74bad9bb579c50f5afd35cef6.png') 17 21,auto !important}
+.pg-projects .runway{position:relative}
+.pg-projects .pin{position:sticky;top:0;height:100vh;overflow:hidden;touch-action:pan-y}
+.pg-projects .stage{position:absolute;left:0;top:0;width:calc(var(--u) * 2000);height:calc(var(--u) * 1414)}
+.pg-projects .nav{position:absolute;z-index:50;left:calc(var(--u) * 54);top:calc(var(--u) * 22);display:flex;font-size:calc(var(--u) * 83);line-height:1;letter-spacing:-.09em;white-space:nowrap}
+.pg-projects .nav a{display:block;color:#929292;text-decoration:none;transition:color .25s ease}
+.pg-projects .nav a:hover{color:#000}
+.pg-projects .nav a.is-active{color:#000}
+.pg-projects .nav a:focus-visible{outline:2px solid #B80000;outline-offset:2px}
+.pg-projects .title{position:absolute;margin:0;left:calc(var(--u) * 678);top:calc(var(--u) * 240);font-size:calc(var(--u) * 247);line-height:1;letter-spacing:-.05em;font-weight:400;white-space:nowrap}
+.pg-projects .desc{position:absolute;left:calc(var(--u) * 1487);top:calc(var(--u) * 122.5);width:calc(var(--u) * 420);color:#B80000;font-size:calc(var(--u) * 50);line-height:1.1;letter-spacing:-.03em;transition:opacity .22s ease,transform .22s ease}
+.pg-projects .desc p{margin:0}
+.pg-projects .desc .meta{margin-top:calc(var(--u) * 14)}
+.pg-projects .desc.out{opacity:0;transform:translateY(calc(var(--u) * -6))}
+.pg-projects .track{position:absolute;left:calc(var(--u) * 57);top:calc(var(--u) * 479);will-change:transform}
+.pg-projects .item{position:absolute;top:0}
+.pg-projects .num{display:block;font-size:calc(var(--u) * 83);line-height:1;letter-spacing:-.04em;color:#000;transition:color .3s ease}
+.pg-projects .num.on{color:#B80000}
+.pg-projects .card{position:absolute;left:0;top:calc(var(--u) * 92);width:calc(var(--u) * 540);height:calc(var(--u) * 720);margin:0;padding:0;border:0;background:#000;cursor:pointer;overflow:hidden;display:block}
+.pg-projects .card:focus-visible{outline:3px solid #B80000;outline-offset:4px}
+.pg-projects .card .media{position:absolute;inset:0;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.pg-projects .card img{display:block;width:100%;height:100%;object-fit:cover}
+.pg-projects .card.has{height:auto;background:none;width:calc(var(--u) * 1150 * var(--cs, 1))}
+.pg-projects .card.has .media{position:relative;inset:auto;display:block}
+.pg-projects .card.has img{height:auto;max-height:calc(var(--u) * 740);object-fit:contain;object-position:left top}
+.pg-projects .case-hero.has{aspect-ratio:auto;background:none}
+.pg-projects .case-hero.has img{height:auto}
+.pg-projects .card:hover .media{transform:scale(1.035)}
+.pg-projects .card .cta{position:absolute;left:calc(var(--u) * 20);bottom:calc(var(--u) * 16);font-size:calc(var(--u) * 40);line-height:1;letter-spacing:-.02em;color:#fff;opacity:0;transform:translateY(calc(var(--u) * 10));transition:opacity .25s ease,transform .35s ease}
+.pg-projects .card:hover .cta,.pg-projects .card:focus-visible .cta{opacity:1;transform:translateY(0)}
+.pg-projects .bar{position:absolute;left:calc(var(--u) * 57);top:calc(var(--u) * 1329.5);width:calc(var(--u) * 1913);height:calc(var(--u) * 11);border-radius:calc(var(--u) * 6);background:#999}
+.pg-projects .dot{position:absolute;top:calc(var(--u) * 1323);width:calc(var(--u) * 24);height:calc(var(--u) * 24);border-radius:50%;background:#B80000}
+.pg-projects .lbl{position:absolute;top:calc(var(--u) * 1360);margin:0;padding:calc(var(--u) * 6) 0;border:0;background:none;cursor:pointer;font-family:inherit;font-size:calc(var(--u) * 36);line-height:1;letter-spacing:-.04em;color:#929292;white-space:nowrap;transition:color .3s ease}
+.pg-projects .lbl:hover{color:#000}
+.pg-projects .lbl.on{color:#B80000}
+.pg-projects .lbl .l-num{display:none}
+.pg-projects .case{position:fixed;inset:0;z-index:1000;background:#fff;overflow-y:auto;overscroll-behavior:contain;animation:caseIn .5s cubic-bezier(.2,.8,.2,1) both}
+@keyframes caseIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.pg-projects .case-wrap{max-width:1680px;margin:0 auto;padding:clamp(16px,3.5vw,57px);display:flex;flex-direction:column;gap:clamp(24px,4vw,64px)}
+.pg-projects .case-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.pg-projects .case-back{margin:0;padding:0;border:0;background:none;cursor:pointer;font-family:inherit;font-size:clamp(32px,4.2vw,60px);line-height:1;letter-spacing:-.06em;color:#929292;transition:color .2s ease}
+.pg-projects .case-back:hover{color:#000}
+.pg-projects .case-cat{font-size:clamp(20px,2vw,32px);line-height:1;letter-spacing:-.02em;color:#B80000;margin:0;text-align:right}
+.pg-projects .case-head{display:flex;align-items:flex-end;justify-content:space-between;gap:clamp(16px,3vw,48px);flex-wrap:wrap}
+.pg-projects .case-title{margin:0;font-weight:400;font-size:clamp(72px,13vw,230px);line-height:.85;letter-spacing:-.04em;flex:1 1 520px;min-width:0;overflow-wrap:anywhere}
+.pg-projects .case-num{font-size:clamp(120px,22vw,380px);line-height:.78;letter-spacing:-.05em;color:#B80000}
+.pg-projects .case-meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));gap:clamp(16px,2vw,32px);margin:0}
+.pg-projects .case-meta div{border-top:2px solid #000;padding-top:10px}
+.pg-projects .case-meta dt{font-size:20px;line-height:1;color:#B80000;letter-spacing:-.01em}
+.pg-projects .case-meta dd{margin:6px 0 0;font-size:clamp(22px,2vw,32px);line-height:1.05;letter-spacing:-.02em}
+.pg-projects .cs-secs{display:flex;flex-direction:column;gap:clamp(56px,8vw,140px);padding-top:clamp(16px,3vw,48px)}
+.pg-projects .cs-sec{display:flex;flex-wrap:wrap;gap:clamp(16px,4vw,64px);border-top:2px solid #000;padding-top:clamp(14px,1.6vw,24px)}
+.pg-projects .cs-side{flex:1 1 220px;max-width:420px;display:flex;flex-direction:column;gap:6px}
+.pg-projects .cs-n{font-size:clamp(64px,7vw,120px);line-height:.85;letter-spacing:-.04em;color:#B80000}
+.pg-projects .cs-l{font-size:clamp(20px,1.6vw,28px);line-height:1;letter-spacing:-.01em;color:#929292}
+.pg-projects .cs-main{flex:3 1 560px;min-width:0;display:flex;flex-direction:column;gap:clamp(22px,2.6vw,40px)}
+.pg-projects .cs-h{margin:0;font-weight:400;font-size:clamp(44px,5.6vw,96px);line-height:.9;letter-spacing:-.035em;text-wrap:balance}
+.pg-projects .b-p{margin:0;font-family:'Archivo',Arial,sans-serif;font-size:19px;line-height:1.6;max-width:62ch}
+.pg-projects .b-quotes{display:flex;flex-direction:column;gap:14px}
+.pg-projects .b-q{margin:0;font-size:clamp(28px,2.8vw,48px);line-height:1;letter-spacing:-.02em;color:#B80000}
+.pg-projects .b-q:nth-child(2){padding-left:clamp(24px,8vw,160px)}
+.pg-projects .b-q:nth-child(3){padding-left:clamp(48px,16vw,320px)}
+.pg-projects .b-stat{display:flex;align-items:flex-end;gap:clamp(12px,2vw,32px);flex-wrap:wrap}
+.pg-projects .b-stat-v{font-size:clamp(110px,14vw,240px);line-height:.78;letter-spacing:-.05em;color:#B80000}
+.pg-projects .b-stat-a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;transition:color .2s ease}
+.pg-projects .b-stat-a:hover{color:#B80000}
+.pg-projects .b-stat-t{margin:0;flex:1 1 260px;min-width:0;font-family:'Archivo',Arial,sans-serif;font-size:19px;line-height:1.45;max-width:38ch}
+.pg-projects .b-src{display:block;margin-top:8px;font-family:'Bebas Neue',Impact,sans-serif;font-size:20px;color:#929292}
+.pg-projects .b-table{display:flex;flex-direction:column;border-bottom:1px solid #000}
+.pg-projects .b-tr{display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));gap:clamp(12px,2vw,32px);border-top:1px solid #000;padding:14px 0}
+.pg-projects .b-th{font-size:22px;line-height:1;color:#B80000}
+.pg-projects .b-td{font-family:'Archivo',Arial,sans-serif;font-size:17px;line-height:1.5}
+.pg-projects .b-td.strong{font-family:'Bebas Neue',Impact,sans-serif;font-size:32px;line-height:1}
+.pg-projects .b-list{display:flex;flex-direction:column;gap:20px;margin:0;padding:0;list-style:none}
+.pg-projects .b-li{display:flex;flex-direction:column;gap:4px;max-width:66ch}
+.pg-projects .b-list.g2,.pg-projects .b-list.g3{display:grid;gap:clamp(24px,2.6vw,40px) clamp(24px,3.4vw,56px)}
+.pg-projects .b-list.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.pg-projects .b-list.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.pg-projects .b-list.g2 .b-li-b{white-space:pre-line}
+.pg-projects .b-list.g2 .b-li,.pg-projects .b-list.g3 .b-li{max-width:none;border-top:1px solid #000;padding-top:12px}
+@media (max-width:760px){.pg-projects .b-list.g2,.pg-projects .b-list.g3{grid-template-columns:1fr}}
+.pg-projects .b-li-t{font-size:clamp(26px,2.2vw,36px);line-height:1;letter-spacing:-.02em}
+.pg-projects .b-li-b{font-family:'Archivo',Arial,sans-serif;font-size:18px;line-height:1.55}
+.pg-projects .b-callout{margin:0;font-size:clamp(40px,5vw,88px);line-height:.92;letter-spacing:-.035em;color:#000;text-wrap:balance}
+.pg-projects .b-callout.m{font-size:clamp(30px,3.2vw,54px);line-height:.98}
+.pg-projects .b-callout.red{color:#B80000}
+.pg-projects .b-sub.big{margin-top:4px;font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(30px,3.2vw,54px);line-height:.98;letter-spacing:-.02em;max-width:26ch}
+.pg-projects .b-sub{margin:-6px 0 0;font-family:'Archivo',Arial,sans-serif;font-size:19px;line-height:1.55;max-width:56ch}
+@font-face{font-family:'JR Archivo Black';src:url('assets/3429cd084335248b07bff22b36ee4315.woff2') format('woff2');font-display:swap}
+.pg-projects .b-duo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:start}
+.pg-projects .b-duo-r .b-board{width:100%}
+.pg-projects .b-flow{padding:0}
+.pg-projects .b-flow-l{margin:0 0 14px;display:flex;align-items:center;gap:12px;font-size:clamp(24px,2vw,34px);line-height:1;letter-spacing:-.01em}
+.pg-projects .b-flow-h{display:inline-flex;align-items:center;justify-content:center;width:1.5em;height:1.5em;border-radius:50%;background:#FF3FB4;color:#fff;font-size:.8em}
+.pg-projects .b-flow-s{margin:0;padding:0;list-style:none;display:flex;flex-direction:column}
+.pg-projects .b-flow-s li{position:relative;display:flex;align-items:baseline;gap:14px;padding:12px 0 12px 0;font-size:clamp(36px,3.6vw,60px);line-height:.9;letter-spacing:-.02em}
+.pg-projects .b-flow-s li+li::before{content:'\2193';position:absolute;left:4px;top:-14px;font-family:'Archivo',Arial,sans-serif;font-size:22px;line-height:1;color:#B80000}
+.pg-projects .b-flow-s li+li{margin-top:14px}
+.pg-projects .b-flow-n{font-size:.45em;color:#B80000;min-width:1.6em}
+@media (max-width:760px){.pg-projects .b-duo{grid-template-columns:1fr}}
+.pg-projects .b-shift-c{display:none !important}
+.pg-projects .b-shift{position:relative;overflow:hidden;background:none;padding:0;font-family:'JR Archivo Black','Archivo Black','Arial Black',sans-serif;color:#0b0b0b}
+.pg-projects .b-shift-c{position:absolute;border-radius:50%;background:#FF3FB4;pointer-events:none}
+.pg-projects .b-shift-c.c1{width:clamp(120px,16vw,260px);aspect-ratio:1;left:calc(clamp(120px,16vw,260px) * -.4);top:calc(clamp(120px,16vw,260px) * -.5);opacity:.75}
+.pg-projects .b-shift-c.c2{width:clamp(140px,20vw,330px);aspect-ratio:1;right:calc(clamp(140px,20vw,330px) * -.3);top:calc(clamp(140px,20vw,330px) * -.25)}
+.pg-projects .b-shift-c.c3{width:clamp(160px,22vw,380px);aspect-ratio:1;right:12%;bottom:calc(clamp(160px,22vw,380px) * -.72)}
+.pg-projects .b-shift-h{position:relative;margin:0 0 clamp(16px,2.4vw,36px);font-size:clamp(40px,5.4vw,92px);line-height:.92;letter-spacing:-.05em}
+.pg-projects .b-shift-h span{display:block}
+.pg-projects .b-shift-l{position:relative;margin:0;padding:0;list-style:none;max-width:1100px}
+.pg-projects .b-shift-l li{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1.3fr);align-items:center;gap:clamp(12px,3vw,48px);padding:clamp(8px,1vw,14px) 0;border-bottom:2px solid #FF3FB4;font-size:clamp(24px,3.4vw,56px);line-height:1;letter-spacing:-.04em}
+.pg-projects .b-shift-ar{width:1.15em;height:.8em;overflow:visible}
+.pg-projects .b-shift-ar path{fill:none;stroke:#D10A0A;stroke-width:9;stroke-linecap:butt;stroke-linejoin:round}
+.pg-projects .b-shift-n{position:relative;margin:clamp(24px,3vw,44px) 0 0;font-family:'Bebas Neue',Impact,sans-serif;font-size:clamp(40px,4.6vw,80px);line-height:.95;letter-spacing:-.02em;color:#B80000}
+.pg-projects .b-boards{display:flex;flex-direction:column;gap:clamp(16px,2vw,28px)}
+.pg-projects .b-boards-hint{margin:0;font-size:clamp(18px,1.4vw,24px);line-height:1;color:#929292;letter-spacing:-.01em}
+.pg-projects .b-brow{display:flex;gap:clamp(12px,1.6vw,24px);align-items:flex-start}
+.pg-projects .b-board{min-width:0;margin:0;padding:0;border:0;background:none;text-align:left;font:inherit;color:inherit;cursor:zoom-in;display:flex;flex-direction:column;gap:10px}
+.pg-projects .b-board-img{position:relative;display:block;width:100%;overflow:hidden;background:#111;box-shadow:0 2px 6px rgba(0,0,0,.12);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease}
+.pg-projects .b-board-img img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.pg-projects .b-board-z{position:absolute;right:10px;bottom:10px;width:36px;height:36px;border-radius:50%;background:#B80000;color:#fff;font-size:28px;line-height:36px;text-align:center;opacity:0;transform:scale(.7);transition:opacity .25s ease,transform .3s ease}
+.pg-projects .b-board:hover .b-board-img,.pg-projects .b-board:focus-visible .b-board-img{transform:translateY(-4px);box-shadow:0 14px 28px rgba(0,0,0,.18)}
+.pg-projects .b-board:hover .b-board-img img{transform:scale(1.04)}
+.pg-projects .b-board:hover .b-board-z,.pg-projects .b-board:focus-visible .b-board-z{opacity:1;transform:none}
+.pg-projects .b-board:focus-visible{outline:3px solid #B80000;outline-offset:4px}
+.pg-projects .b-board-cap{display:flex;gap:10px;align-items:baseline}
+.pg-projects .b-board:only-child{flex:0 1 auto !important;width:min(100%,560px)}
+.pg-projects .b-board-n:empty{display:none}
+.pg-projects .b-board-n{font-size:clamp(26px,2.2vw,36px);line-height:.9;color:#B80000;letter-spacing:-.02em}
+.pg-projects .b-board-t{font-size:clamp(16px,1.25vw,21px);line-height:1;letter-spacing:-.01em;transition:color .2s ease}
+.pg-projects .b-board:hover .b-board-t{color:#B80000}
+@media (max-width:760px){.pg-projects .b-brow{flex-direction:column}.pg-projects .b-board{width:100%;flex:none !important}}
+.pg-projects .bv{position:fixed;inset:0;z-index:1300;display:flex;flex-direction:column;background:rgba(10,10,10,.96);color:#fff;animation:caseIn .35s ease both;outline:none}
+.pg-projects .bv-bar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:14px clamp(14px,2.5vw,32px)}
+.pg-projects .bv-title{margin:0;font-size:clamp(22px,2vw,34px);line-height:1;letter-spacing:-.01em;min-width:0}
+.pg-projects .bv-title span{color:#B80000;margin-right:14px}
+.pg-projects .bv-ctl{display:flex;gap:6px}
+.pg-projects .bv-btn{margin:0;padding:8px 12px;border:1px solid rgba(255,255,255,.25);background:none;color:#fff;font-family:inherit;font-size:clamp(18px,1.5vw,24px);line-height:1;cursor:pointer;transition:background .2s ease,border-color .2s ease}
+.pg-projects .bv-btn:hover{background:#B80000;border-color:#B80000}
+.pg-projects .bv-btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.pg-projects .bv-scroll{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:0 clamp(14px,2.5vw,32px);overflow:hidden;cursor:zoom-in}
+.pg-projects .bv-scroll .bv-img{display:block;max-width:100%;max-height:100%;object-fit:contain;-webkit-user-select:none;user-select:none}
+.pg-projects .bv-scroll.zoomed{display:block;overflow:auto;cursor:zoom-out;padding:0}
+.pg-projects .bv-scroll.zoomed .bv-img{max-width:none;max-height:none;width:max(3000px,220vw);margin:0 auto}
+.pg-projects .bv-hint{margin:0;padding:10px;text-align:center;font-size:18px;line-height:1;color:#929292}
+.pg-projects .b-pols{display:flex;flex-wrap:wrap;gap:clamp(14px,2vw,28px) clamp(12px,1.8vw,26px);padding:8px 4px 4px}
+.pg-projects .pol{margin:0;width:clamp(128px,11vw,168px);box-sizing:border-box;padding:8px 8px 36px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.18),0 6px 14px rgba(0,0,0,.12);transform:translateY(var(--y)) rotate(var(--r));transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease}
+.pg-projects .pol img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;background:#ddd;filter:saturate(.92) contrast(1.03)}
+.pg-projects .pol figcaption{padding:8px 2px 12px;min-height:30px;font-size:clamp(15px,1.1vw,18px);line-height:1;letter-spacing:-.01em;color:#222;text-align:center}
+.pg-projects .pol:hover{transform:translateY(calc(var(--y) - 6px)) rotate(0deg) scale(1.06);box-shadow:0 2px 4px rgba(0,0,0,.18),0 14px 28px rgba(0,0,0,.18);z-index:2;position:relative}
+@media (prefers-reduced-motion: reduce){.pg-projects .pol{transition:none}}
+.pg-projects .b-visual{position:relative;width:100%;aspect-ratio:16/9;background:#000;overflow:hidden}
+.pg-projects .b-visual img{display:block;width:100%;height:100%;object-fit:cover}
+.pg-projects .b-visual.has{aspect-ratio:auto;background:none}
+.pg-projects .b-visual.has img{height:auto}
+.pg-projects .b-visual.narrow{max-width:760px}
+.pg-projects .b-vid{margin:0;display:flex;flex-direction:column;gap:12px}
+.pg-projects .b-vid.narrow{max-width:420px}
+.pg-projects .b-video{display:block;width:100%;height:auto;background:#000}
+.pg-projects .b-vid-cap{display:flex;flex-wrap:wrap;gap:6px 24px;align-items:baseline}
+.pg-projects .b-vid-t{font-size:clamp(24px,2.2vw,36px);line-height:1;letter-spacing:-.02em;color:#B80000}
+.pg-projects .b-vid-d{flex:1 1 320px;min-width:0;font-family:'Archivo',Arial,sans-serif;font-size:17px;line-height:1.55;max-width:62ch}
+.pg-projects .b-embed{margin:0;display:flex;flex-direction:column;background:#000}
+.pg-projects .b-embed-go{font-size:24px;line-height:1;letter-spacing:-.01em;color:#fff;text-decoration:none;transition:color .2s ease}
+.pg-projects .b-embed-go:hover{color:#B80000}
+.pg-projects .b-embed-f{display:block;width:100%;aspect-ratio:16/10;min-height:520px;border:0;background:#E8DCC4}
+.pg-projects .b-embed-c{padding:10px 14px;background:#fff;color:#929292;font-size:clamp(18px,1.4vw,24px);line-height:1;letter-spacing:-.01em}
+.pg-projects .b-play{display:flex;align-items:flex-end;gap:clamp(20px,3vw,48px);color:#000;text-decoration:none}
+.pg-projects .b-play-img{flex:0 1 620px;min-width:0;display:block}
+.pg-projects .b-play-img img{display:block;width:100%;height:auto;transition:transform .6s cubic-bezier(.2,.8,.2,1),opacity .3s ease}
+.pg-projects .b-play:hover .b-play-img img{transform:scale(1.015);opacity:.85}
+.pg-projects .b-play-go{flex:none;padding-bottom:clamp(12px,2vw,32px);font-size:clamp(32px,3.4vw,56px);line-height:.95;letter-spacing:-.02em;color:#000;transition:color .2s ease}
+.pg-projects .b-play:hover .b-play-go{color:#B80000}
+.pg-projects .b-play:focus-visible{outline:3px solid #000;outline-offset:4px}
+@media (max-width:760px){.pg-projects .b-play{flex-direction:column;align-items:flex-start}.pg-projects .b-play-img{flex:none;width:100%}}
+.pg-projects .b-live{display:block;position:relative;background:#000;color:#fff;text-decoration:none;overflow:hidden}
+.pg-projects .b-live-bar{display:flex;align-items:center;gap:14px;padding:10px 14px;background:#1a1a1a}
+.pg-projects .b-live-dots{display:flex;gap:6px}
+.pg-projects .b-live-dots span{width:10px;height:10px;border-radius:50%;background:#555}
+.pg-projects .b-live-url{flex:1;min-width:0;font-family:'Archivo',Arial,sans-serif;font-size:14px;color:#bbb;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pg-projects .b-live-go{font-size:24px;line-height:1;letter-spacing:-.01em;color:#fff;transition:color .2s ease}
+.pg-projects .b-live img{display:block;width:100%;height:auto;transition:transform .6s cubic-bezier(.2,.8,.2,1),opacity .3s ease}
+.pg-projects .b-live:hover img{transform:scale(1.015);opacity:.85}
+.pg-projects .b-live:hover .b-live-go{color:#B80000}
+.pg-projects .b-live:focus-visible{outline:3px solid #000;outline-offset:4px}
+.pg-projects .b-visual .cap{position:absolute;left:16px;right:16px;bottom:12px;font-size:22px;line-height:1.1;color:#9B9B9B}
+.pg-projects .b-steps{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;border-bottom:1px solid #000}
+.pg-projects .b-step{display:flex;gap:clamp(14px,2vw,28px);align-items:baseline;border-top:1px solid #000;padding:12px 0}
+.pg-projects .b-step-n{font-size:clamp(32px,3vw,50px);line-height:1;color:#B80000;min-width:1.4em}
+.pg-projects .b-step-t{font-size:clamp(26px,2.4vw,40px);line-height:1;letter-spacing:-.02em}
+.pg-projects .b-persona{display:flex;flex-wrap:wrap;gap:clamp(16px,3vw,40px);align-items:flex-start;background:#000;color:#fff;padding:clamp(20px,3vw,40px)}
+.pg-projects .b-persona-n{flex:1 1 220px;font-size:clamp(56px,6vw,100px);line-height:.85;letter-spacing:-.03em}
+.pg-projects .b-persona-n span{display:block;margin-top:10px;font-size:.32em;line-height:1;color:#E5AAAA;letter-spacing:0}
+.pg-projects .b-persona-t{flex:2 1 300px;min-width:0;margin:0;font-family:'Archivo',Arial,sans-serif;font-size:18px;line-height:1.55}
+.pg-projects .b-test{display:flex;flex-direction:column;gap:14px;border-top:2px solid #000;padding-top:14px}
+.pg-projects .b-test-body,.pg-projects .b-test-txt{display:flex;flex-direction:column;gap:14px}
+.pg-projects .b-test.side .b-test-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,380px);gap:clamp(24px,4vw,64px);align-items:start}
+.pg-projects .b-test-v{display:block;width:100%;height:auto;background:#000}
+@media (max-width:760px){.pg-projects .b-test.side .b-test-body{grid-template-columns:1fr}.pg-projects .b-test-v{max-width:420px}}
+.pg-projects .b-test-imgs{display:flex;align-items:center;gap:clamp(8px,1.2vw,18px);margin-top:6px}
+.pg-projects .b-test-img{display:block;min-width:0;width:100%;height:auto}
+@media (max-width:760px){.pg-projects .b-test-imgs{flex-wrap:wrap}.pg-projects .b-test-img{flex:0 0 calc(50% - 9px) !important}}
+.pg-projects .b-test-h{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+.pg-projects .b-test-n{font-size:clamp(34px,3.4vw,56px);line-height:1;letter-spacing:-.02em}
+.pg-projects .b-test-s{font-size:clamp(44px,4.6vw,76px);line-height:1;color:#B80000;letter-spacing:-.03em}
+.pg-projects .b-test-q{margin:0;font-size:clamp(24px,2.2vw,36px);line-height:1.05;color:#B80000}
+.pg-projects .b-test-c{margin:0;font-family:'Archivo',Arial,sans-serif;font-size:17px;line-height:1.55;max-width:62ch}
+.pg-projects .b-test-c b{font-family:'Bebas Neue',Impact,sans-serif;font-weight:400;font-size:21px;color:#B80000;margin-right:8px}
+@media (max-width: 640px){.pg-projects .b-tr{grid-template-columns:1fr;gap:6px}}
+.pg-projects .case-hero{position:relative;width:100%;aspect-ratio:16/9;background:#000;overflow:hidden}
+.pg-projects .case-hero img{display:block;width:100%;height:100%;object-fit:cover}
+.pg-projects .case-hero .cap{position:absolute;left:16px;bottom:12px;font-size:24px;color:#9B9B9B}
+.pg-projects .case-body{display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,64px)}
+.pg-projects .case-lead{flex:1 1 320px;min-width:0;margin:0;font-size:clamp(34px,3.4vw,56px);line-height:1;letter-spacing:-.03em;color:#B80000}
+.pg-projects .case-text{flex:2 1 420px;min-width:0;margin:0;font-family:'Archivo',Arial,sans-serif;font-size:18px;line-height:1.6;max-width:62ch;white-space:pre-line}
+.pg-projects .case-ext{align-self:flex-start;font-size:32px;letter-spacing:-.02em;color:#000;text-decoration:none;border-bottom:3px solid #000}
+.pg-projects .case-next{align-self:flex-start;margin:0;padding:0;border:0;background:none;cursor:pointer;font-family:inherit;font-size:clamp(48px,8vw,140px);line-height:.9;letter-spacing:-.05em;color:#000;text-align:left;transition:color .2s ease}
+.pg-projects .case-next:hover{color:#B80000}
+.pg-projects .case-next span{display:block;font-size:.3em;color:#929292;letter-spacing:-.02em}
+@media (max-aspect-ratio: 1/1){
+.jr.pg-projects{--u:min(calc(100vw / 1000), calc(100vh / 2100))}
+.pg-projects .stage{width:calc(var(--u) * 1000);height:calc(var(--u) * 2100)}
+.pg-projects .nav{left:calc(var(--u) * 37);top:calc(var(--u) * 30);font-size:calc(var(--u) * 100)}
+.pg-projects .title{left:calc(var(--u) * 28);top:calc(var(--u) * 140);font-size:calc(var(--u) * 300)}
+.pg-projects .desc{left:calc(var(--u) * 40);top:calc(var(--u) * 440);width:calc(var(--u) * 920);font-size:calc(var(--u) * 46)}
+.pg-projects .track{left:calc(var(--u) * 40);top:calc(var(--u) * 680)}
+.pg-projects .card{top:calc(var(--u) * 100);width:calc(var(--u) * 760);height:calc(var(--u) * 1000)}
+.pg-projects .card .cta{opacity:1;transform:none;font-size:calc(var(--u) * 50)}
+.pg-projects .card.has{width:min(calc(var(--u) * 920 * var(--cs, 1)), calc(var(--u) * 920))}
+.pg-projects .card.has img{max-height:calc(var(--u) * 1000)}
+.pg-projects .bar{left:calc(var(--u) * 40);top:calc(var(--u) * 1800);width:calc(var(--u) * 920);height:calc(var(--u) * 12)}
+.pg-projects .dot{top:calc(var(--u) * 1791);width:calc(var(--u) * 30);height:calc(var(--u) * 30)}
+.pg-projects .lbl{top:calc(var(--u) * 1846);font-size:calc(var(--u) * 52);padding:calc(var(--u) * 14) 0}
+.pg-projects .lbl .l-name{display:none}
+.pg-projects .lbl .l-num{display:inline}
+}
+@media (prefers-reduced-motion: reduce){
+.jr.pg-projects,.pg-projects .case{animation:none}
+.pg-projects .desc,.pg-projects .card .media,.pg-projects .card .cta{transition:none}
+}
+
+.jr.pg-projects{position:relative}
+.jr.pg-projects.stacked .nav{display:none}
+.jr.pg-projects.stacked .horse{display:none}
+</style>
+</helmet>
+<main class="jr bb pg-projects {{stackCls}}">
+
+<div class="horse" ref="{{horseRef}}" aria-hidden="true"></div>
+<sc-if value="{{caseOpen}}" hint-placeholder-val="{{false}}">
+<div class="case" role="dialog" aria-modal="true" aria-label="{{cs.title}} case study" ref="{{caseRef}}">
+<div class="case-wrap">
+<div class="case-top">
+<button class="case-back" type="button" onClick="{{closeCase}}">← BACK TO PROJECTS</button>
+<p class="case-cat">{{cs.category}}</p>
+</div>
+<div class="case-head">
+<h2 class="case-title">{{cs.title}}</h2>
+<span class="case-num" aria-hidden="true">{{cs.num}}</span>
+</div>
+<dl class="case-meta">
+<sc-for list="{{cs.metaList}}" as="mt" hint-placeholder-count="4"><div><dt>{{mt.k}}</dt><dd>{{mt.v}}</dd></div></sc-for>
+</dl>
+<div class="case-hero {{cs.heroCls}}">
+<sc-if value="{{cs.hasImg}}" hint-placeholder-val="{{false}}"><img src="{{cs.image}}" alt="{{cs.title}}"></sc-if>
+<sc-if value="{{cs.noImg}}" hint-placeholder-val="{{true}}"><span class="cap">[{{cs.heroCap}}]</span></sc-if>
+</div>
+<div class="case-body">
+<p class="case-lead">{{cs.lead}}</p>
+<sc-if value="{{cs.hasBody}}" hint-placeholder-val="{{true}}"><p class="case-text">{{cs.body}}</p></sc-if>
+</div>
+<sc-if value="{{cs.hasSections}}" hint-placeholder-val="{{false}}">
+<div class="cs-secs">
+<sc-for list="{{cs.sections}}" as="sec" hint-placeholder-count="0">
+<section class="cs-sec">
+<div class="cs-side"><span class="cs-n">{{sec.num}}</span><span class="cs-l">{{sec.label}}</span></div>
+<div class="cs-main">
+<sc-if value="{{sec.hasTitle}}" hint-placeholder-val="{{true}}"><h3 class="cs-h">{{sec.title}}</h3></sc-if>
+<sc-for list="{{sec.blocks}}" as="b" hint-placeholder-count="0">
+<sc-if value="{{b.isP}}" hint-placeholder-val="{{false}}"><p class="b-p" style="color: #0b0b0b">{{b.text}}</p></sc-if>
+<sc-if value="{{b.isQuotes}}" hint-placeholder-val="{{false}}"><div class="b-quotes"><sc-for list="{{b.quoteList}}" as="q" hint-placeholder-count="0"><blockquote class="b-q">“{{q.text}}”</blockquote></sc-for></div></sc-if>
+<sc-if value="{{b.isStat}}" hint-placeholder-val="{{false}}"><div class="b-stat"><span class="b-stat-v">{{b.value}}</span><p class="b-stat-t"><sc-if value="{{b.hasUrl}}" hint-placeholder-val="{{false}}"><a class="b-stat-a" href="{{b.url}}" target="_blank" rel="noopener">{{b.text}} ↗</a></sc-if><sc-if value="{{b.noUrl}}" hint-placeholder-val="{{true}}"><span>{{b.text}}</span></sc-if><span class="b-src">{{b.source}}</span></p></div></sc-if>
+<sc-if value="{{b.isTable}}" hint-placeholder-val="{{false}}"><div class="b-table" role="table" style="--cols: {{b.cols}}"><div class="b-tr" role="row"><sc-for list="{{b.headCells}}" as="h" hint-placeholder-count="0"><span class="b-th" role="columnheader">{{h.text}}</span></sc-for></div><sc-for list="{{b.rowList}}" as="r" hint-placeholder-count="0"><div class="b-tr" role="row"><sc-for list="{{r.cells}}" as="c" hint-placeholder-count="0"><span class="b-td {{c.cls}}" role="cell">{{c.text}}</span></sc-for></div></sc-for></div></sc-if>
+<sc-if value="{{b.isList}}" hint-placeholder-val="{{false}}"><ul class="b-list {{b.listCls}}"><sc-for list="{{b.listItems}}" as="li" hint-placeholder-count="0"><li class="b-li"><sc-if value="{{li.hasT}}" hint-placeholder-val="{{true}}"><span class="b-li-t" style="color: #b80000; font-weight: 700">{{li.t}}</span></sc-if><span class="b-li-b">{{li.b}}</span></li></sc-for></ul></sc-if>
+<sc-if value="{{b.isCallout}}" hint-placeholder-val="{{false}}"><p class="b-callout {{b.cls}}">{{b.text}}</p><sc-if value="{{b.hasSub}}" hint-placeholder-val="{{false}}"><p class="b-sub {{b.subCls}}">{{b.sub}}</p></sc-if></sc-if>
+<sc-if value="{{b.isLoop}}" hint-placeholder-val="{{false}}"><figure class="b-vid {{b.vcl}}"><video class="b-video" src="{{b.src}}" poster="{{b.poster}}" ref="{{b.vref}}" autoPlay="{{true}}" muted="{{true}}" loop="{{true}}" playsInline="{{true}}" preload="auto" aria-label="{{b.caption}}"></video><figcaption class="b-vid-cap"><span class="b-vid-t">{{b.caption}}</span><span class="b-vid-d">{{b.text}}</span></figcaption></figure></sc-if>
+<sc-if value="{{b.isVideo}}" hint-placeholder-val="{{false}}"><figure class="b-vid {{b.vcl}}"><video class="b-video" src="{{b.src}}" poster="{{b.poster}}" controls="{{true}}" playsInline="{{true}}" preload="metadata" aria-label="{{b.caption}}"></video><figcaption class="b-vid-cap"><span class="b-vid-t">{{b.caption}}</span><span class="b-vid-d">{{b.text}}</span></figcaption></figure></sc-if>
+<sc-if value="{{b.isEmbed}}" hint-placeholder-val="{{false}}"><figure class="b-embed"><div class="b-live-bar"><span class="b-live-dots" aria-hidden="true"><span></span><span></span><span></span></span><span class="b-live-url">{{b.host}}</span><a class="b-embed-go" href="{{b.url}}" target="_blank" rel="noopener">OPEN IN NEW TAB ↗</a></div><iframe class="b-embed-f" src="{{b.src}}" title="{{b.caption}}" loading="lazy" allow="clipboard-write; web-share"></iframe><figcaption class="b-embed-c">{{b.caption}}</figcaption></figure></sc-if>
+<sc-if value="{{b.isPlay}}" hint-placeholder-val="{{false}}"><a class="b-play" href="{{b.url}}" target="_blank" rel="noopener" style="height: 659px"><span class="b-play-img"><img src="{{b.src}}" alt="{{b.caption}}"></span><span class="b-play-go" style="height: 21px">OPEN AND PLAY ↗</span></a></sc-if>
+<sc-if value="{{b.isLive}}" hint-placeholder-val="{{false}}"><a class="b-live" href="{{b.url}}" target="_blank" rel="noopener"><span class="b-live-bar"><span class="b-live-dots" aria-hidden="true"><span></span><span></span><span></span></span><span class="b-live-url">{{b.host}}</span><span class="b-live-go">OPEN AND PLAY ↗</span></span><img src="{{b.src}}" alt="{{b.caption}}"></a></sc-if>
+<sc-if value="{{b.isDuo}}" hint-placeholder-val="{{false}}"><div class="b-duo"><ul class="b-list"><sc-for list="{{b.listItems}}" as="li" hint-placeholder-count="0"><li class="b-li"><span class="b-li-t">{{li.t}}</span><span class="b-li-b">{{li.b}}</span></li></sc-for></ul><div class="b-duo-r"><sc-if value="{{b.hasBoard}}" hint-placeholder-val="{{false}}"><div class="b-boards"><p class="b-boards-hint">{{b.bd.hint}}</p><button class="b-board" type="button" aria-label="Open {{b.bd.title}}" onClick="{{b.bd.open}}"><span class="b-board-img" style="aspect-ratio: {{b.bd.ar}}"><img src="{{b.bd.thumb}}" alt="" loading="lazy"><span class="b-board-z" aria-hidden="true">+</span></span><span class="b-board-cap"><span class="b-board-t">{{b.bd.title}}</span></span></button></div></sc-if><sc-if value="{{b.hasFlow}}" hint-placeholder-val="{{false}}"><div class="b-flow"><p class="b-flow-l"><span class="b-flow-h" aria-hidden="true">♥</span>{{b.flowLabel}}</p><ol class="b-flow-s"><sc-for list="{{b.flowSteps}}" as="fs" hint-placeholder-count="0"><li><span class="b-flow-n">{{fs.n}}</span>{{fs.t}}</li></sc-for></ol></div></sc-if></div></div></sc-if>
+<sc-if value="{{b.isShift}}" hint-placeholder-val="{{false}}"><div class="b-shift"><span class="b-shift-c c1" aria-hidden="true"></span><span class="b-shift-c c2" aria-hidden="true"></span><span class="b-shift-c c3" aria-hidden="true"></span><p class="b-shift-h">{{b.title}}<span>{{b.sub}}</span></p><ul class="b-shift-l"><sc-for list="{{b.shiftRows}}" as="sr" hint-placeholder-count="0"><li><span>{{sr.a}}</span><svg class="b-shift-ar" viewBox="0 0 60 40" role="img" aria-label="becomes"><path d="M4 20 H50 M34 5 Q44 18 54 20 Q44 22 34 35"></path></svg><span>{{sr.b}}</span></li></sc-for></ul><sc-if value="{{b.hasNote}}" hint-placeholder-val="{{false}}"><p class="b-shift-n">{{b.note}}</p></sc-if></div></sc-if>
+<sc-if value="{{b.isBoards}}" hint-placeholder-val="{{false}}"><div class="b-boards"><p class="b-boards-hint">{{b.hint}}</p><sc-for list="{{b.rows}}" as="row" hint-placeholder-count="0"><div class="b-brow"><sc-for list="{{row.items}}" as="bd" hint-placeholder-count="0"><button class="b-board" type="button" style="flex: {{bd.ar}} 1 0" aria-label="Open cluster {{bd.n}}: {{bd.title}}" onClick="{{bd.open}}"><span class="b-board-img" style="aspect-ratio: {{bd.ar}}"><img src="{{bd.thumb}}" alt="" loading="lazy"><span class="b-board-z" aria-hidden="true">+</span></span><span class="b-board-cap"><span class="b-board-n">{{bd.n}}</span><span class="b-board-t">{{bd.title}}</span></span></button></sc-for></div></sc-for></div></sc-if>
+<sc-if value="{{b.isPols}}" hint-placeholder-val="{{false}}"><div class="b-pols"><sc-for list="{{b.pols}}" as="pl" hint-placeholder-count="0"><figure class="pol" style="--r: {{pl.r}}deg; --y: {{pl.y}}px"><img src="{{pl.src}}" alt="{{pl.cap}}" loading="lazy"></figure></sc-for></div></sc-if>
+<sc-if value="{{b.isVisual}}" hint-placeholder-val="{{false}}"><div class="b-visual {{b.vcls}}"><sc-if value="{{b.hasSrc}}" hint-placeholder-val="{{false}}"><img src="{{b.src}}" alt="{{b.caption}}"></sc-if><sc-if value="{{b.noSrc}}" hint-placeholder-val="{{true}}"><span class="cap">[VISUAL: {{b.caption}}]</span></sc-if></div></sc-if>
+<sc-if value="{{b.isSteps}}" hint-placeholder-val="{{false}}"><ol class="b-steps"><sc-for list="{{b.stepList}}" as="st" hint-placeholder-count="0"><li class="b-step"><span class="b-step-n">{{st.n}}</span><span class="b-step-t">{{st.text}}</span></li></sc-for></ol></sc-if>
+<sc-if value="{{b.isPersona}}" hint-placeholder-val="{{false}}"><div class="b-persona"><p class="b-persona-n" style="margin: 0">{{b.name}}<span>{{b.role}}</span></p><p class="b-persona-t">{{b.text}}</p></div></sc-if>
+<sc-if value="{{b.isTest}}" hint-placeholder-val="{{false}}"><div class="b-test {{b.tcls}}"><div class="b-test-h"><span class="b-test-n">{{b.name}}</span><sc-if value="{{b.hasScore}}" hint-placeholder-val="{{false}}"><span class="b-test-s">{{b.score}}</span></sc-if></div><div class="b-test-body"><div class="b-test-txt"><p class="b-p">{{b.text}}</p><sc-if value="{{b.hasQuote}}" hint-placeholder-val="{{false}}"><p class="b-test-q">“{{b.quote}}”</p></sc-if><sc-if value="{{b.hasChange}}" hint-placeholder-val="{{false}}"><p class="b-test-c"><b>{{b.changeLabel}}</b>{{b.change}}</p></sc-if></div><sc-if value="{{b.hasVid}}" hint-placeholder-val="{{false}}"><video class="b-test-v" src="{{b.vid}}" poster="{{b.vposter}}" ref="{{b.vref}}" autoPlay="{{true}}" muted="{{true}}" loop="{{true}}" playsInline="{{true}}" preload="auto" aria-label="{{b.name}}" style="height: 340px; object-fit: cover; object-position: 50% 49.2788%"></video></sc-if></div><sc-if value="{{b.hasImgs}}" hint-placeholder-val="{{false}}"><div class="b-test-imgs"><sc-for list="{{b.imgs}}" as="im" hint-placeholder-count="0"><img class="b-test-img" src="{{im.src}}" style="flex: {{im.ar}} 1 0" alt="" loading="lazy"></sc-for></div></sc-if></div></sc-if>
+</sc-for>
+</div>
+</section>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{cs.hasDest}}" hint-placeholder-val="{{false}}"><a class="case-ext" href="{{cs.destination}}">OPEN THE FULL PROJECT ↗</a></sc-if>
+<button class="case-next" type="button" onClick="{{nextCase}}"><span>NEXT PROJECT</span>{{nextTitle}} →</button>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{bvOpen}}" hint-placeholder-val="{{false}}">
+<div class="bv" role="dialog" aria-modal="true" aria-label="Data card cluster {{bv.n}}: {{bv.title}}" tabindex="-1" ref="{{bvRef}}" onKeyDown="{{bvKey}}">
+<div class="bv-bar">
+<p class="bv-title"><sc-if value="{{bv.hasN}}" hint-placeholder-val="{{true}}"><span>{{bv.n}} / {{bv.total}}</span></sc-if>{{bv.title}}</p>
+<div class="bv-ctl">
+<button class="bv-btn" type="button" onClick="{{bvZoom}}">{{bv.zoomLabel}}</button>
+<button class="bv-btn" type="button" aria-label="Previous cluster" onClick="{{bvPrev}}">←</button>
+<button class="bv-btn" type="button" aria-label="Next cluster" onClick="{{bvNext}}">→</button>
+<button class="bv-btn" type="button" onClick="{{bvClose}}">CLOSE ×</button>
+</div>
+</div>
+<div class="bv-scroll {{bv.cls}}" ref="{{bvScrollRef}}" onClick="{{bvImgClick}}">
+<img class="bv-img" src="{{bv.src}}" alt="{{bv.title}}" draggable="false">
+</div>
+<p class="bv-hint">{{bv.hint}}</p>
+</div>
+</sc-if>
+<section class="runway" ref="{{runwayRef}}" style="height: calc(100vh + var(--u) * {{travel}})">
+<div class="pin" ref="{{pinRef}}" onWheel="{{onWheel}}" onTouchStart="{{onTouchStart}}" onTouchMove="{{onTouchMove}}">
+<div class="stage">
+<nav class="nav" aria-label="Main">
+<a href="Main.dc.html">HOME</a>
+<a class="is-active" href="Projects.dc.html" aria-current="page" aria-hidden="true" tabindex="-1" style="visibility: hidden">PROJECTS</a>
+<a href="Jennieration.dc.html">JENNIE.RATION</a>
+<a href="About.dc.html" aria-label="About me">ABOUTME</a>
+</nav>
+<h1 class="title" style="left: 40px; top: 125px; position: absolute">PROJECTS</h1>
+<div class="desc {{descCls}}" aria-live="polite" style="width: 407px; left: 965px; top: 110px; position: absolute">
+<p>{{cur.desc}}</p>
+<p class="meta">{{cur.meta}}</p>
+</div>
+<div class="track" style="transform: translateX(calc(var(--u) * {{trackX}}))">
+<sc-for list="{{items}}" as="p" hint-placeholder-count="4">
+<div class="item" style="left: calc(var(--u) * {{p.left}})">
+<span class="num {{p.numCls}}">{{p.num}}</span>
+<button class="card {{p.cardCls}}" style="--cs: {{p.scale}}" type="button" aria-label="Open case study: {{p.title}}" onClick="{{p.open}}" onFocus="{{p.focus}}">
+<span class="media" style="width: 100%; height: 100%">
+<sc-if value="{{p.hasImg}}" hint-placeholder-val="{{false}}"><img src="{{p.image}}" alt="" style="width: 100%; height: 100%; object-fit: cover"></sc-if>
+</span>
+<span class="cta">VIEW CASE STUDY</span>
+</button>
+</div>
+</sc-for>
+</div>
+<div class="bar" aria-hidden="true"></div>
+<div class="dot" aria-hidden="true" style="left: calc(var(--u) * {{dotX}})"></div>
+<sc-for list="{{labels}}" as="l" hint-placeholder-count="4">
+<button class="lbl {{l.cls}}" type="button" style="left: calc(var(--u) * {{l.x}}); transform: translateX({{l.shift}}%)" onClick="{{l.go}}"><span class="l-name">{{l.name}}</span><span class="l-num">{{l.num}}</span></button>
+</sc-for>
+</div>
+</div>
+</section></main>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1018}}'>
+class Component extends DCLogic {
+  state = { t: 0, shown: 0, fading: false, mobile: false, caseIdx: -1, bv: null };
+
+  // PROJECTS: edit, reorder or add entries. image = uploaded image url (null shows the black placeholder).
+  // destination = optional link (another artboard like "Energiehuis.dc.html" or an https:// url).
+  projects = [
+    { title: 'THE LIVING FACADE', year: '2025-26', category: 'ENERGIEHUIS / UX CASE STUDY', client: 'ENERGIEHUIS X 015DUURZAAM, DELFT', role: 'DESK RESEARCH, TEST FACILITATION',
+      tools: '', image: 'assets/20671ef7734c2b4dedf38fdf8862e0e9.jpg', destination: null,
+      heroCaption: 'SCALE MODEL OF THE LIVING FACADE',
+      desc: 'TURNING A STOREFRONT NOBODY UNDERSTOOD INTO ONE NOBODY CAN IGNORE.',
+      shortMeta: 'RESEARCH + TESTING / ENERGIEHUIS DELFT / 2025-26',
+      lead: "YOU DON'T NEED TO UNDERSTAND IT TO BE DRAWN TO IT, BUT YOU WILL LEAVE KNOWING IT'S FOR YOU.",
+      body: '',
+      metaList: [['CLIENT', 'ENERGIEHUIS X 015DUURZAAM, DELFT'], ['CONTEXT', 'PROJECT STUDIO 1, SHARED SPACES (UXD, THUAS)'], ['YEAR', '2025-26'], ['TEAM', '5 DESIGNERS'], ['MY ROLE', 'DESK RESEARCH, TEST FACILITATION'], ['METHODS', 'INTERCEPT INTERVIEWS, OBSERVATION, DATA CLUSTERING, HMW, PHYSICAL PROTOTYPING, IN-CONTEXT TESTING']],
+      // Case study sections. Block types: p, quotes, stat, table, list, callout, visual (src = image url), steps, persona, test.
+      sections: [
+        { label: 'THE PROBLEM', title: 'A PLACE PEOPLE WALK PAST WITHOUT UNDERSTANDING', blocks: [
+          { type: 'p', text: "The Energiehuis is the community hub of 015Duurzaam, where Delft residents can get free, independent advice on making their homes more sustainable. From the street, nobody could tell. People mistook it for a café, a thrift store, even a repair shop. People didn't reject it, they simply didn't get it." },
+          { type: 'quotes', items: ['Maybe a thrift store or something.', "I can't tell what this shop is doing.", 'I did see a lot of people walking or shopping here, but I thought it was closed.'] },
+          { type: 'stat', value: '77%', text: "of Dutch households say they might, probably or certainly won't visit an Energiehuis.", source: 'IPSOS I&O', url: 'https://www.eerstekamer.nl/overig/20241205/behoeften_en_verwachtingen_ten/document' },
+          { type: 'polaroids', items: [
+            { src: 'assets/835f4404180da2509da5d894d798ffa6.jpg', cap: "THE ENERGIEHUIS FROM THE STREET" },
+            { src: 'assets/a12127efe0d6418a47e63286c922a8b3.jpg', cap: "THE SHOP WINDOW" },
+            { src: 'assets/17acac99ed420f3ffa42e62840e6e2f4.jpg', cap: "THE BANNER INSIDE" },
+            { src: 'assets/0e6f1b6b25524484588b4329319db590.jpg', cap: "THE WINDOW FROM INSIDE" },
+            { src: 'assets/bd4446dbc80c0d44200bd8e387b75d19.jpg', cap: "NEXT DOOR: WIJCAFÉ" },
+            { src: 'assets/d4d1d6ec16e8d7bbe22a43974bea83f1.jpg', cap: "INSIDE THE SPACE" },
+            { src: 'assets/34125b554cdeba172b9c722a0e7e1c8c.jpg', cap: "THE OLD CABINET" },
+            { src: 'assets/b6f56f2c58aad7884fe29717733aecb9.jpg', cap: "A FORGOTTEN DOOR" },
+            { src: 'assets/b078606e441b5c69c80e36844a112ab8.jpg', cap: "THE SCALE MODEL" },
+            { src: 'assets/26a71111a018e9989eaf50a075866f6f.jpg', cap: "MODEL HOUSES" },
+            { src: 'assets/f9695104230ef244bc8b912b41addf2a.jpg', cap: "SHOWING THE MODEL ON SITE" },
+            { src: 'assets/79f01f6b7072bef87fc9654a7c0f3a9e.jpg', cap: "THE MEETING CORNER TODAY" },
+            { src: 'assets/f2642925e18d3c9aab79e705187fc890.jpg', cap: "RENDER: THE MEETING CORNER" },
+            { src: 'assets/7c9e10c5f99b144342539a5ba1c68591.jpg', cap: "RENDER: THE LOUNGE" },
+            { src: 'assets/229cf79467fa9811c55e27825afb8796.jpg', cap: "SETTING UP" },
+            { src: 'assets/549f06e183c30012519b2432b0477926.jpg', cap: "THE SOLAR PANEL" },
+            { src: 'assets/a6cde2225ceb02ac4f31435bc74d35ca.jpg', cap: "BOILERS ON DISPLAY" },
+            { src: 'assets/e5457ccfee4e339c6bb3e6654ce4e683.jpg', cap: "THE 3D PRINTER FRAME" },
+            { src: 'assets/217ba3bfff98cb6d38552dd8b4ed8ad8.jpg', cap: "THE TIP CARD KIT" },
+            { src: 'assets/64932f43a4a86f24eaa1aa518450c32b.jpg', cap: "TIP CARDS ON THE TABLE" } ] } ] },
+        { label: 'RESEARCH', title: 'WHAT WE HEARD ON THE STREET', blocks: [
+          { type: 'p', text: 'We combined three kinds of research. Desk research looked at how Dutch households see energy advice (Ipsos I&O) and how museums and shops make people stop. We ran 5-7 minute intercept interviews with passersby. And we watched how people actually moved past the storefront.' },
+          { type: 'stat', value: '87', text: 'data cards, clustered on a synthesis wall.' },
+          { type: 'table', head: ['WE ASSUMED', 'WHAT WE FOUND'], rows: [
+            ['People decide in seconds whether to engage', 'Passersby scan a storefront in about 3 seconds, and most walked straight past'],
+            ['People care more about personal benefit than the planet', '"People are all about saving on bills."'],
+            ['Interactive things make people stay', 'Hands-on, social experiences made energy easier to understand in every case study'] ] },
+          { type: 'boards', items: [
+            { n: '01', title: 'LOW VISIBILITY AND WEAK FIRST IMPRESSION', thumb: 'assets/878b73b557be66451c2e8ad7a78b6243.jpg', src: 'assets/0f4a79193031ff5fcfc3ae13688dbf95.jpg', ar: 1.471, row: 0 },
+            { n: '02', title: 'UNCLEAR PURPOSE AND COMMUNICATION BREAKDOWN', thumb: 'assets/6c298d3eefc9a219973824974885c9c2.jpg', src: 'assets/a1d51243bd24f69fc5e50f37703b670a.jpg', ar: 1.463, row: 0 },
+            { n: '03', title: 'LACK OF ENGAGEMENT TRIGGERS AND ENTRY MOTIVATION', thumb: 'assets/77e4df675cb1577a4b59062efc53b3e9.jpg', src: 'assets/672799fda0a4d99952b79ab54b1a4887.jpg', ar: 1.486, row: 0 },
+            { n: '04', title: 'COST-DRIVEN MINDSET AND PRACTICAL BARRIERS TO ACTION', thumb: 'assets/130110b5502a27a6913c463a44855bb4.jpg', src: 'assets/1dad135bb6809a27df6cca2fe52effcf.jpg', ar: 2.103, row: 1 },
+            { n: '05', title: 'MISMATCH BETWEEN OFFER AND TARGET AUDIENCE', thumb: 'assets/28686dac99e660f7a562159a30d4cace.jpg', src: 'assets/a4cc5b75441980bedc01c1b30f268547.jpg', ar: 1.852, row: 1 },
+            { n: '06', title: 'TRUST, CREDIBILITY AND PERCEIVED QUALITY OF THE SPACE', thumb: 'assets/d964202f86b67d3c5bcf2765b83bf282.jpg', src: 'assets/e8ccf9095a5c5ad9560cd728d0e51c0c.jpg', ar: 2.068, row: 2 },
+            { n: '07', title: 'EXPERIENTIAL AND SOCIAL LEARNING AS KEY OPPORTUNITY', thumb: 'assets/995aed377ea61752011650b1bd776ea2.jpg', src: 'assets/918752bfe270ad5cb400a5f1163e5888.jpg', ar: 2.079, row: 2 } ] } ] },
+        { label: 'INSIGHT', title: 'THE PROBLEM BEHIND THE PROBLEM', blocks: [
+          { type: 'p', text: "The issue was never a lack of awareness. Most people already know sustainability matters, but that awareness doesn't turn into action." },
+          { type: 'callout', red: true, text: 'COMMUNITY IS THE ENTRY POINT, NOT A BYPRODUCT.', sub: 'Instead of leading with sustainability, use community to bring people in, then let energy topics follow.' },
+          { type: 'list', items: [
+            { t: 'AMBIGUOUS IDENTITY', b: 'The space shows several identities with no clear story, so people disengage before they even enter.' },
+            { t: 'DUTCH ONLY', b: 'All information is in Dutch, which shuts out a big part of the neighbourhood. "Would you be more interested if it was also in English?" "Of course!"' },
+            { t: '"NOT FOR ME"', b: "Renters feel it isn't meant for them. \"But I live in a rental place, so it's not something I will change.\"" } ] } ] },
+        { label: 'REFRAME', title: 'REFRAMING THE BRIEF', blocks: [
+          { type: 'duo', items: [
+            { t: 'PHYSICALLY PRESENT, BEHAVIORALLY INVISIBLE', b: 'When the purpose of a space is unclear, people ignore it instead of investigating.' },
+            { t: 'SOCIALLY ALIVE INSIDE, UNCLEAR OUTSIDE', b: 'The emotional warmth inside is not visible from the outside.' },
+            { t: 'FINANCIAL MOTIVATION > MORAL SUSTAINABILITY', b: 'People care more about saving money than abstract sustainability concepts.' },
+            { t: 'LARGE WINDOW SPACE, LOW INTERRUPTION', b: 'The window works as passive transparency instead of an active invitation.' } ],
+            board: { title: 'DESIGN DEBRIEF: WHO, WHAT, PROBLEM SIGNALS, CLUSTERS AND CORE TENSIONS', thumb: 'assets/cb56d6a4f05d508435227f26448035a3.jpg', src: 'assets/a46942768f1e2a812596782f79261679.jpg', ar: 1.020, hint: 'THE DESIGN DEBRIEF BOARD. CLICK IT TO LOOK CLOSER.' } },
+          { type: 'table', head: ['ORIGINAL BRIEF', 'REFRAMED DESIGN GOAL'], rows: [
+            ['Design a way to attract more visitors to the Energiehuis and communicate its purpose.', 'Design a spatial experience that makes the Energiehuis impossible to ignore from the street, effortless to enter, and personally relevant the moment you step inside.'] ] },
+          { type: 'duo', items: [
+            { t: 'IRRESISTIBLE', b: 'Catch people\u2019s attention before they actively decide to go inside. From the storefront, it should create a small moment of surprise or curiosity.' },
+            { t: 'EFFORTLESS', b: 'Feel simple, clear and low-pressure. People should not need to read a lot, ask for help immediately, or understand sustainability before joining.' },
+            { t: 'PERSONALLY RELEVANT', b: 'The experience should connect to the visitor\u2019s own home, energy bill or daily life. It should answer: \u201cWhat does this mean for me?\u201d' } ],
+            flowLabel: 'PEOPLE FEEL', flow: ['CURIOUS', 'CONNECTED', 'MOTIVATED', 'SUPPORTED'] },
+          { type: 'quotes', items: ["You don\u2019t need to understand it to be drawn to it, but you will leave knowing it\u2019s for you."] },
+          { type: 'shift', title: 'WHAT CHANGES', sub: '(BEFORE \u2192 AFTER)', rows: [['UNCLEAR', 'CLEAR'], ['PASSIVE', 'INTERACTIVE'], ['COMPLEX', 'SIMPLE'], ['GENERIC', 'PERSONAL'], ['INDIVIDUAL', 'SOCIAL']], note: 'The space does not lecture. It guides.' } ] },
+        { label: 'IDEATION', title: '20+ IDEAS FROM 8 HOW MIGHT WE QUESTIONS', blocks: [
+          { type: 'p', text: 'We turned the insights into How Might We questions and ran a full ideation session, then a round of Crazy 8 sketches. Everyone contributed to every question, from the pavement outside to how a visitor moves through the space.' },
+          { type: 'stat', value: '20+', text: 'ideas, sorted by where they happen: on the street, at the door, inside or in the neighbourhood.' },
+          { type: 'list', cols: 2, items: [
+            { t: 'STREET', b: 'How might we increase the visual impact of the storefront within 3 seconds?\nHow might we turn the storefront into a self-explanatory storytelling system?\n\nIdeas: an energy trail projected on the pavement, a kinetic solar flower field, giant objects.' },
+            { t: 'THRESHOLD', b: 'How might we create clear entry points that require minimal effort?\nHow might we make sustainability feel simple, relevant and personally beneficial rather than complex and costly?\n\nIdeas: a statement mirror, a free tip card wall, a door you press, pull or pedal, an A to G energy label.' },
+            { t: 'INSIDE', b: 'How might we align the different functions (caf\u00e9, store, community space) into one coherent narrative?\nHow might we use sensory contrast to interrupt routine walking patterns?\n\nIdeas: a calculator that prints a receipt, a real local story wall, a floor thread that tells one story.' },
+            { t: 'COMMUNITY', b: 'How might we make the community aspect of Energiehuis more visible from the outside?\nHow might we design language-independent touchpoints that invite engagement from diverse people?\n\nIdeas: a community garden, a polaroid event wall, a neighbourhood guestbook wall.' } ] },
+          { type: 'boards', hint: 'STICKY NOTE BOARDS, IDEAS BY ZONE AND CRAZY 8 SKETCHES. CLICK ONE TO LOOK CLOSER.', items: [
+            { n: '01', title: 'HMW IDEATION, ROUND 1', thumb: 'assets/fe1619047947564413a42ea4f6717caa.jpg', src: 'assets/85e7a90eec711a5543d72ca7d2674fba.jpg', ar: 1.182, row: 0 },
+            { n: '02', title: 'HMW IDEATION, ROUND 2', thumb: 'assets/3ab3d1bb4c141eb559e3c1100b4926b5.jpg', src: 'assets/7ba8c63534c77001871f5580c9fd11dc.jpg', ar: 1.999, row: 0 },
+            { n: '03', title: 'IDEA FRIDGE', thumb: 'assets/7496cf2505195c333e558d69f1d00765.jpg', src: 'assets/e5548f4079fbd963e8d337ac15e6e70a.jpg', ar: 0.989, row: 1 },
+            { n: '04', title: 'IDEAS BY ZONE', thumb: 'assets/15a019fd18bf364b58f42282ea94c5d7.jpg', src: 'assets/671037695fad92badf45cd74223247bd.jpg', ar: 0.707, row: 1 },
+            { n: '05', title: 'CRAZY 8, SHEET 1', thumb: 'assets/490627f3cfc884142a8531a700bdc757.jpg', src: 'assets/490627f3cfc884142a8531a700bdc757.jpg', ar: 0.858, row: 1 },
+            { n: '06', title: 'CRAZY 8, SHEET 2', thumb: 'assets/0a51b3aa2c481c0041825eeed37ff59f.jpg', src: 'assets/0a51b3aa2c481c0041825eeed37ff59f.jpg', ar: 0.748, row: 1 },
+            { n: '07', title: 'CRAZY 8, SHEET 3', thumb: 'assets/36e0aff0e19ebe0bfed99490355176fb.jpg', src: 'assets/36e0aff0e19ebe0bfed99490355176fb.jpg', ar: 1.143, row: 2 },
+            { n: '08', title: 'CRAZY 8, SHEET 4', thumb: 'assets/b8c2781573d4dc3658eaaf53d2be0ab4.jpg', src: 'assets/b8c2781573d4dc3658eaaf53d2be0ab4.jpg', ar: 1.416, row: 2 },
+            { n: '09', title: 'CRAZY 8, SHEET 5', thumb: 'assets/69a53d6847ea85a4420491a9ac29da0c.jpg', src: 'assets/69a53d6847ea85a4420491a9ac29da0c.jpg', ar: 0.723, row: 2 } ] } ] },
+        { label: 'CONVERGE', title: 'THREE DIRECTIONS, ONE SYSTEM', blocks: [
+          { type: 'p', text: 'We clustered the ideas into three directions, turned each one into a concept and scored them against five criteria taken straight from our research.' },
+          { type: 'list', cols: 3, items: [
+            { t: 'THE LIVING FACADE', b: 'Street and sensation. A storefront that reaches out with light, movement and interaction before people have decided anything. Cables that turn into flowers, giant objects, a floor projection.' },
+            { t: 'SPEAK CLEARLY', b: 'Personal relevance. Clear visual communication with icons, before and after stories and an A to G energy label, plus a calculator and a printed receipt to take home.' },
+            { t: 'THE LIVING ROOM', b: 'Community and identity. Community as the way in, energy as the discovery. A garden, a neighbourhood wall, real photos and local tips.' } ] },
+          { type: 'steps', items: ['Stops people within 3 seconds', 'The space explains itself without text or staff', 'Stepping in feels like continuing, not entering', 'Every visitor leaves with a concrete next step', 'Feels warm, local and social'] },
+          { type: 'table', strongFirst: true, head: ['CRITERIA', 'LIVING FACADE', 'SPEAK CLEARLY', 'LIVING ROOM'], rows: [
+            ['STOPS PASSERSBY', 'Strong', 'Moderate', 'Moderate'],
+            ['LOWERS ENTRY BARRIER', 'Strong', 'Strong', 'Strong'],
+            ['WORKS WITHOUT LANGUAGE', 'Yes', 'Yes', 'Partial'],
+            ['PERSONAL TO THE VISITOR', 'Yes', 'Limited', 'Partial'],
+            ['FEELS LIKE COMMUNITY', 'Partial', 'Partial', 'Strong'],
+            ['FEASIBILITY', 'Medium', 'High', 'High'] ] },
+          { type: 'callout', red: true, text: 'STREET \u2192 THRESHOLD \u2192 INSIDE', bigSub: true, sub: 'Only The Living Facade stopped people on the street, so it became the backbone. We pulled the strongest parts of the other two into it, as one 3-zone system.' } ] },
+        { label: 'CONCEPT', title: 'A STOREFRONT THAT REACHES OUT', blocks: [
+          { type: 'p', text: "The Living Facade turns the Energiehuis storefront into a living, sensory experience. It stops passersby physically before they've made a decision. Then it personalises the journey inside, so every visitor leaves with a concrete first step matched to their own home situation." },
+          { type: 'table', strongFirst: true, head: ['ZONE', 'WHAT HAPPENS', 'KEY TOUCHPOINTS'], rows: [
+            ['STREET', 'Stop · Look · Approach', 'Interactive sunflowers, statement mirror, floor projection'],
+            ['THRESHOLD', 'Engage · Decide · Enter', 'Tip card wall, footprint path lights, A-G energy label'],
+            ['INSIDE', 'Explore · Learn · Act', 'Calculator + printed receipt, local story wall, neighbourhood wall'] ] },
+          { type: 'video', src: 'assets/ebde792ce856dd50d70fd0e8c1bbcfcf.mp4', poster: 'assets/87a8e79c29fc7cee67f18dfa16c83b2f.jpg', caption: 'THE SCALE MODEL, WALKED THROUGH',
+            text: 'Follow a visitor from the street to the inside: sunflowers that light up as you pass, the tip card wall, the wayfinding post, the receipt kiosk, the advice desk, the statement mirror and the neighbourhood photo wall.' }  ] },
+        { label: 'TESTING', title: 'Building THE REAL STOREFRONT', blocks: [
+          { type: 'p', text: 'We built the four touchpoints as physical prototypes and tested them.' },
+          { type: 'test', name: 'INTERACTIVE SUNFLOWERS', video: 'assets/92a1b36584d41a9a7562b757f6a30322.mp4', poster: 'assets/d381596d8e786aa9fd23adfa3d9d27a0.jpg', text: 'Research showed reactive elements are what make people stop. We built 3D-printed sunflowers with LEDs and a proximity sensor that light up as someone walks past. All 5 participants slowed down. It tested so well that the core concept stayed unchanged.', quote: 'The sunflower made me slow down, felt warm, welcoming.' },
+          { type: 'test', name: 'STATEMENT MIRROR', images: [{ src: 'assets/10831b0050075b66d41326962aab847b.webp', ar: 1.436 }, { src: 'assets/d10e49006cdeaec7be994932cbd2af4b.webp', ar: 1.442 }, { src: 'assets/52238ef73e7ea000a1738a05c2f59e1a.webp', ar: 1.512 }, { src: 'assets/a8b22c1774f0bd29f65ca1785e655fbf.webp', ar: 0.874 }], text: "The mirror creates a personal moment outside, before anyone commits to going in. People stopped, took selfies and engaged socially, but didn't connect it to Energiehuis.", change: 'We added the #Energiehuis hashtag and a QR code to link it to the space.' },
+          { type: 'test', name: 'RECEIPT MACHINE', text: "A kiosk asks four quick questions about your home and prints a personalised receipt with energy tips. I facilitated the first test with two participants. Both were confused at the start, because the opening screen gave no context. After that the flow felt quick and easy (4/5 ease for both). The receipt landed well, and both wanted a digital copy. The grass texture didn't read as energy-related.", quote: 'It feels personal since I did all the steps and it matches my situation.', change: 'We added an intro screen and a tagline explaining Energiehuis, and swapped the grass for home-energy visuals. The core flow and the printed receipt stayed the same.' },
+          { type: 'play', url: 'https://kapendjennifer-lgtm.github.io/Printer-Machine-EnergieHuis/', src: 'assets/f82c2a93be417df076af79fed5d04f30.png', caption: 'The receipt machine and a printed receipt' },
+          { type: 'test', name: 'TIP CARDS', text: "The tip cards are a zero-commitment takeaway: one practical tip per card, grouped by heating, water, devices and insulation, with the yearly saving in euros. They're bilingual to remove the language barrier. People liked the savings amounts but didn't feel like keeping the cards.", changeLabel: 'NEXT STEP', change: 'A graphic on the back, so people pin them up at home.' },
+          { type: 'visual', src: 'assets/83a2c2e42c643f41c669596569a759db.png', caption: 'The bilingual tip cards' } ] },
+        { label: 'NEXT', title: "WHAT I'D DO NEXT", blocks: [
+          { type: 'list', items: [
+            { t: 'TEST THE WHOLE JOURNEY', b: 'We tested each touchpoint on its own. Next is one continuous walkthrough from Street to Threshold to Inside, to see whether it holds together end to end.' },
+            { t: 'MAKE THE RECEIPT THE START, NOT THE END', b: 'A QR code on the receipt could lead to a follow-up that surfaces the most relevant tip and nudges people toward a free advice session. The facade gets them in the door, and the follow-up brings them back.' } ] } ] },
+        { label: 'REFLECTION', title: '', blocks: [
+          { type: 'callout', text: 'DESIGNING FOR PEOPLE WITH ZERO INTENT CHANGED HOW I THINK ABOUT UX.', sub: "You can't explain your way into someone's attention. The first interaction has to work before they've decided anything." } ] }
+      ] },
+    { title: 'PLAY IT TWICE', year: '2025', category: 'WEBSITE / LIVE PROTOTYPE', client: 'INTERACTIVE DESIGN COURSE, UXD THUAS', role: 'DESIGN + BUILD',
+      tools: 'REACT / HTML / CSS', image: 'assets/b48a4345cd646ecc78dc08bcd8900247.jpg',
+      destination: 'https://kapendjennifer-lgtm.github.io/Play-it-Twice/',
+      desc: 'A SECOND-HAND VINYL SHOP: RENT A RECORD, PLAY IT, PASS IT ON.',
+      shortMeta: 'DESIGN + BUILD / INTERACTIVE DESIGN, THUAS / 2025',
+      lead: '"IF IT\'S NICE, PLAY IT TWICE."',
+      body: 'Play it twice is a second-hand vinyl platform built around a circle: rent a record, give it a few weeks, then send it on to the next listener. Or keep it.\n\nYou browse the shelf by genre, era and condition, rent for 1 to 12 months or buy outright, and can switch a rental to a purchase anytime, with what you already paid credited. Every record can carry a note from the last listener, tucked in the sleeve, and you can list your own vinyls to sell or rent out.\n\nOn the home page, drag the turntable arm onto the record to start it spinning.',
+      sections: [
+        { label: 'TRY IT', title: 'PLAY WITH THE LIVE SITE', blocks: [
+          { type: 'live', url: 'https://kapendjennifer-lgtm.github.io/Play-it-Twice/', src: 'assets/b48a4345cd646ecc78dc08bcd8900247.jpg', caption: 'Play it twice home page with the turntable' },
+          { type: 'p', text: 'This is a working prototype, not a mockup. Rent a record, save favourites, check your rentals or list a vinyl of your own.' } ] },
+        { label: 'THE IDEA', title: 'RENT. LISTEN. SHARE AGAIN.', blocks: [
+          { type: 'steps', items: ['Pick a record', 'Choose rent or buy', 'We ship in 24h', 'Play it. Then play it twice', 'Send it home, or keep it'] } ] },
+        { label: 'SCREENS', title: 'INSIDE THE SHOP', blocks: [
+          { type: 'visual', caption: 'Browse page with filters', src: 'assets/3f0dd7a811d49e9681bf255b0b1b441b.jpg' },
+          { type: 'visual', caption: 'Record page with rent or buy', src: 'assets/cb21098c3f0bc42e957f9521ea5837e2.jpg' } ] }
+      ] },
+    { title: 'READING A WAVE', year: '2025', category: 'INTERACTIVE READING / PROTOTYPE', client: 'INTERACTIVE DESIGN 2 (ID2), UXD THUAS', role: 'CONCEPT + DESIGN',
+      tools: 'FIGMA', image: 'assets/ca01303c3858550bec773c1f9458bfc3.jpg',
+      destination: 'https://www.figma.com/proto/mpTaE6it9HicdZKX8nytQi/Reading-a-Wave?node-id=137-1116&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=137%3A1116&page-id=35%3A21',
+      desc: 'A NEW, INTERACTIVE WAY TO READ ITALO CALVINO\'S MR. PALOMAR.',
+      shortMeta: 'CONCEPT + DESIGN / ID2, THUAS / 2025',
+      lead: '"HE WANTS TO LOOK AT A WAVE AND HE IS LOOKING AT IT."',
+      body: 'For Interactive Design 2 we were challenged to create a new, interactive way to read a passage from a book by Italo Calvino, with a navigation system to move through it.',
+      sections: [
+        { label: 'TRY IT', title: 'CLICK THROUGH THE PROTOTYPE', blocks: [
+          { type: 'live', url: 'https://www.figma.com/proto/mpTaE6it9HicdZKX8nytQi/Reading-a-Wave?node-id=137-1116&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=137%3A1116&page-id=35%3A21', src: 'assets/60d7b27f158b57d625af6a9f9a3b8342.jpg', caption: 'Reading a Wave start screen' },
+          { type: 'p', text: 'The full Figma prototype opens in a new tab. Start on the bench with Mr. Palomar and read your way through the waves.' } ] },
+        { label: 'SCREENS', title: 'ONE WAVE AT A TIME', blocks: [
+          { type: 'visual', caption: 'Tangled Waters', src: 'assets/2191c36373295932dd10cdcc858eafbb.jpg' },
+          { type: 'visual', caption: 'The Singular Wave', src: 'assets/dbbde0c6e1cd36c9f3784358092ea929.jpg' },
+          { type: 'visual', caption: 'The Square of Perception', src: 'assets/30f60d5738f0aa6eed7d3d38d9d58242.jpg' } ] }
+      ] }
+  ];
+
+  runwayRef = (el) => { if (el) this.runwayEl = el; };
+  pinRef = (el) => { if (el) this.pinEl = el; };
+  caseRef = (el) => { this.caseEl = el || null; };
+
+  // HORSE EASTER EGG: a 12-frame sprite that gallops while you scroll and runs across the footer.
+  horseRef = (el) => { this.horseEl = el || null; };
+  horseFootRef = (el) => { this.horseFoot = el || null; };
+  horseStart() {
+    this.hFrame = 0; this.hLast = 0; this.hActive = 0; this.hRaf = null;
+    this.hReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.onHorseScroll = () => {
+      this.hActive = performance.now();
+      if (this.horseEl) this.horseEl.classList.add('on');
+      if (this.hHide) clearTimeout(this.hHide);
+      this.hHide = setTimeout(() => { if (this.horseEl) this.horseEl.classList.remove('on'); }, 350);
+      if (!this.hRaf && !this.hReduce) this.hRaf = requestAnimationFrame(this.horseTick);
+    };
+    document.addEventListener('scroll', this.onHorseScroll, true);
+  }
+  horseStop() {
+    document.removeEventListener('scroll', this.onHorseScroll, true);
+    window.removeEventListener('resize', this.onHorseScroll);
+    if (this.hRaf) cancelAnimationFrame(this.hRaf);
+    if (this.hHide) clearTimeout(this.hHide);
+  }
+  horseTick = (t) => {
+    if (t - this.hLast > 66) {
+      this.hLast = t;
+      this.hFrame = (this.hFrame + 1) % 12;
+      if (this.horseEl) this.horseEl.style.backgroundPosition = (this.hFrame / 11 * 100).toFixed(3) + '% 0';
+    }
+    this.hRaf = (t - this.hActive < 240) ? requestAnimationFrame(this.horseTick) : null;
+  };
+  horsePos() {
+    const f = this.horseFoot, h = this.horseEl;
+    if (!f || !h) return;
+    const r = f.getBoundingClientRect();
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    const p = Math.min(1, Math.max(0, (vh - r.top) / Math.max(1, r.height)));
+    const travel = Math.max(0, f.clientWidth - h.offsetWidth);
+    h.style.transform = 'translateX(' + (p * travel).toFixed(1) + 'px)';
+  }
+
+  componentDidMount() {
+    this.horseStart();
+    this.cur = 0; this.target = 0;
+    this.reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.mq = window.matchMedia('(max-aspect-ratio: 1/1)');
+    this.onMq = () => { this.setState({ mobile: this.mq.matches }); this.measure(); };
+    if (this.mq.addEventListener) this.mq.addEventListener('change', this.onMq);
+    else if (this.mq.addListener) this.mq.addListener(this.onMq);
+    this.setState({ mobile: this.mq.matches });
+    this.onScroll = () => this.measure();
+    document.addEventListener('scroll', this.onScroll, true);
+    window.addEventListener('resize', this.onScroll);
+    setTimeout(this.onScroll, 0);
+  }
+
+  componentWillUnmount() {
+    this.horseStop();
+    document.removeEventListener('scroll', this.onScroll, true);
+    window.removeEventListener('resize', this.onScroll);
+    if (this.mq) {
+      if (this.mq.removeEventListener) this.mq.removeEventListener('change', this.onMq);
+      else if (this.mq.removeListener) this.mq.removeListener(this.onMq);
+    }
+    if (this.raf) cancelAnimationFrame(this.raf);
+    if (this.fadeTimer) clearTimeout(this.fadeTimer);
+  }
+
+  scroller() {
+    let el = this.runwayEl ? this.runwayEl.parentElement : null;
+    while (el && el !== document.body && el !== document.documentElement) {
+      const cs = getComputedStyle(el);
+      if (/(auto|scroll)/.test(cs.overflowY) && el.scrollHeight > el.clientHeight + 1) return el;
+      el = el.parentElement;
+    }
+    return window;
+  }
+
+  geom() {
+    const r = this.runwayEl;
+    if (!r) return null;
+    const sc = this.scroller();
+    const top0 = sc === window ? 0 : sc.getBoundingClientRect().top;
+    const rect = r.getBoundingClientRect();
+    const pinH = this.pinEl ? this.pinEl.offsetHeight : window.innerHeight;
+    return { sc: sc, top0: top0, rect: rect, total: Math.max(1, rect.height - pinH) };
+  }
+
+  measure() {
+    const g = this.geom();
+    if (!g) return;
+    const p = Math.min(1, Math.max(0, (g.top0 - g.rect.top) / g.total));
+    this.target = p * (this.projects.length - 1);
+    this.kick();
+  }
+
+  kick() {
+    if (this.raf) return;
+    const step = () => {
+      const d = this.target - this.cur;
+      if (this.reduce || Math.abs(d) < 0.0008) this.cur = this.target;
+      else this.cur += d * 0.16;
+      this.apply();
+      this.raf = this.cur !== this.target ? requestAnimationFrame(step) : null;
+    };
+    this.raf = requestAnimationFrame(step);
+  }
+
+  apply() {
+    this.setState({ t: this.cur });
+    const active = Math.round(this.cur);
+    if (active !== this.state.shown && !this.fadeTimer) {
+      this.setState({ fading: true });
+      this.fadeTimer = setTimeout(() => {
+        this.fadeTimer = null;
+        this.setState({ shown: Math.round(this.cur), fading: false });
+      }, this.reduce ? 0 : 220);
+    }
+  }
+
+  scrollBy(dy) {
+    const sc = this.scroller();
+    if (sc === window) window.scrollBy(0, dy); else sc.scrollTop += dy;
+  }
+
+  goTo(i) {
+    const g = this.geom();
+    if (!g) return;
+    const n = Math.max(1, this.projects.length - 1);
+    const targetOffset = (i / n) * g.total;
+    const current = g.top0 - g.rect.top;
+    const delta = targetOffset - current;
+    const behavior = this.reduce ? 'auto' : 'smooth';
+    if (g.sc === window) window.scrollBy({ top: delta, behavior: behavior });
+    else g.sc.scrollBy({ top: delta, behavior: behavior });
+  }
+
+  onWheel = (e) => {
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 0) this.scrollBy(e.deltaX);
+  };
+  onTouchStart = (e) => {
+    const t = e.touches[0];
+    this.touch = { x: t.clientX, y: t.clientY, horiz: null };
+  };
+  onTouchMove = (e) => {
+    if (!this.touch) return;
+    const t = e.touches[0];
+    const dx = t.clientX - this.touch.x, dy = t.clientY - this.touch.y;
+    if (this.touch.horiz === null && (Math.abs(dx) > 6 || Math.abs(dy) > 6)) this.touch.horiz = Math.abs(dx) > Math.abs(dy);
+    if (this.touch.horiz) { this.scrollBy(-dx); this.touch.x = t.clientX; this.touch.y = t.clientY; }
+  };
+
+  pad2(i) { return (i + 1 < 10 ? '0' : '') + (i + 1); }
+
+  mapBlock(b) {
+    const t = b.type;
+    const o = Object.assign({}, b, {
+      isP: t === 'p', isQuotes: t === 'quotes', isStat: t === 'stat', isTable: t === 'table', isList: t === 'list',
+      isEmbed: t === 'embed', isPlay: t === 'play', isCallout: t === 'callout', isVisual: t === 'visual', isSteps: t === 'steps', isPersona: t === 'persona', isTest: t === 'test', isPols: t === 'polaroids', isBoards: t === 'boards', isShift: t === 'shift', isDuo: t === 'duo'
+    });
+    if (t === 'quotes') o.quoteList = (b.items || []).map((x) => ({ text: x }));
+    if (t === 'stat') { o.source = b.source || ''; o.hasUrl = !!b.url; o.noUrl = !b.url; o.url = b.url || ''; }
+    if (t === 'table') {
+      o.cols = b.head.length;
+      o.headCells = b.head.map((x) => ({ text: x }));
+      o.rowList = b.rows.map((r) => ({ cells: r.map((x, j) => ({ text: x, cls: b.strongFirst && j === 0 ? 'strong' : '' })) }));
+    }
+    if (t === 'list') { o.listItems = (b.items || []).map((x) => ({ t: x.t || '', b: x.b || '', hasT: !!x.t })); o.listCls = b.cols ? 'g' + b.cols : ''; }
+    if (t === 'callout') { o.cls = (b.red ? 'red ' : '') + (b.size === 'm' ? 'm' : ''); o.hasSub = !!b.sub; o.sub = b.sub || ''; o.subCls = b.bigSub ? 'big' : ''; }
+    if (t === 'duo') {
+      o.listItems = (b.items || []).map((x) => ({ t: x.t || '', b: x.b || '' }));
+      o.hasBoard = !!b.board; o.hasFlow = !!b.flow;
+      o.bd = b.board ? Object.assign({}, b.board, { open: () => this.openBoard([{ n: '', title: b.board.title, src: b.board.src }], 0) }) : { title: '', thumb: '', ar: 1, hint: '', open: () => {} };
+      o.flowLabel = b.flowLabel || ''; o.flowSteps = (b.flow || []).map((x, k) => ({ n: this.pad2(k), t: x }));
+    }
+    if (t === 'shift') { o.shiftRows = (b.rows || []).map((r) => ({ a: r[0], b: r[1] })); o.hasNote = !!b.note; o.note = b.note || ''; o.sub = b.sub || ''; }
+    if (t === 'boards') {
+      const its = b.items || [], rows = [];
+      its.forEach((x, k) => { const r = x.row || 0; (rows[r] = rows[r] || { items: [] }).items.push({ n: x.n, title: x.title, thumb: x.thumb, ar: x.ar, open: () => this.openBoard(its, k) }); });
+      o.rows = rows.filter(Boolean);
+      o.hint = b.hint || (its.length + ' CLUSTERS FROM THE DATA CARD WALL. CLICK ONE TO LOOK CLOSER.');
+    }
+    if (t === 'polaroids') { const R = [-3, 2, -1.5, 3, -2.5, 1.5, -1, 2.5]; o.pols = (b.items || []).map((x, k) => ({ src: x.src, cap: x.cap || '', r: R[k % R.length], y: (k % 3 === 1 ? 6 : 0) })); }
+    if (t === 'visual') { o.hasSrc = !!b.src; o.noSrc = !b.src; o.src = b.src || ''; o.vcls = (b.src ? 'has' : '') + (b.narrow ? ' narrow' : ''); }
+    if (t === 'video' && b.loop) { o.isLoop = true; o.vcl = b.narrow ? 'narrow' : ''; o.vref = (el) => { if (el) { el.muted = true; el.loop = true; const p = el.play && el.play(); if (p && p.catch) p.catch(() => {}); } }; o.poster = b.poster || ''; o.caption = b.caption || ''; o.text = b.text || ''; }
+    else if (t === 'video') { o.isVideo = true; o.vcl = b.narrow ? 'narrow' : ''; o.poster = b.poster || ''; o.caption = b.caption || ''; o.text = b.text || ''; }
+    if (t === 'embed') o.host = (b.url || '').replace(/^https?:\/\//, '').replace(/\/$/, '');
+    if (t === 'live') { o.isLive = true; o.host = (b.url || '').replace(/^https?:\/\//, '').replace(/\/$/, ''); }
+    if (t === 'steps') o.stepList = (b.items || []).map((x, j) => ({ n: this.pad2(j), text: x }));
+    if (t === 'test') {
+      o.hasScore = !!b.score; o.score = b.score || '';
+      o.hasImgs = !!(b.images && b.images.length); o.imgs = (b.images || []).map((x) => ({ src: x.src, ar: x.ar }));
+      o.hasVid = !!b.video; o.vid = b.video || ''; o.vposter = b.poster || ''; o.tcls = b.video ? 'side' : ''; o.vref = (el) => { if (el) { el.muted = true; el.loop = true; const pp = el.play && el.play(); if (pp && pp.catch) pp.catch(() => {}); } };
+      o.hasQuote = !!b.quote; o.quote = b.quote || '';
+      o.hasChange = !!b.change; o.change = b.change || ''; o.changeLabel = b.changeLabel || 'WHAT CHANGED';
+    }
+    return o;
+  }
+
+  mapSections(c) {
+    return (c.sections || []).map((s, i) => ({ num: this.pad2(i), label: s.label, title: s.title || '', hasTitle: !!s.title, blocks: s.blocks.map((b) => this.mapBlock(b)) }));
+  }
+
+  openCase(i) { this.setState({ caseIdx: i }); }
+  closeCase = () => { this.setState({ caseIdx: -1, bv: null }); };
+  // DATA CARD VIEWER: full-screen cluster boards. Click the image (or ZOOM IN) to see the cards at full size, drag-scroll around.
+  openBoard(list, i) { this.bvFrom = document.activeElement; this.bvList = list; this.setState({ bv: { i: i, zoomed: false } }); }
+  bvClose = () => { this.setState({ bv: null }); const f = this.bvFrom; if (f && f.focus) setTimeout(() => f.focus(), 0); };
+  bvGo(d) { const L = this.bvList.length; this.setState({ bv: { i: (this.state.bv.i + d + L) % L, zoomed: false } }); }
+  bvPrev = () => this.bvGo(-1);
+  bvNext = () => this.bvGo(1);
+  bvZoom = () => { this.bvZoomAt(0.5, 0.35); };
+  bvZoomAt(fx, fy) {
+    const z = !this.state.bv.zoomed;
+    this.setState({ bv: { i: this.state.bv.i, zoomed: z } });
+    if (z) setTimeout(() => { const el = this.bvScrollEl; if (!el) return; el.scrollLeft = Math.max(0, fx * el.scrollWidth - el.clientWidth / 2); el.scrollTop = Math.max(0, fy * el.scrollHeight - el.clientHeight / 2); }, 30);
+  }
+  bvImgClick = (e) => {
+    if (this.bvDragged) { this.bvDragged = false; return; }
+    const img = e.currentTarget.querySelector('img'); if (!img) return;
+    const r = img.getBoundingClientRect();
+    const fx = Math.min(1, Math.max(0, (e.clientX - r.left) / (r.width || 1))), fy = Math.min(1, Math.max(0, (e.clientY - r.top) / (r.height || 1)));
+    this.bvZoomAt(fx, fy);
+  };
+  bvKey = (e) => {
+    if (e.key === 'Escape') { e.stopPropagation(); this.bvClose(); }
+    else if (e.key === 'ArrowRight') this.bvNext();
+    else if (e.key === 'ArrowLeft') this.bvPrev();
+  };
+  bvRef = (el) => { if (el && el !== this.bvEl) { this.bvEl = el; el.focus(); } if (!el) this.bvEl = null; };
+  bvScrollRef = (el) => {
+    if (el === this.bvScrollEl) return;
+    this.bvScrollEl = el || null;
+    if (!el) return;
+    // drag to pan while zoomed in
+    let d = null;
+    el.addEventListener('pointerdown', (e) => { if (!el.classList.contains('zoomed') || e.pointerType !== 'mouse') return; d = { x: e.clientX, y: e.clientY, l: el.scrollLeft, t: el.scrollTop, m: false }; });
+    el.addEventListener('pointermove', (e) => { if (!d) return; const dx = e.clientX - d.x, dy = e.clientY - d.y; if (Math.abs(dx) + Math.abs(dy) > 5) d.m = true; el.scrollLeft = d.l - dx; el.scrollTop = d.t - dy; });
+    const up = () => { if (d && d.m) this.bvDragged = true; d = null; };
+    el.addEventListener('pointerup', up); el.addEventListener('pointerleave', up);
+  };
+  nextCase = () => {
+    const n = this.projects.length;
+    this.setState({ caseIdx: (this.state.caseIdx + 1) % n });
+    if (this.caseEl) this.caseEl.scrollTop = 0;
+  };
+
+  renderVals() {
+    const mob = this.state.mobile;
+    const P = this.projects;
+    const n = P.length;
+    const pitch = mob ? 960 : 1220;
+    const t = this.state.t;
+    const active = Math.round(t);
+    const prog = n > 1 ? t / (n - 1) : 0;
+    const bar = mob ? { x: 40, w: 920, dot: 30 } : { x: 57, w: 1913, dot: 24 };
+    const pad = (i) => (i + 1 < 10 ? '0' : '') + (i + 1);
+    const shown = P[Math.min(n - 1, Math.max(0, this.state.shown))] || P[0];
+    const items = P.map((p, i) => ({
+      title: p.title, num: pad(i), left: i * pitch,
+      numCls: i === active ? 'on' : '',
+      hasImg: !!p.image, image: p.image || '', cardCls: p.image ? 'has' : '', scale: p.previewScale || 1,
+      open: () => this.openCase(i),
+      focus: () => { if (Math.round(this.target) !== i) this.goTo(i); }
+    }));
+    const labels = P.map((p, i) => {
+      const f = n > 1 ? i / (n - 1) : 0;
+      return { name: p.title, num: pad(i), x: bar.x + f * bar.w, shift: -f * 100, cls: i === active ? 'on' : '', go: () => this.goTo(i) };
+    });
+    const ci = this.state.caseIdx;
+    const c = ci >= 0 ? P[ci] : P[0];
+    return {
+      stackCls: this.props.stacked ? 'stacked' : '', lnHome: this.props.stacked ? '#home' : 'Main.dc.html', lnProjects: this.props.stacked ? '#projects' : 'Projects.dc.html', lnJen: this.props.stacked ? '#jennieration' : 'Jennieration.dc.html', lnAbout: this.props.stacked ? '#about' : 'About.dc.html',
+      runwayRef: this.runwayRef, pinRef: this.pinRef, caseRef: this.caseRef,
+      horseRef: this.horseRef, horseFootRef: this.horseFootRef,
+      onWheel: this.onWheel, onTouchStart: this.onTouchStart, onTouchMove: this.onTouchMove,
+      travel: (n - 1) * pitch,
+      trackX: -t * pitch,
+      dotX: bar.x + prog * (bar.w - bar.dot),
+      items: items, labels: labels,
+      cur: { desc: shown.desc, meta: shown.shortMeta || (shown.role + ' / ' + shown.client + ' / ' + shown.year) },
+      descCls: this.state.fading ? 'out' : '',
+      caseOpen: ci >= 0,
+      cs: Object.assign({}, c, { num: pad(Math.max(0, ci)), hasImg: !!c.image, noImg: !c.image, image: c.image || '', hasDest: !!c.destination, destination: c.destination || '',
+        heroCls: c.image ? 'has' : '', heroCap: c.heroCaption || ('HERO IMAGE: ' + c.title), lead: c.lead || c.desc, hasBody: !!c.body,
+        metaList: (c.metaList || [['YEAR', c.year], ['ROLE', c.role], ['CLIENT', c.client], ['TOOLS', c.tools]]).map((m) => ({ k: m[0], v: m[1] })),
+        sections: this.mapSections(c), hasSections: !!(c.sections && c.sections.length) }),
+      nextTitle: P[(Math.max(0, ci) + 1) % n].title,
+      closeCase: this.closeCase, nextCase: this.nextCase,
+      bvOpen: !!this.state.bv && !!this.bvList,
+      bv: (() => { const v = this.state.bv, L = this.bvList || []; const it = v && L[v.i] ? L[v.i] : { n: '', title: '', src: '' };
+        return { n: it.n, hasN: !!it.n && L.length > 1, title: it.title, src: it.src, total: String(L.length).padStart(2, '0'), cls: v && v.zoomed ? 'zoomed' : '',
+          zoomLabel: v && v.zoomed ? 'ZOOM OUT −' : 'ZOOM IN +', hint: v && v.zoomed ? 'DRAG OR SCROLL TO MOVE AROUND. CLICK TO ZOOM OUT.' : 'CLICK ANYWHERE ON THE BOARD TO ZOOM IN THERE.' }; })(),
+      bvRef: this.bvRef, bvScrollRef: this.bvScrollRef, bvKey: this.bvKey, bvClose: this.bvClose, bvPrev: this.bvPrev, bvNext: this.bvNext, bvZoom: this.bvZoom, bvImgClick: this.bvImgClick
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,824 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jennieration / About me</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500&amp;family=Bebas+Neue&amp;family=Archivo+Black&amp;display=swap">
+<style>
+/* no visible scrollbars anywhere (scrolling still works) */
+html,body,.pg-about *{scrollbar-width:none;-ms-overflow-style:none}
+html::-webkit-scrollbar,body::-webkit-scrollbar,.pg-about *::-webkit-scrollbar{display:none;width:0;height:0}
+body{margin:0;background:#fff}
+.pg-about a{color:#929292}.pg-about a:hover{color:#000}
+@font-face{font-family:'JR Archivo Black';src:url('assets/3429cd084335248b07bff22b36ee4315.woff2') format('woff2');font-display:block}
+@font-face{font-family:'JR Bebas';src:url('assets/1bbf7e03620b8f544b7315d2d6de3f3e.woff2') format('woff2');font-display:block}
+.jr.pg-about{--u:calc(100vw / 2000);background:#fff;color:#000;overflow-x:clip;animation:jrIn .7s cubic-bezier(.2,.7,.2,1) both}
+@keyframes jrIn{from{opacity:0}to{opacity:1}}
+.pg-about.bb,.pg-about .bb{font-family:'Bebas Neue',Impact,'Arial Narrow',sans-serif;font-weight:400}
+.jr.pg-about,.jr.pg-about *{cursor:url('assets/60d61bf74bad9bb579c50f5afd35cef6.png') 17 21,auto !important}
+
+/* NAV (same as the other pages) */
+.pg-about .nav{position:absolute;z-index:50;left:calc(var(--u) * 54);top:calc(var(--u) * 22);display:flex;font-size:calc(var(--u) * 83);line-height:1;letter-spacing:-.09em;white-space:nowrap}
+.pg-about .nav a{display:block;color:#929292;text-decoration:none;transition:color .25s ease}
+.pg-about .nav a:hover{color:#000}
+.pg-about .nav a:focus-visible{outline:2px solid #B80000;outline-offset:2px}
+
+/* THE PAGE: one 2000 x 1414 spread. Text left, photo in the middle, contact right, dots around. */
+.pg-about .ab{position:relative;width:calc(var(--u) * 2000);height:calc(var(--u) * 1414);overflow:hidden}
+.pg-about .dots{position:absolute;z-index:0;left:0;top:0;width:calc(var(--u) * 2000);height:calc(var(--u) * 1414);filter:blur(calc(var(--u) * .5));pointer-events:none}
+
+.pg-about .ab-l{position:absolute;z-index:2;left:calc(var(--u) * 115);top:calc(var(--u) * 150);width:calc(var(--u) * 399);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:400;font-size:calc(var(--u) * 25);line-height:calc(var(--u) * 25.2);letter-spacing:-.015em;color:#000}
+.pg-about .ab-h{margin:0 0 calc(var(--u) * 50);font-family:'JR Archivo Black','Archivo Black','Arial Black',sans-serif;font-weight:400;font-size:calc(var(--u) * 74);line-height:1;letter-spacing:-.075em;white-space:nowrap}
+.pg-about .ab-l p{margin:0}
+.pg-about .ab-p{text-align:justify;hyphens:none}
+.pg-about .ab-p+.ab-p{margin-top:calc(var(--u) * 66) !important}
+.pg-about .ab-sk{margin-top:calc(var(--u) * 66) !important}
+.pg-about .ab-ul{margin:calc(var(--u) * 20) 0 0;padding:0;list-style:none}
+.pg-about .ab-ul li{position:relative;padding-left:calc(var(--u) * 30);margin-bottom:calc(var(--u) * 20);text-align:justify}
+.pg-about .ab-ul li::before{content:'\2022';position:absolute;left:0;top:0}
+.pg-about .ab-lang{margin-top:calc(var(--u) * 66) !important}
+
+.pg-about .photo{position:absolute;z-index:2;left:calc(var(--u) * 704);top:calc(var(--u) * 338);width:calc(var(--u) * 514);height:calc(var(--u) * 800);overflow:visible}
+/* SIX VERSIONS OF ME: strip portrait (hover and move sideways to scrub through the photos) */
+.pg-about .psc{position:relative;width:100%;height:100%;overflow:visible;perspective:900px;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;touch-action:pan-y;outline:none}
+.pg-about .psc:focus-visible{outline:1px solid #141414;outline-offset:6px}
+.pg-about .psc-strip{position:absolute;top:0;height:100%;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;will-change:transform}
+.pg-about .psc-layer,.pg-about .psc-shade{position:absolute;top:0;right:0;bottom:0;left:0;pointer-events:none}
+.pg-about .psc-layer{background-repeat:no-repeat}
+.pg-about .psc-shade{background:#000;opacity:0;display:none}
+.pg-about .psc-p0{background-image:url("assets/5c1d653552062d8900eb39a212a890aa.jpg")}
+.pg-about .psc-p1{background-image:url("assets/eb0c566c949ebd0fdd545d08522cc081.jpg")}
+.pg-about .psc-p2{background-image:url("assets/8eb122cca6dcfbe60c6286be346c3c76.jpg")}
+.pg-about .psc-p3{background-image:url("assets/3a114a634576d972e6911093df396d96.jpg")}
+.pg-about .psc-p4{background-image:url("assets/5234295395cce459f23fc2b78e0b0ab3.jpg")}
+.pg-about .psc-p5{background-image:url("assets/e23ac9fd2f2de1c2182b031c9d0dab6b.jpg")}
+.pg-about .photo img{display:block;width:100%;height:100%;object-fit:cover}
+
+.pg-about .ab-c{position:absolute;z-index:2;left:calc(var(--u) * 1345);top:calc(var(--u) * 405);width:calc(var(--u) * 540)}
+.pg-about .ab-ch{margin:0 0 calc(var(--u) * 132);text-align:center;transform:translateX(calc(var(--u) * -8));font-family:'JR Archivo Black','Archivo Black','Arial Black',sans-serif;font-weight:400;font-size:calc(var(--u) * 31);line-height:1;letter-spacing:-.03em;color:#000}
+.pg-about .ab-form{margin:0}
+.pg-about .ab-row{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:calc(var(--u) * 24)}
+.pg-about .ab-in{display:block;width:calc(var(--u) * 396);border-bottom:calc(var(--u) * 1.5) solid #6b6b6b;transition:border-color .2s ease}
+.pg-about .ab-lab{font-family:'Times New Roman',Times,serif;font-size:calc(var(--u) * 27);line-height:1;color:#222;white-space:pre;padding-bottom:calc(var(--u) * 4);transition:color .2s ease}
+.pg-about .ab-row input,.pg-about .ab-note textarea{display:block;width:100%;box-sizing:border-box;margin:0;padding:0;border:0;background:transparent;border-radius:0;outline:none;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:calc(var(--u) * 22);color:#000}
+.pg-about .ab-row input{height:calc(var(--u) * 42)}
+.pg-about .ab-row input::placeholder{font-family:'Archivo',Arial,sans-serif;font-weight:500;font-size:calc(var(--u) * 15);letter-spacing:.12em;color:#8a8a8a;opacity:1}
+.pg-about .ab-note{display:block;margin-top:calc(var(--u) * 34)}
+.pg-about .ab-note .ab-lab{display:block}
+.pg-about .ab-note .ab-in{width:100%;margin-top:calc(var(--u) * 20)}
+.pg-about .ab-note textarea{height:calc(var(--u) * 76);resize:none;line-height:1.3}
+.pg-about .ab-note textarea::placeholder{font-family:'Archivo',Arial,sans-serif;font-weight:500;font-size:calc(var(--u) * 15);letter-spacing:.06em;color:#8a8a8a;opacity:1}
+.pg-about .ab-row:focus-within .ab-in,.pg-about .ab-note:focus-within .ab-in{border-color:#B80000}
+.pg-about .ab-row:focus-within .ab-lab,.pg-about .ab-note:focus-within .ab-lab{color:#B80000}
+.pg-about .ab-send{display:block;margin:calc(var(--u) * 72) auto 0;padding:0;border:0;background:none;transform:translateX(calc(var(--u) * -8));font-family:'Archivo',Arial,sans-serif;font-weight:400;font-size:calc(var(--u) * 36);line-height:1;letter-spacing:.04em;color:#222;cursor:pointer;transition:color .2s ease}
+.pg-about .ab-send:hover{color:#B80000}
+.pg-about .ab-send:focus-visible{outline:2px solid #B80000;outline-offset:4px}
+.pg-about .ab-msg{margin:calc(var(--u) * 18) 0 0;text-align:center;font-family:'Archivo',Arial,sans-serif;font-weight:500;font-size:calc(var(--u) * 16);letter-spacing:.1em;color:#929292}
+
+/* NAME EASTER EGG: Kapend Fund = Kapenda Funda, "the one who loves to learn" (scoped kn- classes) */
+.pg-about .kn-box{position:relative}
+.pg-about .kn-box+.ab-p{margin-top:calc(var(--u) * 66) !important}
+.pg-about .kn-t{text-decoration-line:underline;text-decoration-style:dotted;text-decoration-color:#B80000;text-decoration-thickness:1.5px;text-underline-offset:3px;border-radius:2px;outline:none;transition:text-decoration-color .35s ease,background-color .2s ease}
+.jr.pg-about .kn-t,.jr.pg-about .kn-t *{cursor:url('assets/56b86f51caa54756ec4b005787992c32.png') 17 21,pointer !important}
+.pg-about .kn-t:hover,.pg-about .kn-t:focus-visible,.pg-about .kn-t.kn-hov{background-color:rgba(184,0,0,.07)}
+.pg-about .kn-t:focus-visible{box-shadow:0 0 0 1px rgba(184,0,0,.35)}
+.pg-about .ab-l.kn-open .kn-t{text-decoration-color:transparent}
+.pg-about .kn-a{display:inline-block;max-width:0;opacity:0;overflow:visible;color:#B80000;transform:translateY(-1.2em);transition:max-width .5s cubic-bezier(.3,1.6,.5,1),transform .5s cubic-bezier(.3,1.6,.5,1),opacity .25s ease}
+.pg-about .kn-a2{transition-delay:.08s}
+.pg-about .ab-l.kn-open .kn-a{max-width:1em;opacity:1;transform:none}
+.pg-about .ab-l .kn-mean{position:absolute;left:0;top:100%;margin:calc(var(--u) * 10) 0 0;font-family:'Times New Roman',Times,serif;font-size:calc(var(--u) * 20);line-height:1.2;letter-spacing:0;color:#222;text-align:left;white-space:nowrap;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s ease,visibility 0s linear .3s}
+.pg-about .kn-l1{display:block;white-space:pre}
+.pg-about .kn-l2{display:block;color:#B80000;font-style:italic}
+.pg-about .ab-l.kn-open .kn-mean{opacity:1;visibility:visible;transition:opacity .6s ease .45s,visibility 0s linear 0s}
+
+/* HORSE EASTER EGG */
+.pg-about .horse{position:fixed;z-index:900;right:clamp(12px,2vw,32px);bottom:clamp(12px,2vw,28px);width:clamp(48px,4.5vw,80px);aspect-ratio:373/300;background-image:url('assets/8dc2f4922cc572d4f09003656d908a3e.png');background-repeat:no-repeat;background-size:1200% 100%;background-position:0% 0;pointer-events:none;opacity:0;transform:translateY(8px);transition:opacity .25s ease,transform .3s ease}
+.pg-about .horse.on{opacity:1;transform:none}
+
+/* PHONES: everything stacks, dots stay on the big screen only */
+@media (max-aspect-ratio: 1/1){
+.jr.pg-about{--u:calc(100vw / 1000)}
+.pg-about .ab{width:auto;height:auto;overflow:visible;padding:calc(var(--u) * 170) calc(var(--u) * 50) calc(var(--u) * 90)}
+.pg-about .dots{display:none}
+.pg-about .nav{font-size:calc(var(--u) * 92)}
+.pg-about .ab-l,.pg-about .photo,.pg-about .ab-c{position:relative;left:auto;top:auto;width:auto}
+.pg-about .ab-l{font-size:calc(var(--u) * 38);line-height:calc(var(--u) * 42)}
+.pg-about .ab-h{font-size:calc(var(--u) * 130)}
+.pg-about .ab-p+.ab-p,.pg-about .ab-sk,.pg-about .ab-lang{margin-top:calc(var(--u) * 50) !important}
+.pg-about .ab-ul li{padding-left:calc(var(--u) * 40)}
+.pg-about .photo{margin-top:calc(var(--u) * 70);height:calc(var(--u) * 1100)}
+.pg-about .ab-c{margin-top:calc(var(--u) * 90)}
+.pg-about .ab-ch{font-size:calc(var(--u) * 80);margin-bottom:calc(var(--u) * 70);transform:none}
+.pg-about .ab-in{width:62%}
+.pg-about .ab-lab{font-size:calc(var(--u) * 44)}
+.pg-about .ab-row{margin-bottom:calc(var(--u) * 40)}
+.pg-about .ab-row input{height:calc(var(--u) * 70);font-size:calc(var(--u) * 34)}
+.pg-about .ab-row input::placeholder,.pg-about .ab-note textarea::placeholder{font-size:calc(var(--u) * 24)}
+.pg-about .ab-note textarea{height:calc(var(--u) * 140);font-size:calc(var(--u) * 34)}
+.pg-about .ab-send{font-size:calc(var(--u) * 60);transform:none}
+.pg-about .ab-msg{font-size:calc(var(--u) * 26)}
+.pg-about .kn-box+.ab-p{margin-top:calc(var(--u) * 100) !important}
+.pg-about .ab-l .kn-mean{font-size:calc(var(--u) * 30)}
+}
+@media (prefers-reduced-motion: reduce){
+.jr.pg-about{animation:none}
+.pg-about .kn-a{transform:none !important;transition:opacity .3s ease !important}
+}
+
+.jr.pg-about{position:relative}
+.jr.pg-about.stacked .nav{display:none}
+</style>
+</helmet>
+<main class="jr bb pg-about {{stackCls}}">
+<section class="ab" ref="{{abRef}}" onPointerMove="{{onDotsMove}}" onPointerDown="{{onDotsMove}}" onPointerLeave="{{onDotsLeave}}">
+<canvas class="dots" ref="{{dotsRef}}" aria-hidden="true"></canvas>
+<nav class="nav" aria-label="Main">
+<a href="Main.dc.html">HOME</a>
+<a href="Projects.dc.html">PROJECTS</a>
+<a href="Jennieration.dc.html">JENNIE.RATION</a>
+</nav>
+<div class="ab-l {{knCls}}">
+<h1 class="ab-h">ABOUT ME</h1>
+<div class="kn-box"><p class="ab-p">{{introA}}<span class="kn-t kn-name" role="button" tabindex="0" aria-expanded="{{knExp}}" aria-controls="kn-mean" onClick="{{knToggle}}" onKeyDown="{{knKey}}" onMouseEnter="{{swIn}}" onMouseLeave="{{swOut}}" onFocus="{{swIn}}" onBlur="{{swOut}}">Kapend<span class="kn-a" aria-hidden="true">a</span> Fund<span class="kn-a kn-a2" aria-hidden="true">a</span></span>{{introB}}</p><p class="kn-mean" id="kn-mean" aria-live="polite"><span class="kn-l1">( ku penda ) to love    ( ku funda ) to learn</span><span class="kn-l2">the one who loves to learn</span></p></div>
+<p class="ab-p">{{col1}}</p>
+<p class="ab-sk">Skills:</p>
+<ul class="ab-ul"><sc-for list="{{skills}}" as="sk" hint-placeholder-count="6"><li>{{sk.t}}</li></sc-for></ul>
+<p class="ab-lang">{{langs}}, <span class="kn-t kn-sw {{swCls}}" role="button" tabindex="0" aria-expanded="{{knExp}}" aria-controls="kn-mean" onClick="{{knToggle}}" onKeyDown="{{knKey}}" onMouseEnter="{{swIn}}" onMouseLeave="{{swOut}}" onFocus="{{swIn}}" onBlur="{{swOut}}">Swahili</span></p>
+</div>
+<div class="photo">
+<div ref="{{pscRef}}" class="psc" role="img" aria-label="Six photographs of Jennifer Kapend Fund, from childhood to now. Move sideways across the portrait to explore them.">
+<sc-for list="{{pscStrips}}" as="ps" hint-placeholder-count="12"><div class="psc-strip"><div class="psc-layer"></div><div class="psc-layer"></div><div class="psc-layer"></div><div class="psc-shade"></div></div></sc-for>
+</div>
+</div>
+<section class="ab-c" aria-labelledby="contact-title">
+<h2 class="ab-ch" id="contact-title">CONTACT</h2>
+<form class="ab-form" onSubmit="{{send}}">
+<label class="ab-row"><span class="ab-in"><input type="text" name="name" autocomplete="name" placeholder="YOUR NAME" onInput="{{onField}}"></span><span class="ab-lab">(  Name  )</span></label>
+<label class="ab-row"><span class="ab-lab">(  Email  )</span><span class="ab-in"><input type="email" name="email" autocomplete="email" placeholder="YOU@EMAIL.COM" onInput="{{onField}}"></span></label>
+<label class="ab-row"><span class="ab-in"><input type="text" name="about" placeholder="PROJECT, INTERNSHIP..." onInput="{{onField}}"></span><span class="ab-lab">(  About  )</span></label>
+<label class="ab-note"><span class="ab-lab">(  Note  )</span><span class="ab-in"><textarea name="msg" placeholder="Say hi..." onInput="{{onField}}"></textarea></span></label>
+<button class="ab-send" type="submit">( SEND )</button>
+<sc-if value="{{hasNote}}" hint-placeholder-val="{{false}}"><p class="ab-msg" role="status">{{note}}</p></sc-if>
+</form>
+</section>
+</section>
+<div class="horse" ref="{{horseRef}}" aria-hidden="true"></div>
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1018}}'>
+var PSC_PHOTOS = [{"src": "assets/5c1d653552062d8900eb39a212a890aa.jpg", "cls": "psc-p0", "alt": "Jennie as a child in a pink coat", "w": 1170, "h": 1248, "fx": 0.5109, "fy": 0.1542}, {"src": "assets/eb0c566c949ebd0fdd545d08522cc081.jpg", "cls": "psc-p1", "alt": "Jennie as a child in an orange top on the grass", "w": 1800, "h": 1204, "fx": 0.5844, "fy": 0.3862}, {"src": "assets/8eb122cca6dcfbe60c6286be346c3c76.jpg", "cls": "psc-p2", "alt": "Jennie eating an ice cream", "w": 1800, "h": 1350, "fx": 0.1329, "fy": 0.5828}, {"src": "assets/3a114a634576d972e6911093df396d96.jpg", "cls": "psc-p3", "alt": "Jennie in a cap at a cafe terrace", "w": 1800, "h": 1200, "fx": 0.5312, "fy": 0.4934}, {"src": "assets/5234295395cce459f23fc2b78e0b0ab3.jpg", "cls": "psc-p4", "alt": "Jennie in a market in Seoul", "w": 1800, "h": 1440, "fx": 0.4229, "fy": 0.3437}, {"src": "assets/e23ac9fd2f2de1c2182b031c9d0dab6b.jpg", "cls": "psc-p5", "alt": "Jennie on a basketball court", "w": 1440, "h": 1800, "fx": 0.4956, "fy": 0.4344}];
+
+/* StripEngine: drives a strip portrait. Expects `root` to contain N `.psc-strip`
+   elements, each with 3 `.psc-layer` children then 1 `.psc-shade`.
+   Idle: autoplay, each stop held `hold` ms, gentle strip sweeps between stops.
+   Hover: cursor scrubs continuously with the full curtain motion. */
+class StripEngine {
+  constructor(root, photos, opts) {
+    this.root = root;
+    this.photos = photos;
+    this.o = Object.assign({}, StripEngine.DEFAULTS, opts || {});
+    this.S = {
+      P: 0, Pv: 0, Pt: 0, u: 0.5, v: 0, dir: 1, lastU: 0.5, lastT: 0,
+      C: 1, cTween: null, act: 0, pTween: null, overlay: -1, // overlay -1 = collage pattern, k = all strips show photo k
+      m: this.o.autoMotion, mode: 'auto', stop: 0, raf: 0, frameT: 0,
+      strips: [], cache: [], timer: 0, touchTimer: 0, visible: true,
+    };
+    if (root.tabIndex < 0) root.tabIndex = 0;
+    this.reduced = typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this._loop = this._loop.bind(this);
+    this._bind();
+    this.layout();
+    this._preload();
+  }
+
+  static mulberry(seed) {
+    let a = seed >>> 0;
+    return () => {
+      a = (a + 0x6d2b79f5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  setOptions(opts) {
+    const prevCollage = this.o.collage;
+    Object.assign(this.o, opts);
+    const count = this.root.querySelectorAll('.psc-strip').length;
+    if (count !== this.N) this.layout();
+    if (this.o.collage !== prevCollage && this.S.mode === 'auto' && this.root.classList.contains('is-ready')) this._startAuto();
+    else this._paint(true);
+  }
+
+  /* ---------- geometry ---------- */
+  layout() {
+    const els = Array.from(this.root.querySelectorAll('.psc-strip'));
+    this.N = els.length;
+    const W = this.root.clientWidth, H = this.root.clientHeight;
+    if (!W || !H || !this.N) return;
+    this.W = W; this.H = H;
+    const r = StripEngine.mulberry(1234 + this.N);
+    this.refs = els.map((el, i) => {
+      const l = Math.round((i * W) / this.N), rr = Math.round(((i + 1) * W) / this.N);
+      el.style.left = l + 'px';
+      el.style.width = rr - l + 1 + 'px'; // 1px bleed so neighbours always touch
+      const ch = el.children;
+      return { el, a: ch[0], b: ch[1], c: ch[2], s: ch[3], left: l,
+        order: r(), orderC: r(), rotAmp: 0.6 + 0.4 * r(),
+        slideAmp: 0.45 + 0.55 * r(), slideDir: Math.sin(i * 0.5 + 1.3) + 0.5 * (r() - 0.5),
+        clipDir: r() < 0.5 ? -1 : 1, stiff: 0.82 + 0.36 * r() };
+    });
+    // cover-fit placement of every photo (no zoom beyond filling the frame)
+    this.place = this.photos.map((p) => {
+      const s = Math.max(W / p.w, H / p.h);
+      const dw = p.w * s, dh = p.h * s;
+      const fx = p.fx ?? 0.5, fy = p.fy ?? 0.4;
+      const ox = Math.min(0, Math.max(W - dw, W / 2 - fx * dw));
+      const oy = Math.min(0, Math.max(H - dh, H * 0.4 - fy * dh));
+      return { dw, dh, ox, oy };
+    });
+    this.pattern = this._pattern();
+    this.S.strips = [];
+    this.S.cache = [];
+    this._paint(true);
+  }
+
+  _pattern() {
+    const n = this.photos.length, N = this.N, r = StripEngine.mulberry(this.o.collageSeed);
+    const out = [];
+    let last = -1;
+    while (out.length < N) {
+      let k = Math.floor(r() * n);
+      if (k === last) k = (k + 1) % n;
+      const run = 1 + Math.floor(r() * 3);
+      for (let j = 0; j < run; j++) out.push(k);
+      last = k;
+    }
+    out.length = N;
+    for (let p = 0; p < n; p++) {
+      if (out.includes(p)) continue;
+      const counts = {};
+      out.forEach((k) => (counts[k] = (counts[k] || 0) + 1));
+      const idx = out.findIndex((k) => counts[k] > 2);
+      out[idx >= 0 ? idx : 0] = p;
+    }
+    return out;
+  }
+
+  _preload() {
+    let left = this.photos.length;
+    this.photos.forEach((p) => {
+      const img = new Image();
+      img.onload = img.onerror = () => {
+        if (--left === 0) {
+          this.root.classList.add('is-ready');
+          this._startAuto();
+        }
+      };
+      img.src = p.src;
+    });
+  }
+
+  /* ---------- events ---------- */
+  _bind() {
+    const R = this.root;
+    this._h = {
+      enter: (e) => { if (e.pointerType !== 'touch') this._activate(this._u(e)); },
+      move: (e) => {
+        if (this.S.mode !== 'hover') { if (e.pointerType !== 'touch') this._activate(this._u(e)); return; }
+        this._track(this._u(e));
+      },
+      leave: (e) => { if (e.pointerType !== 'touch') this._deactivate(); },
+      down: (e) => { if (e.pointerType === 'touch') this._activate(this._u(e)); },
+      up: (e) => {
+        if (e.pointerType !== 'touch') return;
+        clearTimeout(this.S.touchTimer);
+        this.S.touchTimer = setTimeout(() => this._deactivate(), this.o.touchHold);
+      },
+      key: (e) => this._key(e),
+      blur: () => { if (this.S.mode === 'hover' && !R.matches(':hover')) this._deactivate(); },
+      drag: (e) => e.preventDefault(),
+      vis: () => this._visibility(),
+    };
+    R.addEventListener('pointerenter', this._h.enter);
+    R.addEventListener('pointermove', this._h.move);
+    R.addEventListener('pointerleave', this._h.leave);
+    R.addEventListener('pointerdown', this._h.down);
+    R.addEventListener('pointerup', this._h.up);
+    R.addEventListener('pointercancel', this._h.up);
+    R.addEventListener('keydown', this._h.key);
+    R.addEventListener('blur', this._h.blur);
+    R.addEventListener('dragstart', this._h.drag);
+    document.addEventListener('visibilitychange', this._h.vis);
+    if (typeof ResizeObserver !== 'undefined') {
+      let t = 0;
+      this._ro = new ResizeObserver(() => { clearTimeout(t); t = setTimeout(() => this.layout(), 100); });
+      this._ro.observe(R);
+    }
+    if (typeof IntersectionObserver !== 'undefined') {
+      this._io = new IntersectionObserver((en) => { this.S.visible = en[0].isIntersecting; this._visibility(); });
+      this._io.observe(R);
+    }
+  }
+
+  destroy() {
+    const R = this.root, h = this._h;
+    cancelAnimationFrame(this.S.raf);
+    clearTimeout(this.S.timer);
+    clearTimeout(this.S.touchTimer);
+    R.removeEventListener('pointerenter', h.enter);
+    R.removeEventListener('pointermove', h.move);
+    R.removeEventListener('pointerleave', h.leave);
+    R.removeEventListener('pointerdown', h.down);
+    R.removeEventListener('pointerup', h.up);
+    R.removeEventListener('pointercancel', h.up);
+    R.removeEventListener('keydown', h.key);
+    R.removeEventListener('blur', h.blur);
+    R.removeEventListener('dragstart', h.drag);
+    document.removeEventListener('visibilitychange', h.vis);
+    this._ro && this._ro.disconnect();
+    this._io && this._io.disconnect();
+    this.dead = true;
+  }
+
+  _u(e) {
+    const r = this.root.getBoundingClientRect();
+    return Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
+  }
+
+  _map(u) {
+    const n = this.photos.length;
+    if (n < 2) return 0;
+    const R = u * (n - 1), k = Math.min(Math.floor(R), n - 2), f = R - k;
+    const mag = Math.min(1, Math.max(0, this.o.magnet));
+    const w = mag * 0.16;
+    const g = Math.min(1, Math.max(0, (f - w) / (1 - 2 * w)));
+    const e = g * g * (3 - 2 * g);
+    return k + g * (1 - mag * 0.5) + e * mag * 0.5;
+  }
+
+  _tweenC(to, dur, ease) {
+    const S = this.S;
+    if (S.cTween && S.cTween.to === to) return;
+    if (Math.abs(S.C - to) < 1e-4 && !S.cTween) return;
+    S.cTween = { from: S.C, to, t0: performance.now(), dur: Math.max(120, dur * Math.max(0.35, Math.abs(to - S.C))), ease };
+  }
+
+  _activate(u) {
+    const S = this.S;
+    clearTimeout(S.timer);
+    clearTimeout(S.touchTimer);
+    S.pTween = null;
+    const hidden = S.C > 0.985;
+    S.afterC = null; // a pending autoplay swap is abandoned; its overlay simply recedes
+    S.mode = 'hover';
+    S.u = S.lastU = u;
+    S.lastT = performance.now();
+    S.Pt = this._map(u);
+    if (hidden) { S.P = S.Pt; S.Pv = 0; }
+    if (S.C > 0) {
+      // finish an overlay that is hiding a photo jump: keep it but fade it away
+      this._tweenC(0, this.o.enterDuration, StripEngine.easeOut);
+    }
+    this._wake();
+  }
+
+  _track(u) {
+    const S = this.S, now = performance.now();
+    const dt = Math.max(0.008, (now - S.lastT) / 1000);
+    const raw = Math.max(-12, Math.min(12, (u - S.lastU) / dt));
+    S.v = S.v * 0.5 + raw * 0.5;
+    S.act = 1;
+    if (Math.abs(S.v) > 0.04) S.dir += (Math.sign(S.v) - S.dir) * 0.35;
+    S.lastU = u; S.lastT = now; S.u = u;
+    S.Pt = this._map(u);
+    this._wake();
+  }
+
+  _deactivate() {
+    const S = this.S;
+    if (S.mode !== 'hover') return;
+    S.mode = 'auto';
+    if (S.C > 0.5 && this.o.collage) {
+      S.overlay = -1;
+      this._tweenC(1, this.o.resetDuration, StripEngine.easeInOut);
+      S.stop = -1;
+    } else {
+      if (S.C > 0) this._tweenC(0, this.o.enterDuration, StripEngine.easeOut);
+      S.Pt = Math.round(S.P); // settle onto the nearest photo
+      S.stop = S.Pt;
+    }
+    this._wake();
+    this._scheduleNext();
+  }
+
+  _key(e) {
+    const S = this.S, n = this.photos.length;
+    let t = null;
+    const cur = S.mode === 'hover' ? Math.round(S.Pt) : -1;
+    if (e.key === 'ArrowRight') t = Math.min(n - 1, cur + 1);
+    else if (e.key === 'ArrowLeft') t = cur < 0 ? n - 1 : Math.max(0, cur - 1);
+    else if (e.key === 'Home') t = 0;
+    else if (e.key === 'End') t = n - 1;
+    else if (e.key === 'Escape') { this._deactivate(); return; }
+    if (t === null) return;
+    e.preventDefault();
+    const u = n > 1 ? t / (n - 1) : 0;
+    if (S.mode !== 'hover') this._activate(u);
+    S.u = u; S.Pt = t; S.dir = t >= S.P ? 1 : -1;
+    this._wake();
+  }
+
+  _visibility() {
+    const on = this.S.visible && !document.hidden;
+    if (!on) { clearTimeout(this.S.timer); this.S.paused = true; }
+    else if (this.S.paused) { this.S.paused = false; if (this.S.mode === 'auto' && !this.S.pTween && !this.S.cTween) this._scheduleNext(); }
+  }
+
+  /* ---------- autoplay ---------- */
+  _startAuto() {
+    const S = this.S;
+    S.mode = 'auto';
+    if (this.o.collage) { S.C = 1; S.overlay = -1; S.stop = -1; }
+    else { S.C = 0; S.P = S.Pt = 0; S.stop = 0; }
+    this._paint(true);
+    this._scheduleNext();
+  }
+
+  _scheduleNext() {
+    const S = this.S;
+    clearTimeout(S.timer);
+    if (S.mode !== 'auto' || S.paused || this.dead) return;
+    S.timer = setTimeout(() => this._advance(), this.o.hold);
+  }
+
+  _advance() {
+    const S = this.S, n = this.photos.length;
+    if (S.mode !== 'auto') return;
+    const instant = this.reduced;
+    const dur = this.o.autoTransition;
+    if (S.stop === -1) {
+      // collage -> first photo
+      S.P = S.Pt = 0; S.Pv = 0;
+      S.stop = 0;
+      if (instant) S.C = 0; else this._tweenC(0, dur, StripEngine.easeInOut);
+    } else if (S.stop < n - 1) {
+      S.stop += 1;
+      if (instant) { S.P = S.Pt = S.stop; }
+      else S.pTween = { from: S.Pt, to: S.stop, t0: performance.now(), dur };
+    } else if (this.o.collage) {
+      S.stop = -1;
+      S.overlay = -1;
+      if (instant) S.C = 1; else this._tweenC(1, dur, StripEngine.easeInOut);
+    } else {
+      // last -> first: sweep photo 1 over the top, then swap underneath
+      S.stop = 0;
+      S.overlay = 0;
+      if (instant) { S.P = S.Pt = 0; S.C = 0; S.overlay = -1; }
+      else { this._tweenC(1, dur, StripEngine.easeInOut); S.afterC = () => { S.P = S.Pt = 0; S.Pv = 0; S.C = 0; S.overlay = -1; S.cache = []; }; }
+    }
+    if (instant) { this._paint(true); this._scheduleNext(); }
+    else this._wake();
+  }
+
+  /* ---------- frame loop ---------- */
+  _wake() {
+    if (this.reduced) { this._paint(true); return; }
+    if (!this.S.raf && !this.dead) {
+      this.S.frameT = performance.now();
+      this.S.raf = requestAnimationFrame(this._loop);
+    }
+  }
+
+  _loop() {
+    const moving = this._paint(false);
+    this.S.raf = moving && !this.dead ? requestAnimationFrame(this._loop) : 0;
+  }
+
+  _paint(instant) {
+    const S = this.S, o = this.o;
+    if (!this.refs || !this.place) return false;
+    const now = performance.now();
+    const dt = instant ? 0 : Math.min(0.034, Math.max(0.001, (now - (S.frameT || now)) / 1000));
+    S.frameT = now;
+    const n = this.photos.length, maxSeg = n - 1, scale = this.W / 480;
+    let finished = false;
+
+    if (S.cTween) {
+      const t = instant ? 1 : Math.min(1, (now - S.cTween.t0) / S.cTween.dur);
+      S.C = S.cTween.from + (S.cTween.to - S.cTween.from) * S.cTween.ease(t);
+      if (t >= 1) {
+        S.C = S.cTween.to; S.cTween = null; finished = true;
+        if (S.afterC) { const f = S.afterC; S.afterC = null; f(); }
+      }
+    }
+    if (S.pTween) {
+      const t = instant ? 1 : Math.min(1, (now - S.pTween.t0) / S.pTween.dur);
+      const e = StripEngine.easeInOut(t);
+      S.Pt = S.P = S.pTween.from + (S.pTween.to - S.pTween.from) * e;
+      S.Pv = 0;
+      S.u = t; // sweep left to right
+      S.dir = 1;
+      if (t >= 1) { S.P = S.Pt = S.pTween.to; S.pTween = null; finished = true; }
+    } else if (instant) { S.P = S.Pt; S.Pv = 0; }
+    else {
+      const k = o.followStiffness;
+      S.Pv += (k * (S.Pt - S.P) - 2 * Math.sqrt(k) * S.Pv) * dt;
+      S.P += S.Pv * dt;
+      if (Math.abs(S.Pt - S.P) < 1e-4 && Math.abs(S.Pv) < 1e-3) { S.P = S.Pt; S.Pv = 0; }
+    }
+    if (finished && S.mode === 'auto' && !S.cTween && !S.pTween) this._scheduleNext();
+
+    if (S.C === 0 && !S.cTween && S.overlay !== -1) { S.overlay = -1; }
+    S.v *= Math.exp(-dt * 5);
+    // activity fades ~0.7s after the cursor rests, so a still cursor gives a clean photo
+    S.act = S.mode === 'hover' ? S.act * Math.exp(-dt * 3.2) : S.act * Math.exp(-dt * 6);
+    if (S.act < 2e-3) S.act = 0;
+    if (Math.abs(S.v) < 1e-3) S.v = 0;
+    const mTarget = S.mode === 'hover' ? 1 : o.autoMotion;
+    S.m += (mTarget - S.m) * (instant ? 1 : 1 - Math.exp(-dt * 4));
+    if (Math.abs(S.m - mTarget) < 1e-3) S.m = mTarget;
+
+    const a = Math.min(Math.max(0, Math.floor(S.P)), Math.max(0, maxSeg - 1));
+    const p = maxSeg > 0 ? Math.min(1, Math.max(0, S.P - a)) : 0;
+    const b = Math.min(a + 1, maxSeg);
+    const segI = Math.sin(Math.PI * p);
+    const st = Math.min(0.9, Math.max(0, o.stagger));
+    const velF = Math.max(-4, Math.min(4, S.v * o.velocitySensitivity)) * (0.3 + 0.7 * segI) * (1 - S.C);
+    let moving = !!S.cTween || !!S.pTween || S.P !== S.Pt || S.v !== 0 || S.m !== mTarget || S.act !== 0;
+    const hov = S.mode === 'hover' ? 1 : 0;
+    const push = Math.max(-5, Math.min(5, S.v * o.velocitySensitivity)) * hov;
+    // curtains bounce a little on hover, settle calmly in autoplay
+    const zeta = hov ? o.bounceDamping : 0.68;
+
+    for (let i = 0; i < this.N; i++) {
+      const R = this.refs[i];
+      const sp = S.strips[i] || (S.strips[i] = { rot: 0, rv: 0, x: 0, xv: 0 });
+      const cache = S.cache[i] || (S.cache[i] = {});
+      const xi = (i + 0.5) / this.N;
+      const near = Math.min(1, Math.abs(xi - S.u) / 0.5);
+      const ord = 0.6 * near + 0.4 * R.order;
+      const pi = st > 0 ? Math.min(1, Math.max(0, (p - ord * st) / (1 - st))) : p;
+      const cOrd = S.overlay >= 0 ? 0.6 * xi + 0.4 * R.orderC : 0.35 * xi + 0.65 * R.orderC;
+      const ci = st > 0 ? Math.min(1, Math.max(0, (S.C - cOrd * st) / (1 - st))) : S.C;
+
+      const scrubI = Math.sin(Math.PI * pi) * (1 - ci);
+      const cI = Math.sin(Math.PI * ci) * 0.85;
+      const I = Math.max(scrubI, cI) * S.m;
+      const fall = Math.exp(-((xi - S.u) ** 2) / 0.08);
+      const near2 = Math.exp(-((xi - S.u) ** 2) / (2 * o.reach * o.reach));
+      const lag = 0.75 + 0.5 * R.order; //            neighbours react a touch differently
+      const side = Math.max(-1, Math.min(1, (S.u - xi) / o.reach)); // -1 cursor left of strip, 1 right
+      const dirSign = scrubI >= cI ? S.dir : Math.sign(R.slideDir) || 1;
+      const cap = o.rotation * 1.35;
+      // fabric being pushed: dragged along with the hand, swinging on its rail
+      const drag = push * near2 * lag;
+      // slight lean toward the hand while it is moving
+      const lean = S.act * hov * near2;
+      let rotT = Math.max(-cap, Math.min(cap,
+        o.rotation * I * dirSign * R.rotAmp + velF * 5 * fall
+        + drag * o.pushRotate - side * lean * o.followRotate));
+      let xT = (o.slide * I * R.slideDir * R.slideAmp - velF * 6 * fall
+        + drag * o.pushSlide + side * lean * o.follow) * scale;
+      if (Math.abs(rotT) < 1e-3) rotT = 0;
+      if (Math.abs(xT) < 1e-3) xT = 0;
+      if (instant || this.reduced) { sp.rot = this.reduced ? 0 : rotT; sp.x = this.reduced ? 0 : xT; sp.rv = sp.xv = 0; }
+      else {
+        const k = o.stiffness * R.stiff, c = 2 * Math.sqrt(k) * zeta;
+        sp.rv += (k * (rotT - sp.rot) - c * sp.rv) * dt; sp.rot += sp.rv * dt;
+        sp.xv += (k * (xT - sp.x) - c * sp.xv) * dt; sp.x += sp.xv * dt;
+        if (Math.abs(rotT - sp.rot) < 0.01 && Math.abs(sp.rv) < 0.02 && Math.abs(xT - sp.x) < 0.02 && Math.abs(sp.xv) < 0.05) {
+          sp.rot = rotT; sp.rv = 0; sp.x = xT; sp.xv = 0;
+        } else moving = true;
+      }
+
+      const rest = sp.rot === 0 && sp.x === 0;
+      const widen = 1 + o.overlap * Math.min(1, Math.abs(sp.rot) / Math.max(1, o.rotation) + Math.abs(sp.x) / Math.max(1, o.slide * scale));
+      const tf = rest ? 'none' : `translate3d(${sp.x.toFixed(2)}px,0,0) rotateY(${sp.rot.toFixed(3)}deg) scaleX(${widen.toFixed(3)})`;
+      if (cache.tf !== tf) R.el.style.transform = cache.tf = tf;
+
+      const vis = ci < 1 ? '' : 'hidden';
+      if (cache.vis !== vis) R.a.style.visibility = R.b.style.visibility = cache.vis = vis;
+      this._bg(R.a, cache, 'a', a, R.left);
+      this._bg(R.b, cache, 'b', b, R.left);
+      this._bg(R.c, cache, 'c', S.overlay >= 0 ? S.overlay : this.pattern[i], R.left);
+      const bc = StripEngine.clip(pi, R.clipDir);
+      if (cache.bc !== bc) { StripEngine.applyClip(R.b, bc); cache.bc = bc; }
+      const cc = StripEngine.clip(ci, -R.clipDir);
+      if (cache.cc !== cc) { StripEngine.applyClip(R.c, cc); cache.cc = cc; }
+      const sh = o.shade > 0 ? (Math.min(1, Math.abs(sp.rot) / Math.max(1, o.rotation)) * o.shade).toFixed(3) : '0.000';
+      if (cache.sh !== sh) { R.s.style.opacity = sh; R.s.style.display = sh === '0.000' ? 'none' : ''; cache.sh = sh; }
+    }
+    return moving;
+  }
+
+  _bg(el, cache, key, k, left) {
+    if (cache[key] === k) return;
+    cache[key] = k;
+    const pl = this.place[k], ph = this.photos[k];
+    if (ph.cls) {
+      if (el._pcls) el.classList.remove(el._pcls);
+      el.classList.add(ph.cls);
+      el._pcls = ph.cls;
+    } else el.style.backgroundImage = `url("${ph.src}")`;
+    el.style.backgroundSize = `${pl.dw.toFixed(2)}px ${pl.dh.toFixed(2)}px`;
+    el.style.backgroundPosition = `${(pl.ox - left).toFixed(2)}px ${pl.oy.toFixed(2)}px`;
+  }
+
+  static clip(t, dir) {
+    if (t <= 0) return 'hide';
+    if (t >= 1) return 'none';
+    const pct = ((1 - t) * 100).toFixed(2);
+    return dir > 0 ? `inset(0 0 0 ${pct}%)` : `inset(0 ${pct}% 0 0)`;
+  }
+  static applyClip(el, c) {
+    if (c === 'hide') { el.style.display = 'none'; return; }
+    el.style.display = '';
+    el.style.clipPath = c === 'none' ? '' : c;
+    el.style.webkitClipPath = c === 'none' ? '' : c;
+  }
+  static easeInOut(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+  static easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+}
+StripEngine.DEFAULTS = {
+  hold: 3000, autoTransition: 1500, autoMotion: 0.45, collage: true, collageSeed: 7,
+  rotation: 24, slide: 16, overlap: 0.14, velocitySensitivity: 1, stiffness: 190, bounceDamping: 0.4,
+  pushSlide: 7, pushRotate: 5, follow: 14, followRotate: 9, reach: 0.22,
+  followStiffness: 320, stagger: 0.5, magnet: 0.55, resetDuration: 1000, enterDuration: 480,
+  shade: 0.22, touchHold: 1800,
+};
+
+
+class Component extends DCLogic {
+  state = { mobile: false, note: '', kn: false, knPrev: false };
+
+  // YOUR TEXT: left column, top to bottom.
+  intro = "I’m Jennifer Kapend Fund, a 21-year-old designer born in DR Congo, and raised in France. I’m currently based in The Hague, Netherlands, where I’m studying UX Design at The Hague University of Applied Sciences.";
+  col1 = "I believe design should be felt, not just used. I\u2019m drawn to experiences that respond to people, their gestures, their curiosity, and I love blurring the line between interface and installation. Whether it\u2019s an app, a website or an interactive piece, my goal is to create something clear, human and unexpected.";
+  skills = ['Figma,', 'Affinity,', 'TouchDesigner,', 'Procreate', '3D modeling (Blender, Nomad Sculpt),', 'Coding (HTML, CSS, JavaScript, p5.js), and working with AI tools as part of my creative process.'];
+  langs = "Languages: English, French"; // ", Swahili" is added after it as the second trigger for the name easter egg
+
+  // CONTACT: the address the form sends to.
+  email = 'kapend.jennifer@gmail.com';
+
+  abRef = (el) => { this.abEl = el || null; };
+
+  // NAME EASTER EGG: click (or Enter/Space) toggles; hovering or focusing the name or "Swahili" previews it
+  knToggle = () => { this.setState({ kn: !this.state.kn, knPrev: false }); };
+  knKey = (e) => { if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') { e.preventDefault(); this.knToggle(); } };
+  swIn = () => { if (!this.state.kn) this.setState({ knPrev: true }); };
+  swOut = () => { if (this.state.knPrev) this.setState({ knPrev: false }); };
+
+  onField = (e) => { this.form = this.form || {}; this.form[e.target.name] = e.target.value; };
+  send = (e) => {
+    e.preventDefault();
+    const f = this.form || {};
+    if (!this.email) { this.setState({ note: '[EMAIL ADDRESS NOT ADDED YET]' }); return; }
+    if (!f.msg) { this.setState({ note: 'WRITE ME A LITTLE MESSAGE FIRST.' }); return; }
+    const subject = (f.about ? f.about + ' / ' : '') + 'Hello' + (f.name ? ' from ' + f.name : '') + ' (via Jennieration)';
+    const body = f.msg + '\n\n' + (f.name || '') + (f.email ? '\n' + f.email : '');
+    window.location.href = 'mailto:' + this.email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    this.setState({ note: 'YOUR EMAIL APP SHOULD OPEN NOW. THANK YOU!' });
+  };
+
+  // HORSE EASTER EGG: gallops in the corner while you scroll
+  horseRef = (el) => { this.horseEl = el || null; };
+  horseStart() {
+    this.hFrame = 0; this.hLast = 0; this.hActive = 0; this.hRaf = null;
+    this.hReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.onHorseScroll = () => {
+      this.hActive = performance.now();
+      if (this.horseEl) this.horseEl.classList.add('on');
+      if (this.hHide) clearTimeout(this.hHide);
+      this.hHide = setTimeout(() => { if (this.horseEl) this.horseEl.classList.remove('on'); }, 350);
+      if (!this.hRaf && !this.hReduce) this.hRaf = requestAnimationFrame(this.horseTick);
+    };
+    document.addEventListener('scroll', this.onHorseScroll, true);
+  }
+  horseTick = (t) => {
+    if (t - this.hLast > 66) {
+      this.hLast = t;
+      this.hFrame = (this.hFrame + 1) % 12;
+      if (this.horseEl) this.horseEl.style.backgroundPosition = (this.hFrame / 11 * 100).toFixed(3) + '% 0';
+    }
+    this.hRaf = (t - this.hActive < 240) ? requestAnimationFrame(this.horseTick) : null;
+  };
+
+  // SIX VERSIONS OF ME: the strip portrait in the middle
+  // overlap: how much each strip widens while it swings, so no gaps show; shade: how dark a turned strip gets
+  PSC_OPTS = { overlap: 0.6, shade: 0.06 };
+  pscRef = (el) => { this.pscEl = el || null; if (el && !this.psc) this.psc = new StripEngine(el, PSC_PHOTOS, this.PSC_OPTS); };
+
+  componentDidMount() {
+    this.horseStart();
+    if (this.pscEl && !this.psc) this.psc = new StripEngine(this.pscEl, PSC_PHOTOS, this.PSC_OPTS);
+  }
+  componentWillUnmount() {
+    document.removeEventListener('scroll', this.onHorseScroll, true);
+    if (this.psc) { this.psc.destroy(); this.psc = null; }
+    if (this.hRaf) cancelAnimationFrame(this.hRaf);
+    if (this.hHide) clearTimeout(this.hHide);
+    if (this.dotsRaf) cancelAnimationFrame(this.dotsRaf);
+    if (this.onDotsResize) window.removeEventListener('resize', this.onDotsResize);
+    Object.keys(this.timers || {}).forEach((k) => clearTimeout(this.timers[k]));
+  }
+
+  // DOT GRAPHIC: traced from the design. Hover launches nearby dots outward; they glide back home.
+  DOTS_URL = 'assets/10d05d6a31d9b31688e88c2619fcaef3.json';
+  dotsRef = (el) => {
+    if (!el || this.dotsEl === el) return;
+    this.dotsEl = el;
+    if (this.dotsStarted) { this.dotsResize(); this.dotsKick(); return; }
+    this.dotsStarted = true;
+    this.dotsT0 = performance.now();
+    this.dotsReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.onDotsResize = () => { this.dotsResize(); this.dotsKick(); };
+    window.addEventListener('resize', this.onDotsResize);
+    fetch(this.DOTS_URL).then((r) => r.json()).then((d) => {
+      const ns = Math.floor(d.small.length / 2), nb = 0, n = ns + nb;
+      const P = new Float32Array(n * 8);
+      const put = (i, x, y, sz) => { const o = i * 8; P[o] = x; P[o + 1] = y; P[o + 2] = x; P[o + 3] = y; P[o + 7] = sz; };
+      for (let i = 0; i < ns; i++) put(i, d.small[2 * i], d.small[2 * i + 1], 3);
+      for (let j = 0; j < nb; j++) put(ns + j, d.big[3 * j], d.big[3 * j + 1], -2 * d.big[3 * j + 2]);
+      this.dots = { n: n, P: P, W: 2000 };
+      this.dotsResize(); this.dotsKick();
+    }).catch(() => {});
+  };
+  dotsResize() {
+    const c = this.dotsEl;
+    if (!c) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2), w = c.clientWidth, h = c.clientHeight;
+    c.width = Math.max(1, Math.round(w * dpr)); c.height = Math.max(1, Math.round(h * dpr));
+    this.dotsPx = w; this.dotsDpr = dpr; this.dotsDirty = true;
+  }
+  onDotsMove = (e) => {
+    if (!this.dotsEl || !this.dots) return;
+    const r = this.dotsEl.getBoundingClientRect();
+    if (!r.width) return;
+    this.ptr = { x: (e.clientX - r.left) / r.width * 2000, y: (e.clientY - r.top) / r.width * 2000 };
+    this.dotsKick();
+  };
+  onDotsLeave = () => { this.ptr = null; };
+  dotsKick() { if (!this.dotsRaf) this.dotsRaf = requestAnimationFrame(this.dotsTick); }
+  dotsTick = () => {
+    this.dotsRaf = null;
+    const c = this.dotsEl, D = this.dots;
+    if (!D || !c) return;
+    const now = (performance.now() - this.dotsT0) / 1000;
+    const P = D.P, p = this.dotsReduce ? null : this.ptr, R = 80, R2 = R * R;
+    let moving = false;
+    for (let i = 0; i < D.n; i++) {
+      const o = i * 8;
+      let x = P[o + 2], y = P[o + 3], vx = P[o + 4], vy = P[o + 5];
+      const hx = P[o], hy = P[o + 1];
+      if (p && now >= P[o + 6]) {
+        const dx = x - p.x, dy = y - p.y, d2 = dx * dx + dy * dy;
+        if (d2 < R2 && Math.abs(x - hx) + Math.abs(y - hy) < 6) {
+          const d = Math.sqrt(d2) || 0.001, a = Math.atan2(dy, dx) + (Math.random() - 0.5) * 1.1;
+          const sp = 6 + (1 - d / R) * 16 + Math.random() * 10;
+          vx = Math.cos(a) * sp; vy = Math.sin(a) * sp;
+          P[o + 6] = now + 0.45 + Math.random() * 0.7;
+        }
+      }
+      if (now < P[o + 6]) { vx *= 0.93; vy *= 0.93; vy += 0.05; }
+      else { vx = (vx + (hx - x) * 0.045) * 0.84; vy = (vy + (hy - y) * 0.045) * 0.84; }
+      x += vx; y += vy;
+      P[o + 2] = x; P[o + 3] = y; P[o + 4] = vx; P[o + 5] = vy;
+      if (now < P[o + 6] || Math.abs(vx) > 0.02 || Math.abs(vy) > 0.02 || Math.abs(hx - x) > 0.05 || Math.abs(hy - y) > 0.05) moving = true;
+    }
+    const ctx = c.getContext('2d'), s = (this.dotsPx || c.clientWidth) / D.W * (this.dotsDpr || 1);
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, c.width, c.height);
+    ctx.fillStyle = '#5c5c5c';
+    for (let i = 0; i < D.n; i++) {
+      const o = i * 8, z = P[o + 7];
+      if (z > 0) { const sz = Math.max(1, z * s); ctx.fillRect(P[o + 2] * s - sz / 2, P[o + 3] * s - sz / 2, sz, sz); }
+      else { ctx.beginPath(); ctx.arc(P[o + 2] * s, P[o + 3] * s, Math.max(1, -z * s / 2), 0, 6.2832); ctx.fill(); }
+    }
+    if (moving || this.dotsDirty || this.ptr) { this.dotsDirty = false; this.dotsRaf = requestAnimationFrame(this.dotsTick); }
+  };
+
+  renderVals() {
+    return {
+      stackCls: this.props.stacked ? 'stacked' : '', lnHome: this.props.stacked ? '#home' : 'Main.dc.html', lnProjects: this.props.stacked ? '#projects' : 'Projects.dc.html', lnJen: this.props.stacked ? '#jennieration' : 'Jennieration.dc.html', lnAbout: this.props.stacked ? '#about' : 'About.dc.html',
+      abRef: this.abRef, horseRef: this.horseRef,
+      dotsRef: this.dotsRef, onDotsMove: this.onDotsMove, onDotsLeave: this.onDotsLeave,
+      ...(() => { const k = this.intro.indexOf('Kapend Fund'); return k < 0 ? { introA: this.intro, introB: '' } : { introA: this.intro.slice(0, k), introB: this.intro.slice(k + 11) }; })(),
+      knCls: (this.state.kn || this.state.knPrev) ? 'kn-open' : '', knExp: (this.state.kn || this.state.knPrev) ? 'true' : 'false', swCls: this.state.knPrev ? 'kn-hov' : '',
+      knToggle: this.knToggle, knKey: this.knKey, swIn: this.swIn, swOut: this.swOut,
+      col1: this.col1, skills: this.skills.map((t) => ({ t: t })), langs: this.langs,
+      pscRef: this.pscRef, pscStrips: [0,1,2,3,4,5,6,7,8,9,10,11].map((i) => ({ id: i })),
+      onField: this.onField, send: this.send, hasNote: !!this.state.note, note: this.state.note
+    };
+  }
+}
+</script>
+</body>
+</html>

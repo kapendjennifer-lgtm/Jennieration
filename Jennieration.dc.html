@@ -1,0 +1,1247 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Jennieration / Jennie.ration</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Archivo:wght@400;500&amp;family=Bebas+Neue&amp;display=swap">
+<style>
+.pg-jen /* no visible scrollbars anywhere (scrolling still works) */
+html,body,.pg-jen *{scrollbar-width:none;-ms-overflow-style:none}
+html::-webkit-scrollbar,body::-webkit-scrollbar,.pg-jen *::-webkit-scrollbar{display:none;width:0;height:0}
+body{margin:0;background:#000}
+.pg-jen a{color:#9B9B9B}.pg-jen a:hover{color:#fff}
+.jr.pg-jen{--u:min(calc(100vw / 2000), calc(100vh / 1414));background:#000;color:#fff;animation:jrIn .7s cubic-bezier(.2,.7,.2,1) both}
+@keyframes jrIn{from{opacity:0}to{opacity:1}}
+.pg-jen.bb,.pg-jen .bb{font-family:'Bebas Neue',Impact,'Arial Narrow',sans-serif;font-weight:400}
+.pg-jen .horse{position:fixed;z-index:900;right:clamp(12px,2vw,32px);bottom:clamp(12px,2vw,28px);width:clamp(48px,4.5vw,80px);aspect-ratio:373/300;background-image:url('assets/8dc2f4922cc572d4f09003656d908a3e.png');background-repeat:no-repeat;background-size:1200% 100%;background-position:0% 0;pointer-events:none;opacity:0;transform:translateY(8px);transition:opacity .25s ease,transform .3s ease}
+.pg-jen .horse.on{opacity:1;transform:none}
+.jr.pg-jen,.jr.pg-jen *{cursor:url('assets/690fb319e867dc83339aa0be24c08af7.png') 25 31,auto !important}
+.jr.pg-jen .panel,.jr.pg-jen .panel *,.jr.pg-jen .ex,.jr.pg-jen .ex *,.jr.pg-jen .zoom *{cursor:url('assets/60d61bf74bad9bb579c50f5afd35cef6.png') 17 21,auto !important}
+.pg-jen .runway{position:relative;height:760vh}
+.pg-jen .pin{position:sticky;top:0;height:100vh;overflow:hidden;overflow:clip;background:#000}
+.pg-jen .stage{position:absolute;left:0;top:0;width:calc(var(--u) * 2000);height:calc(var(--u) * 1414)}
+.pg-jen .nav{position:absolute;z-index:500;left:calc(var(--u) * 54);top:calc(var(--u) * 22);display:flex;font-size:calc(var(--u) * 83);line-height:1;letter-spacing:-.09em;white-space:nowrap}
+.pg-jen .nav a{display:block;color:#9B9B9B;text-decoration:none;transition:color .25s ease}
+.pg-jen .nav a:hover{color:#fff}
+.pg-jen .nav a.is-active{color:#fff}
+.pg-jen .nav.light a{color:#929292}
+.pg-jen .nav.light a:hover{color:#000}
+.pg-jen .hint{position:absolute;z-index:45;margin:0;left:calc(var(--u) * 1760);top:calc(var(--u) * 1322);font-size:calc(var(--u) * 40);line-height:1;letter-spacing:-.01em;color:#9B9B9B;white-space:nowrap;pointer-events:none;display:flex;gap:calc(var(--u) * 8)}
+.pg-jen .hint-arrow{display:inline-block;animation:bob 1.4s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(calc(var(--u) * 8))}}
+.pg-jen .hint2{position:absolute;margin:0;left:calc(var(--u) * 97);top:calc(var(--u) * 1322);font-size:calc(var(--u) * 40);line-height:1;letter-spacing:-.01em;color:#929292;white-space:nowrap;pointer-events:none}
+.pg-jen .other{position:absolute;left:calc(var(--u) * 800);top:0;width:calc(var(--u) * 1143);padding-top:calc(var(--u) * 200);color:#000}
+.pg-jen .o-h{margin:0;font-weight:400;font-size:calc(var(--u) * 246);line-height:1;letter-spacing:-.04em}
+.pg-jen .o-sub{margin:0;font-size:calc(var(--u) * 50);line-height:1.1;letter-spacing:-.03em;color:#B80000}
+.pg-jen .o-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:calc(var(--u) * 44) calc(var(--u) * 40);margin-top:0}
+.pg-jen .o-item{margin:0;display:flex;flex-direction:column;will-change:transform}
+.pg-jen .o-img{position:relative;aspect-ratio:4/3;background:#000;overflow:hidden}
+.pg-jen .o-img img,.pg-jen .o-img video{display:block;width:100%;height:100%;object-fit:cover}
+.pg-jen .o-cap{position:absolute;left:calc(var(--u) * 12);right:calc(var(--u) * 12);bottom:calc(var(--u) * 10);font-size:calc(var(--u) * 24);line-height:1.05;color:#9B9B9B}
+.pg-jen .o-t{margin:calc(var(--u) * 14) 0 calc(var(--u) * 4);font-weight:400;font-size:calc(var(--u) * 44);line-height:.95;letter-spacing:-.02em}
+.pg-jen .o-d{margin:0;font-family:'Archivo',Arial,sans-serif;font-size:calc(var(--u) * 20);line-height:1.4}
+.pg-jen .o-tag{margin-top:calc(var(--u) * 8);font-size:calc(var(--u) * 26);line-height:1;color:#929292}
+.pg-jen .nav a:focus-visible{outline:2px solid #B80000;outline-offset:2px}
+.pg-jen .o-item{position:relative;padding:0;border:0;background:none;text-align:left;font:inherit;color:inherit;cursor:pointer}
+.pg-jen .o-img img,.pg-jen .o-img video{transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.pg-jen .o-item:hover .o-img img,.pg-jen .o-item:focus-visible .o-img img,.pg-jen .o-item:hover .o-img video,.pg-jen .o-item:focus-visible .o-img video{transform:scale(1.05)}
+.pg-jen .o-more{position:absolute;right:calc(var(--u) * 10);bottom:calc(var(--u) * 8);font-size:calc(var(--u) * 30);line-height:1;color:#fff;opacity:0;transform:translateX(calc(var(--u) * -8));transition:opacity .25s ease,transform .35s ease}
+.pg-jen .o-item:hover .o-more,.pg-jen .o-item:focus-visible .o-more{opacity:1;transform:none}
+.pg-jen .o-item:hover .o-t{color:#B80000}
+.pg-jen .o-item:focus-visible{outline:2px solid #B80000;outline-offset:4px}
+.pg-jen .ex{position:fixed;inset:0;z-index:1000;overflow-y:auto;background:#fff;color:#000;animation:exIn .45s cubic-bezier(.2,.8,.2,1) both}
+@keyframes exIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.pg-jen .ex-in{max-width:1180px;margin:0 auto;padding:clamp(20px,3vw,40px) clamp(16px,4vw,56px) 80px;box-sizing:border-box}
+/* previous / next side page, bottom right; the label slides out on hover */
+.pg-jen .ex-pn{position:fixed;right:clamp(14px,2vw,32px);bottom:clamp(14px,2vw,28px);z-index:1001;animation:lbIn .45s ease both;display:flex;gap:8px}
+.pg-jen .ex-pn-b{display:flex;align-items:center;gap:0;height:clamp(48px,4.4vw,64px);min-width:clamp(48px,4.4vw,64px);padding:0 clamp(12px,1.2vw,18px);border:0;background:#000;color:#fff;font:inherit;font-size:clamp(26px,2.4vw,38px);line-height:1;letter-spacing:-.02em;cursor:pointer;transition:background-color .2s ease}
+.pg-jen .ex-pn-b:hover,.pg-jen .ex-pn-b:focus-visible{background:#B80000}
+.pg-jen .ex-pn-b:focus-visible{outline:2px solid #000;outline-offset:3px}
+.pg-jen .ex-pn-a{display:block}
+.pg-jen .ex-pn-t{display:block;max-width:0;overflow:hidden;white-space:nowrap;opacity:0;transition:max-width .4s cubic-bezier(.2,.8,.2,1),opacity .25s ease,margin .4s ease}
+.pg-jen .ex-pn-b:hover .ex-pn-t,.pg-jen .ex-pn-b:focus-visible .ex-pn-t{max-width:14em;opacity:1;margin:0 .35em}
+.pg-jen .ex-in{padding-bottom:clamp(110px,10vw,150px)}
+.pg-jen .ex-back{margin:0;padding:6px 0;border:0;background:none;font:inherit;font-size:clamp(26px,2.6vw,40px);line-height:1;letter-spacing:-.02em;color:#929292;cursor:pointer;transition:color .2s ease}
+.pg-jen .ex-back:hover{color:#000}
+.pg-jen .ex-h{margin:clamp(18px,3vw,40px) 0 0;font-weight:400;font-size:clamp(64px,11vw,190px);line-height:.88;letter-spacing:-.04em}
+.pg-jen .ex-tag{margin:10px 0 0;font-size:clamp(22px,2.4vw,40px);line-height:1;color:#B80000}
+.pg-jen .ex-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(20px,4vw,64px);margin-top:clamp(24px,4vw,56px);align-items:start}
+.pg-jen .ex-hero{background:#000;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.pg-jen .ex-hero img{display:block;width:100%;height:100%;object-fit:contain}
+.pg-jen .ex-hero .o-cap{font-size:20px;left:14px;bottom:12px}
+.pg-jen .ex-p{margin:0 0 1em;font-family:'Archivo',Arial,sans-serif;font-size:clamp(16px,1.25vw,19px);line-height:1.55}
+.pg-jen .ex-lead{font-family:inherit;font-size:clamp(26px,2.4vw,38px);line-height:1;letter-spacing:-.01em;margin:0 0 .7em}
+.pg-jen .ex-facts{margin:24px 0 0;padding:0;list-style:none;border-top:1px solid #000}
+.pg-jen .ex-facts li{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid #d6d6d6;font-size:clamp(20px,1.8vw,28px);line-height:1}
+.pg-jen .ex-facts span{color:#929292}
+.pg-jen .ex-gh{margin:clamp(40px,6vw,80px) 0 16px;font-weight:400;font-size:clamp(40px,5vw,80px);line-height:.9;letter-spacing:-.03em}
+.pg-jen .ex-vid{display:block;width:100%;height:auto;background:#000}
+.pg-jen .ex-vnote{margin:14px 0 0;max-width:62ch;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:clamp(15px,1.1vw,18px);line-height:1.45;color:#000}
+.pg-jen .ex-tt-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.pg-jen .ex-tt-go{padding:0;border:0;background:none;font-family:inherit;font-size:clamp(24px,2.4vw,40px);line-height:1;letter-spacing:-.01em;color:#000;cursor:pointer;transition:color .2s ease}
+.pg-jen .ex-tt-go:hover{color:#B80000}
+.pg-jen .ex-tt-go:focus-visible{outline:2px solid #B80000;outline-offset:4px}
+.pg-jen .ex-tt-note{margin:-6px 0 18px;max-width:60ch;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:clamp(15px,1.1vw,18px);line-height:1.4;color:#000}
+.pg-jen .ex-tt{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,1.6vw,24px)}
+.pg-jen .ex-tt figure{margin:0}
+.pg-jen .ex-tt video{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;background:#f2f2f2}
+.pg-jen .ex-tt figcaption{margin-top:8px;font-size:clamp(20px,1.8vw,30px);line-height:1;color:#929292}
+.pg-jen .ex-mod{margin:0 0 clamp(20px,3vw,40px)}
+.pg-jen .ex-mv{display:block;width:100%;aspect-ratio:4/3;background:#f2f2f2;--poster-color:#f2f2f2}
+.pg-jen .ex-mod-c{display:flex;justify-content:space-between;gap:16px;margin-top:10px;font-size:clamp(20px,1.8vw,30px);line-height:1;color:#929292}
+.pg-jen .ex-mod-c span:first-child{color:#000}
+.pg-jen .ex-vid2{margin-top:clamp(10px,1.4vw,20px)}
+.pg-jen .ex-fx{margin-bottom:clamp(30px,4vw,60px)}
+.pg-jen .ex-fx-n{color:#B80000;margin-right:.3em}
+.pg-jen .ex-fx-sub{margin:clamp(20px,2.4vw,32px) 0 10px;font-size:clamp(20px,1.8vw,28px);line-height:1;color:#929292}
+.pg-jen .ex-gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px}
+.pg-jen .ex-gal figure{margin:0}
+.pg-jen .ex-gal img{display:block;width:100%;height:auto;background:#000}
+.pg-jen .ex-gal figcaption{margin-top:6px;font-size:20px;line-height:1;color:#929292}
+.pg-jen .ex-card{display:block;max-width:900px;background:#000;color:#fff;text-decoration:none;overflow:hidden}
+.pg-jen .ex-card-bar{display:flex;align-items:center;gap:14px;padding:10px 14px;background:#1a1a1a}
+.pg-jen .ex-card-dots{display:flex;gap:6px}
+.pg-jen .ex-card-dots span{width:10px;height:10px;border-radius:50%;background:#555}
+.pg-jen .ex-card-url{flex:1;min-width:0;font-family:'Archivo',Arial,sans-serif;font-size:14px;color:#bbb;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pg-jen .ex-card-body{position:relative;display:flex;align-items:flex-end;aspect-ratio:1280/832;overflow:hidden}
+.pg-jen .ex-card-body::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85),rgba(0,0,0,0) 45%);pointer-events:none}
+.pg-jen .ex-card-body img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1;transition:transform .6s cubic-bezier(.2,.8,.2,1),opacity .3s ease}
+.pg-jen .ex-card-cta{position:relative;z-index:1;padding:clamp(16px,2.5vw,32px);font-size:clamp(36px,5vw,84px);line-height:.9;letter-spacing:-.02em;transition:color .2s ease}
+.pg-jen .ex-card:hover img{transform:scale(1.03);opacity:.85}
+.pg-jen .ex-card:hover .ex-card-cta{color:#B80000}
+.pg-jen .ex-card:focus-visible{outline:3px solid #B80000;outline-offset:4px}
+.pg-jen .ex-link{display:inline-block;margin-top:12px;font-size:clamp(22px,2vw,32px);line-height:1;color:#000;text-decoration:none;border-bottom:2px solid #B80000;transition:color .2s ease}
+.pg-jen .ex-link:hover{color:#B80000}
+.pg-jen .ex-emb-p{margin:0 0 16px;max-width:760px}
+.pg-jen .ex-wall-h{margin:clamp(40px,6vw,80px) 0 6px;font-weight:400;font-size:clamp(40px,5vw,80px);line-height:.9;letter-spacing:-.03em}
+.pg-jen .ex-wall-hint{margin:clamp(16px,2vw,28px) 0 14px;font-size:clamp(18px,1.6vw,24px);line-height:1;color:#929292}
+.pg-jen .ex-wall{position:relative;width:100%;aspect-ratio:1600/900;overflow:hidden;background-color:#efeeea;background-image:linear-gradient(90deg,transparent 0 calc(33.3% - 1px),rgba(0,0,0,.07) calc(33.3% - 1px) 33.3%,transparent 33.3% calc(66.6% - 1px),rgba(0,0,0,.07) calc(66.6% - 1px) 66.6%,transparent 66.6%),radial-gradient(rgba(0,0,0,.035) 1px,transparent 1.5px),radial-gradient(rgba(255,255,255,.6) 1px,transparent 1.5px);background-size:100% 100%,7px 7px,11px 11px;box-shadow:inset 0 0 60px rgba(0,0,0,.06)}
+.pg-jen .wp{position:absolute;margin:0;padding:0;border:0;background:none;touch-action:none;-webkit-user-select:none;user-select:none;cursor:grab;transform:rotate(var(--r));transition:transform .2s ease,filter .2s ease;filter:drop-shadow(0 2px 3px rgba(0,0,0,.18))}
+.pg-jen .wp img{display:block;width:100%;height:auto;pointer-events:none}
+.pg-jen .wp:hover{transform:rotate(var(--r)) scale(1.02);filter:drop-shadow(0 6px 10px rgba(0,0,0,.22))}
+.pg-jen .wp.drag{cursor:grabbing;transform:rotate(calc(var(--r) * .4)) scale(1.05);filter:drop-shadow(0 14px 22px rgba(0,0,0,.28));transition:filter .2s ease}
+.pg-jen .wp:focus-visible{outline:2px solid #B80000;outline-offset:3px}
+.pg-jen .tape{position:absolute;display:block;height:clamp(10px,1.4vw,18px);background:rgba(196,160,96,.78);box-shadow:0 1px 1px rgba(0,0,0,.08);pointer-events:none}
+.pg-jen .tape.a{width:32%;left:34%;top:-4%;transform:rotate(-3deg)}
+.pg-jen .tape.b{width:22%;left:-6%;top:3%;transform:rotate(-38deg)}
+.pg-jen .tape.c{width:22%;right:-6%;top:3%;transform:rotate(36deg)}
+.pg-jen .tape.d{width:26%;left:37%;bottom:-3%;transform:rotate(4deg)}
+.pg-jen .zbtn{display:block;width:100%;margin:0;padding:0;border:0;background:none;cursor:zoom-in}
+.pg-jen .zbtn img{transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.pg-jen .zbtn:hover img{transform:scale(1.015)}
+.pg-jen .zbtn:focus-visible{outline:3px solid #B80000;outline-offset:4px}
+.pg-jen .zfill{height:100%}
+.pg-jen .zoom{position:fixed;inset:0;z-index:1200;display:flex;align-items:center;justify-content:center;padding:clamp(12px,3vw,40px);box-sizing:border-box;animation:lbIn .3s ease both}
+.pg-jen .zoom-bg{position:absolute;inset:0;margin:0;padding:0;border:0;background:rgba(0,0,0,.92);cursor:zoom-out}
+.pg-jen .zoom-img{position:relative;display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;pointer-events:none;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.pg-jen .zoom-x{position:absolute;top:14px;right:18px;margin:0;padding:8px;border:0;background:none;cursor:pointer;font-family:inherit;font-size:clamp(28px,3vw,40px);line-height:1;color:#fff;letter-spacing:-.02em}
+.pg-jen .zoom-x:hover{color:#B80000}
+.pg-jen .ed-hero{margin:clamp(24px,4vw,56px) 0 0;background:#f4f4f2;padding:clamp(10px,2vw,28px)}
+.pg-jen .ed-hero img{display:block;width:100%;height:auto;box-shadow:0 10px 30px rgba(0,0,0,.12)}
+.pg-jen .ed-spread{position:relative;margin-top:clamp(40px,6vw,96px)}
+.pg-jen .ed-spread::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:#B80000;opacity:.35}
+.pg-jen .ed-row{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,80px);align-items:center;margin-bottom:clamp(40px,6vw,90px)}
+.pg-jen .ed-row.flip .ed-img{order:-1}
+.pg-jen .ed-txt{position:relative;background:#fff;padding:8px 0}
+.pg-jen .ed-num{display:block;font-size:clamp(64px,8vw,140px);line-height:.8;letter-spacing:-.03em;color:#B80000}
+.pg-jen .ed-h{margin:6px 0 14px;font-weight:400;font-size:clamp(30px,3.4vw,56px);line-height:.9;letter-spacing:-.02em}
+.pg-jen .ed-item{margin:0 0 12px;font-family:'Archivo',Arial,sans-serif;font-size:clamp(15px,1.15vw,18px);line-height:1.5}
+.pg-jen .ed-item b{display:block;font-family:'Bebas Neue',Impact,sans-serif;font-weight:400;font-size:clamp(22px,1.9vw,30px);line-height:1;color:#B80000;margin-bottom:2px}
+.pg-jen .ed-img{margin:0 auto;position:relative;width:min(100%,460px);transform:rotate(var(--r))}
+.pg-jen .ed-img img{display:block;width:100%;height:auto;box-shadow:0 12px 30px rgba(0,0,0,.16)}
+.pg-jen .ed-img figcaption{margin-top:8px;font-size:clamp(18px,1.4vw,24px);line-height:1;color:#929292}
+.pg-jen .ed-facts{max-width:640px}
+@media (max-width:760px){.pg-jen .ex-grid{grid-template-columns:1fr}.pg-jen .ed-row{grid-template-columns:1fr}.pg-jen .ed-row.flip .ed-img{order:0}.pg-jen .ed-spread::before{display:none}}
+.pg-jen .ex.wallmode{overflow:hidden;background-color:#efeeea;background-image:linear-gradient(90deg,transparent 0 calc(33.3% - 1px),rgba(0,0,0,.06) calc(33.3% - 1px) 33.3%,transparent 33.3% calc(66.6% - 1px),rgba(0,0,0,.06) calc(66.6% - 1px) 66.6%,transparent 66.6%),radial-gradient(rgba(0,0,0,.035) 1px,transparent 1.5px),radial-gradient(rgba(255,255,255,.6) 1px,transparent 1.5px);background-size:100% 100%,7px 7px,11px 11px;box-shadow:inset 0 0 120px rgba(0,0,0,.08)}
+.pg-jen .ex.wallmode .ex-in{max-width:none;height:100%;padding:clamp(12px,1.6vw,24px) clamp(16px,2.4vw,36px);position:relative}
+.pg-jen .ex.wallmode .ex-back,.pg-jen .ex.wallmode .ex-h,.pg-jen .ex.wallmode .ex-tag,.pg-jen .ex.wallmode .ex-wall-hint{position:relative;z-index:2}
+.pg-jen .ex.wallmode .ex-back{display:block;text-align:left}
+.pg-jen .ex.wallmode .ex-h{margin-top:4px;font-size:clamp(40px,4.6vw,76px)}
+.pg-jen .ex.wallmode .ex-tag{margin-top:4px;font-size:clamp(16px,1.4vw,24px)}
+.pg-jen .ex.wallmode .ex-wall-hint{margin:4px 0 0;font-size:clamp(14px,1.2vw,20px)}
+.pg-jen .wall-stage{position:absolute;inset:0;padding:clamp(130px,17vh,190px) clamp(12px,2vw,32px) clamp(12px,2vh,24px);box-sizing:border-box;z-index:1;display:flex;align-items:center;justify-content:center;container-type:size}
+.pg-jen .wall-stage>.ex-wall{flex:none}
+.pg-jen .ex.wallmode .ex-wall.port{aspect-ratio:900/1600;width:min(100cqw,calc(100cqh * 900 / 1600))}
+.pg-jen .ex.wallmode .ex-wall{width:min(100cqw,calc(100cqh * 1600 / 900));height:auto;overflow:visible;background:none;box-shadow:none}
+.pg-jen .poster{position:absolute;margin:0;padding:0;border:0;cursor:grab;touch-action:none;-webkit-user-select:none;user-select:none;transition:transform .25s ease;overflow:hidden}
+.pg-jen .poster{transform:rotate(var(--rot,0deg))}
+.pg-jen .poster:hover{transform:translateY(calc(var(--u) * -6)) rotate(var(--rot,0deg))}
+.pg-jen .poster.dragging{cursor:grabbing;transform:scale(1.03) rotate(var(--rot,0deg));transition:transform .15s ease}
+.pg-jen .poster.fall,.pg-jen .poster.fall:hover{transition:none;transform:rotate(var(--rot,0deg))}
+.pg-jen .poster.fall.dragging{transform:scale(1.03) rotate(var(--rot,0deg))}
+.pg-jen .poster:focus-visible{outline:3px solid #fff;outline-offset:2px}
+.pg-jen .poster img{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none}
+.pg-jen .title{position:absolute;z-index:40;margin:0;left:calc(var(--u) * 53);top:calc(var(--u) * 1175.4);font-size:calc(var(--u) * 246);line-height:1;letter-spacing:-.034em;font-weight:400;color:#fff;white-space:nowrap;pointer-events:none}
+.pg-jen .tag{position:absolute;z-index:40;margin:0;left:calc(var(--u) * 1095);top:calc(var(--u) * 1308);font-size:calc(var(--u) * 81);line-height:1;letter-spacing:-.02em;color:#fff;white-space:nowrap;pointer-events:none}
+.pg-jen .reset{position:absolute;z-index:500;left:auto;right:calc(var(--u) * 54);top:calc(var(--u) * 40);margin:0;padding:calc(var(--u) * 8) 0;border:0;background:none;cursor:pointer;font-family:inherit;font-size:calc(var(--u) * 40);line-height:1;letter-spacing:-.03em;color:#9B9B9B;transition:color .2s ease}
+.pg-jen .reset:hover{color:#fff}
+.pg-jen .reset.light{color:#929292}
+.pg-jen .reset.light:hover{color:#000}
+.pg-jen .panel{position:absolute;z-index:70;top:0;bottom:0;width:100vw;left:calc(var(--u) * 1238);background:#fff;color:#000;will-change:transform}
+.pg-jen .pl{position:absolute;margin:0;left:calc(var(--u) * 97);width:calc(var(--u) * 562);font-size:calc(var(--u) * 246);line-height:1;color:#000;white-space:nowrap}
+.pg-jen .pl1{top:calc(var(--u) * 168.4);display:flex;justify-content:space-between}
+.pg-jen .pl1 .was{letter-spacing:-.067em}
+.pg-jen .pl2{top:calc(var(--u) * 458.4);letter-spacing:-.062em}
+.pg-jen .pl3{top:calc(var(--u) * 748.4);letter-spacing:-.057em}
+.pg-jen .pl4{top:calc(var(--u) * 1038.4)}
+.pg-jen .portrait{position:absolute;display:block;left:calc(var(--u) * 324);top:calc(var(--u) * 723);width:calc(var(--u) * 343);height:calc(var(--u) * 287);background:transparent;overflow:visible;text-decoration:none}
+.pg-jen .collage{position:absolute;inset:0;z-index:1;-webkit-user-select:none;user-select:none;touch-action:manipulation}
+.pg-jen .col-base{position:absolute;left:0;top:0;width:100%;height:100%;display:block;pointer-events:none;filter:drop-shadow(0 calc(var(--u) * 6) calc(var(--u) * 10) rgba(45,28,12,.25))}
+.pg-jen .piece{position:absolute;filter:drop-shadow(1px 3px 3px rgba(45,28,12,.32));transition:filter .25s ease}
+.pg-jen .piece.lift{filter:drop-shadow(3px 10px 8px rgba(45,28,12,.38))}
+.pg-jen .scrap{position:absolute;inset:0;background-color:#f7f4ee;background-image:radial-gradient(rgba(120,100,80,.12) 1px,transparent 1px);background-size:3px 3px;transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+.pg-jen .piece.lift .scrap{transform:translateY(-5%) scale(1.08) rotate(1.7deg)}
+.pg-jen .scrap-img{position:absolute;overflow:hidden}
+.pg-jen .scrap-img{background-repeat:no-repeat}
+.pg-jen .col-base{background-image:url('assets/c5b60e1cf20c7136fb16c5aeb9d1ecac.png');background-size:100% 100%}
+.pg-jen .s-eyeL{background-image:url('assets/df113cb65e1c1011f351ef6ade17c29e.jpg')}
+.pg-jen .s-eyeR{background-image:url('assets/1ce1d3f35a49f8e730b6590467b239f9.jpg')}
+.pg-jen .s-browL{background-image:url('assets/a1d0dc13da349059433bbdece39ccf54.jpg')}
+.pg-jen .s-browR{background-image:url('assets/1d21b2ceee287bd8a13b75ba3d754447.jpg')}
+.pg-jen .s-nose{background-image:url('assets/53aeb81e6be20cfd45a8aecefcc24d2a.jpg')}
+.pg-jen .s-mouth{background-image:url('assets/42d14378870d3a28bab63f35977c14b9.jpg')}
+.pg-jen .s-cheekL{background-image:url('assets/1c106a265bbd3c63344dedd6c5077d85.jpg')}
+.pg-jen .s-cheekR{background-image:url('assets/aa69c6f1bdcc954b19f45fd59f786a3a.jpg')}
+
+.pg-jen .portrait .ph-in{position:absolute;inset:0;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.pg-jen .portrait img{display:block;width:100%;height:100%;object-fit:cover}
+.pg-jen .portrait .go{position:absolute;right:calc(var(--u) * -24);top:calc(var(--u) * -6);z-index:30;font-size:calc(var(--u) * 44);line-height:1;letter-spacing:-.02em;color:#B80000;white-space:nowrap;opacity:0;transform:translateY(calc(var(--u) * 8));transition:opacity .25s ease,transform .35s ease}
+.pg-jen .portrait:hover .ph-in{transform:scale(1.05)}
+.pg-jen .portrait:focus-visible{outline:2px solid #000;outline-offset:4px}
+.pg-jen .portrait:hover .go,.pg-jen .portrait:focus-visible .go{opacity:1;transform:none}
+.pg-jen .lb{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:24px;box-sizing:border-box;animation:lbIn .35s ease both}
+@keyframes lbIn{from{opacity:0}to{opacity:1}}
+.pg-jen .lb-bg{position:absolute;inset:0;margin:0;padding:0;border:0;background:rgba(0,0,0,.92);cursor:zoom-out}
+.pg-jen .lb-fig{position:relative;margin:0;display:flex;flex-direction:column;gap:14px;align-items:flex-start;pointer-events:none}
+.pg-jen .lb-art{height:min(82vh,calc((100vw - 48px) * 1.4142));aspect-ratio:1000/1414;overflow:hidden}
+.pg-jen .lb-art img{display:block;width:100%;height:100%;object-fit:contain}
+.pg-jen .lb-cap{font-size:32px;line-height:1;letter-spacing:-.02em;color:#fff}
+.pg-jen .lb-cap span{color:#9B9B9B}
+.pg-jen .lb-x{position:absolute;top:16px;right:20px;margin:0;padding:8px;border:0;background:none;cursor:pointer;font-family:inherit;font-size:40px;line-height:1;color:#fff;letter-spacing:-.02em}
+.pg-jen .lb-x:hover{color:#B80000}
+@media (max-aspect-ratio: 1/1){
+.jr.pg-jen{--u:min(calc(100vw / 1000), calc(100vh / 2100))}
+.pg-jen .stage{width:calc(var(--u) * 1000);height:calc(var(--u) * 2100)}
+.pg-jen .nav{left:calc(var(--u) * 37);top:calc(var(--u) * 30);font-size:calc(var(--u) * 100)}
+.pg-jen .title{left:calc(var(--u) * 36);top:calc(var(--u) * 858);font-size:calc(var(--u) * 220)}
+.pg-jen .tag{left:calc(var(--u) * 40);top:calc(var(--u) * 1073);font-size:calc(var(--u) * 72)}
+.pg-jen .reset{right:calc(var(--u) * 37);top:calc(var(--u) * 150);font-size:calc(var(--u) * 48)}
+.pg-jen .panel{left:0;width:100vw;top:calc(var(--u) * 1250);bottom:auto;height:100vh}
+.pg-jen .hint{left:calc(var(--u) * 760);top:calc(var(--u) * 1185);font-size:calc(var(--u) * 46)}
+.pg-jen .hint2{left:calc(var(--u) * 700);top:calc(var(--u) * 24);font-size:calc(var(--u) * 42)}
+.pg-jen .other{left:calc(var(--u) * 40);top:calc(var(--u) * 900);width:calc(var(--u) * 920);padding-top:0}
+.pg-jen .o-h{font-size:calc(var(--u) * 200)}
+.pg-jen .o-sub{font-size:calc(var(--u) * 44)}
+.pg-jen .o-grid{gap:calc(var(--u) * 28) calc(var(--u) * 24);margin-top:calc(var(--u) * 36)}
+.pg-jen .o-t{font-size:calc(var(--u) * 34)}
+.pg-jen .o-d{display:none}
+.pg-jen .o-tag{font-size:calc(var(--u) * 24)}
+.pg-jen .o-cap{font-size:calc(var(--u) * 28)}
+.pg-jen .pl{left:calc(var(--u) * 300);width:calc(var(--u) * 388);font-size:calc(var(--u) * 170)}
+.pg-jen .pl1{top:calc(var(--u) * 60)}
+.pg-jen .pl2{top:calc(var(--u) * 260)}
+.pg-jen .pl3{top:calc(var(--u) * 460)}
+.pg-jen .pl4{top:calc(var(--u) * 660)}
+.pg-jen .portrait{left:calc(var(--u) * 450);top:calc(var(--u) * 442);width:calc(var(--u) * 237);height:calc(var(--u) * 198)}
+.pg-jen .portrait .go{opacity:1;transform:none;font-size:calc(var(--u) * 34)}
+}
+@media (prefers-reduced-motion: reduce){
+.jr.pg-jen,.pg-jen .lb{animation:none}
+.pg-jen .poster,.pg-jen .poster:hover{transition:none;transform:none}
+.pg-jen .hint-arrow{animation:none}
+}
+
+.jr.pg-jen{position:relative}
+.jr.pg-jen.stacked .nav{display:none}
+.jr.pg-jen.stacked .horse{display:none}
+</style>
+</helmet>
+<main class="jr bb pg-jen {{stackCls}}">
+<section class="runway" ref="{{runwayRef}}">
+<div class="pin" ref="{{pinRef}}">
+<nav class="nav {{navCls}}" aria-label="Main">
+<a href="Main.dc.html">HOME</a>
+<a href="Projects.dc.html">PROJECTS</a>
+<a class="is-active" href="Jennieration.dc.html" aria-current="page" aria-hidden="true" tabindex="-1" style="visibility: hidden">JENNIE.RATION</a>
+<a href="About.dc.html" aria-label="About me">ABOUTME</a>
+</nav>
+<sc-if value="{{moved}}" hint-placeholder-val="{{false}}">
+<button class="reset {{navCls}}" type="button" onClick="{{reset}}">RESET POSTERS</button>
+</sc-if>
+<div class="stage" style="transform: translateX(calc(var(--u) * {{stageShift}}))">
+<sc-for list="{{posters}}" as="p" hint-placeholder-count="16">
+<button class="poster {{p.cls}}" type="button" data-id="{{p.id}}" aria-label="{{p.title}}: drag to move, press to open" style="--rot: {{p.rot}}deg; left: calc(var(--u) * {{p.x}}); top: calc(var(--u) * {{p.y}}); width: calc(var(--u) * {{p.w}}); height: calc(var(--u) * {{p.h}}); z-index: {{p.z}}; background: {{p.color}}; box-shadow: calc(var(--u) * -10) 0 calc(var(--u) * 26) rgba(0,0,0,{{p.shadow}})" onPointerEnter="{{onPEnter}}" onPointerDown="{{onPDown}}" onPointerMove="{{onPMove}}" onPointerUp="{{onPUp}}" onPointerCancel="{{onPUp}}" onLostPointerCapture="{{onPUp}}" onClick="{{onPClick}}">
+<sc-if value="{{p.hasImg}}" hint-placeholder-val="{{false}}"><img src="{{p.src}}" alt="" draggable="false"></sc-if>
+</button>
+</sc-for>
+<h1 class="title">JENNIE.RATION</h1>
+<p class="tag" style="opacity: {{tagOpacity}}">TRYING TO DO COOL STUFF</p>
+<p class="hint" style="opacity: {{hintOpacity}}" aria-hidden="true">SCROLL DOWN <span class="hint-arrow">↓</span></p>
+</div>
+<div class="panel" style="transform: {{panelTransform}}" aria-hidden="{{panelHidden}}">
+<p class="pl pl1" style="transform: translateX(calc(var(--u) * {{shift1}}))"><span>I</span><span class="was">WAS</span></p>
+<p class="pl pl2" style="transform: translateX(calc(var(--u) * {{shift2}}))">CREATED</p>
+<p class="pl pl3" style="transform: translateX(calc(var(--u) * {{shift3}}))">TO</p>
+<a class="portrait" href="About.dc.html" onClick="{{onPortrait}}" aria-label="About me" style="transform: translateX(calc(var(--u) * {{shift3}}))">
+<span class="ph-in">
+<span class="collage" ref="{{collageRef}}" role="img" aria-label="Paper collage portrait of Jennifer Kapend Fund" onPointerDown="{{onColDown}}">
+<span class="col-base" aria-hidden="true" style="transform: translate({{baseJx}}%, {{baseJy}}%)"></span>
+<sc-for list="{{pieces}}" as="pc" hint-placeholder-count="8">
+<span class="piece {{pc.cls}}" style="left: {{pc.l}}%; top: {{pc.t}}%; width: {{pc.w}}%; height: {{pc.h}}%; z-index: {{pc.z}}; transform: translate({{pc.dx}}%, {{pc.dy}}%) rotate({{pc.rot}}rad) scale({{pc.sc}})" onPointerEnter="{{pc.enter}}" onPointerLeave="{{pc.leave}}" onPointerDown="{{pc.down}}">
+<span class="scrap" style="clip-path: {{pc.outer}}">
+<span class="scrap-img {{pc.slotCls}}" style="left: {{pc.pl}}%; top: {{pc.pt}}%; width: {{pc.pw}}%; height: {{pc.ph}}%; clip-path: {{pc.inner}}; background-size: {{pc.bs}}% 100%; background-position: {{pc.bp}}% 0"></span>
+</span>
+</span>
+</sc-for>
+</span>
+</span>
+<span class="go">ABOUT ME →</span>
+</a>
+<p class="pl pl4" style="transform: translateX(calc(var(--u) * {{shift4}}))">CREATE</p>
+<p class="hint2" style="opacity: {{hint2Opacity}}" aria-hidden="true">{{hint2Text}} <span class="hint-arrow">↓</span></p>
+<section class="other" aria-label="Other things I create" style="opacity: {{otherOpacity}}">
+<div class="o-grid">
+<sc-for list="{{others}}" as="o" hint-placeholder-count="5">
+<button class="o-item" type="button" aria-label="Open {{o.title}}" onClick="{{o.open}}" style="transform: translateX(calc(var(--u) * {{o.shift}}))">
+<span class="o-img" style="display: block">
+<sc-if value="{{o.hasVid}}" hint-placeholder-val="{{false}}"><video src="{{o.vid}}" poster="{{o.src}}" ref="{{vidRef}}" autoPlay="{{true}}" muted="{{true}}" loop="{{true}}" playsInline="{{true}}" preload="metadata" aria-hidden="true"></video></sc-if>
+<sc-if value="{{o.hasStill}}" hint-placeholder-val="{{false}}"><img src="{{o.src}}" alt=""></sc-if>
+<sc-if value="{{o.noImg}}" hint-placeholder-val="{{true}}"><span class="o-cap">[{{o.caption}}]</span></sc-if>
+<span class="o-more" aria-hidden="true">OPEN →</span>
+</span>
+<span class="o-t" style="display: block">{{o.title}}</span>
+<span class="o-d" style="display: block">{{o.text}}</span>
+<span class="o-tag">{{o.tag}}</span>
+</button>
+</sc-for>
+</div>
+</section>
+</div>
+</div>
+</section>
+<div class="horse" ref="{{horseRef}}" aria-hidden="true"></div>
+<sc-if value="{{exOpen}}" hint-placeholder-val="{{false}}">
+<div class="ex {{ex.mode}}" role="dialog" aria-modal="true" aria-label="{{ex.title}}" ref="{{exRef}}" tabindex="-1" onKeyDown="{{exKey}}">
+<div class="ex-in">
+<button class="ex-back" type="button" onClick="{{closeEx}}">← BACK TO OTHER</button>
+<h2 class="ex-h">{{ex.title}}</h2>
+<p class="ex-tag">{{ex.tag}}</p>
+<sc-if value="{{ex.isEd}}" hint-placeholder-val="{{false}}">
+<figure class="ed-hero"><button class="zbtn" type="button" aria-label="View full size" onClick="{{zoomOpen}}" data-src="{{ex.edHero}}" data-alt="{{ex.title}}"><img src="{{ex.edHero}}" alt="{{ex.title}} postcard"></button></figure>
+<div class="ed-spread">
+<sc-for list="{{ex.edSpread}}" as="r" hint-placeholder-count="3">
+<section class="ed-row {{r.side}}">
+<div class="ed-txt">
+<span class="ed-num">{{r.n}}</span>
+<h3 class="ed-h">{{r.h}}</h3>
+<p class="ex-p">{{r.text}}</p>
+<sc-for list="{{r.items}}" as="it" hint-placeholder-count="0"><p class="ed-item"><b>{{it.t}}</b>{{it.b}}</p></sc-for>
+</div>
+<figure class="ed-img" style="--r: {{r.r}}deg"><button class="zbtn" type="button" aria-label="View {{r.cap}} full size" onClick="{{zoomOpen}}" data-src="{{r.img}}" data-alt="{{r.cap}}"><img src="{{r.img}}" alt="{{r.cap}}"></button><figcaption>{{r.cap}}</figcaption></figure>
+</section>
+</sc-for>
+</div>
+<ul class="ex-facts ed-facts">
+<sc-for list="{{ex.facts}}" as="f" hint-placeholder-count="3"><li><span>{{f.k}}</span>{{f.v}}</li></sc-for>
+</ul>
+</sc-if>
+<sc-if value="{{ex.showIntro}}" hint-placeholder-val="{{true}}">
+<div class="ex-grid">
+<div class="ex-hero">
+<sc-if value="{{ex.hasImg}}" hint-placeholder-val="{{false}}"><button class="zbtn zfill" type="button" aria-label="View full size" onClick="{{zoomOpen}}" data-src="{{ex.src}}" data-alt="{{ex.title}}"><img src="{{ex.src}}" alt="{{ex.title}}"></button></sc-if>
+<sc-if value="{{ex.noImg}}" hint-placeholder-val="{{true}}"><span class="o-cap">[{{ex.caption}}]</span></sc-if>
+</div>
+<div>
+<p class="ex-lead">{{ex.text}}</p>
+<sc-for list="{{ex.about}}" as="pa" hint-placeholder-count="2"><p class="ex-p">{{pa.t}}</p></sc-for>
+<ul class="ex-facts">
+<sc-for list="{{ex.facts}}" as="f" hint-placeholder-count="3"><li><span>{{f.k}}</span>{{f.v}}</li></sc-for>
+</ul>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{ex.hasEmbed}}" hint-placeholder-val="{{false}}">
+<h3 class="ex-gh">{{ex.embedTitle}}</h3>
+<p class="ex-p ex-emb-p">{{ex.embedText}}</p>
+<a class="ex-card" href="{{ex.embedLink}}" target="_blank" rel="noopener">
+<span class="ex-card-bar"><span class="ex-card-dots" aria-hidden="true"><span></span><span></span><span></span></span><span class="ex-card-url">{{ex.embedUrl}}</span></span>
+<span class="ex-card-body">
+<sc-if value="{{ex.hasEmbedImg}}" hint-placeholder-val="{{false}}"><img src="{{ex.embedImg}}" alt=""></sc-if>
+<span class="ex-card-cta">OPEN THE PROTOTYPE ↗</span>
+</span>
+</a>
+</sc-if>
+<sc-if value="{{ex.hasWall}}" hint-placeholder-val="{{false}}">
+<p class="ex-wall-hint">DRAG THE SKETCHES AROUND, CLICK ONE TO LOOK CLOSER</p>
+<div class="wall-stage"><div class="ex-wall {{ex.wallCls}}" ref="{{wallRef}}">
+<sc-for list="{{ex.wall}}" as="w" hint-placeholder-count="9">
+<button class="wp {{w.cls}}" type="button" data-i="{{w.i}}" data-src="{{w.src}}" data-alt="Sketch {{w.n}}" aria-label="Sketch {{w.n}}: click to view, drag to move" onClick="{{wClick}}" style="left: {{w.x}}%; top: {{w.y}}%; width: {{w.w}}%; z-index: {{w.z}}; --r: {{w.r}}deg" onPointerDown="{{wDown}}" onPointerMove="{{wMove}}" onPointerUp="{{wUp}}" onPointerCancel="{{wUp}}" onLostPointerCapture="{{wUp}}"><img src="{{w.src}}" alt="" draggable="false"><span class="tape {{w.t1}}"></span><span class="tape {{w.t2}}"></span></button>
+</sc-for>
+</div></div>
+</sc-if>
+<sc-if value="{{ex.hasModels}}" hint-placeholder-val="{{false}}">
+<h3 class="ex-gh">{{ex.modelTitle}}</h3>
+<sc-for list="{{ex.models}}" as="md" hint-placeholder-count="1"><figure class="ex-mod"><model-viewer class="ex-mv" src="{{md.src}}" orientation="{{md.o}}" camera-orbit="{{md.cam}}" camera-controls="" auto-rotate="" auto-rotate-delay="1500" rotation-per-second="18deg" interaction-prompt="none" shadow-intensity="0.6" exposure="1.05" touch-action="pan-y" alt="{{md.title}}, a 3D model you can rotate"></model-viewer><figcaption class="ex-mod-c"><span>{{md.title}}</span><span>DRAG TO SPIN, SCROLL TO ZOOM</span></figcaption></figure></sc-for>
+</sc-if>
+<sc-if value="{{ex.hasVideo}}" hint-placeholder-val="{{false}}">
+<h3 class="ex-gh">{{ex.videoTitle}}</h3>
+<video class="ex-vid" src="{{ex.video}}" poster="{{ex.videoPoster}}" ref="{{vidRef}}" autoPlay="{{true}}" muted="{{true}}" loop="{{true}}" playsInline="{{true}}" preload="auto" aria-label="{{ex.title}} video"></video>
+<sc-if value="{{ex.hasVNote}}" hint-placeholder-val="{{false}}"><p class="ex-vnote">{{ex.videoNote}}</p></sc-if>
+</sc-if>
+<sc-if value="{{ex.hasMoreVids}}" hint-placeholder-val="{{false}}"><sc-for list="{{ex.moreVids}}" as="mv" hint-placeholder-count="1">
+<h3 class="ex-gh">{{mv.title}}</h3>
+<video class="ex-vid" src="{{mv.src}}" poster="{{mv.poster}}" ref="{{vidRef}}" autoPlay="{{true}}" muted="{{true}}" loop="{{true}}" playsInline="{{true}}" preload="metadata" aria-label="{{mv.title}}"></video>
+<sc-if value="{{mv.hasNote}}" hint-placeholder-val="{{false}}"><p class="ex-vnote">{{mv.note}}</p></sc-if>
+</sc-for></sc-if>
+<sc-if value="{{ex.hasTT}}" hint-placeholder-val="{{false}}">
+<sc-for list="{{ex.ttGroups}}" as="tg" hint-placeholder-count="1">
+<div class="ex-tt-head"><h3 class="ex-gh">{{tg.title}}</h3><sc-if value="{{tg.hasLink}}" hint-placeholder-val="{{false}}"><button class="ex-tt-go" type="button" data-ex="{{tg.linkEx}}" onClick="{{goEx}}">{{tg.linkLabel}} ↗</button></sc-if></div>
+<sc-if value="{{tg.hasNote}}" hint-placeholder-val="{{false}}"><p class="ex-tt-note">{{tg.note}}</p></sc-if>
+<div class="ex-tt"><sc-for list="{{tg.items}}" as="v" hint-placeholder-count="2"><figure><video src="{{v.src}}" poster="{{v.poster}}" ref="{{vidRef}}" autoPlay="{{true}}" muted="{{true}}" loop="{{true}}" playsInline="{{true}}" preload="auto" aria-label="{{v.cap}}"></video><figcaption>{{v.cap}}</figcaption></figure></sc-for></div>
+</sc-for>
+</sc-if>
+<sc-if value="{{ex.hasFx}}" hint-placeholder-val="{{false}}"><sc-for list="{{ex.fx}}" as="fx" hint-placeholder-count="2">
+<section class="ex-fx">
+<h3 class="ex-gh"><span class="ex-fx-n">{{fx.n}}</span>{{fx.title}}</h3>
+<video class="ex-vid" src="{{fx.video}}" poster="{{fx.poster}}" ref="{{vidRef}}" autoPlay="{{true}}" muted="{{true}}" loop="{{true}}" playsInline="{{true}}" preload="metadata" aria-label="{{fx.title}}"></video>
+<sc-if value="{{fx.hasV2}}" hint-placeholder-val="{{false}}"><video class="ex-vid ex-vid2" src="{{fx.video2}}" poster="{{fx.poster2}}" ref="{{vidRef}}" autoPlay="{{true}}" muted="{{true}}" loop="{{true}}" playsInline="{{true}}" preload="metadata" aria-label="{{fx.title}}, second view"></video></sc-if>
+<sc-if value="{{fx.hasNote}}" hint-placeholder-val="{{false}}"><p class="ex-vnote">{{fx.note}}</p></sc-if>
+<sc-if value="{{fx.hasGal}}" hint-placeholder-val="{{false}}"><p class="ex-fx-sub">INSIDE TOUCHDESIGNER</p><div class="ex-gal"><sc-for list="{{fx.gallery}}" as="g" hint-placeholder-count="3"><figure><button class="zbtn" type="button" aria-label="View {{g.cap}} full size" onClick="{{zoomOpen}}" data-src="{{g.src}}" data-alt="{{g.cap}}"><img src="{{g.src}}" alt="{{g.cap}}"></button><figcaption>{{g.cap}}</figcaption></figure></sc-for></div></sc-if>
+</section>
+</sc-for></sc-if>
+<sc-if value="{{ex.hasGal}}" hint-placeholder-val="{{false}}">
+<h3 class="ex-gh">{{ex.galTitle}}</h3>
+<div class="ex-gal">
+<sc-for list="{{ex.gallery}}" as="g" hint-placeholder-count="4"><figure><button class="zbtn" type="button" aria-label="View {{g.cap}} full size" onClick="{{zoomOpen}}" data-src="{{g.src}}" data-alt="{{g.cap}}"><img src="{{g.src}}" alt="{{g.cap}}"></button><figcaption>{{g.cap}}</figcaption></figure></sc-for>
+</div>
+</sc-if>
+</div>
+</div>
+<nav class="ex-pn" aria-label="Other projects"><button class="ex-pn-b" type="button" data-ex="{{exPrev}}" onClick="{{goEx}}" aria-label="Previous: {{exPrevT}}"><span class="ex-pn-a" aria-hidden="true">←</span><span class="ex-pn-t">{{exPrevT}}</span></button><button class="ex-pn-b nx" type="button" data-ex="{{exNext}}" onClick="{{goEx}}" aria-label="Next: {{exNextT}}"><span class="ex-pn-t">{{exNextT}}</span><span class="ex-pn-a" aria-hidden="true">→</span></button></nav>
+</sc-if>
+<sc-if value="{{zoomOn}}" hint-placeholder-val="{{false}}">
+<div class="zoom" role="dialog" aria-modal="true" aria-label="{{zoomAlt}}">
+<button class="zoom-bg" type="button" aria-label="Close" onClick="{{zoomClose}}"></button>
+<img class="zoom-img" src="{{zoomSrc}}" alt="{{zoomAlt}}">
+<button class="zoom-x" type="button" onClick="{{zoomClose}}">CLOSE ×</button>
+</div>
+</sc-if>
+<sc-if value="{{lbOpen}}" hint-placeholder-val="{{false}}">
+<div class="lb" role="dialog" aria-modal="true" aria-label="{{lb.title}}">
+<button class="lb-bg" type="button" aria-label="Close preview" onClick="{{closeLb}}"></button>
+<figure class="lb-fig">
+<div class="lb-art" style="background: {{lb.color}}">
+<sc-if value="{{lb.hasImg}}" hint-placeholder-val="{{false}}"><img src="{{lb.src}}" alt="{{lb.title}}"></sc-if>
+</div>
+<figcaption class="lb-cap">{{lb.title}} <span>{{lb.note}}</span></figcaption>
+</figure>
+<button class="lb-x" type="button" onClick="{{closeLb}}">CLOSE ×</button>
+</div>
+</sc-if>
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1018}}'>
+class Component extends DCLogic {
+  // OTHER: the things that slide in after "I WAS CREATED TO CREATE". src = image url (null keeps the placeholder).
+  // OTHER: the things that slide in after "I WAS CREATED TO CREATE". Each one opens its own page.
+  // src = preview image (null keeps the placeholder); about = paragraphs; facts = rows; gallery = extra images.
+  othersData = [
+    { title: 'XLAB RADIO', tag: 'RADIO / HOSTING + PRODUCTION', caption: 'NEO SOUL POSTER', src: 'assets/4add28f362d9d60f21e257cf66a9b5b4.jpg',
+      text: 'Hosted and produced shows for XLAB Radio + posters for each show.',
+      about: [
+        'XLAB Radio is the student radio of the Experience Lab. I hosted and produced my own shows: writing the scripts, picking the music, running the episode live and designing a poster for every show.',
+        'Shows included Neo Soul (which survived a server crash mid-show), Let\'s Have a Talk, When I Grow Up, Freaky Friday with Emma, Board Game Night, my birthday show and a studying abroad episode built on my time in Korea with my friend Philippe as a guest. The posters picked up a following on Pinterest.'
+      ],
+      facts: [{ k: 'ROLE', v: 'HOST + PRODUCER' }, { k: 'MADE', v: 'SCRIPTS, SHOWS, POSTERS' }, { k: 'WHERE', v: 'XLAB, THUAS' }],
+      embedTitle: 'FINAL DELIVERABLE',
+      embedText: 'A Figma prototype with all the playlists from my shows and a reflection on the whole process. It opens in Figma in a new tab.',
+      embedImg: 'assets/4305f920cc769f5dac8c22614b015174.jpg', embedUrl: 'figma.com / XLAB-SHOW / prototype',
+      embed: 'https://embed.figma.com/proto/KRmpxPEdbb5sOpTE9gpFk6/XLAB-SHOW?node-id=1-7&viewport=4%2C224%2C0.06&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&embed-host=share',
+      embedLink: 'https://www.figma.com/proto/KRmpxPEdbb5sOpTE9gpFk6/XLAB-SHOW?node-id=1-7&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1',
+      galTitle: 'SHOW POSTERS',
+      gallery: [
+        { src: 'assets/4add28f362d9d60f21e257cf66a9b5b4.jpg', cap: 'NEO SOUL' },
+        { src: 'assets/b17611377980121842b94299281b9e16.jpg', cap: 'LISTEN TO THE RACE' },
+        { src: 'assets/31baa43bdb1fda22cb4b4d4fccceef87.jpg', cap: 'RHYTHMS OF CONGO' },
+        { src: 'assets/5e9e6635d484e1a493ddf88c5c9799ac.jpg', cap: 'RUNNING FOR THE THRILL OF IT' },
+        { src: 'assets/f7697b3d5cfd5e18ff6067190be393d0.jpg', cap: "LET'S HAVE A TALK" },
+        { src: 'assets/2f069bc9f2c59c6bf408547f9a97c5da.jpg', cap: 'WHEN I GROW UP' },
+        { src: 'assets/aae42ec4004e5376a6a6a2c510f084be.jpg', cap: 'FREAKY FRIDAY' },
+        { src: 'assets/afc2c3e3210d891fff1c8e958589c8ef.jpg', cap: 'BOARD GAME NIGHT' },
+        { src: 'assets/ba7965197f7f82c86fd06bd4d8dbc7b9.jpg', cap: "IT'S MY BIRTHDAY" }
+      ] },
+    { title: '3D SCULPTING / MODELING', tag: '3D', caption: 'RENDER', thumb: 'assets/72252eac52df70e83219c5f52067fcf9.jpg', tileVideo: 'assets/f95b359ce2f1f2ce4bdea2a49c2e70c4.mp4', src: null,
+      text: 'Characters, objects and little worlds, sculpted and modeled in 3D.',
+      about: ['[Write a few lines about your 3D work here: what you like to sculpt or model, the tools you use and what you are exploring.]'],
+      facts: [{ k: 'TOOLS', v: '[ADD YOUR TOOLS]' }, { k: 'FOCUS', v: 'SCULPTING + MODELING' }],
+      video: 'assets/f95b359ce2f1f2ce4bdea2a49c2e70c4.mp4', videoPoster: 'assets/72252eac52df70e83219c5f52067fcf9.jpg', videoTitle: 'CAB FAB LAMP',
+      videoNote: 'A touchpoint for the Caballerofabriek, made for my Shared Spaces project. People who work there tap their phone on the lamp to check in and out: an NFC tag inside opens our connected app, where they connect with each other and collect points, and the light reacts to every tap. The letters, panel, frame and back plate are 14 printed parts that clip together, no glue or screws.',
+      // turntable loops in groups under the main video. link = title of another entry to jump to.
+      ttGroups: [
+        { title: 'THE LETTER SHELLS', items: [
+          { src: 'assets/71418982f0312c363805e56e63901f5b.mp4', poster: 'assets/f24b246ab4df7a226c1ef77cd9ffc37d.jpg', cap: 'SHELL C' },
+          { src: 'assets/8105ca44b086dd9cd12fe7e7943528cf.mp4', poster: 'assets/402f76a80f8f19afd227a11a83f30c8c.jpg', cap: 'SHELL B, TOP' },
+          { src: 'assets/ce2177a0922f87d35ecb48393aa60072.mp4', poster: 'assets/283a44e448ebf7715c777e722f84f5bf.jpg', cap: 'SHELL F' },
+          { src: 'assets/e562e79fbb78d9973923fd88187a510f.mp4', poster: 'assets/909dab02bb6149447ac7859a716cf8de.jpg', cap: 'SHELL A, RIGHT HALVES' } ] },
+        { title: 'THE ORNAMENTS', link: 'CABINET OF WONDER', linkLabel: 'SEE THE PROJECT',
+          note: 'My first 3D models, made when I was introduced to 3D modeling in the Digital Fabrication class at SeoulTech, for the Cabinet of Wonder ornaments.',
+          items: [
+          { src: 'assets/36cc42fab1659165759c5f116343d717.mp4', poster: 'assets/e2dcfac51565ff4a2547312dc719b7d4.jpg', cap: 'THE WISH' },
+          { src: 'assets/ff966529f33fd689d32610260f25c165.mp4', poster: 'assets/986c194dce2549b835a5444938c7e8f5.jpg', cap: 'THE WATCHER' } ] }
+      ] },
+    { title: 'EXPERIMENTING WITH TOUCHDESIGNER', tag: 'TOUCHDESIGNER / MEDIAPIPE', caption: 'PARTICLES', thumb: 'assets/8ce6043bd18880f32446fc71c5795cd8.jpg', src: 'assets/72a4d9dc7f9dec2be2a32f615ff1cb01.jpg',
+      text: 'Learning TouchDesigner one effect at a time, with my webcam as the input.',
+      about: [
+        'Where I play and learn in TouchDesigner, mostly with a live webcam as input. Each effect below has its own video and a look inside the node network.'
+      ],
+      facts: [{ k: 'TOOLS', v: 'TOUCHDESIGNER, MEDIAPIPE' }, { k: 'INPUT', v: 'WEBCAM' }, { k: 'EFFECTS', v: 'GESTURE PARTICLES, TIME DISPLACEMENT, PIXEL WINDOW' }],
+      tileVideo: 'assets/1d933c51a3ad94ae8d08e2a32ad8d7d1.mp4',
+      // one section per effect: video, short note, and its own node screenshots
+      effects: [
+        { title: 'GESTURE PARTICLES', video: 'assets/1d933c51a3ad94ae8d08e2a32ad8d7d1.mp4', poster: 'assets/8ce6043bd18880f32446fc71c5795cd8.jpg',
+          video2: 'assets/fdf41834e630eb3fdb69591ebeab2967.mp4', poster2: 'assets/cb75317da4ddc577405e0e939b1b5a91.jpg',
+          note: 'A particle system that reacts to your hands, shown as a live projection. Most setups like this use a Kinect for depth tracking. I did not have one, so I worked around it with MediaPipe hand tracking through a regular webcam. Getting that to talk to TouchDesigner was my first real challenge in learning the software, and a great way in.',
+          gallery: [
+            { src: 'assets/72a4d9dc7f9dec2be2a32f615ff1cb01.jpg', cap: 'THE WHOLE NODE NETWORK' },
+            { src: 'assets/72158b263d411d49d059ce1896fd622a.jpg', cap: 'WEBCAM INPUT' },
+            { src: 'assets/60fb10a375b9f1d983a7f9a97e239895.jpg', cap: 'RAMPS + REORDER' },
+            { src: 'assets/47f5c3cd0fb3b2f0a6df1886b4fc2355.jpg', cap: 'THE POINT CLOUD' },
+            { src: 'assets/91e8636ac525106ad6676547fe417d7d.jpg', cap: 'NOISE, FEEDBACK, BLOOM' },
+            { src: 'assets/c9838c90df45a3576965c2a0f5441398.jpg', cap: 'CAMERA VIEW' } ] },
+        { title: 'TIME DISPLACEMENT', video: 'assets/2642ca2330a1cb93f171ae39aeb3aec2.mp4', poster: 'assets/cb06fd0871a68baae8ef62bae988a2a3.jpg',
+          note: 'The webcam feed is stored as a stack of past frames, and a Time Machine TOP pulls each part of the image from a different moment. Whatever moves leaves a trail of its own past behind it.',
+          gallery: [
+            { src: 'assets/42f258f55aa0cfe8688df061a3178dad.jpg', cap: 'VIDEO DEVICE, TEXTURE 3D, TIME MACHINE' } ] },
+        { title: 'PIXEL WINDOW', video: 'assets/0f28272940875af2ff8f0d032f96341f.mp4', poster: 'assets/3c5eb7ba73e93554461aba7063cb4c31.jpg',
+          note: 'MediaPipe tracks both hands, and the tips of my thumbs and index fingers become the corners of a frame. Whatever I hold inside it turns pixelated, recoloured and smeared with feedback, while the rest of the camera stays normal.',
+          gallery: [
+            { src: 'assets/df11f7087a7850cfae30cbff1d90ee0d.jpg', cap: 'HAND TRACKING, CORNER PIN, PIXELATE, CHANGE COLOR, FEEDBACK' } ] }
+      ] },
+    { title: 'STRIKE A POSE', tag: 'POSE MATCHING / AI', caption: 'POSE', thumb: 'assets/ad9d38dd0cc48c96bd7cb280330bd974.jpg', src: 'assets/f7e46bf150f8acf143fcf42de764ff9c.jpg',
+      text: 'Strike the pose of a painting and see which artwork you match.',
+      about: [
+        'An interactive prototype where your body becomes the way into art. You strike a pose in front of the camera, it gets matched to a figure in a painting, and an AI-generated text layer tells you more about the work you landed on.',
+        'To build the pose library I made my own annotation tool. I drop in paintings from the Rijksmuseum collection, from The Milkmaid to Paul healing a man who could not walk, it detects the figures, and I check and fix every skeleton by hand before exporting them all to one poses.json. So far that’s 15 paintings. The painting info I add there feeds the AI text, so it stays factual.'
+      ],
+      facts: [{ k: 'WHAT', v: 'POSE MATCHING TO PAINTINGS' }, { k: 'LAYER', v: 'AI-GENERATED TEXT' }, { k: 'TOOLS', v: 'FIGMA, [ADD YOUR OTHER TOOLS]' }],
+      galTitle: 'THE DESIGN AND THE TOOL',
+      gallery: [
+        { src: 'assets/26c743f673f48a469550ccd1acf061d9.jpg', cap: 'START SCREEN: CLAP YOUR HANDS TO START' },
+        { src: 'assets/8ffa44dff7718c3576334a86b9cc2296.jpg', cap: 'COPY THE FIGURE AND HOLD IT' },
+        { src: 'assets/f7e46bf150f8acf143fcf42de764ff9c.jpg', cap: 'CHECKING A POSE ON SK-A-3277' },
+        { src: 'assets/f120547f3d03cece1ad37b48a23dc017.jpg', cap: '15 PAINTINGS CHECKED, WITH THEIR INFO FOR THE AI' }
+      ] },
+    { title: 'SKETCHBOOK', tag: 'PENCIL / MARKERS', caption: 'SKETCH', src: 'assets/1d278cde80484288afa6bdcb7b5db9c8.jpg',
+      text: 'Pages from my sketchbook: faces, collage-y doodles and places.',
+      about: ['Where most ideas start. Pencil portraits mixed with markers, patterns and little objects, character studies and the occasional place I want to remember.'],
+      facts: [{ k: 'MEDIUM', v: 'PENCIL, MARKERS' }, { k: 'SUBJECTS', v: 'FACES, CHARACTERS, PLACES' }],
+      // art wall: x, y = top-left on a 1600 x 900 wall (m = [x, y, w] on a 900 x 1600 wall for phones), w = width (same units), r = tilt in degrees
+      wall: [
+        { src: 'assets/1d278cde80484288afa6bdcb7b5db9c8.jpg', x: 40, y: 45, w: 360, r: -2, m: [40, 40, 460], t: ['b', 'c'] },
+        { src: 'assets/340aa9695f88b81a396b8ea09e6a847a.jpg', x: 425, y: 65, w: 185, r: 1.5, m: [560, 30, 280], t: ['a', ''] },
+        { src: 'assets/c15e4b812ebe5ffecb4d4b62844d97b5.jpg', x: 635, y: 45, w: 170, r: -1, m: [520, 430, 200], t: ['a', ''] },
+        { src: 'assets/118370cb90453e5179b379936ccc9d3e.jpg', x: 1205, y: 45, w: 150, r: 2.5, m: [770, 420, 110], t: ['b', 'c'] },
+        { src: 'assets/4a55a6616920124074ffc60a773d480a.jpg', x: 40, y: 430, w: 285, r: 1, m: [40, 790, 300], t: ['a', 'd'] },
+        { src: 'assets/1ca45b9921617056a9f543a55e3580c1.jpg', x: 392, y: 450, w: 180, r: -3, m: [380, 830, 200], t: ['a', ''] },
+        { src: 'assets/6900978d15ec4ae92a7a7a12f5f154ef.jpg', x: 1380, y: 65, w: 180, r: -2, m: [620, 790, 240], t: ['b', 'c'] },
+        { src: 'assets/7e1c019d1282948f421134cc5069fbb0.jpg', x: 1350, y: 430, w: 210, r: -1.5, m: [730, 1180, 150], t: ['a', ''] },
+        { src: 'assets/63992e566563ce25e2e0c98290d6726e.jpg', x: 1108, y: 450, w: 175, r: 3, m: [540, 1200, 170], t: ['a', 'd'] },
+        { src: 'assets/557e1d29435b799bca226a12096d39ae.jpg', x: 830, y: 65, w: 350, r: 2, m: [40, 380, 420], t: ['a', 'd'] },
+        { src: 'assets/7ee075700b3f69b2a2b82862b84e0b28.jpg', x: 640, y: 430, w: 400, r: -1.5, m: [40, 1200, 450], t: ['b', 'c'] }
+      ] },
+    { title: 'CABINET OF WONDER', tag: 'DIGITAL FABRICATION / SEOULTECH', caption: 'ORNAMENTS', thumb: 'assets/1ea7e1a663cbe880a66a4e6fa162f04a.jpg', src: 'assets/cee92559e7c0f78ca0c4471cba95f500.jpg',
+      text: 'Three Christmas ornaments that give shape to the invisible feelings of childhood.',
+      // editorial layout: the full postcard first, then numbered text blocks next to the images
+      editorial: {
+        hero: 'assets/cee92559e7c0f78ca0c4471cba95f500.jpg',
+        spread: [
+          { n: '01', h: 'WONDER AND QUIET FEAR', img: 'assets/2a4100935d8f84ff18904937533d7fd7.jpg', cap: 'SKETCHES', r: 2,
+            text: 'The Cabinet of Invisible Things is a series of three ornaments inspired by how I experienced Christmas as a child. I was always fascinated by the magical window displays in Paris, filled with moving marionettes, but at the same time I felt pressure to be good in order to receive gifts. Christmas became a mix of excitement, imagination and quiet fear.' },
+          { n: '02', h: 'THREE ORNAMENTS', img: 'assets/40038f97e54b1b1a38fe4f5e5391b9a9.jpg', cap: 'IDEA PITCH', r: -1.5,
+            text: 'Each ornament gives shape to something invisible from that time.',
+            items: [
+              { t: 'THE WONDER', b: 'A small fairy puppet that stands for the fragile innocence and creativity of childhood.' },
+              { t: 'THE WATCHER', b: 'The feeling of being observed and judged, turned into a mysterious object with a gentle, curious gaze.' },
+              { t: 'THE WISH', b: 'A vessel that holds a child\'s Christmas wish, the tiny breath you release before you hope for something.' } ] },
+          { n: '03', h: 'A PERSONAL CABINET', img: 'assets/1ea7e1a663cbe880a66a4e6fa162f04a.jpg', cap: 'THE ORNAMENTS', r: 1.5,
+            text: 'Together they form a personal cabinet of wonders. They transform emotions that could not be seen, imagination, fear and hope, into objects that invite people to reflect on their own childhood memories and the small invisible things we carry with us.' }
+        ]
+      },
+      facts: [{ k: 'CLASS', v: 'DIGITAL FABRICATION, SEOULTECH' }, { k: 'WHEN', v: 'EXCHANGE, SEP-DEC 2025' }, { k: 'BRIEF', v: 'WUNDERKAMMER + CHRISTMAS' }, { k: 'MATERIALS', v: 'ACRYLIC, WOOD, LEAVES' }] }
+  ];
+
+  state = { s: 1, q: 1, r: 0, pp: 0, mobile: false, offsets: {}, zs: {}, dragId: null, moved: false, lb: null, ex: null, vwRef: 2000 };
+
+  // YOUR ARTWORK: key = poster id. Top row ids run t-16 ... t11 (t0 is the first poster you see,
+  // t-16 ... t0 form the final top stack). Bottom row ids run b0 ... b23 (b7 is the last visible
+  // poster at the start, b7 ... b23 form the final bottom stack). Add { title, src } per poster.
+  // YOUR POSTERS, in order of prominence: the first lands on the most visible spot (t0, the top of the
+  // upper stack), then b23 (top of the lower stack), then the posters visible at the start.
+  // Add new { title, src } entries at the end; slots without a poster keep the red gradient.
+  posterList = [
+    { title: 'EVERYTHING YOU WANT IS ON THE OTHER SIDE OF FEAR', src: 'assets/b8eeab87f35fe055ba8fe757185b2628.jpg' },
+    { title: 'DON\'T KILL MY VIBE', src: 'assets/c0c0c42fee03c4c952df188e9eeac3b0.jpg' },
+    { title: 'LISTEN TO THE RACE / XLAB RADIO', src: 'assets/b17611377980121842b94299281b9e16.jpg' },
+    { title: 'FOREVER YOUNG', src: 'assets/b36beef12d5ee105d85b4b57f9246298.jpg' },
+    { title: 'RHYTHMS OF CONGO / XLAB RADIO', src: 'assets/31baa43bdb1fda22cb4b4d4fccceef87.jpg' },
+    { title: 'UNTITLED (PINK FLORAL)', src: 'assets/a508ad917b62eafb1eeac03e40a3d7d8.jpg' },
+    { title: 'RUNNING FOR THE THRILL OF IT / XLAB RADIO', src: 'assets/5e9e6635d484e1a493ddf88c5c9799ac.jpg' },
+    { title: 'RUNNING FOR THE THRILL OF IT (VARIANT)', src: 'assets/a1e1c93230b9c8fc05e7bb1da8a1c66b.jpg' },
+    { title: "NEO SOUL / XLAB RADIO", src: 'assets/4add28f362d9d60f21e257cf66a9b5b4.jpg' },
+    { title: "AND DON'T FORGET TO DANCE", src: 'assets/4520a6884005f3bc1b4b8d639a0fd09d.jpg' },
+    { title: "RAIN", src: 'assets/2c2bb02f1d8361f616976b0cea3f3302.jpg' },
+    { title: "SINNERS / A NIGHT TO SURVIVE", src: 'assets/75bbffd73f176afccfffe16ffba40916.jpg' },
+    { title: "SAUSAGE", src: 'assets/9dc211a7694547225d3bdfb037303a35.jpg' },
+    { title: "DUNE / LONG LIVE THE FIGHTERS", src: 'assets/7e37b2e25cbb802d64b6c81a090ed38b.jpg' },
+    { title: "YOU HAVE NO IDEA HOW GOOD IT'S ABOUT TO GET", src: 'assets/457bd26af262db1d40497ffb43d9303b.jpg' },
+    { title: "AUDACITY IS ALL IT TAKES", src: 'assets/d694feee899018e1c1251209a43eaeac.jpg' },
+    { title: "UNTITLED (INSTRUMENTS)", src: 'assets/c9c9ff3d047aad3d5abe408b93de9984.jpg' },
+    { title: "LET'S HAVE A TALK / XLAB RADIO", src: 'assets/f7697b3d5cfd5e18ff6067190be393d0.jpg' },
+    { title: "WHEN I GROW UP / XLAB RADIO", src: 'assets/2f069bc9f2c59c6bf408547f9a97c5da.jpg' },
+    { title: "IT'S MY BIRTHDAY / XLAB RADIO", src: 'assets/ba7965197f7f82c86fd06bd4d8dbc7b9.jpg' },
+    { title: "FREAKY FRIDAY / XLAB RADIO", src: 'assets/aae42ec4004e5376a6a6a2c510f084be.jpg' },
+    { title: "BOARD GAME NIGHT / XLAB RADIO", src: 'assets/afc2c3e3210d891fff1c8e958589c8ef.jpg' }
+  ];
+  // Optional per-slot override by poster id, e.g. 't3': { title, src }
+  artwork = {};
+
+  artFor(id) {
+    if (this.artwork[id]) return this.artwork[id];
+    if (!this._artMap) {
+      const order = ['t0', 'b23', 'b7', 't1', 'b6', 't2', 'b5', 't3', 'b4', 't4', 'b3', 't5', 'b2', 't6', 'b1', 't7'];
+      for (let k = 1; k <= 16; k++) { order.push('t-' + k); if (23 - k > 7) order.push('b' + (23 - k)); }
+      ['t8', 't9', 't10', 't11', 'b0'].forEach((x) => order.push(x));
+      this._artMap = {};
+      order.forEach((pid, i) => { if (this.posterList[i]) this._artMap[pid] = this.posterList[i]; });
+      // Until there are enough posters for every slot, repeat them so no slot stays empty.
+      const all = [];
+      for (let i = -16; i <= 11; i++) all.push('t' + i);
+      for (let j = 0; j <= 23; j++) all.push('b' + j);
+      let c = 0;
+      all.forEach((pid) => { if (!this._artMap[pid] && this.posterList.length) this._artMap[pid] = this.posterList[(c++ * 5) % this.posterList.length]; });
+    }
+    return this._artMap[id] || {};
+  }
+  // COLLAGE: the paper face collage sits in the "I WAS CREATED TO [ ] CREATE" gap and links to About me.
+  // COLLAGE PORTRAIT, ported from your "Paper Face Collage" artifact. Each feature's cut-outs sit side by side
+  // in one strip image (see the .s-eyeL etc. rules), in the same order as the v lists below.
+  // Move around: the eyes follow you. Hover a scrap: it flips through cut-outs. Press and hold: a gasp.
+  COL = { W: 958, H: 801, P: 14, faceCx: 373.2, faceCy: 381.0,
+    order: ['cheekL', 'cheekR', 'browL', 'browR', 'eyeL', 'eyeR', 'nose', 'mouth'],
+    slots: {
+      eyeL: { cx: 311.5, cy: 396.4, w: 100, h: 93, angle: -0.1816, v: [["p01", -0.065, -0.039, 0.29], ["p02", 0.095, -0.031, 0.44], ["p03", -0.001, 0.0, 0.274], ["p04", 0.057, -0.041, 0.357], ["p05", -0.022, -0.073, 0.333], ["p07", 0.055, -0.043, 0.333], ["p08", -0.068, 0.016, 0.226], ["p09", -0.125, -0.028, 0.209], ["p10", 0.206, -0.022, 0.334], ["p12", -0.049, -0.021, 0.363], ["p13", 0.021, -0.076, 0.373], ["p14", 0.239, 0.008, 0.215], ["p16", 0.043, -0.083, 0.422], ["p17", 0.06, 0.028, 0.147]] },
+      eyeR: { cx: 473.4, cy: 367.1, w: 119, h: 107, angle: -0.1816, v: [["p01", -0.026, -0.061, 0.378], ["p02", 0.118, -0.004, 0.331], ["p03", 0.034, -0.002, 0.256], ["p04", 0.047, -0.031, 0.302], ["p05", 0.006, -0.05, 0.304], ["p07", 0.113, -0.027, 0.306], ["p08", -0.054, -0.037, 0.27], ["p09", 0.036, 0.005, 0.268], ["p10", 0.162, -0.021, 0.306], ["p12", 0.058, -0.039, 0.301], ["p13", 0.028, -0.059, 0.361], ["p14", 0.186, -0.015, 0.221], ["p16", 0.071, -0.051, 0.354], ["p17", -0.09, 0.028, 0.153]] },
+      browL: { cx: 294.0, cy: 339.7, w: 106, h: 59, angle: -0.1816, v: [["p01", null, null, null], ["p02", null, null, null], ["p04", null, null, null], ["p05", null, null, null], ["p07", null, null, null], ["p08", null, null, null], ["p09", null, null, null], ["p10", null, null, null], ["p12", null, null, null], ["p13", null, null, null], ["p14", null, null, null], ["p17", null, null, null]] },
+      browR: { cx: 469.4, cy: 305.9, w: 179, h: 92, angle: -0.1816, v: [["p02", null, null, null], ["p04", null, null, null], ["p05", null, null, null], ["p07", null, null, null], ["p10", null, null, null], ["p12", null, null, null], ["p13", null, null, null], ["p14", null, null, null], ["p16", null, null, null], ["p17", null, null, null]] },
+      nose: { cx: 385.4, cy: 464.9, w: 112, h: 97, angle: -0.1816, v: [["p01", null, null, null], ["p02", null, null, null], ["p03", null, null, null], ["p05", null, null, null], ["p08", null, null, null], ["p10", null, null, null], ["p13", null, null, null], ["p16", null, null, null]] },
+      mouth: { cx: 418.0, cy: 568.9, w: 174, h: 142, angle: -0.1816, v: [["p01", null, null, 0.035], ["p02", null, null, 0.16], ["p03", null, null, 0.064], ["p04", null, null, 0.027], ["p05", null, null, 0.014], ["p07", null, null, 0.014], ["p08", null, null, 0.057], ["p09", null, null, 0.237], ["p10", null, null, 0.19], ["p12", null, null, 0.027], ["p13", null, null, 0.057], ["p14", null, null, 0.323], ["p16", null, null, 0.018], ["p17", null, null, 0.208], ["p06", null, null, 0.12]] },
+      cheekL: { cx: 322.9, cy: 500.5, w: 88, h: 83, angle: -0.1816, v: [["p01", null, null, null], ["p03", null, null, null], ["p08", null, null, null], ["p10", null, null, null]] },
+      cheekR: { cx: 506.7, cy: 478.1, w: 88, h: 83, angle: -0.1816, v: [["p02", null, null, null], ["p05", null, null, null], ["p10", null, null, null], ["p17", null, null, null]] }
+    }
+  };
+
+  colRng(seed) { let s = seed >>> 0; return () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296); }
+
+  colTorn(corners, d, amp, step, r) {
+    const cx = corners.reduce((a, p) => a + p[0], 0) / 4, cy = corners.reduce((a, p) => a + p[1], 0) / 4;
+    const g = corners.map((p) => { const dx = p[0] - cx, dy = p[1] - cy, l = Math.hypot(dx, dy) || 1; return [p[0] + dx / l * d * 1.3, p[1] + dy / l * d * 1.3]; });
+    const pts = [];
+    for (let i = 0; i < 4; i++) {
+      const a = g[i], b = g[(i + 1) % 4];
+      const len = Math.hypot(b[0] - a[0], b[1] - a[1]) || 1;
+      const n = Math.max(4, Math.round(len / step));
+      const nx = (b[1] - a[1]) / len, ny = -(b[0] - a[0]) / len;
+      let drift = 0;
+      for (let j = 0; j < n; j++) {
+        const t = j / n;
+        drift = drift * 0.6 + (r() - 0.5) * amp;
+        const bump = r() < 0.06 ? (r() - 0.5) * amp * 3 : 0;
+        const o = drift + bump;
+        pts.push([a[0] + (b[0] - a[0]) * t + nx * o, a[1] + (b[1] - a[1]) * t + ny * o]);
+      }
+    }
+    return pts;
+  }
+
+  colBuild() {
+    if (this.colData) return this.colData;
+    const C = this.COL, P = C.P;
+    let seed = 1;
+    const data = {};
+    C.order.forEach((name) => {
+      const s = C.slots[name], w = s.w, h = s.h, bw = w + 2 * P, bh = h + 2 * P;
+      const vars = s.v.map((v) => {
+        const r = this.colRng(seed++ * 7919);
+        const k = () => (r() - 0.3) * 0.12;
+        const corners = [[w * k(), h * k()], [w * (1 - k()), h * k()], [w * (1 - k()), h * (1 - k())], [w * k(), h * (1 - k())]];
+        const frames = [];
+        for (let f = 0; f < 3; f++) {
+          const o = this.colTorn(corners, 3.5 + r() * 2.5, 1.7, 6, r);
+          const i = this.colTorn(corners, 0, 1.1, 6, r);
+          frames.push({
+            outer: 'polygon(' + o.map((p) => ((p[0] + P) / bw * 100).toFixed(2) + '% ' + ((p[1] + P) / bh * 100).toFixed(2) + '%').join(',') + ')',
+            inner: 'polygon(' + i.map((p) => (p[0] / w * 100).toFixed(2) + '% ' + (p[1] / h * 100).toFixed(2) + '%').join(',') + ')'
+          });
+        }
+        return { from: v[0], gaze: v[1] === null ? null : [v[1], v[2]], open: v[3], src: 'collage/assets/' + name + '_' + v[0] + '.jpg', frames: frames,
+          rot: (r() - 0.5) * 0.09, dx: (r() - 0.5) * 6 / bw * 100, dy: (r() - 0.5) * 6 / bh * 100, scale: 1 + r() * 0.06 };
+      });
+      data[name] = { s: s, bw: bw, bh: bh, vars: vars, closed: vars.findIndex((v) => v.from === 'p17') };
+    });
+    this.colData = data;
+    return data;
+  }
+
+  colPick(a) { return a[Math.floor(Math.random() * a.length)]; }
+  colMouth(open) { return this.colData.mouth.vars.map((v, i) => [v, i]).filter((q) => open ? q[0].open > 0.15 : q[0].open <= 0.07).map((q) => q[1]); }
+  colEyesOpen(n) { return this.colData[n].vars.map((v, i) => [v, i]).filter((q) => (q[0].open == null ? 1 : q[0].open) > 0.19); }
+  colShuffle(n) {
+    const L = this.colData[n].vars.length;
+    let k = this.cur[n];
+    if (L > 1) while (k === this.cur[n]) k = Math.floor(Math.random() * L);
+    this.cur[n] = k;
+  }
+  colLook(x, y) {
+    const C = this.COL;
+    const gx = Math.max(-1, Math.min(1, (x - C.faceCx) / ((C.W + 140) * 0.45))) * 0.2;
+    const gy = Math.max(-1, Math.min(1, (y - C.faceCy) / ((C.H + 140) * 0.45))) * 0.06;
+    let changed = false;
+    ['eyeL', 'eyeR'].forEach((n) => {
+      if (this.state.hover === n) return;
+      const ranked = this.colEyesOpen(n).filter((q) => q[0].gaze)
+        .map((q) => [Math.hypot(q[0].gaze[0] - gx, (q[0].gaze[1] - gy) * 1.5), q[1]])
+        .sort((a, b) => a[0] - b[0]);
+      const top = ranked.slice(0, 2).map((q) => q[1]);
+      if (top.length && top.indexOf(this.cur[n]) < 0) { this.cur[n] = top[0]; changed = true; }
+    });
+    return changed;
+  }
+  colBump() { this.setState({ colTick: (this.state.colTick || 0) + 1 }); }
+
+  colStart() {
+    const D = this.colBuild();
+    this.cur = {};
+    Object.keys(D).forEach((n) => { this.cur[n] = Math.floor(Math.random() * D[n].vars.length); });
+    this.cReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.cLastBoil = 0; this.boil = 0; this.blink = false;
+    this.cNextBlink = performance.now() + 2500; this.cBlinkUntil = 0;
+    this.cNextAuto = 0; this.cLastMove = -1e9; this.cNextShuffle = 0; this.cPressed = false;
+    this.onColUp = () => {
+      if (!this.cPressed) return;
+      this.cPressed = false;
+      this.cur.mouth = this.colPick(this.colMouth(false));
+      this.colBump();
+    };
+    window.addEventListener('pointerup', this.onColUp);
+    window.addEventListener('pointercancel', this.onColUp);
+    this.cRaf = requestAnimationFrame(this.colLoop);
+  }
+  colStop() {
+    if (this.cRaf) cancelAnimationFrame(this.cRaf);
+    window.removeEventListener('pointerup', this.onColUp);
+    window.removeEventListener('pointercancel', this.onColUp);
+  }
+  colLoop = (now) => {
+    let dirty = false;
+    if (now - this.cLastBoil > (this.cReduce ? 333 : 125)) { this.cLastBoil = now; this.boil = (this.boil + 1) % 3; dirty = true; }
+    const hv = this.state.hover;
+    if (hv && !this.cPressed && now > this.cNextShuffle) {
+      if (hv === 'mouth') this.cur.mouth = this.colPick(this.colMouth(false).concat(this.colMouth(true)));
+      else this.colShuffle(hv);
+      this.cNextShuffle = now + 140; dirty = true;
+    }
+    if (now > this.cNextBlink) { this.cBlinkUntil = now + 140; this.cNextBlink = now + 2500 + Math.random() * 4000; }
+    const bl = now < this.cBlinkUntil;
+    if (bl !== this.blink) { this.blink = bl; dirty = true; }
+    if (now - this.cLastMove > 2200 && !this.cReduce && now > this.cNextAuto) {
+      const n = this.colPick(this.COL.order);
+      if (n === 'mouth') this.cur.mouth = this.colPick(this.colMouth(Math.random() < 0.3));
+      else if (n.indexOf('eye') === 0) this.cur[n] = this.colPick(this.colEyesOpen(n))[1];
+      else this.colShuffle(n);
+      this.cNextAuto = now + 260 + Math.random() * 520; dirty = true;
+    }
+    if (dirty && (this.state.q || 0) > 0.02) this.colBump();
+    this.cRaf = requestAnimationFrame(this.colLoop);
+  };
+  collageRef = (el) => { this.colEl = el || null; };
+  onColMove = (e) => {
+    if (!this.colEl || !this.cur) return;
+    const r = this.colEl.getBoundingClientRect();
+    if (!r.width) return;
+    this.cLastMove = performance.now();
+    const x = (e.clientX - r.left) / r.width * this.COL.W, y = (e.clientY - r.top) / r.height * this.COL.H;
+    if (this.colLook(x, y)) this.colBump();
+  };
+  onColDown = () => {
+    if (!this.cur) return;
+    this.cPressed = true;
+    this.cLastMove = performance.now();
+    this.cur.mouth = this.colPick(this.colMouth(true));
+    this.colShuffle('browL'); this.colShuffle('browR');
+    this.colBump();
+  };
+
+
+  CYCLE = ['#B80000', '#C42B2B', '#D05858', '#DC8181', '#E5AAAA', '#F1D4D5', '#FFFFFF'];
+  STACK = ['#B80000', '#C42B2B', '#D05858', '#DC8181', '#E5AAAA', '#F1D4D5', '#FFFFFF', '#F1D4D5',
+           '#B80000', '#C42B2B', '#D05858', '#DC8181', '#E5AAAA', '#F1D4D5', '#FFFFFF', '#F1D4D5', '#B80000'];
+
+  runwayRef = (el) => { if (el) this.runwayEl = el; };
+  pinRef = (el) => { if (el) this.pinEl = el; };
+
+  // HORSE EASTER EGG: a 12-frame sprite that gallops while you scroll and runs across the footer.
+  horseRef = (el) => { this.horseEl = el || null; };
+  horseFootRef = (el) => { this.horseFoot = el || null; };
+  horseStart() {
+    this.hFrame = 0; this.hLast = 0; this.hActive = 0; this.hRaf = null;
+    this.hReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.onHorseScroll = () => {
+      this.hActive = performance.now();
+      if (this.horseEl) this.horseEl.classList.add('on');
+      if (this.hHide) clearTimeout(this.hHide);
+      this.hHide = setTimeout(() => { if (this.horseEl) this.horseEl.classList.remove('on'); }, 350);
+      if (!this.hRaf && !this.hReduce) this.hRaf = requestAnimationFrame(this.horseTick);
+    };
+    document.addEventListener('scroll', this.onHorseScroll, true);
+  }
+  horseStop() {
+    document.removeEventListener('scroll', this.onHorseScroll, true);
+    window.removeEventListener('resize', this.onHorseScroll);
+    if (this.hRaf) cancelAnimationFrame(this.hRaf);
+    if (this.hHide) clearTimeout(this.hHide);
+  }
+  horseTick = (t) => {
+    if (t - this.hLast > 66) {
+      this.hLast = t;
+      this.hFrame = (this.hFrame + 1) % 12;
+      if (this.horseEl) this.horseEl.style.backgroundPosition = (this.hFrame / 11 * 100).toFixed(3) + '% 0';
+    }
+    this.hRaf = (t - this.hActive < 240) ? requestAnimationFrame(this.horseTick) : null;
+  };
+  horsePos() {
+    const f = this.horseFoot, h = this.horseEl;
+    if (!f || !h) return;
+    const r = f.getBoundingClientRect();
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    const p = Math.min(1, Math.max(0, (vh - r.top) / Math.max(1, r.height)));
+    const travel = Math.max(0, f.clientWidth - h.offsetWidth);
+    h.style.transform = 'translateX(' + (p * travel).toFixed(1) + 'px)';
+  }
+
+  componentDidMount() {
+    this.colStart();
+    window.addEventListener('pointermove', this.onColMove);
+    this.horseStart();
+    this.p = 0; this.target = 0; this.zTop = 100;
+    this.reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.mq = window.matchMedia('(max-aspect-ratio: 1/1)');
+    this.onMq = () => { this.setState({ mobile: this.mq.matches }); this.measure(); };
+    if (this.mq.addEventListener) this.mq.addEventListener('change', this.onMq);
+    else if (this.mq.addListener) this.mq.addListener(this.onMq);
+    this.setState({ mobile: this.mq.matches });
+    this.onScroll = () => this.measure();
+    document.addEventListener('scroll', this.onScroll, true);
+    window.addEventListener('resize', this.onScroll);
+    setTimeout(this.onScroll, 0);
+  }
+
+  componentWillUnmount() {
+    this.colStop();
+    window.removeEventListener('pointermove', this.onColMove);
+    this.horseStop();
+    document.removeEventListener('scroll', this.onScroll, true);
+    window.removeEventListener('resize', this.onScroll);
+    if (this.mq) {
+      if (this.mq.removeEventListener) this.mq.removeEventListener('change', this.onMq);
+      else if (this.mq.removeListener) this.mq.removeListener(this.onMq);
+    }
+    if (this.raf) cancelAnimationFrame(this.raf);
+    if (this.praf) cancelAnimationFrame(this.praf);
+  }
+
+  // GRAVITY: hovering a poster lets go of it. It drops, spins, bounces off the floor and walls,
+  // tips over onto an edge and settles. Hover a fallen poster to bump it again; drag to throw it.
+  bodies = {};
+  onPEnter = (e) => {
+    if (this.reduce || e.pointerType !== 'mouse' || this.drag || this.state.lb) return;
+    const id = e.currentTarget.getAttribute('data-id');
+    const b = this.bodies[id];
+    if (b) {
+      if (b.pinned) { b.pinned = false; b.sleep = false; b.vy = -3 - Math.random() * 3; b.vx = (Math.random() - 0.5) * 5; b.va = (Math.random() - 0.5) * 6; this.physKick(); return; }
+      if (b.sleep) { b.vy = -8 - Math.random() * 6; b.vx += (Math.random() - 0.5) * 8; b.va += (Math.random() - 0.5) * 8; b.sleep = false; this.physKick(); }
+      return;
+    }
+    const p = (this.lastList || []).find((q) => q.id === id);
+    if (!p) return;
+    const o = this.state.offsets[id] || { dx: 0, dy: 0 };
+    this.bodies[id] = { x: p.baseX + o.dx, y: p.y + o.dy, w: p.w, h: p.h, vx: (Math.random() - 0.5) * 5, vy: -3 - Math.random() * 4, a: 0, va: (Math.random() - 0.5) * 6, sleep: false, held: false };
+    this.zTop += 1;
+    const zs = Object.assign({}, this.state.zs); zs[id] = this.zTop;
+    this.setState({ zs: zs, moved: true });
+    this.physKick();
+  };
+  physKick() {
+    if (this.praf) return;
+    this.plast = performance.now();
+    const loop = (t) => {
+      const k = Math.min(2, Math.max(0.2, (t - this.plast) / 16.667));
+      this.plast = t;
+      const live = this.physStep(k);
+      this.setState({ ptick: t });
+      this.praf = live ? requestAnimationFrame(loop) : null;
+    };
+    this.praf = requestAnimationFrame(loop);
+  }
+  physStep(k) {
+    const m = this.state.mobile;
+    const floor = m ? 1250 : 1414;
+    const right = Math.max(400, this.state.vwRef || (m ? 1000 : 2000));
+    const G = floor * 0.0009;
+    let live = false;
+    Object.keys(this.bodies).forEach((id) => {
+      const b = this.bodies[id];
+      if (b.sleep || b.held) return;
+      live = true;
+      b.vy += G * k;
+      b.x += b.vx * k; b.y += b.vy * k; b.a += b.va * k;
+      b.vx *= Math.pow(0.995, k); b.va *= Math.pow(0.992, k);
+      const rad = b.a * Math.PI / 180, sn = Math.abs(Math.sin(rad)), cs = Math.abs(Math.cos(rad));
+      const hx = (b.w * cs + b.h * sn) / 2, hy = (b.w * sn + b.h * cs) / 2;
+      let cx = b.x + b.w / 2, cy = b.y + b.h / 2;
+      let ground = false;
+      const t = Math.round(b.a / 90) * 90;
+      if (cy + hy >= floor) {
+        cy = floor - hy; ground = true;
+        if (b.vy > 0) { b.va += b.vx * 0.04 + (Math.random() - 0.5) * Math.min(4, b.vy * 0.15); b.vy = b.vy > 2.5 ? -b.vy * 0.32 : 0; }
+        b.vx *= Math.pow(0.86, k);
+        b.va = (b.va + (t - b.a) * 0.05 * k) * Math.pow(0.8, k);
+      }
+      if (cx - hx < 0) { cx = hx; b.vx = Math.abs(b.vx) * 0.5; b.va *= -0.6; }
+      if (cx + hx > right) { cx = right - hx; b.vx = -Math.abs(b.vx) * 0.5; b.va *= -0.6; }
+      b.x = cx - b.w / 2; b.y = cy - b.h / 2;
+      if (ground && b.vy === 0 && Math.abs(b.vx) < 0.08 && Math.abs(b.va) < 0.08 && Math.abs(t - b.a) < 0.4) {
+        b.a = t; b.vx = 0; b.va = 0; b.sleep = true;
+      }
+    });
+    return live;
+  }
+
+  unit() {
+    const w = this.pinEl ? this.pinEl.clientWidth : window.innerWidth;
+    const h = this.pinEl ? this.pinEl.clientHeight : window.innerHeight;
+    const u = this.state.mobile ? Math.min(w / 1000, h / 2100) : Math.min(w / 2000, h / 1414);
+    return { u: u, vwRef: w / u };
+  }
+
+  scroller() {
+    let el = this.runwayEl ? this.runwayEl.parentElement : null;
+    while (el && el !== document.body && el !== document.documentElement) {
+      const cs = getComputedStyle(el);
+      if (/(auto|scroll)/.test(cs.overflowY) && el.scrollHeight > el.clientHeight + 1) return el;
+      el = el.parentElement;
+    }
+    return window;
+  }
+
+  // THE LOOP: one cycle = stacked posters + "I WAS CREATED TO CREATE" panel  ->  OTHER examples slide in
+  // ->  everything slides away and the posters spread out  ->  they stack again and the panel returns.
+  measure() {
+    const r = this.runwayEl;
+    if (!r) return;
+    this.unshift();
+    const sc = this.scroller();
+    const top0 = sc === window ? 0 : sc.getBoundingClientRect().top;
+    const rect = r.getBoundingClientRect();
+    const pinH = this.pinEl ? this.pinEl.offsetHeight : window.innerHeight;
+    const total = Math.max(1, rect.height - pinH);
+    const y = Math.max(0, top0 - rect.top);
+    // INFINITE LOOP: the runway is one full cycle. At the bottom the posters have stacked again and the
+    // "I WAS CREATED TO CREATE" panel is back, which looks exactly like the top, so we quietly jump the
+    // scroll back to the start and keep counting cycles (base), so the animation never snaps.
+    const P = Math.min(1, y / total);
+    if (this.props.stacked) {
+      // inside the one long page: play the cycle once, then let the page carry on to About
+      this.target = P;
+    } else if (P >= 0.995 && !this.wrapping) {
+      this.wrapping = true;
+      this.base = (this.base || 0) + 1;
+      if (sc === window) window.scrollTo({ top: window.scrollY - y, behavior: 'instant' });
+      else sc.scrollTop = sc.scrollTop - y;
+      requestAnimationFrame(() => { this.wrapping = false; });
+      this.target = this.base;
+    } else if (!this.wrapping) {
+      this.target = (this.base || 0) + P;
+    }
+    const vw = this.unit().vwRef;
+    if (Math.abs(vw - this.state.vwRef) > 1) this.setState({ vwRef: vw });
+    this.kick();
+  }
+
+  phase(P) {
+    const ease = (x) => x * x * (3 - 2 * x);
+    const seg = (f, a, b) => ease(Math.min(1, Math.max(0, (f - a) / (b - a))));
+    const f = ((P % 1) + 1) % 1;
+    let s, q, r;
+    if (f < 0.38) { s = 1; q = 1; r = seg(f, 0, 0.3); }                         // examples slide in, then hold
+    else if (f < 0.76) { r = 1 - seg(f, 0.38, 0.6); q = 1 - seg(f, 0.4, 0.62); s = 1 - seg(f, 0.48, 0.7); } // all slides away, posters spread
+    else { r = 0; s = seg(f, 0.78, 0.9); q = seg(f, 0.86, 1); }                 // posters stack, panel returns
+    return { f: f, s: s, q: q, r: r };
+  }
+
+  kick() {
+    if (this.raf) return;
+    const step = () => {
+      const d = this.target - this.p;
+      if (this.reduce || Math.abs(d) < 0.0005) this.p = this.target; else this.p += d * 0.18;
+      const ph = this.phase(this.p);
+      this.setState({ pp: ph.f, s: ph.s, q: ph.q, r: ph.r });
+      this.raf = this.p !== this.target ? requestAnimationFrame(step) : null;
+    };
+    this.raf = requestAnimationFrame(step);
+  }
+
+  // Scroll-generated positions (design units). Drag offsets are stored separately and added on top.
+  buildPosters() {
+    const m = this.state.mobile;
+    const L = m
+      ? { W: 180, H: 255, topY: 230, botY: 560, step: 40, topSlot0: 40, botSlot0: 20, pitch: 180, topSpread0: 40, botSpreadEnd: 820, gapL: 60, inSp: 110, stageW: 1000 }
+      : { W: 257, H: 363, topY: 228, botY: 743, step: 51, topSlot0: 114, botSlot0: 72, pitch: 257, topSpread0: 114, botSpreadEnd: 1628, gapL: 160, inSp: 140, stageW: 2000 };
+    const right = Math.max(this.state.vwRef, L.stageW);
+    const s = this.state.s;
+    const out = [];
+    const add = (id, sx, fx, y, z, color, label) => {
+      const art = this.artFor(id);
+      out.push({ id: id, baseX: sx + (fx - sx) * s, y: y, w: L.W, h: L.H, z: z, color: color, title: art.title || label, src: art.src || null });
+    };
+    let n = 0;
+    for (let i = -16; i <= 11; i++) {
+      const sx = i >= 0 ? L.topSpread0 + L.pitch * i : L.topSpread0 - L.gapL - L.pitch + (i + 1) * L.inSp;
+      const fx = i <= 0 ? L.topSlot0 + L.step * (i + 16) : right + 60 + L.pitch * (i - 1);
+      const color = i <= 0 ? this.STACK[i + 16] : this.CYCLE[i % 7];
+      add('t' + i, sx, fx, L.topY, i + 40, color, 'POSTER T' + (i + 17));
+    }
+    for (let j = 0; j <= 23; j++) {
+      const sx = j <= 7 ? L.botSpreadEnd - L.pitch * (7 - j) : Math.max(L.botSpreadEnd + L.pitch, right + 20) + L.inSp * (j - 8);
+      const fx = j >= 7 ? L.botSlot0 + L.step * (j - 7) : -L.pitch - 60 - L.pitch * (6 - j);
+      const color = j <= 7 ? this.CYCLE[j % 7] : this.STACK[j - 7];
+      add('b' + j, sx, fx, L.botY, j + 2, color, 'POSTER B' + (j + 1));
+    }
+    return out;
+  }
+
+  onPDown = (e) => {
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    const el = e.currentTarget;
+    const id = el.getAttribute('data-id');
+    try { el.setPointerCapture(e.pointerId); } catch (err) {}
+    const off = this.state.offsets[id] || { dx: 0, dy: 0 };
+    this.justDragged = false;
+    const b = this.bodies[id];
+    if (b) { b.held = true; b.sleep = false; b.vx = 0; b.vy = 0; b.va *= 0.3; }
+    this.drag = { id: id, sx: e.clientX, sy: e.clientY, bx: b ? b.x : off.dx, by: b ? b.y : off.dy, moved: false, body: !!b, lx: e.clientX, ly: e.clientY, lt: performance.now() };
+    this.zTop += 1;
+    const zs = Object.assign({}, this.state.zs); zs[id] = this.zTop;
+    this.setState({ zs: zs });
+  };
+  onPMove = (e) => {
+    const d = this.drag;
+    if (!d || e.currentTarget.getAttribute('data-id') !== d.id) return;
+    const dx = e.clientX - d.sx, dy = e.clientY - d.sy;
+    if (!d.moved && Math.hypot(dx, dy) > 6) { d.moved = true; this.setState({ dragId: d.id }); }
+    if (!d.moved) return;
+    const u = this.unit().u;
+    if (d.body) {
+      const b = this.bodies[d.id];
+      const now = performance.now(), fr = Math.max(0.5, (now - d.lt) / 16.667);
+      b.x = d.bx + dx / u; b.y = d.by + dy / u;
+      b.vx = b.vx * 0.5 + ((e.clientX - d.lx) / u / fr) * 0.5;
+      b.vy = b.vy * 0.5 + ((e.clientY - d.ly) / u / fr) * 0.5;
+      b.va = b.va * 0.9 + b.vx * 0.05;
+      d.lx = e.clientX; d.ly = e.clientY; d.lt = now;
+      this.setState({ ptick: now });
+      return;
+    }
+    const offsets = Object.assign({}, this.state.offsets);
+    offsets[d.id] = { dx: d.bx + dx / u, dy: d.by + dy / u };
+    this.setState({ offsets: offsets });
+  };
+  onPUp = (e) => {
+    const d = this.drag;
+    if (!d) return;
+    try { e.currentTarget.releasePointerCapture(e.pointerId); } catch (err) {}
+    this.justDragged = d.moved;
+    this.drag = null;
+    if (d.body && this.bodies[d.id]) {
+      const b = this.bodies[d.id];
+      // Dropped where you let go: it stays pinned there until you hover it again.
+      b.held = false; b.sleep = true; b.pinned = true; b.vx = 0; b.vy = 0; b.va = 0;
+      this.setState({ ptick: performance.now() });
+    }
+    this.setState(d.moved ? { dragId: null, moved: true } : { dragId: null });
+  };
+  onPClick = (e) => {
+    if (this.justDragged) { this.justDragged = false; return; }
+    this.setState({ lb: e.currentTarget.getAttribute('data-id') });
+  };
+  closeLb = () => { this.setState({ lb: null }); };
+  goEx = (e) => { const i = +e.currentTarget.getAttribute('data-ex'); if (i >= 0) { this.setState({ ex: i, zoom: null }); const sc = this.exEl; if (sc && sc.scrollTo) sc.scrollTo(0, 0); } };
+  openEx = (i) => { this.exFrom = document.activeElement; this.setState({ ex: i }); };
+  closeEx = () => { this.setState({ ex: null, zoom: null }); const f = this.exFrom; if (f && f.focus) setTimeout(() => { f.focus({ preventScroll: true }); this.unshift(); }, 0); };
+  exRef = (el) => { if (el && el !== this.exEl) { this.exEl = el; el.focus({ preventScroll: true }); } if (!el) this.exEl = null; };
+  vidRef = (el) => { if (el) { el.muted = true; el.loop = true; const p = el.play && el.play(); if (p && p.catch) p.catch(() => {}); } };
+  exKey = (e) => { if (e.key === 'Escape') { if (this.state.zoom) this.zoomClose(); else this.closeEx(); } };
+  // FULL-SIZE IMAGE POP-UP on example pages
+  zoomOpen = (e) => { const t = e.currentTarget; this.zoomFrom = t; this.setState({ zoom: { src: t.getAttribute('data-src'), alt: t.getAttribute('data-alt') || '' } }); };
+  zoomClose = () => { this.setState({ zoom: null }); const f = this.zoomFrom; if (f && f.focus) setTimeout(() => f.focus({ preventScroll: true }), 0); };
+  // the pinned stage must never scroll on its own (a focused tile could shift it sideways and hide the menu)
+  unshift() { const p = this.pinEl; if (p && (p.scrollLeft || p.scrollTop)) { p.scrollLeft = 0; p.scrollTop = 0; } }
+  // ART WALL dragging: positions are kept per example while the page is open
+  wallPos = {};
+  wallRef = (el) => { this.wallEl = el || null; };
+  wDown = (e) => {
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    const el = e.currentTarget, i = +el.getAttribute('data-i'), port = !!this.state.mobile, key = this.state.ex + (port ? 'p' : 'l');
+    const list = this.wallPos[key]; if (!list || !this.wallEl) return;
+    try { el.setPointerCapture(e.pointerId); } catch (err) {}
+    this.wallZ = (this.wallZ || 20) + 1; list[i].z = this.wallZ;
+    this.wDrag = { i: i, key: key, port: port, sx: e.clientX, sy: e.clientY, bx: list[i].x, by: list[i].y, moved: false };
+    this.setState({ wtick: Date.now() });
+  };
+  wMove = (e) => {
+    const d = this.wDrag; if (!d || !this.wallEl) return;
+    const r = this.wallEl.getBoundingClientRect(); if (!r.width) return;
+    const it = this.wallPos[d.key][d.i];
+    if (!d.moved && Math.hypot(e.clientX - d.sx, e.clientY - d.sy) < 6) return; // a small wobble still counts as a click
+    const W = d.port ? 900 : 1600, H = d.port ? 1600 : 900;
+    it.x = Math.max(-40, Math.min(W - 40, d.bx + (e.clientX - d.sx) / r.width * W));
+    it.y = Math.max(-40, Math.min(H - 30, d.by + (e.clientY - d.sy) / r.height * H));
+    if (!d.moved) { d.moved = true; it.drag = true; }
+    this.setState({ wtick: Date.now() });
+  };
+  wUp = (e) => {
+    const d = this.wDrag; if (!d) return;
+    try { e.currentTarget.releasePointerCapture(e.pointerId); } catch (err) {}
+    const it = this.wallPos[d.key][d.i]; it.drag = false;
+    this.wDrag = null; this.setState({ wtick: Date.now() });
+    // a click (no drag) opens the sketch full size
+    if (!d.moved) { this.wSkip = true; this.zoomOpen({ currentTarget: e.currentTarget }); }
+  };
+  wClick = (e) => {
+    if (this.wSkip) { this.wSkip = false; return; }
+    if (e.detail === 0) this.zoomOpen(e); // keyboard: Enter / Space
+  };
+  reset = () => { this.bodies = {}; this.setState({ offsets: {}, zs: {}, moved: false }); };
+
+  // inside the one long page, jump to the About section instead of leaving
+  onPortrait = (e) => {
+    if (!this.props.stacked) return;
+    const sec = document.getElementById('about');
+    if (!sec) return;
+    e.preventDefault();
+    let top = 0;
+    for (let el = sec.previousElementSibling; el; el = el.previousElementSibling) if (el.classList.contains('site-sec')) top += el.offsetHeight;
+    window.scrollTo({ top: top, behavior: 'smooth' });
+  };
+
+  renderVals() {
+    const m = this.state.mobile;
+    const q = this.state.q;
+    const list = this.buildPosters();
+    this.lastList = list;
+    const offsets = this.state.offsets, zs = this.state.zs;
+    const posters = list.map((p) => {
+      const o = offsets[p.id] || { dx: 0, dy: 0 };
+      const isFree = !!zs[p.id];
+      const b = this.bodies[p.id];
+      return {
+        id: p.id, title: p.title,
+        x: b ? b.x.toFixed(1) : p.baseX + o.dx, y: b ? b.y.toFixed(1) : p.y + o.dy, w: p.w, h: p.h,
+        rot: b ? b.a.toFixed(2) : 0,
+        z: isFree ? zs[p.id] : p.z,
+        color: p.src ? '#0d0d0d' : p.color,
+        shadow: (0.5 * this.state.s + (this.state.dragId === p.id ? 0.35 : 0)).toFixed(3),
+        cls: (this.state.dragId === p.id ? 'dragging' : '') + (b ? ' fall' : ''),
+        hasImg: !!p.src, src: p.src || ''
+      };
+    });
+    const sel = this.state.lb ? list.find((p) => p.id === this.state.lb) : null;
+    const off = (1 - q);
+    const r = this.state.r;
+    const C = this.COL, D = this.colBuild(), cur = this.cur || {}, boil = this.boil || 0;
+    const pieces = C.order.map((n, oi) => {
+      const d = D[n], s = d.s, ci = cur[n] || 0, v = d.vars[ci], fr = v.frames[boil];
+      const showIdx = (n.indexOf('eye') === 0 && this.blink && d.closed >= 0) ? d.closed : ci;
+      const lift = this.state.hover === n;
+      return {
+        cls: lift ? 'lift' : '', z: lift ? 20 : oi + 1,
+        l: ((s.cx - s.w / 2 - C.P) / C.W * 100).toFixed(3), t: ((s.cy - s.h / 2 - C.P) / C.H * 100).toFixed(3),
+        w: (d.bw / C.W * 100).toFixed(3), h: (d.bh / C.H * 100).toFixed(3),
+        dx: v.dx.toFixed(2), dy: v.dy.toFixed(2), rot: (s.angle + v.rot).toFixed(4), sc: v.scale.toFixed(3),
+        pl: (C.P / d.bw * 100).toFixed(3), pt: (C.P / d.bh * 100).toFixed(3), pw: (s.w / d.bw * 100).toFixed(3), ph: (s.h / d.bh * 100).toFixed(3),
+        outer: fr.outer, inner: fr.inner,
+        slotCls: 's-' + n,
+        bs: d.vars.length * 100,
+        bp: d.vars.length > 1 ? (showIdx / (d.vars.length - 1) * 100).toFixed(4) : 0,
+        enter: (e) => { if (e.pointerType !== 'touch') this.setState({ hover: n }); },
+        leave: () => { if (this.state.hover === n) this.setState({ hover: null }); },
+        down: () => { if (this.cur && n !== 'mouth') this.colShuffle(n); }
+      };
+    });
+    const jit = [[0, 0], [0.8, -0.5], [-0.6, 0.4]][boil];
+    return {
+      onPortrait: this.onPortrait,
+      stackCls: this.props.stacked ? 'stacked' : '', lnHome: this.props.stacked ? '#home' : 'Main.dc.html', lnProjects: this.props.stacked ? '#projects' : 'Projects.dc.html', lnJen: this.props.stacked ? '#jennieration' : 'Jennieration.dc.html', lnAbout: this.props.stacked ? '#about' : 'About.dc.html',
+      collageRef: this.collageRef, onColDown: this.onColDown, pieces: pieces,
+      baseJx: (jit[0] / C.W * 100).toFixed(3), baseJy: (jit[1] / C.H * 100).toFixed(3),
+      runwayRef: this.runwayRef, pinRef: this.pinRef,
+      horseRef: this.horseRef, horseFootRef: this.horseFootRef,
+      posters: posters,
+      onPEnter: this.onPEnter, onPDown: this.onPDown, onPMove: this.onPMove, onPUp: this.onPUp, onPClick: this.onPClick,
+      tagOpacity: (1 - q).toFixed(3),
+      moved: this.state.moved, reset: this.reset,
+      panelTransform: m
+        ? 'translateY(calc(' + (off * 102).toFixed(2) + '% - var(--u) * ' + (r * 1250).toFixed(1) + '))'
+        : 'translateX(calc(' + (off * 102).toFixed(2) + '% - var(--u) * ' + (r * 1238).toFixed(1) + '))',
+      stageShift: m ? 0 : (-1238 * r).toFixed(1),
+      navCls: r > 0.5 ? 'light' : '',
+      hintOpacity: (Math.max(0, 1 - this.state.s / 0.08) * Math.max(0, 1 - q / 0.08)).toFixed(3),
+      hint2Opacity: (this.state.pp < 0.42 || this.state.pp > 0.97 ? Math.max(Math.max(0, 1 - Math.min(this.state.pp, 1 - this.state.pp) / 0.03) * q, Math.max(0, (r - 0.85) / 0.15)) : 0).toFixed(3),
+      hint2Text: r > 0.5 ? 'KEEP SCROLLING' : 'SCROLL DOWN',
+      otherOpacity: Math.min(1, r * 1.6).toFixed(3),
+      others: this.othersData.map((o, i) => ({ open: () => this.openEx(i), title: o.title, tag: o.tag, text: o.text, caption: o.caption, hasImg: !!(o.thumb || o.src), noImg: !(o.thumb || o.src), hasVid: !!o.tileVideo, vid: o.tileVideo || '', hasStill: !!(o.thumb || o.src) && !o.tileVideo, src: o.thumb || o.src || '', shift: m ? 0 : ((1 - r) * (160 + 70 * i)).toFixed(1) })),
+      panelHidden: q < 0.02,
+      shift1: (off * 60).toFixed(1), shift2: (off * 120).toFixed(1), shift3: (off * 180).toFixed(1), shift4: (off * 240).toFixed(1),
+      lbOpen: !!sel,
+      lb: sel ? { title: sel.title, color: sel.color, hasImg: !!sel.src, src: sel.src || '', note: sel.src ? '' : '[ADD ARTWORK]' } : { title: '', color: '#000', hasImg: false, src: '', note: '' },
+      closeLb: this.closeLb,
+      exOpen: this.state.ex !== null && !!this.othersData[this.state.ex],
+      ...(() => { const N = this.othersData.length, i = this.state.ex || 0, pv = (i - 1 + N) % N, nx = (i + 1) % N; return { exPrev: pv, exNext: nx, exPrevT: this.othersData[pv].title, exNextT: this.othersData[nx].title }; })(),
+      ex: (() => {
+        const o = this.othersData[this.state.ex] || this.othersData[0];
+        const gal = o.gallery || [];
+        return { title: o.title, tag: o.tag, text: o.text, caption: o.caption, hasImg: !!o.src, noImg: !o.src, src: o.src || '',
+          about: (o.about || []).map((t) => ({ t: t })), facts: o.facts || [], hasGal: gal.length > 0 && !o.wall, hasModels: !!(o.models && o.models.length), models: o.models || [], modelTitle: o.modelTitle || '3D', hasTT: !!(o.ttGroups && o.ttGroups.length), ttGroups: (o.ttGroups || []).map((g) => { const k = g.link ? this.othersData.findIndex((x) => x.title === g.link) : -1; return { title: g.title, items: g.items, hasNote: !!g.note, note: g.note || '', hasLink: k >= 0, linkEx: k, linkLabel: g.linkLabel || 'SEE THE PROJECT' }; }), hasFx: !!(o.effects && o.effects.length), fx: (o.effects || []).map((f, k) => ({ n: String(k + 1).padStart(2, '0'), title: f.title, video: f.video, poster: f.poster || '', hasNote: !!f.note, note: f.note || '', hasV2: !!f.video2, video2: f.video2 || '', poster2: f.poster2 || '', hasGal: !!(f.gallery && f.gallery.length), gallery: f.gallery || [] })), hasMoreVids: !!(o.moreVideos && o.moreVideos.length), moreVids: (o.moreVideos || []).map((v) => ({ title: v.title, src: v.src, poster: v.poster || '', hasNote: !!v.note, note: v.note || '' })), hasVNote: !!o.videoNote, videoNote: o.videoNote || '', hasVideo: !!o.video, video: o.video || '', videoPoster: o.videoPoster || '', videoTitle: o.videoTitle || 'VIDEO',
+          isEd: !!o.editorial, edHero: o.editorial ? o.editorial.hero : '',
+          edSpread: o.editorial ? o.editorial.spread.map((r, k) => ({ n: r.n, h: r.h, text: r.text, img: r.img, cap: r.cap, r: r.r || 0, side: k % 2 ? 'flip' : '', items: r.items || [] })) : [],
+          hasWall: !!o.wall, showIntro: !o.wall && !o.editorial, mode: o.wall ? 'wallmode' : '', wallCls: this.state.mobile ? 'port' : '',
+          wall: (() => {
+            if (!o.wall) return [];
+            const port = !!this.state.mobile, key = this.state.ex + (port ? 'p' : 'l'), W = port ? 900 : 1600, H = port ? 1600 : 900;
+            if (!this.wallPos[key]) this.wallPos[key] = o.wall.map((w, k) => ({ x: port && w.m ? w.m[0] : w.x, y: port && w.m ? w.m[1] : w.y, z: k + 1, drag: false }));
+            return o.wall.map((w, k) => { const q = this.wallPos[key][k], ww = port && w.m ? w.m[2] : w.w; return { i: k, n: k + 1, src: w.src, x: (q.x / W * 100).toFixed(2), y: (q.y / H * 100).toFixed(2), w: (ww / W * 100).toFixed(2), r: w.r, z: q.z, cls: q.drag ? 'drag' : '', t1: (w.t || [])[0] || '', t2: (w.t || [])[1] || '' }; });
+          })(), hasEmbed: !!o.embed, embed: o.embed || '', embedLink: o.embedLink || o.embed || '', embedTitle: o.embedTitle || 'PROTOTYPE', embedText: o.embedText || '', hasEmbedImg: !!o.embedImg, embedUrl: o.embedUrl || 'figma.com', embedImg: o.embedImg || '', galTitle: o.galTitle || 'MORE', gallery: gal };
+      })(),
+      goEx: this.goEx, zoomOpen: this.zoomOpen, zoomClose: this.zoomClose, zoomOn: !!this.state.zoom, zoomSrc: this.state.zoom ? this.state.zoom.src : '', zoomAlt: this.state.zoom ? this.state.zoom.alt : '',
+      vidRef: this.vidRef, closeEx: this.closeEx, exRef: this.exRef, exKey: this.exKey, wallRef: this.wallRef, wDown: this.wDown, wMove: this.wMove, wUp: this.wUp, wClick: this.wClick
+    };
+  }
+}
+</script>
+</body>
+</html>

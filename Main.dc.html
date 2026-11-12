@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jennieration / Home</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Archivo+Black&amp;family=Archivo:wght@400;500&amp;family=Bebas+Neue&amp;display=swap">
+<style>
+.pg-home /* no visible scrollbars anywhere (scrolling still works) */
+html,body,.pg-home *{scrollbar-width:none;-ms-overflow-style:none}
+html::-webkit-scrollbar,body::-webkit-scrollbar,.pg-home *::-webkit-scrollbar{display:none;width:0;height:0}
+body{margin:0;background:#fff}
+.pg-home a{color:#929292}.pg-home a:hover{color:#000}
+.jr.pg-home{--u:calc(100vw / 2000);min-height:100vh;background:#fff;display:flex;flex-direction:column;align-items:center;overflow:hidden;animation:jrIn .7s cubic-bezier(.2,.7,.2,1) both}
+@keyframes jrIn{from{opacity:0}to{opacity:1}}
+.pg-home .stage{position:relative;flex:none;width:calc(var(--u) * 2000);height:calc(var(--u) * 1414)}
+.pg-home.bb,.pg-home .bb{font-family:'Bebas Neue',Impact,'Arial Narrow',sans-serif;font-weight:400}
+.pg-home .horse-run{position:relative;flex:none;width:100%;height:46vh;min-height:220px;overflow:hidden}
+.pg-home .horse{position:absolute;left:0;bottom:6vh;height:17vh;aspect-ratio:373/300;background-image:url('assets/8dc2f4922cc572d4f09003656d908a3e.png');background-repeat:no-repeat;background-size:1200% 100%;background-position:0% 0;will-change:transform,background-position}
+@media (max-aspect-ratio: 1/1){.pg-home .horse{height:auto;width:36vw}}
+.jr.pg-home,.jr.pg-home *{cursor:url('assets/60d61bf74bad9bb579c50f5afd35cef6.png') 17 21,auto !important}
+.pg-home .nav{position:absolute;z-index:50;left:calc(var(--u) * 54);top:calc(var(--u) * 22);display:flex;font-size:calc(var(--u) * 83);line-height:1;letter-spacing:-.09em;white-space:nowrap}
+.pg-home .nav a{display:block;color:#929292;text-decoration:none;transition:color .25s ease}
+.pg-home .nav a:hover{color:#000}
+.pg-home .nav a.is-active{color:#000}
+.pg-home .nav a:focus-visible{outline:2px solid #B80000;outline-offset:2px}
+.pg-home .hg{margin:0;font-weight:400}
+@font-face{font-family:'JR Bebas';src:url('assets/1bbf7e03620b8f544b7315d2d6de3f3e.woff2') format('woff2');font-display:block}
+@font-face{font-family:'JR Archivo Black';src:url('assets/3429cd084335248b07bff22b36ee4315.woff2') format('woff2');font-display:block}
+.pg-home .ux,.pg-home .para{font-family:'JR Archivo Black','Archivo Black','Arial Black',sans-serif}
+.pg-home .dots{position:absolute;z-index:2;display:block;left:0;top:0;width:calc(var(--u) * 2000);height:calc(var(--u) * 1414);pointer-events:none;filter:blur(calc(var(--u) * .25))}
+.pg-home .script{position:absolute;z-index:3;display:block;left:calc(var(--u) * 112.07);top:calc(var(--u) * 417.66);width:calc(var(--u) * 1780.69);height:auto;pointer-events:none;-webkit-user-select:none;user-select:none}
+.pg-home .ux{position:absolute;z-index:3;margin:0;left:calc(var(--u) * 1571);top:calc(var(--u) * 510.7);font-size:calc(var(--u) * 28.3);line-height:1;transform:scaleX(.827);transform-origin:0 0;white-space:nowrap;color:#000;pointer-events:none}
+.pg-home .para{position:absolute;z-index:3;margin:0;left:calc(var(--u) * 160);top:calc(var(--u) * 1124);font-size:calc(var(--u) * 21.4);line-height:calc(var(--u) * 24.2);color:#000;pointer-events:none}
+.pg-home .para span{display:block;white-space:nowrap;transform-origin:0 0}
+.pg-home .para .l1{transform:scaleX(.78)}.pg-home .para .l2{transform:scaleX(.8135)}.pg-home .para .l3{transform:scaleX(.75)}
+.pg-home .reveal{position:absolute;z-index:4;pointer-events:none;opacity:0;transform:translateY(calc(var(--u) * 16)) rotate(var(--r)) scale(.96);transition:opacity .3s ease,transform .55s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d)}
+.pg-home .reveal.on{opacity:1;transform:translateY(0) rotate(var(--r)) scale(1)}
+.pg-home .ph{position:relative;width:100%;height:100%;background:#000}
+.pg-home .ph.red{background:#B80000}
+.pg-home .ph-cap{position:absolute;left:calc(var(--u) * 14);bottom:calc(var(--u) * 10);font-size:calc(var(--u) * 28);line-height:1;letter-spacing:-.01em;color:#9B9B9B}
+.pg-home .ph.red .ph-cap{color:#fff}
+.pg-home .rimg{display:block;width:100%;height:auto}
+.pg-home .rtext{margin:0;line-height:.92;letter-spacing:-.02em;white-space:pre-line}
+.pg-home .zone{position:absolute;z-index:6;margin:0;padding:0;border:0;background:transparent;cursor:crosshair;-webkit-tap-highlight-color:transparent}
+.pg-home .zone:focus-visible{outline:2px dashed #B80000;outline-offset:-2px}
+@media (max-aspect-ratio: 1/1){
+.jr.pg-home{--u:min(calc(100vw / 1000), calc(100vh / 2000))}
+.pg-home .stage{width:calc(var(--u) * 1000);height:calc(var(--u) * 2000)}
+.pg-home .nav{left:calc(var(--u) * 37);top:calc(var(--u) * 30);font-size:calc(var(--u) * 100)}
+.pg-home .dots{width:calc(var(--u) * 1000);height:calc(var(--u) * 2000)}
+.pg-home .script{left:calc(var(--u) * 12.1);top:calc(var(--u) * 609.7);width:calc(var(--u) * 979.4)}
+.pg-home .ux{left:auto;right:calc(var(--u) * 40);top:calc(var(--u) * 1190);font-size:calc(var(--u) * 46);transform-origin:100% 0}
+.pg-home .para{left:calc(var(--u) * 40);top:calc(var(--u) * 1420);font-size:calc(var(--u) * 36);line-height:calc(var(--u) * 40.7)}
+.pg-home .ph-cap{font-size:calc(var(--u) * 34)}
+}
+@media (prefers-reduced-motion: reduce){
+.jr.pg-home{animation:none}
+.pg-home .reveal,.pg-home .reveal.on{transform:rotate(var(--r));transition:opacity .15s linear}
+}
+
+.jr.pg-home{position:relative}
+.jr.pg-home.stacked .nav{display:none}
+.jr.pg-home.stacked .horse{display:none}
+</style>
+</helmet>
+<main class="jr bb pg-home {{stackCls}}">
+<div class="stage" onPointerMove="{{onDotsMove}}" onPointerDown="{{onDotsMove}}" onPointerLeave="{{onDotsLeave}}">
+<nav class="nav" aria-label="Main">
+<a class="is-active" href="Main.dc.html" aria-current="page">HOME</a>
+<a href="Projects.dc.html">PROJECTS</a>
+<a href="Jennieration.dc.html">JENNIE.RATION</a>
+<a href="About.dc.html" aria-label="About me">ABOUTME</a>
+</nav>
+<h1 class="hg"><img class="script" src="assets/e5025d51e7156b45b8131e38cc787e32.png" alt="Jennifer Kapend Fund" draggable="false"></h1>
+<p class="ux">UX DESIGNER</p>
+<p class="para"><span class="l1">A LOT OF CURIOSITY, A LITTLE BIT OF</span><span class="l2">EXPERIMENTING, AND AS FOR THE</span><span class="l3">REST, I’M STILL FIGURING IT OUT...</span></p>
+<canvas class="dots" ref="{{dotsRef}}" aria-hidden="true"></canvas>
+<sc-for list="{{reveals}}" as="r" hint-placeholder-count="0">
+<div class="reveal {{r.cls}}" aria-hidden="{{r.hidden}}" style="left: calc(var(--u) * {{r.x}}); top: calc(var(--u) * {{r.y}}); width: calc(var(--u) * {{r.w}}); height: {{r.h}}; --r: {{r.rot}}deg; --d: {{r.delay}}ms">
+<sc-if value="{{r.isPh}}" hint-placeholder-val="{{true}}">
+<div class="ph {{r.tone}}"><span class="ph-cap">{{r.caption}}</span></div>
+</sc-if>
+<sc-if value="{{r.isImg}}" hint-placeholder-val="{{false}}">
+<img class="rimg" src="{{r.src}}" alt="{{r.caption}}">
+</sc-if>
+<sc-if value="{{r.isVid}}" hint-placeholder-val="{{false}}">
+<video class="rimg" src="{{r.src}}" poster="{{r.poster}}" autoplay="" muted="" loop="" playsinline="" preload="metadata" aria-label="{{r.caption}}"></video>
+</sc-if>
+<sc-if value="{{r.isText}}" hint-placeholder-val="{{false}}">
+<p class="rtext" style="font-size: calc(var(--u) * {{r.fs}}); color: {{r.color}}; text-align: {{r.align}}; width: 119px">{{r.text}}</p>
+</sc-if>
+</div>
+</sc-for>
+<sc-for list="{{zones}}" as="z" hint-placeholder-count="0">
+<button class="zone" type="button" aria-label="Reveal {{z.label}}" aria-expanded="{{z.expanded}}" style="left: calc(var(--u) * {{z.x}}); top: calc(var(--u) * {{z.y}}); width: calc(var(--u) * {{z.w}}); height: calc(var(--u) * {{z.h}})" onPointerDown="{{z.down}}" onPointerEnter="{{z.enter}}" onPointerLeave="{{z.leave}}" onClick="{{z.click}}" onFocus="{{z.focus}}" onBlur="{{z.blur}}"></button>
+</sc-for>
+</div>
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1018}}'>
+class Component extends DCLogic {
+  state = { open: {}, mobile: false };
+
+  // HIDDEN DISCOVERIES: edit freely.
+  // Each zone is an invisible area (in design units: the desktop artboard is 2000 x 1414, mobile 1000 x 2000).
+  // d = desktop position, m = mobile position. Items appear when the zone is hovered (or tapped).
+  // Item kinds: 'image' (set src to an uploaded image url to replace the placeholder) or 'text'.
+  // linger = ms an item stays after the cursor leaves.
+  zonesData = [
+    // m (mobile) is optional: when left out it is derived from d (see mob()).
+    { id: 'z1', label: "a personal photo inside the J loop", linger: 0,
+      d: {x: 180, y: 630, w: 220, h: 90},
+      items: [{ kind: 'image', src: 'assets/bd31e83aea66be1d95755f96b2921f52.jpg', tone: 'black', caption: "PERSONAL PHOTO 01",
+        d: {x: 140, y: 250, w: 250, h: 330, rot: -4} }] },
+    { id: 'z2', label: "a poster fragment in the top of the J", linger: 0,
+      d: {x: 740, y: 465, w: 160, h: 70},
+      items: [{ kind: 'image', src: 'assets/a1e1c93230b9c8fc05e7bb1da8a1c66b.jpg', tone: 'red', caption: "Running for the Thrill of It, variant",
+        d: {x: 770, y: 280, w: 120, rot: 0} }] },
+    { id: 'z3', label: "a poster behind the K", linger: 400,
+      d: {x: 880, y: 850, w: 170, h: 120},
+      items: [{ kind: 'image', src: 'assets/c0c0c42fee03c4c952df188e9eeac3b0.jpg', tone: 'black', caption: "Don't Kill My Vibe poster",
+        d: {x: 880, y: 990, w: 200, rot: 3} }] },
+    { id: 'z4', label: "what I work in", linger: 0,
+      d: {x: 1560, y: 495, w: 205, h: 55},
+      items: [{ kind: 'text', text: "UX\nUI\nART\nXR", color: '#B80000', align: 'left',
+        d: {x: 1572, y: 565, w: 180, fs: 60, rot: 0} }] },
+    { id: 'z5', label: "a confession", linger: 900,
+      d: {x: 330, y: 1168, w: 200, h: 34},
+      items: [{ kind: 'text', text: "Allegedly...", color: '#B80000', align: 'left',
+        d: {x: 340, y: 1212, w: 300, fs: 36, rot: -2} }] },
+    { id: 'z6', label: "two radio posters in the F", linger: 0,
+      d: {x: 1430, y: 810, w: 170, h: 180},
+      items: [{ kind: 'image', src: 'assets/31baa43bdb1fda22cb4b4d4fccceef87.jpg', tone: 'black', caption: "Rhythms of Congo poster", delay: 0,
+        d: {x: 1340, y: 1010, w: 200, rot: -6} },
+        { kind: 'image', src: 'assets/5e9e6635d484e1a493ddf88c5c9799ac.jpg', tone: 'red', caption: "Running for the Thrill of It poster", delay: 90,
+        d: {x: 1555, y: 1030, w: 180, rot: 5} }] },
+    { id: 'z7', label: "a second personal photo", linger: 0,
+      d: {x: 1560, y: 140, w: 220, h: 220},
+      items: [{ kind: 'image', src: 'assets/f6f5410ad0329a959de2977d1faf9c1b.jpg', tone: 'black', caption: "PERSONAL PHOTO 02",
+        d: {x: 1580, y: 110, w: 240, h: 320, rot: 4} }] },
+    { id: 'z8', label: "Rain poster", linger: 0,
+      d: {x: 60, y: 250, w: 170, h: 170},
+      items: [{ kind: 'image', src: 'assets/2c2bb02f1d8361f616976b0cea3f3302.jpg', tone: 'black', caption: "Rain poster",
+        d: {x: 70, y: 240, w: 190, h: 150, rot: -8} }] },
+    { id: 'z9', label: "a note at the end of Fund", linger: 0,
+      d: {x: 1720, y: 860, w: 175, h: 120},
+      items: [{ kind: 'text', text: "The one who loves to learn", color: '#B80000', align: 'left',
+        d: {x: 1760, y: 700, w: 200, fs: 40, rot: 0} }] },
+    { id: 'z10', label: "where I study", linger: 600,
+      d: {x: 1790, y: 1100, w: 180, h: 90},
+      items: [{ kind: 'text', text: "STUDYING IN\nTHE HAGUE", color: '#B80000', align: 'left',
+        d: {x: 1770, y: 1110, w: 210, fs: 34, rot: 0} }] },
+    { id: 'z11', label: "an XR still", linger: 0,
+      d: {x: 57, y: 100, w: 700, h: 48},
+      items: [{ kind: 'video', src: 'assets/1d933c51a3ad94ae8d08e2a32ad8d7d1.mp4', poster: 'assets/8ce6043bd18880f32446fc71c5795cd8.jpg', tone: 'black', caption: "TouchDesigner gesture particles",
+        d: {x: 300, y: 110, w: 300, h: 220, rot: 3} }] },
+    { id: 'z12', label: "something beside your name", linger: 0,
+      d: {x: 1300, y: 600, w: 90, h: 120},
+      items: [{ kind: 'video', src: 'assets/2642ca2330a1cb93f171ae39aeb3aec2.mp4', poster: 'assets/cb06fd0871a68baae8ef62bae988a2a3.jpg', tone: 'black', caption: "TouchDesigner time displacement",
+        d: {x: 1250, y: 540, w: 300, h: 200, rot: -2} }] },
+    { id: 'z13', label: "a poster at the bottom", linger: 0,
+      d: {x: 600, y: 1230, w: 160, h: 150},
+      items: [{ kind: 'image', src: 'assets/b17611377980121842b94299281b9e16.jpg', tone: 'red', caption: "Listen to the Race poster",
+        d: {x: 590, y: 1090, w: 160, rot: -3} }] },
+    { id: 'z14', label: "a side note", linger: 600,
+      d: {x: 800, y: 1230, w: 160, h: 150},
+      items: [{ kind: 'text', text: "Try out!", color: '#B80000', align: 'left',
+        d: {x: 805, y: 1255, w: 200, fs: 46, rot: 0} }] },
+    { id: 'z15', label: "a poster", linger: 0,
+      d: {x: 1500, y: 1250, w: 220, h: 140},
+      items: [{ kind: 'image', src: 'assets/b36beef12d5ee105d85b4b57f9246298.jpg', tone: 'black', caption: "Forever Young poster",
+        d: {x: 1480, y: 1020, w: 220, rot: 5} }] },
+    { id: 'z16', label: "a nudge", linger: 600,
+      d: {x: 1750, y: 1250, w: 210, h: 120},
+      items: [{ kind: 'text', text: "Keep experimenting...", color: '#B80000', align: 'left',
+        d: {x: 1760, y: 1262, w: 200, fs: 40, rot: 0} }] },
+    { id: 'z17', label: "a third personal photo in the Kapend swash", linger: 0,
+      d: {x: 670, y: 875, w: 170, h: 75},
+      items: [{ kind: 'image', src: 'assets/af9b18e5cafa3bdf119955f4b90c9224.jpg', tone: 'black', caption: "PERSONAL PHOTO 03",
+        d: {x: 640, y: 960, w: 220, h: 270, rot: -5} }] },
+    { id: 'z18', label: "a poster fragment at the edge", linger: 0,
+      d: {x: 0, y: 780, w: 70, h: 400},
+      items: [{ kind: 'image', src: 'assets/a508ad917b62eafb1eeac03e40a3d7d8.jpg', tone: 'red', caption: "Pink floral poster fragment",
+        d: {x: 20, y: 820, w: 200, rot: -4} }] },
+    // 30 more discovery zones, spread across the composition
+    { id: 'x1', label: "a note", linger: 300, d: { x: 160, y: 260, w: 144, h: 144 }, m: { x: 430, y: 160, w: 134, h: 134 },
+      items: [{ kind: 'text', text: "FIGMA", color: '#B80000', align: 'left', d: { x: 62, y: 310, w: 300, fs: 52, rot: 1 }, m: { x: 328, y: 160, w: 280, fs: 44, rot: 1 } }] },
+    { id: 'x2', label: "a note", linger: 300, d: { x: 310, y: 260, w: 144, h: 144 }, m: { x: 710, y: 160, w: 134, h: 134 },
+      items: [{ kind: 'text', text: "SKETCH FIRST.", color: '#B80000', align: 'left', d: { x: 250, y: 287, w: 300, fs: 52, rot: 1 }, m: { x: 651, y: 160, w: 280, fs: 44, rot: 1 } }] },
+    { id: 'x3', label: "personal photo 04", linger: 300, d: { x: 460, y: 260, w: 144, h: 144 }, m: { x: 850, y: 160, w: 134, h: 134 },
+      items: [{ kind: 'image', src: 'assets/a2ba567af2e927f4d679f850e5c2ef5b.jpg', tone: 'black', caption: 'PERSONAL PHOTO 04', d: { x: 463, y: 204, w: 210, h: 260, rot: 2 }, m: { x: 780, y: 160, w: 200, h: 250, rot: 2 } }] },
+    { id: 'x4', label: "Everything You Want Is on the Other Side of Fear poster", linger: 300, d: { x: 160, y: 410, w: 144, h: 144 }, m: { x: 150, y: 720, w: 134, h: 134 },
+      items: [{ kind: 'image', src: 'assets/b8eeab87f35fe055ba8fe757185b2628.jpg', tone: 'black', caption: "Everything You Want Is on the Other Side of Fear poster", d: { x: 136, y: 298, w: 210, h: 290, rot: 4 }, m: { x: 121, y: 690, w: 200, h: 270, rot: 4 } }] },
+    { id: 'x5', label: "TouchDesigner pixel window", linger: 300, d: { x: 460, y: 410, w: 144, h: 144 }, m: { x: 290, y: 720, w: 134, h: 134 },
+      items: [{ kind: 'image', src: 'assets/3c5eb7ba73e93554461aba7063cb4c31.jpg', tone: 'black', caption: "TouchDesigner pixel window", d: { x: 453, y: 297, w: 210, h: 290, rot: 4 }, m: { x: 235, y: 644, w: 200, h: 270, rot: 4 } }] },
+    { id: 'x6', label: "It's My Birthday radio poster", linger: 300, d: { x: 910, y: 410, w: 144, h: 144 }, m: { x: 430, y: 720, w: 134, h: 134 },
+      items: [{ kind: 'image', src: 'assets/ba7965197f7f82c86fd06bd4d8dbc7b9.jpg', tone: 'black', caption: "It's My Birthday radio poster", d: { x: 900, y: 362, w: 210, h: 290, rot: -2 }, m: { x: 399, y: 653, w: 200, h: 270, rot: -2 } }] },
+    { id: 'x7', label: "Sausage poster", linger: 300, d: { x: 1210, y: 410, w: 144, h: 144 }, m: { x: 570, y: 720, w: 134, h: 134 },
+      items: [{ kind: 'image', src: 'assets/9dc211a7694547225d3bdfb037303a35.jpg', tone: 'black', caption: "Sausage poster", d: { x: 1212, y: 337, w: 210, h: 260, rot: -2 }, m: { x: 559, y: 652, w: 200, h: 250, rot: -2 } }] },
+    { id: 'x8', label: "a note", linger: 300, d: { x: 10, y: 560, w: 144, h: 144 }, m: { x: 710, y: 720, w: 134, h: 134 },
+      items: [{ kind: 'text', text: "STILL\nLEARNING", color: '#B80000', align: 'left', d: { x: 20, y: 575, w: 300, fs: 52, rot: 1 }, m: { x: 614, y: 714, w: 280, fs: 44, rot: 1 } }] },
+    { id: 'x9', label: "Sketchbook collage page", linger: 300, d: { x: 460, y: 560, w: 144, h: 144 }, m: { x: 850, y: 720, w: 134, h: 134 },
+      items: [{ kind: 'image', src: 'assets/557e1d29435b799bca226a12096d39ae.jpg', tone: 'black', caption: "Sketchbook collage page", d: { x: 400, y: 520, w: 210, h: 290, rot: 6 }, m: { x: 780, y: 654, w: 200, h: 270, rot: 6 } }] },
+    { id: 'x10', label: "a note", linger: 300, d: { x: 760, y: 560, w: 144, h: 144 }, m: { x: 570, y: 860, w: 134, h: 134 },
+      items: [{ kind: 'text', text: "BREAK IT,\nALWAYS TRY AGAIN", color: '#B80000', align: 'left', d: { x: 694, y: 544, w: 420, fs: 52, rot: -2 }, m: { x: 507, y: 875, w: 280, fs: 44, rot: -2 } }] },
+    { id: 'x11', label: "Cabinet of Wonder ornaments", linger: 300, d: { x: 910, y: 560, w: 144, h: 144 }, m: { x: 710, y: 860, w: 134, h: 134 },
+      items: [{ kind: 'image', src: 'assets/1ea7e1a663cbe880a66a4e6fa162f04a.jpg', tone: 'black', caption: "Cabinet of Wonder ornaments", d: { x: 915, y: 517, w: 210, h: 290, rot: 5 }, m: { x: 716, y: 813, w: 200, h: 270, rot: 5 } }] },
+    { id: 'x12', label: "a note", linger: 300, d: { x: 160, y: 710, w: 144, h: 144 }, m: { x: 850, y: 860, w: 134, h: 134 },
+      items: [{ kind: 'text', text: "PROTOTYPE\nEVERYTHING", color: '#B80000', align: 'left', d: { x: 102, y: 756, w: 300, fs: 52, rot: -2 }, m: { x: 720, y: 844, w: 280, fs: 44, rot: -2 } }] },
+    { id: 'x13', label: "Neo Soul radio poster", linger: 300, d: { x: 460, y: 710, w: 144, h: 144 }, m: { x: 10, y: 1000, w: 134, h: 134 },
+      items: [{ kind: 'image', src: 'assets/4add28f362d9d60f21e257cf66a9b5b4.jpg', tone: 'black', caption: "Neo Soul radio poster", d: { x: 446, y: 617, w: 210, h: 260, rot: -3 }, m: { x: 20, y: 966, w: 200, h: 250, rot: -3 } }] },
+    { id: 'x14', label: "Living Facade scale model", linger: 300, d: { x: 760, y: 710, w: 144, h: 144 }, m: { x: 10, y: 1140, w: 134, h: 134 },
+      items: [{ kind: 'image', src: 'assets/20671ef7734c2b4dedf38fdf8862e0e9.jpg', tone: 'black', caption: "Living Facade scale model", d: { x: 738, y: 626, w: 210, h: 290, rot: 3 }, m: { x: 20, y: 1098, w: 200, h: 270, rot: 3 } }] },
+    { id: 'x15', label: "Let's Have a Talk radio poster", linger: 300, d: { x: 1510, y: 710, w: 144, h: 144 }, m: { x: 430, y: 1280, w: 134, h: 134 },
+      items: [{ kind: 'image', src: 'assets/f7697b3d5cfd5e18ff6067190be393d0.jpg', tone: 'black', caption: "Let's Have a Talk radio poster", d: { x: 1504, y: 656, w: 210, h: 290, rot: -4 }, m: { x: 432, y: 1192, w: 200, h: 270, rot: -4 } }] },
+    { id: 'x16', label: "Sketchbook page", linger: 300, d: { x: 1660, y: 710, w: 144, h: 144 }, m: { x: 290, y: 1420, w: 134, h: 134 },
+      items: [{ kind: 'image', src: 'assets/1d278cde80484288afa6bdcb7b5db9c8.jpg', tone: 'black', caption: "Sketchbook page", d: { x: 1645, y: 674, w: 210, h: 290, rot: 3 }, m: { x: 289, y: 1364, w: 200, h: 270, rot: 3 } }] },
+    { id: 'x17', label: "a note", linger: 300, d: { x: 160, y: 860, w: 144, h: 144 }, m: { x: 430, y: 1420, w: 134, h: 134 },
+      items: [{ kind: 'text', text: "MEDIAPIPE", color: '#B80000', align: 'left', d: { x: 86, y: 875, w: 300, fs: 52, rot: -3 }, m: { x: 343, y: 1426, w: 280, fs: 44, rot: -3 } }] },
+    { id: 'x18', label: "a note", linger: 300, d: { x: 310, y: 860, w: 144, h: 144 }, m: { x: 570, y: 1420, w: 134, h: 134 },
+      items: [{ kind: 'text', text: "XR / AR / VR", color: '#B80000', align: 'left', d: { x: 225, y: 839, w: 300, fs: 52, rot: 1 }, m: { x: 526, y: 1466, w: 280, fs: 44, rot: 1 } }] },
+    { id: 'x19', label: "Board Game Night radio poster", linger: 300, d: { x: 460, y: 860, w: 144, h: 144 }, m: { x: 10, y: 1560, w: 134, h: 134 },
+      items: [{ kind: 'image', src: 'assets/afc2c3e3210d891fff1c8e958589c8ef.jpg', tone: 'black', caption: "Board Game Night radio poster", d: { x: 399, y: 755, w: 210, h: 290, rot: -2 }, m: { x: 20, y: 1478, w: 200, h: 270, rot: -2 } }] },
+    { id: 'x20', label: "Strike a Pose start screen", linger: 300, d: { x: 760, y: 860, w: 144, h: 144 }, m: { x: 150, y: 1560, w: 134, h: 134 },
+      items: [{ kind: 'image', src: 'assets/26c743f673f48a469550ccd1acf061d9.jpg', tone: 'black', caption: "Strike a Pose start screen", d: { x: 743, y: 815, w: 210, h: 290, rot: -4 }, m: { x: 97, y: 1481, w: 200, h: 270, rot: -4 } }] },
+    { id: 'x21', label: "a note", linger: 300, d: { x: 1360, y: 860, w: 144, h: 144 }, m: { x: 290, y: 1560, w: 134, h: 134 },
+      items: [{ kind: 'text', text: "PROCREATE", color: '#B80000', align: 'left', d: { x: 1272, y: 910, w: 300, fs: 52, rot: 1 }, m: { x: 194, y: 1579, w: 280, fs: 44, rot: 1 } }] },
+    { id: 'x22', label: "Play it twice record page", linger: 300, d: { x: 10, y: 1010, w: 144, h: 144 }, m: { x: 570, y: 1560, w: 134, h: 134 },
+      items: [{ kind: 'image', src: 'assets/cb21098c3f0bc42e957f9521ea5837e2.jpg', tone: 'black', caption: "Play it twice record page", d: { x: 20, y: 950, w: 210, h: 290, rot: 4 }, m: { x: 518, y: 1499, w: 200, h: 270, rot: 4 } }] },
+    { id: 'x23', label: "Instruments poster", linger: 300, d: { x: 160, y: 1010, w: 144, h: 144 }, m: { x: 710, y: 1560, w: 134, h: 134 },
+      items: [{ kind: 'image', src: 'assets/c9c9ff3d047aad3d5abe408b93de9984.jpg', tone: 'black', caption: "Instruments poster", d: { x: 151, y: 919, w: 210, h: 290, rot: -3 }, m: { x: 698, y: 1512, w: 200, h: 270, rot: -3 } }] },
+    { id: 'x24', label: "Play it twice website", linger: 300, d: { x: 310, y: 1010, w: 144, h: 144 }, m: { x: 850, y: 1560, w: 134, h: 134 },
+      items: [{ kind: 'image', src: 'assets/b48a4345cd646ecc78dc08bcd8900247.jpg', tone: 'black', caption: "Play it twice website", d: { x: 296, y: 973, w: 210, h: 290, rot: 5 }, m: { x: 780, y: 1507, w: 200, h: 270, rot: 5 } }] },
+    { id: 'x25', label: "When I Grow Up radio poster", linger: 300, d: { x: 1210, y: 1010, w: 144, h: 144 }, m: { x: 10, y: 1700, w: 134, h: 134 },
+      items: [{ kind: 'image', src: 'assets/2f069bc9f2c59c6bf408547f9a97c5da.jpg', tone: 'black', caption: "When I Grow Up radio poster", d: { x: 1191, y: 932, w: 210, h: 290, rot: -4 }, m: { x: 20, y: 1623, w: 200, h: 270, rot: -4 } }] },
+    { id: 'x26', label: "a note", linger: 300, d: { x: 1810, y: 1010, w: 144, h: 144 }, m: { x: 570, y: 1700, w: 134, h: 134 },
+      items: [{ kind: 'text', text: "JAMBO.", color: '#B80000', align: 'left', d: { x: 1700, y: 1024, w: 300, fs: 52, rot: -3 }, m: { x: 518, y: 1693, w: 280, fs: 44, rot: -3 } }] },
+    { id: 'x27', label: "Freaky Friday radio poster", linger: 300, d: { x: 10, y: 1160, w: 144, h: 144 }, m: { x: 10, y: 1840, w: 134, h: 134 },
+      items: [{ kind: 'image', src: 'assets/aae42ec4004e5376a6a6a2c510f084be.jpg', tone: 'black', caption: "Freaky Friday radio poster", d: { x: 20, y: 1047, w: 210, h: 290, rot: -6 }, m: { x: 20, y: 1710, w: 200, h: 270, rot: -6 } }] },
+    { id: 'x28', label: "You Have No Idea poster", linger: 300, d: { x: 160, y: 1160, w: 144, h: 144 }, m: { x: 290, y: 1840, w: 134, h: 134 },
+      items: [{ kind: 'image', src: 'assets/457bd26af262db1d40497ffb43d9303b.jpg', tone: 'black', caption: "You Have No Idea poster", d: { x: 90, y: 1090, w: 210, h: 290, rot: 5 }, m: { x: 274, y: 1710, w: 200, h: 270, rot: 5 } }] },
+    { id: 'x29', label: "a note", linger: 300, d: { x: 310, y: 1160, w: 144, h: 144 }, m: { x: 430, y: 1840, w: 134, h: 134 },
+      items: [{ kind: 'text', text: "TOUCHDESIGNER", color: '#B80000', align: 'left', d: { x: 251, y: 1190, w: 300, fs: 52, rot: 1 }, m: { x: 383, y: 1863, w: 280, fs: 44, rot: 1 } }] },
+    { id: 'x30', label: "Audacity Is All It Takes poster", linger: 300, d: { x: 1210, y: 1160, w: 144, h: 144 }, m: { x: 710, y: 1840, w: 134, h: 134 },
+      items: [{ kind: 'image', src: 'assets/d694feee899018e1c1251209a43eaeac.jpg', tone: 'black', caption: "Audacity Is All It Takes poster", d: { x: 1152, y: 1068, w: 210, h: 290, rot: 6 }, m: { x: 677, y: 1710, w: 200, h: 270, rot: 6 } }] }
+  ];
+
+  // HORSE EASTER EGG: a 12-frame sprite that gallops while you scroll and runs across the footer.
+  horseRef = (el) => { this.horseEl = el || null; };
+  horseFootRef = (el) => { this.horseFoot = el || null; };
+  horseStart() {
+    this.hFrame = 0; this.hLast = 0; this.hActive = 0; this.hRaf = null;
+    this.hReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.onHorseScroll = () => {
+      this.hActive = performance.now();
+      this.horsePos();
+      if (!this.hRaf && !this.hReduce) this.hRaf = requestAnimationFrame(this.horseTick);
+    };
+    document.addEventListener('scroll', this.onHorseScroll, true);
+    window.addEventListener('resize', this.onHorseScroll);
+    setTimeout(() => this.horsePos(), 0);
+  }
+  horseStop() {
+    document.removeEventListener('scroll', this.onHorseScroll, true);
+    window.removeEventListener('resize', this.onHorseScroll);
+    if (this.hRaf) cancelAnimationFrame(this.hRaf);
+  }
+  horseTick = (t) => {
+    if (t - this.hLast > 66) {
+      this.hLast = t;
+      this.hFrame = (this.hFrame + 1) % 12;
+      if (this.horseEl) this.horseEl.style.backgroundPosition = (this.hFrame / 11 * 100).toFixed(3) + '% 0';
+    }
+    this.hRaf = (t - this.hActive < 240) ? requestAnimationFrame(this.horseTick) : null;
+  };
+  horsePos() {
+    const f = this.horseFoot, h = this.horseEl;
+    if (!f || !h) return;
+    const r = f.getBoundingClientRect();
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    const p = Math.min(1, Math.max(0, (vh - r.top) / Math.max(1, r.height)));
+    const travel = Math.max(0, f.clientWidth - h.offsetWidth);
+    h.style.transform = 'translateX(' + (p * travel).toFixed(1) + 'px)';
+  }
+
+  componentDidMount() {
+    this.horseStart();
+    this.timers = {};
+    this.lastType = 'mouse';
+    this.mq = window.matchMedia('(max-aspect-ratio: 1/1)');
+    this.onMq = () => this.setState({ mobile: this.mq.matches });
+    this.onMq();
+    if (this.mq.addEventListener) this.mq.addEventListener('change', this.onMq);
+    else if (this.mq.addListener) this.mq.addListener(this.onMq);
+  }
+
+  // DOT GRAPHIC: ~2800 dots traced from the design. Hovering launches the nearby dots outward like
+  // particles; after a moment each one glides back to its place. Positions live in the uploaded
+  // dots2.json in desktop design units ({ small: [x,y,...], big: [x,y,r,...], size }).
+  DOTS_URL = 'assets/367905197ebea72d24a5b7100728124d.json';
+  dotsRef = (el) => {
+    if (!el || this.dotsEl === el) return;
+    this.dotsEl = el;
+    if (this.dotsStarted) { this.dotsResize(); this.dotsKick(); return; }
+    this.dotsStarted = true;
+    this.dotsT0 = performance.now();
+    this.dotsReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.onDotsResize = () => { this.dotsResize(); this.dotsKick(); };
+    window.addEventListener('resize', this.onDotsResize);
+    fetch(this.DOTS_URL).then((r) => r.json()).then((d) => {
+      this.dotsSrc = d;
+      this.dotsBuild();
+      this.dotsResize(); this.dotsKick();
+    }).catch(() => {});
+  };
+  // home positions in stage units for the current layout (desktop 2000 x 1414, mobile 1000 x 2000)
+  dotsBuild() {
+    const d = this.dotsSrc, mob = !!this.state.mobile;
+    if (!d) return;
+    const ns = Math.floor(d.small.length / 2), nb = Math.floor((d.big || []).length / 3), n = ns + nb;
+    const P = new Float32Array(n * 8);
+    // mobile: same composition scaled to 0.55 and moved down (matches the script lettering)
+    const k = mob ? 0.55 : 1, X = mob ? -49.5 : 0, Y = mob ? 380 : 0, grow = mob ? 1.45 : 1;
+    const put = (i, x, y, sz) => {
+      const hx = X + k * x, hy = Y + k * y, o = i * 8;
+      P[o] = hx; P[o + 1] = hy; P[o + 2] = hx; P[o + 3] = hy; P[o + 7] = sz;
+    };
+    for (let i = 0; i < ns; i++) put(i, d.small[2 * i], d.small[2 * i + 1], (d.size || 4.2) * k * grow);
+    for (let j = 0; j < nb; j++) put(ns + j, d.big[3 * j], d.big[3 * j + 1], -2 * d.big[3 * j + 2] * k * grow); // negative = round dot
+    this.dots = { n: n, P: P, mob: mob, W: mob ? 1000 : 2000 };
+  }
+  dotsResize() {
+    const c = this.dotsEl;
+    if (!c) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2), w = c.clientWidth, h = c.clientHeight;
+    c.width = Math.max(1, Math.round(w * dpr)); c.height = Math.max(1, Math.round(h * dpr));
+    this.dotsPx = w; this.dotsDpr = dpr;
+    this.dotsDirty = true;
+  }
+  onDotsMove = (e) => {
+    if (!this.dotsEl || !this.dots) return;
+    const r = this.dotsEl.getBoundingClientRect();
+    if (!r.width) return;
+    const W = this.dots.W;
+    this.ptr = { x: (e.clientX - r.left) / r.width * W, y: (e.clientY - r.top) / r.width * W };
+    this.dotsKick();
+  };
+  onDotsLeave = () => { this.ptr = null; };
+  dotsKick() { if (!this.dotsRaf) this.dotsRaf = requestAnimationFrame(this.dotsTick); }
+  dotsTick = () => {
+    this.dotsRaf = null;
+    const c = this.dotsEl;
+    if (this.dotsSrc && (!this.dots || this.dots.mob !== !!this.state.mobile)) this.dotsBuild();
+    const D = this.dots;
+    if (!D || !c) return;
+    const now = (performance.now() - this.dotsT0) / 1000;
+    const P = D.P, p = this.dotsReduce ? null : this.ptr, R = D.mob ? 60 : 80, R2 = R * R;
+    let moving = false;
+    for (let i = 0; i < D.n; i++) {
+      const o = i * 8;
+      let x = P[o + 2], y = P[o + 3], vx = P[o + 4], vy = P[o + 5];
+      const hx = P[o], hy = P[o + 1];
+      // launch: only dots sitting (nearly) at home can be hit
+      if (p && now >= P[o + 6]) {
+        const dx = x - p.x, dy = y - p.y, d2 = dx * dx + dy * dy;
+        if (d2 < R2 && Math.abs(x - hx) + Math.abs(y - hy) < 6) {
+          const d = Math.sqrt(d2) || 0.001, a = Math.atan2(dy, dx) + (Math.random() - 0.5) * 1.1;
+          const sp = (6 + (1 - d / R) * 16 + Math.random() * 10) * (D.mob ? 0.6 : 1);
+          vx = Math.cos(a) * sp; vy = Math.sin(a) * sp;
+          P[o + 6] = now + 0.45 + Math.random() * 0.7; // time spent flying before heading home
+        }
+      }
+      if (now < P[o + 6]) { vx *= 0.93; vy *= 0.93; vy += 0.05; }            // free flight with drag
+      else { vx = (vx + (hx - x) * 0.045) * 0.84; vy = (vy + (hy - y) * 0.045) * 0.84; } // glide home
+      x += vx; y += vy;
+      P[o + 2] = x; P[o + 3] = y; P[o + 4] = vx; P[o + 5] = vy;
+      if (now < P[o + 6] || Math.abs(vx) > 0.02 || Math.abs(vy) > 0.02 || Math.abs(hx - x) > 0.05 || Math.abs(hy - y) > 0.05) moving = true;
+    }
+    const ctx = c.getContext('2d'), s = (this.dotsPx || c.clientWidth) / D.W * (this.dotsDpr || 1);
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, c.width, c.height);
+    ctx.fillStyle = '#262626';
+    for (let i = 0; i < D.n; i++) {
+      const o = i * 8, z = P[o + 7];
+      if (z > 0) { const sz = Math.max(1, z * s); ctx.fillRect(P[o + 2] * s - sz / 2, P[o + 3] * s - sz / 2, sz, sz); }
+      else { ctx.beginPath(); ctx.arc(P[o + 2] * s, P[o + 3] * s, Math.max(1, -z * s / 2), 0, 6.2832); ctx.fill(); }
+    }
+    if (moving || this.dotsDirty || this.ptr) { this.dotsDirty = false; this.dotsRaf = requestAnimationFrame(this.dotsTick); }
+  };
+  // Mobile placement derived from the desktop one: the composition is scaled to 0.55 and moved down.
+  mob(r, isItem) {
+    const k = 0.55;
+    const o = { x: Math.round(k * (r.x - 90)), y: Math.round(k * r.y + 380), rot: r.rot || 0 };
+    if (isItem) {
+      o.w = Math.round(r.w * 0.75); if (r.h) o.h = Math.round(r.h * 0.75); if (r.fs) o.fs = Math.round(r.fs * 0.8);
+      o.x = Math.max(10, Math.min(990 - o.w, o.x));
+    } else {
+      o.w = Math.max(90, Math.round(k * r.w)); o.h = Math.max(90, Math.round(k * r.h));
+    }
+    return o;
+  }
+  overlaps(a, b) { return a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y; }
+
+  componentWillUnmount() {
+    if (this.dotsRaf) cancelAnimationFrame(this.dotsRaf);
+    if (this.onDotsResize) window.removeEventListener('resize', this.onDotsResize);
+    this.horseStop();
+    if (this.mq) {
+      if (this.mq.removeEventListener) this.mq.removeEventListener('change', this.onMq);
+      else if (this.mq.removeListener) this.mq.removeListener(this.onMq);
+    }
+    Object.keys(this.timers || {}).forEach((k) => clearTimeout(this.timers[k]));
+  }
+
+  setOpen(id, val, exclusive) {
+    const next = exclusive ? {} : Object.assign({}, this.state.open);
+    if (val) next[id] = true; else delete next[id];
+    this.setState({ open: next });
+  }
+
+  show(id) {
+    if (this.timers[id]) { clearTimeout(this.timers[id]); this.timers[id] = null; }
+    if (!this.state.open[id]) this.setOpen(id, true, false);
+  }
+
+  hide(id, linger) {
+    if (this.timers[id]) clearTimeout(this.timers[id]);
+    this.timers[id] = setTimeout(() => { this.timers[id] = null; this.setOpen(id, false, false); }, linger || 0);
+  }
+
+  renderVals() {
+    const mob = this.state.mobile;
+    const open = this.state.open;
+    const zones = [];
+    const reveals = [];
+    const place = (z) => mob ? (z.m || this.mob(z.d, false)) : z.d;
+    const named = this.zonesData.filter((z) => z.id[0] === 'z').map(place);
+    this.zonesData.forEach((z) => {
+      const p = place(z);
+      if (z.id[0] === 'x' && named.some((n) => this.overlaps(p, n))) return; // named zones win where they overlap
+      const isOpen = !!open[z.id];
+      zones.push({
+        id: z.id, label: z.label, x: p.x, y: p.y, w: p.w, h: p.h, expanded: isOpen,
+        down: (e) => { this.lastType = e.pointerType || 'mouse'; },
+        enter: (e) => { if (e.pointerType === 'mouse' || e.pointerType === 'pen') this.show(z.id); },
+        leave: (e) => { if (e.pointerType === 'mouse' || e.pointerType === 'pen') this.hide(z.id, z.linger); },
+        click: (e) => {
+          if (e.detail !== 0 && this.lastType === 'mouse') return;
+          this.setOpen(z.id, !isOpen, true);
+        },
+        focus: () => this.show(z.id),
+        blur: () => this.hide(z.id, 0)
+      });
+      z.items.forEach((it, k) => {
+        const q = mob ? (it.m || this.mob(it.d, true)) : it.d;
+        const isText = it.kind === 'text';
+        reveals.push({
+          key: z.id + k,
+          cls: isOpen ? 'on' : '',
+          hidden: !isOpen,
+          x: q.x, y: q.y, w: q.w,
+          h: (isText || it.src) ? 'auto' : 'calc(var(--u) * ' + q.h + ')',
+          rot: q.rot || 0,
+          delay: it.delay || 0,
+          isText: isText,
+          isImg: !isText && it.kind !== 'video' && !!it.src,
+          isVid: it.kind === 'video' && !!it.src,
+          poster: it.poster || '',
+          isPh: !isText && !it.src,
+          src: it.src || '',
+          tone: it.tone || 'black',
+          caption: it.caption || '',
+          text: it.text || '',
+          fs: q.fs || 40,
+          color: it.color || '#000',
+          align: it.align || 'left'
+        });
+      });
+    });
+    return {
+      stackCls: this.props.stacked ? 'stacked' : '', lnHome: this.props.stacked ? '#home' : 'Main.dc.html', lnProjects: this.props.stacked ? '#projects' : 'Projects.dc.html', lnJen: this.props.stacked ? '#jennieration' : 'Jennieration.dc.html', lnAbout: this.props.stacked ? '#about' : 'About.dc.html', zones: zones, reveals: reveals, horseRef: this.horseRef, horseFootRef: this.horseFootRef,
+      dotsRef: this.dotsRef, onDotsMove: this.onDotsMove, onDotsLeave: this.onDotsLeave };
+  }
+}
+</script>
+</body>
+</html>

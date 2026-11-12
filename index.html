@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>JENNIERATION / Jennifer Kapend Fund</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Portfolio of Jennifer Kapend Fund, UX/UI, art and XR designer.">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;display=swap">
+<style>
+body{margin:0;background:#000}
+.site{position:relative}
+
+/* ONE MENU for the whole page: gone while anything scrolls, back the moment you stop,
+   but only if it would not sit on top of a button or a title.
+   mix-blend-mode difference flips it against whatever is behind: black on white pages, white on black ones */
+.site-nav{mix-blend-mode:difference;position:fixed;z-index:2000;left:calc(100vw / 2000 * 54);top:calc(100vw / 2000 * 22);display:flex;font-family:'Bebas Neue','JR Bebas',Impact,'Arial Narrow',sans-serif;font-weight:400;font-size:calc(100vw / 2000 * 83);line-height:1;letter-spacing:-.09em;white-space:nowrap;transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .35s ease}
+.site-nav.hide{transform:translateY(-150%);opacity:0;pointer-events:none}
+
+/* menu jumps: a quick fade instead of scrolling through every page in between */
+.site-curtain{position:fixed;inset:0;z-index:1990;background:#fff;opacity:0;pointer-events:none;transition:opacity .26s ease}
+.site-curtain.dark{background:#000}
+.site-curtain.on{opacity:1;pointer-events:auto}
+.site-nav a{position:relative;display:block;color:#6d6d6d;text-decoration:none;transition:color .35s ease}
+.site-nav a:hover,.site-nav a.on{color:#fff}
+.site-nav a:focus-visible{outline:2px solid #B80000;outline-offset:2px}
+
+/* PAGES STACK LIKE PAPER: each page holds still at its end while the next one slides up over it */
+.site-sec{display:block;position:sticky;background:#fff}
+.site-sec:last-child{position:relative}
+.site-sec#jennieration{background:#000}
+.site-in{position:relative;transform-origin:50% 100%;will-change:auto}
+.site-shade{position:absolute;inset:0;z-index:5;background:#000;opacity:0;pointer-events:none}
+
+@media (max-aspect-ratio: 1/1){
+.site-nav{left:calc(100vw / 1000 * 37);top:calc(100vw / 1000 * 30);font-size:calc(100vw / 1000 * 92)}
+}
+@media (prefers-reduced-motion: reduce){
+.site-nav,.site-nav a,.site-curtain{transition:none}
+}
+</style>
+</helmet>
+<div class="site" ref="{{siteRef}}">
+<nav class="site-nav {{navCls}}" aria-label="Main" ref="{{navRef}}">
+<sc-for list="{{links}}" as="l" hint-placeholder-count="4"><a class="{{l.cls}}" href="{{l.href}}" aria-label="{{l.aria}}" aria-current="{{l.cur}}" onClick="{{l.go}}">{{l.label}}</a></sc-for>
+</nav>
+<div class="site-curtain {{curtainCls}}" aria-hidden="true"></div>
+<section class="site-sec" id="home" style="z-index: 1"><div class="site-in"><dc-import name="Main" stacked="{{true}}" hint-size="100%,100vh"></dc-import><div class="site-shade"></div></div></section>
+<section class="site-sec" id="projects" style="z-index: 2"><div class="site-in"><dc-import name="Projects" stacked="{{true}}" hint-size="100%,100vh"></dc-import><div class="site-shade"></div></div></section>
+<section class="site-sec" id="jennieration" style="z-index: 3"><div class="site-in"><dc-import name="Jennieration" stacked="{{true}}" hint-size="100%,100vh"></dc-import><div class="site-shade"></div></div></section>
+<section class="site-sec" id="about" style="z-index: 4"><div class="site-in"><dc-import name="About" stacked="{{true}}" hint-size="100%,100vh"></dc-import></div></section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1018}}'>
+class Component extends DCLogic {
+  state = { active: 'home', hidden: false, curtain: '' };
+
+  SECTIONS = [
+    { id: 'home', label: 'HOME' },
+    { id: 'projects', label: 'PROJECTS' },
+    { id: 'jennieration', label: 'JENNIE.RATION' },
+    { id: 'about', label: 'ABOUTME', aria: 'About me' }
+  ];
+
+  siteRef = (el) => { this.siteEl = el || null; };
+  navRef = (el) => { this.navEl = el || null; };
+
+  go = (e) => {
+    const id = (e.currentTarget.getAttribute('href') || '').slice(1);
+    const sec = document.getElementById(id);
+    if (!sec) return;
+    e.preventDefault();
+    let top = 0;
+    for (let el = sec.previousElementSibling; el; el = el.previousElementSibling) if (el.classList.contains('site-sec')) top += el.offsetHeight;
+    const jump = () => { window.scrollTo({ top: top, behavior: 'instant' }); this.setState({ active: id }); };
+    // a side page is open: close it first, the menu always takes you back to the real page
+    const closeAll = () => {
+      Array.from(document.querySelectorAll('[aria-modal="true"]')).reverse().forEach((d) => {
+        const btn = Array.from(d.querySelectorAll('button')).find((x) => /BACK|CLOSE/i.test(x.textContent || '') || /^close/i.test(x.getAttribute('aria-label') || ''));
+        if (btn) btn.click();
+      });
+    };
+    clearTimeout(this.cT1); clearTimeout(this.cT2);
+    if (this.reduce) { closeAll(); setTimeout(jump, 30); return; }
+    const dark = id === 'jennieration';
+    this.setState({ curtain: 'on' + (dark ? ' dark' : ''), hidden: true });
+    closeAll();
+    this.cT1 = setTimeout(() => {
+      jump();
+      this.cT2 = setTimeout(() => { this.setState({ curtain: dark ? 'dark' : '' }); this.scheduleShow(); }, 90);
+    }, 280);
+  };
+
+  // is there a button or a title under the menu right now? (plain text is fine, the menu can sit on that)
+  navBlocked() {
+    const nav = this.navEl;
+    if (!nav) return false;
+    const links = Array.from(nav.children);
+    const nx = nav.offsetLeft, ny = nav.offsetTop;
+    // invisible hot spots (like the hidden zones on the home page) don't count, only things you can see
+    const seen = (el) => {
+      if ((el.textContent || '').trim()) return true;
+      if (el.querySelector && el.querySelector('img,video,svg,canvas')) return true;
+      if (/^(IMG|VIDEO|SVG|CANVAS|INPUT|SELECT|TEXTAREA)$/i.test(el.tagName)) return true;
+      const cs = getComputedStyle(el);
+      return cs.backgroundColor !== 'rgba(0, 0, 0, 0)' && cs.backgroundColor !== 'transparent' || parseFloat(cs.borderTopWidth) > 0 || cs.backgroundImage !== 'none';
+    };
+    // a clickable photo (tap to zoom) is a picture, not a button, so the menu may sit on it
+    const isUi = (el) => { const u = el.closest && el.closest('a,button,[role="button"],input,select,textarea,h1,h2,h3,h4,h5,h6'); if (!u || !seen(u)) return false; if (/^(A|BUTTON)$/.test(u.tagName) && !(u.textContent || '').trim() && u.querySelector('img,video')) return false; return true; };
+    const textAt = (el, x, y) => {
+      for (const n of el.childNodes) {
+        if (n.nodeType !== 3 || !n.textContent.trim()) continue;
+        const r = document.createRange(); r.selectNodeContents(n);
+        for (const q of r.getClientRects()) if (x >= q.left - 6 && x <= q.right + 6 && y >= q.top - 6 && y <= q.bottom + 6) return true;
+      }
+      return false;
+    };
+    for (const a of links) {
+      const L = nx + a.offsetLeft, T = ny + a.offsetTop, W = a.offsetWidth, H = a.offsetHeight;
+      for (let i = 0; i <= 4; i++) for (let j = 0; j <= 2; j++) {
+        const x = L + (W * i) / 4, y = T + (H * j) / 2;
+        if (x < 0 || y < 0 || x >= window.innerWidth || y >= window.innerHeight) continue;
+        const hit = document.elementsFromPoint(x, y).find((el) => !nav.contains(el) && !el.classList.contains('site-curtain') && !el.classList.contains('site-shade'));
+        if (!hit) continue;
+        // big display text counts as a title even when it isn't a heading tag; normal body text doesn't
+        if (isUi(hit) || (parseFloat(getComputedStyle(hit).fontSize) >= 40 && textAt(hit, x, y))) return true;
+      }
+    }
+    return false;
+  }
+
+  // the menu comes back shortly after scrolling stops, if the spot is clear
+  scheduleShow() {
+    clearTimeout(this.idle);
+    this.idlePending = true;
+    this.idle = setTimeout(() => {
+      this.idlePending = false;
+      if (this.state.curtain.indexOf('on') >= 0) return;
+      const blocked = this.navBlocked();
+      if (blocked !== this.state.hidden) this.setState({ hidden: blocked });
+    }, 160);
+  }
+
+  // any scroll, the page itself or a side page, puts the menu away
+  onAnyScroll = () => {
+    if (!this.state.hidden) this.setState({ hidden: true });
+    this.scheduleShow();
+  };
+
+  secs() { return this.siteEl ? Array.from(this.siteEl.querySelectorAll(':scope > .site-sec')) : []; }
+
+  // each page sticks when its bottom reaches the bottom of the screen, so the next page covers it
+  layout = () => {
+    const vh = window.innerHeight;
+    const all = this.secs();
+    // the last page scrolls normally, so it gets no offset (an offset would shift it up under the menu)
+    all.forEach((s, i) => { s.style.top = i === all.length - 1 ? '' : Math.min(0, vh - s.offsetHeight) + 'px'; });
+    this.onScroll();
+  };
+
+  onScroll = () => {
+    const vh = window.innerHeight, y = window.scrollY;
+    const secs = this.secs();
+    if (!secs.length) return;
+    // which page are we in: the last one whose first screen has been reached
+    let acc = 0, active = secs[0].id;
+    secs.forEach((s) => { if (y >= acc - vh * 0.5) active = s.id; acc += s.offsetHeight; });
+    // paper stack: the page being covered shrinks a touch and darkens
+    secs.forEach((s, i) => {
+      const next = secs[i + 1], inner = s.firstElementChild, shade = inner && inner.querySelector(':scope > .site-shade');
+      if (!next || !inner) return;
+      const p = this.reduce ? 0 : Math.min(1, Math.max(0, (vh - next.getBoundingClientRect().top) / vh));
+      inner.style.transform = p > 0 ? 'scale(' + (1 - 0.06 * p).toFixed(4) + ')' : '';
+      if (shade) shade.style.opacity = (0.55 * p).toFixed(3);
+    });
+    if (active !== this.state.active && this.state.curtain.indexOf('on') < 0) this.setState({ active: active });
+  };
+
+  componentDidMount() {
+    this.reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.layout);
+    document.addEventListener('scroll', this.onAnyScroll, { passive: true, capture: true });
+    // opening or closing a side page can put something under the menu too
+    this.mo = new MutationObserver(() => { if (this.moT) return; this.moT = setTimeout(() => { this.moT = null; if (!this.idlePending) this.scheduleShow(); }, 250); });
+    if (this.siteEl) this.mo.observe(this.siteEl, { childList: true, subtree: true });
+    if (typeof ResizeObserver !== 'undefined') { this.ro = new ResizeObserver(() => this.layout()); this.secs().forEach((s) => this.ro.observe(s)); }
+    setTimeout(this.layout, 0);
+    setTimeout(this.layout, 1500);
+    setTimeout(() => this.scheduleShow(), 600);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.layout);
+    document.removeEventListener('scroll', this.onAnyScroll, { capture: true });
+    if (this.mo) this.mo.disconnect();
+    clearTimeout(this.cT1); clearTimeout(this.cT2); clearTimeout(this.moT);
+    if (this.ro) this.ro.disconnect();
+    clearTimeout(this.idle);
+  }
+
+  renderVals() {
+    const act = this.state.active;
+    return {
+      siteRef: this.siteRef, navRef: this.navRef,
+      navCls: this.state.hidden ? 'hide' : '', curtainCls: this.state.curtain,
+      links: this.SECTIONS.map((s) => ({ href: '#' + s.id, label: s.label, aria: s.aria || s.label, cls: s.id === act ? 'on' : '', cur: s.id === act ? 'true' : 'false', go: this.go }))
+    };
+  }
+}
+</script>
+</body>
+</html>
