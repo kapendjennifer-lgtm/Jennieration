@@ -108,6 +108,10 @@ body{margin:0;background:#000}
 .pg-jen .ex-gal figure{margin:0}
 .pg-jen .ex-gal img{display:block;width:100%;height:auto;background:#000}
 .pg-jen .ex-gal figcaption{margin-top:6px;font-size:20px;line-height:1;color:#929292}
+/* big gallery: three large photos side by side, stacked on phones */
+.pg-jen .ex-gal.big{grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,24px)}
+.pg-jen .ex-gal.big figcaption{font-size:clamp(20px,1.8vw,30px)}
+@media (max-aspect-ratio: 1/1){.pg-jen .ex-gal.big{grid-template-columns:1fr}}
 .pg-jen .ex-card{display:block;max-width:900px;background:#000;color:#fff;text-decoration:none;overflow:hidden}
 .pg-jen .ex-card-bar{display:flex;align-items:center;gap:14px;padding:10px 14px;background:#1a1a1a}
 .pg-jen .ex-card-dots{display:flex;gap:6px}
@@ -421,7 +425,7 @@ body{margin:0;background:#000}
 </sc-for></sc-if>
 <sc-if value="{{ex.hasGal}}" hint-placeholder-val="{{false}}">
 <h3 class="ex-gh">{{ex.galTitle}}</h3>
-<div class="ex-gal">
+<div class="ex-gal {{ex.galCls}}">
 <sc-for list="{{ex.gallery}}" as="g" hint-placeholder-count="4"><figure><button class="zbtn" type="button" aria-label="View {{g.cap}} full size" onClick="{{zoomOpen}}" data-src="{{g.src}}" data-alt="{{g.cap}}"><img src="{{g.src}}" alt="{{g.cap}}"></button><figcaption>{{g.cap}}</figcaption></figure></sc-for>
 </div>
 </sc-if>
@@ -559,7 +563,7 @@ class Component extends DCLogic {
         { src: 'assets/557e1d29435b799bca226a12096d39ae.jpg', x: 830, y: 65, w: 350, r: 2, m: [40, 380, 420], t: ['a', 'd'] },
         { src: 'assets/7ee075700b3f69b2a2b82862b84e0b28.jpg', x: 640, y: 430, w: 400, r: -1.5, m: [40, 1200, 450], t: ['b', 'c'] }
       ] },
-    { title: 'CABINET OF WONDER', tag: 'DIGITAL FABRICATION / SEOULTECH', caption: 'ORNAMENTS', thumb: 'assets/1ea7e1a663cbe880a66a4e6fa162f04a.jpg', src: 'assets/cee92559e7c0f78ca0c4471cba95f500.jpg',
+    { title: 'CABINET OF WONDER', tag: 'DIGITAL FABRICATION / SEOULTECH', caption: 'ORNAMENTS', thumb: 'assets/83f9ce24c4d9595dec538585154bfac7.jpg', src: 'assets/cee92559e7c0f78ca0c4471cba95f500.jpg',
       text: 'Three Christmas ornaments that give shape to the invisible feelings of childhood.',
       // editorial layout: the full postcard first, then numbered text blocks next to the images
       editorial: {
@@ -577,7 +581,21 @@ class Component extends DCLogic {
             text: 'Together they form a personal cabinet of wonders. They transform emotions that could not be seen, imagination, fear and hope, into objects that invite people to reflect on their own childhood memories and the small invisible things we carry with us.' }
         ]
       },
-      facts: [{ k: 'CLASS', v: 'DIGITAL FABRICATION, SEOULTECH' }, { k: 'WHEN', v: 'EXCHANGE, SEP-DEC 2025' }, { k: 'BRIEF', v: 'WUNDERKAMMER + CHRISTMAS' }, { k: 'MATERIALS', v: 'ACRYLIC, WOOD, LEAVES' }] }
+      facts: [{ k: 'CLASS', v: 'DIGITAL FABRICATION, SEOULTECH' }, { k: 'WHEN', v: 'EXCHANGE, SEP-DEC 2025' }, { k: 'BRIEF', v: 'WUNDERKAMMER + CHRISTMAS' }, { k: 'MATERIALS', v: 'ACRYLIC, WOOD, LEAVES' }],
+      // videos in a 2x2 grid, then the photos
+      ttGroups: [
+        { title: 'IN MOTION', items: [
+          { src: 'assets/099e4b6ed1a8ca333aec4fd36a45f0df.mp4', poster: 'assets/9c91164069d89dba44d3e99a28eb497b.jpg', cap: 'THE WONDER, TURNING' },
+          { src: 'assets/66d174962354a8e775f41f72282ad0c1.mp4', poster: 'assets/d276944e649bb3a5af9475cfc4af78d8.jpg', cap: 'THE EXHIBITION' },
+          { src: 'assets/114d42dbac88e4c353983626ae6ff94e.mp4', poster: 'assets/c396c51562e930b1993c00300f8c200c.jpg', cap: 'THE TREE AND THE WALL' },
+          { src: 'assets/2a2dfdd9b563178b5a2ec7cbba6c438c.mp4', poster: 'assets/e77ad55b7861a5547d335381705ef145.jpg', cap: 'HANGING THE ORNAMENTS' } ] }
+      ],
+      galTitle: 'DETAILS', galBig: true,
+      gallery: [
+        { src: 'assets/89a2b63a6ae9df5a43086e28d05d445f.jpg', cap: 'ON THE TREE' },
+        { src: 'assets/4122dd1eade16dd894bf68ddf2b3307c.jpg', cap: 'THE WONDER, CLOSE UP' },
+        { src: 'assets/79c11cda5b652e943f2bb2591a3cdb5d.jpg', cap: 'THE WINGS' }
+      ] }
   ];
 
   state = { s: 1, q: 1, r: 0, pp: 0, mobile: false, offsets: {}, zs: {}, dragId: null, moved: false, lb: null, ex: null, vwRef: 2000 };
@@ -1239,7 +1257,7 @@ class Component extends DCLogic {
             const port = !!this.state.mobile, key = this.state.ex + (port ? 'p' : 'l'), W = port ? 900 : 1600, H = port ? 1600 : 900;
             if (!this.wallPos[key]) this.wallPos[key] = o.wall.map((w, k) => ({ x: port && w.m ? w.m[0] : w.x, y: port && w.m ? w.m[1] : w.y, z: k + 1, drag: false }));
             return o.wall.map((w, k) => { const q = this.wallPos[key][k], ww = port && w.m ? w.m[2] : w.w; return { i: k, n: k + 1, src: w.src, x: (q.x / W * 100).toFixed(2), y: (q.y / H * 100).toFixed(2), w: (ww / W * 100).toFixed(2), r: w.r, z: q.z, cls: q.drag ? 'drag' : '', t1: (w.t || [])[0] || '', t2: (w.t || [])[1] || '' }; });
-          })(), hasEmbed: !!o.embed, embed: o.embed || '', embedLink: o.embedLink || o.embed || '', embedTitle: o.embedTitle || 'PROTOTYPE', embedText: o.embedText || '', hasEmbedImg: !!o.embedImg, embedUrl: o.embedUrl || 'figma.com', embedImg: o.embedImg || '', galTitle: o.galTitle || 'MORE', gallery: gal };
+          })(), hasEmbed: !!o.embed, embed: o.embed || '', embedLink: o.embedLink || o.embed || '', embedTitle: o.embedTitle || 'PROTOTYPE', embedText: o.embedText || '', hasEmbedImg: !!o.embedImg, embedUrl: o.embedUrl || 'figma.com', embedImg: o.embedImg || '', galTitle: o.galTitle || 'MORE', galCls: o.galBig ? 'big' : '', gallery: gal };
       })(),
       goEx: this.goEx, zoomOpen: this.zoomOpen, zoomClose: this.zoomClose, zoomOn: !!this.state.zoom, zoomSrc: this.state.zoom ? this.state.zoom.src : '', zoomAlt: this.state.zoom ? this.state.zoom.alt : '',
       vidRef: this.vidRef, closeEx: this.closeEx, exRef: this.exRef, exKey: this.exKey, wallRef: this.wallRef, wDown: this.wDown, wMove: this.wMove, wUp: this.wUp, wClick: this.wClick
