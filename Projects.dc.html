@@ -1,8 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Jennieration / Projects</title>
 <link rel="icon" type="image/svg+xml" href="assets/a302859751994c66e33da73956313bef.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/01a9be2de7df7f6dbded3baa6c2c7a72.png">
@@ -233,6 +232,15 @@ body{margin:0;background:#fff}
 .pg-projects .b-test-c{margin:0;font-family:'Archivo',Arial,sans-serif;font-size:17px;line-height:1.55;max-width:62ch}
 .pg-projects .b-test-c b{font-family:'Bebas Neue',Impact,sans-serif;font-weight:400;font-size:21px;color:#B80000;margin-right:8px}
 @media (max-width: 640px){.pg-projects .b-tr{grid-template-columns:1fr;gap:6px}}
+/* PHONE: each table cell carries its column name, so rows still read when the columns stack */
+@media (max-width: 640px){
+.pg-projects .b-thr{display:none}
+.pg-projects .b-td[data-l]:not([data-l=""])::before{content:attr(data-l);display:block;margin-bottom:2px;font-family:'Bebas Neue',Impact,sans-serif;font-size:16px;line-height:1;color:#B80000;letter-spacing:0}
+.pg-projects .b-boards.tall .b-brow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.pg-projects .b-boards.tall .b-board{width:auto}
+.pg-projects .b-persona-n span{font-size:16px;line-height:1.1}
+.pg-projects .b-play,.pg-projects .b-play-go{height:auto !important}
+}
 .pg-projects .case-hero{position:relative;width:100%;aspect-ratio:16/9;background:#000;overflow:hidden}
 .pg-projects .case-hero img{display:block;width:100%;height:100%;object-fit:cover}
 .pg-projects .case-hero .cap{position:absolute;left:16px;bottom:12px;font-size:24px;color:#9B9B9B}
@@ -306,7 +314,7 @@ body{margin:0;background:#fff}
 <sc-if value="{{b.isP}}" hint-placeholder-val="{{false}}"><p class="b-p" style="color: #0b0b0b">{{b.text}}</p></sc-if>
 <sc-if value="{{b.isQuotes}}" hint-placeholder-val="{{false}}"><div class="b-quotes"><sc-for list="{{b.quoteList}}" as="q" hint-placeholder-count="0"><blockquote class="b-q">“{{q.text}}”</blockquote></sc-for></div></sc-if>
 <sc-if value="{{b.isStat}}" hint-placeholder-val="{{false}}"><div class="b-stat"><span class="b-stat-v">{{b.value}}</span><p class="b-stat-t"><sc-if value="{{b.hasUrl}}" hint-placeholder-val="{{false}}"><a class="b-stat-a" href="{{b.url}}" target="_blank" rel="noopener">{{b.text}} ↗</a></sc-if><sc-if value="{{b.noUrl}}" hint-placeholder-val="{{true}}"><span>{{b.text}}</span></sc-if><span class="b-src">{{b.source}}</span></p></div></sc-if>
-<sc-if value="{{b.isTable}}" hint-placeholder-val="{{false}}"><div class="b-table" role="table" style="--cols: {{b.cols}}"><div class="b-tr" role="row"><sc-for list="{{b.headCells}}" as="h" hint-placeholder-count="0"><span class="b-th" role="columnheader">{{h.text}}</span></sc-for></div><sc-for list="{{b.rowList}}" as="r" hint-placeholder-count="0"><div class="b-tr" role="row"><sc-for list="{{r.cells}}" as="c" hint-placeholder-count="0"><span class="b-td {{c.cls}}" role="cell">{{c.text}}</span></sc-for></div></sc-for></div></sc-if>
+<sc-if value="{{b.isTable}}" hint-placeholder-val="{{false}}"><div class="b-table" role="table" style="--cols: {{b.cols}}"><div class="b-tr b-thr" role="row"><sc-for list="{{b.headCells}}" as="h" hint-placeholder-count="0"><span class="b-th" role="columnheader">{{h.text}}</span></sc-for></div><sc-for list="{{b.rowList}}" as="r" hint-placeholder-count="0"><div class="b-tr" role="row"><sc-for list="{{r.cells}}" as="c" hint-placeholder-count="0"><span class="b-td {{c.cls}}" role="cell" data-l="{{c.l}}">{{c.text}}</span></sc-for></div></sc-for></div></sc-if>
 <sc-if value="{{b.isList}}" hint-placeholder-val="{{false}}"><ul class="b-list {{b.listCls}}"><sc-for list="{{b.listItems}}" as="li" hint-placeholder-count="0"><li class="b-li"><sc-if value="{{li.hasT}}" hint-placeholder-val="{{true}}"><span class="b-li-t" style="color: #b80000; font-weight: 700">{{li.t}}</span></sc-if><span class="b-li-b">{{li.b}}</span></li></sc-for></ul></sc-if>
 <sc-if value="{{b.isCallout}}" hint-placeholder-val="{{false}}"><p class="b-callout {{b.cls}}">{{b.text}}</p><sc-if value="{{b.hasSub}}" hint-placeholder-val="{{false}}"><p class="b-sub {{b.subCls}}">{{b.sub}}</p></sc-if></sc-if>
 <sc-if value="{{b.isLoop}}" hint-placeholder-val="{{false}}"><figure class="b-vid {{b.vcl}}"><video class="b-video" src="{{b.src}}" poster="{{b.poster}}" ref="{{b.vref}}" autoPlay="{{true}}" muted="{{true}}" loop="{{true}}" playsInline="{{true}}" preload="auto" aria-label="{{b.caption}}"></video><figcaption class="b-vid-cap"><span class="b-vid-t">{{b.caption}}</span><span class="b-vid-d">{{b.text}}</span></figcaption></figure></sc-if>
@@ -316,11 +324,11 @@ body{margin:0;background:#fff}
 <sc-if value="{{b.isLive}}" hint-placeholder-val="{{false}}"><a class="b-live" href="{{b.url}}" target="_blank" rel="noopener"><span class="b-live-bar"><span class="b-live-dots" aria-hidden="true"><span></span><span></span><span></span></span><span class="b-live-url">{{b.host}}</span><span class="b-live-go">OPEN AND PLAY ↗</span></span><img src="{{b.src}}" alt="{{b.caption}}"></a></sc-if>
 <sc-if value="{{b.isDuo}}" hint-placeholder-val="{{false}}"><div class="b-duo"><ul class="b-list"><sc-for list="{{b.listItems}}" as="li" hint-placeholder-count="0"><li class="b-li"><span class="b-li-t">{{li.t}}</span><span class="b-li-b">{{li.b}}</span></li></sc-for></ul><div class="b-duo-r"><sc-if value="{{b.hasBoard}}" hint-placeholder-val="{{false}}"><div class="b-boards"><p class="b-boards-hint">{{b.bd.hint}}</p><button class="b-board" type="button" aria-label="Open {{b.bd.title}}" onClick="{{b.bd.open}}"><span class="b-board-img" style="aspect-ratio: {{b.bd.ar}}"><img src="{{b.bd.thumb}}" alt="" loading="lazy"><span class="b-board-z" aria-hidden="true">+</span></span><span class="b-board-cap"><span class="b-board-t">{{b.bd.title}}</span></span></button></div></sc-if><sc-if value="{{b.hasFlow}}" hint-placeholder-val="{{false}}"><div class="b-flow"><p class="b-flow-l"><span class="b-flow-h" aria-hidden="true">♥</span>{{b.flowLabel}}</p><ol class="b-flow-s"><sc-for list="{{b.flowSteps}}" as="fs" hint-placeholder-count="0"><li><span class="b-flow-n">{{fs.n}}</span>{{fs.t}}</li></sc-for></ol></div></sc-if></div></div></sc-if>
 <sc-if value="{{b.isShift}}" hint-placeholder-val="{{false}}"><div class="b-shift"><span class="b-shift-c c1" aria-hidden="true"></span><span class="b-shift-c c2" aria-hidden="true"></span><span class="b-shift-c c3" aria-hidden="true"></span><p class="b-shift-h">{{b.title}}<span>{{b.sub}}</span></p><ul class="b-shift-l"><sc-for list="{{b.shiftRows}}" as="sr" hint-placeholder-count="0"><li><span>{{sr.a}}</span><svg class="b-shift-ar" viewBox="0 0 60 40" role="img" aria-label="becomes"><path d="M4 20 H50 M34 5 Q44 18 54 20 Q44 22 34 35"></path></svg><span>{{sr.b}}</span></li></sc-for></ul><sc-if value="{{b.hasNote}}" hint-placeholder-val="{{false}}"><p class="b-shift-n">{{b.note}}</p></sc-if></div></sc-if>
-<sc-if value="{{b.isBoards}}" hint-placeholder-val="{{false}}"><div class="b-boards"><p class="b-boards-hint">{{b.hint}}</p><sc-for list="{{b.rows}}" as="row" hint-placeholder-count="0"><div class="b-brow"><sc-for list="{{row.items}}" as="bd" hint-placeholder-count="0"><button class="b-board" type="button" style="flex: {{bd.ar}} 1 0" aria-label="Open cluster {{bd.n}}: {{bd.title}}" onClick="{{bd.open}}"><span class="b-board-img" style="aspect-ratio: {{bd.ar}}"><img src="{{bd.thumb}}" alt="" loading="lazy"><span class="b-board-z" aria-hidden="true">+</span></span><span class="b-board-cap"><span class="b-board-n">{{bd.n}}</span><span class="b-board-t">{{bd.title}}</span></span></button></sc-for></div></sc-for></div></sc-if>
+<sc-if value="{{b.isBoards}}" hint-placeholder-val="{{false}}"><div class="b-boards {{b.tallCls}}"><p class="b-boards-hint">{{b.hint}}</p><sc-for list="{{b.rows}}" as="row" hint-placeholder-count="0"><div class="b-brow"><sc-for list="{{row.items}}" as="bd" hint-placeholder-count="0"><button class="b-board" type="button" style="flex: {{bd.ar}} 1 0" aria-label="Open cluster {{bd.n}}: {{bd.title}}" onClick="{{bd.open}}"><span class="b-board-img" style="aspect-ratio: {{bd.ar}}"><img src="{{bd.thumb}}" alt="" loading="lazy"><span class="b-board-z" aria-hidden="true">+</span></span><span class="b-board-cap"><span class="b-board-n">{{bd.n}}</span><span class="b-board-t">{{bd.title}}</span></span></button></sc-for></div></sc-for></div></sc-if>
 <sc-if value="{{b.isPols}}" hint-placeholder-val="{{false}}"><div class="b-pols"><sc-for list="{{b.pols}}" as="pl" hint-placeholder-count="0"><figure class="pol" style="--r: {{pl.r}}deg; --y: {{pl.y}}px"><img src="{{pl.src}}" alt="{{pl.cap}}" loading="lazy"></figure></sc-for></div></sc-if>
 <sc-if value="{{b.isVisual}}" hint-placeholder-val="{{false}}"><div class="b-visual {{b.vcls}}"><sc-if value="{{b.hasSrc}}" hint-placeholder-val="{{false}}"><img src="{{b.src}}" alt="{{b.caption}}"></sc-if><sc-if value="{{b.noSrc}}" hint-placeholder-val="{{true}}"><span class="cap">[VISUAL: {{b.caption}}]</span></sc-if></div></sc-if>
 <sc-if value="{{b.isSteps}}" hint-placeholder-val="{{false}}"><ol class="b-steps"><sc-for list="{{b.stepList}}" as="st" hint-placeholder-count="0"><li class="b-step"><span class="b-step-n">{{st.n}}</span><span class="b-step-t">{{st.text}}</span></li></sc-for></ol></sc-if>
-<sc-if value="{{b.isPersona}}" hint-placeholder-val="{{false}}"><div class="b-persona"><p class="b-persona-n" style="margin: 0">{{b.name}}<span>{{b.role}}</span></p><p class="b-persona-t">{{b.text}}</p></div></sc-if>
+<sc-if value="{{b.isPersona}}" hint-placeholder-val="{{false}}"><div class="b-persona" style="background-color: #b80000"><p class="b-persona-n" style="margin: 0; color: #000000">{{b.name}}<span>{{b.role}}</span></p><p class="b-persona-t">{{b.text}}</p></div></sc-if>
 <sc-if value="{{b.isTest}}" hint-placeholder-val="{{false}}"><div class="b-test {{b.tcls}}"><div class="b-test-h"><span class="b-test-n">{{b.name}}</span><sc-if value="{{b.hasScore}}" hint-placeholder-val="{{false}}"><span class="b-test-s">{{b.score}}</span></sc-if></div><div class="b-test-body"><div class="b-test-txt"><p class="b-p">{{b.text}}</p><sc-if value="{{b.hasQuote}}" hint-placeholder-val="{{false}}"><p class="b-test-q">“{{b.quote}}”</p></sc-if><sc-if value="{{b.hasChange}}" hint-placeholder-val="{{false}}"><p class="b-test-c"><b>{{b.changeLabel}}</b>{{b.change}}</p></sc-if></div><sc-if value="{{b.hasVid}}" hint-placeholder-val="{{false}}"><video class="b-test-v" src="{{b.vid}}" poster="{{b.vposter}}" ref="{{b.vref}}" autoPlay="{{true}}" muted="{{true}}" loop="{{true}}" playsInline="{{true}}" preload="auto" aria-label="{{b.name}}" style="height: 340px; object-fit: cover; object-position: 50% 49.2788%"></video></sc-if></div><sc-if value="{{b.hasImgs}}" hint-placeholder-val="{{false}}"><div class="b-test-imgs"><sc-for list="{{b.imgs}}" as="im" hint-placeholder-count="0"><img class="b-test-img" src="{{im.src}}" style="flex: {{im.ar}} 1 0" alt="" loading="lazy"></sc-for></div></sc-if></div></sc-if>
 </sc-for>
 </div>
@@ -539,6 +547,92 @@ class Component extends DCLogic {
           { type: 'visual', caption: 'Browse page with filters', src: 'assets/3f0dd7a811d49e9681bf255b0b1b441b.jpg' },
           { type: 'visual', caption: 'Record page with rent or buy', src: 'assets/cb21098c3f0bc42e957f9521ea5837e2.jpg' } ] }
       ] },
+    { title: 'NUMA', year: '2024-25', category: 'HEALTH APP / UX CASE STUDY', client: 'MILES', role: 'SOLO: RESEARCH, CONCEPT, UI, TESTING',
+      tools: 'FIGMA', image: 'assets/d07b9d387396d9d0d91a9ffb89474aaf.jpg',
+      destination: 'https://www.figma.com/proto/VUUDOZZeVF0YkWU2RGN5Wz/MILES-APP?page-id=189%3A1444&node-id=189-2055&viewport=-1674%2C-396%2C0.44&t=L3BpZ6oOlav7DTHL-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=189%3A2055',
+      heroCaption: 'NUMA: REFLECT, ENERGY AND JOURNAL',
+      desc: 'A CALM COMPANION FOR PEOPLE RECOVERING FROM LONG COVID.',
+      shortMeta: 'SOLO / PROJECT 3, UXD THUAS / 2024-25',
+      lead: '"I DON’T FEEL LIKE MYSELF ANYMORE, BUT I’M TRYING TO FIND PIECES OF WHO I WAS."',
+      body: '',
+      metaList: [['CLIENT', 'MILES'], ['CONTEXT', 'PROJECT 3, DESIGN SHOWCASE (UXD, THUAS)'], ['YEAR', '2024-25'], ['TEAM', 'SOLO'], ['MY ROLE', 'RESEARCH, CONCEPT, UI DESIGN, USER TESTING'], ['METHODS', 'DESK RESEARCH, INTERVIEWS, AFFINITY DIAGRAM, PERSONA, LOTUS BLOSSOM, WHAT IF, SCAMPER, USER TESTING']],
+      sections: [
+        { label: 'TRY IT', title: 'CLICK THROUGH THE PROTOTYPE', blocks: [
+          { type: 'live', url: 'https://www.figma.com/proto/VUUDOZZeVF0YkWU2RGN5Wz/MILES-APP?page-id=189%3A1444&node-id=189-2055&viewport=-1674%2C-396%2C0.44&t=L3BpZ6oOlav7DTHL-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=189%3A2055', src: 'assets/d07b9d387396d9d0d91a9ffb89474aaf.jpg', caption: 'NUMA home screens' },
+          { type: 'p', text: 'The full Figma prototype opens in a new tab. Pick your home screen and walk through a day with Amelie.' } ] },
+        { label: 'THE PROBLEM', title: 'RECOVERY IS MORE THAN SYMPTOMS', blocks: [
+          { type: 'p', text: 'People with Long COVID deal with much more than physical symptoms like fatigue and crashes after effort. They also face emotional exhaustion, brain fog and a loss of identity. Most existing apps feel too clinical or overwhelming to use on a low-energy day, which makes recovery feel even more isolating.' },
+          { type: 'callout', red: true, text: 'HOW DO YOU TRACK ENERGY WITHOUT ADDING PRESSURE?', sub: 'For Miles, I looked at how people with Long COVID, and the caregivers around them, manage energy, emotions and daily routines, and what support they feel is missing.' } ] },
+        { label: 'RESEARCH', title: 'WHAT I HEARD', blocks: [
+          { type: 'p', text: 'I started with desk research to understand Long COVID and its most common challenges. Then I interviewed a Long COVID patient and a caregiver, an occupational therapist, to hear both the personal and the professional side of recovery. Everything went onto data cards and into an affinity diagram.' },
+          { type: 'quotes', items: ['I’m tired every single day. But maybe it’s something wrong with my nutrition that week.', 'You have one application for the heartbeat, one for the water, one for exercising…', 'Seeing your friends being the same after Covid and you being different.'] },
+          { type: 'list', items: [
+            { t: 'TOOLS THAT FIT THE DAY', b: 'People want to track mood, energy and symptoms in a way that follows how they actually feel, so they feel more in control.' },
+            { t: 'RECOVERY IS NOT A STRAIGHT LINE', b: 'People get tired, discouraged or stuck. Gentle motivation and emotional support make a big difference.' },
+            { t: 'MISUNDERSTOOD AND DISMISSED', b: 'Many feel brushed off by doctors and family, which makes recovery harder emotionally.' },
+            { t: 'CALM OVER CLUTTER', b: 'Brain fog makes busy apps frustrating. Even the Apple Watch felt too crowded. The design has to be clear and minimal.' },
+            { t: 'LOSING WHO YOU WERE', b: 'Identity loss came up again and again, like going from competitive dancing to getting tired from a walk.' } ] },
+          { type: 'persona', name: 'AMELIE', role: '20, UNIVERSITY STUDENT WITH LONG COVID', text: 'She wants to stay independent and manage her energy while balancing school and daily life. She doesn’t need another tracker, she needs a quiet space to notice how she feels, pace herself gently and reconnect with who she’s becoming.' } ] },
+        { label: 'FOCUS', title: 'CALM, NOT CLINICAL', blocks: [
+          { type: 'p', text: 'My goal was a health companion that feels calm, helpful and supportive instead of stressful or medical, so users feel seen and in control of their recovery.' },
+          { type: 'list', cols: 3, items: [
+            { t: 'ADAPTIVITY', b: 'It responds to the user’s energy, symptoms and mood, day by day.' },
+            { t: 'PERSONAL GOALS', b: 'Progress is defined by the user, not by fixed targets, so it stays meaningful.' },
+            { t: 'AUTONOMY + RECOGNITION', b: 'Users feel respected and validated, never micromanaged.' } ] } ] },
+        { label: 'IDEATION', title: 'ENERGY AS RHYTHM, MEMORY THROUGH VOICE', blocks: [
+          { type: 'p', text: 'I diverged with Lotus Blossom and What If, mapped the ideas against the 10 needs from Miles, then pushed them further with SCAMPER.' },
+          { type: 'boards', hint: 'CLICK A BOARD TO LOOK CLOSER.', items: [
+            { n: '01', title: 'DIVERGING AND CONVERGING', thumb: 'assets/53c6f048c39d60b1028d95bf258ff9b5.jpg', src: 'assets/53c6f048c39d60b1028d95bf258ff9b5.jpg', ar: 1.778, row: 0 },
+            { n: '02', title: 'WILD OR UNEXPECTED IDEAS', thumb: 'assets/bddd5f7b146a23e2dadccdde6a45a400.jpg', src: 'assets/bddd5f7b146a23e2dadccdde6a45a400.jpg', ar: 1.778, row: 0 } ] },
+          { type: 'callout', text: 'WEIRD IDEAS HELPED ME STOP OVERTHINKING FEATURES.', sub: 'I started focusing on how the app should feel for someone in recovery, not just what it should do. Ideas that seemed random at first, like a before and now gallery or a podcast, ended up shaping the final direction.' } ] },
+        { label: 'CONCEPTS', title: 'THREE DIRECTIONS', blocks: [
+          { type: 'list', cols: 3, items: [
+            { t: 'RHYTHM', b: 'A smartwatch-connected app that plans your day around your energy and emotions, with voiced progress journaling and recovery prompts.' },
+            { t: 'BLOOM', b: 'A gentle journal for days when everything feels like too much. Food, rest and emotions logged without calories or pressure.' },
+            { t: 'KINDRED', b: 'A private space for the parts of recovery you can’t measure: voice notes to your future self and small, quiet peer circles.' } ] },
+          { type: 'boards', hint: 'THE CONCEPT BOARDS AND HOW EACH ONE FITS. CLICK ONE TO LOOK CLOSER.', items: [
+            { n: '01', title: 'RHYTHM AND BLOOM', thumb: 'assets/9ab1c8803b8f0fc8f5ce7d3b14027f09.jpg', src: 'assets/9ab1c8803b8f0fc8f5ce7d3b14027f09.jpg', ar: 1.778, row: 0 },
+            { n: '02', title: 'KINDRED AND THE FIT OF EACH CONCEPT', thumb: 'assets/b1b27dba7b82eb3cc067263f2d248be1.jpg', src: 'assets/b1b27dba7b82eb3cc067263f2d248be1.jpg', ar: 1.778, row: 0 } ] },
+          { type: 'callout', red: true, text: 'NUMA TAKES THE BEST OF ALL THREE.', bigSub: true, sub: 'One calming space for both emotional reflection and energy regulation.' } ] },
+        { label: 'THE APP', title: 'MEET NUMA', blocks: [
+          { type: 'p', text: 'NUMA is a calming companion to rebuild your energy, identity and confidence, one choice, one memory at a time. You choose what your home screen focuses on: energy, food or reflection.' },
+          { type: 'list', items: [
+            { t: 'ENERGY + PACING', b: 'An energy chart and a soft “pace myself” plan that adapts to how you feel, instead of a fixed schedule.' },
+            { t: 'FOOD AND ENERGY', b: 'Gentle meal and water logging that shows how food might connect to tiredness, without counting calories.' },
+            { t: 'REFLECTION', b: 'A daily prompt you can answer by writing or by voice, plus a journal that shows how you’ve been doing over time.' },
+            { t: 'TRENDS', b: 'Weekly energy and diet patterns, framed as information, not a score.' } ] },
+          { type: 'boards', hint: 'THE FINAL SCREENS. CLICK ONE TO LOOK CLOSER.', items: [
+            { n: '01', title: 'WELCOME', thumb: 'assets/27105e8b0bd945c0b86615f9a1cc1645.jpg', src: 'assets/27105e8b0bd945c0b86615f9a1cc1645.jpg', ar: 0.461, row: 0 },
+            { n: '02', title: 'CHOOSE YOUR HOME SCREEN', thumb: 'assets/8bd031fa726f90c040d3e1532e5f2549.jpg', src: 'assets/8bd031fa726f90c040d3e1532e5f2549.jpg', ar: 0.461, row: 0 },
+            { n: '03', title: 'HOME: ENERGY', thumb: 'assets/706818df8a399065d70e766911033f08.jpg', src: 'assets/706818df8a399065d70e766911033f08.jpg', ar: 0.461, row: 0 },
+            { n: '04', title: 'HOME: NUTRIENTS', thumb: 'assets/2d35c36e34fe4da2ea5b30afb7c7ba2f.jpg', src: 'assets/2d35c36e34fe4da2ea5b30afb7c7ba2f.jpg', ar: 0.461, row: 0 },
+            { n: '05', title: 'HOME: REFLECT', thumb: 'assets/251dbb521c6a471e7a02bf8fb5feca90.jpg', src: 'assets/251dbb521c6a471e7a02bf8fb5feca90.jpg', ar: 0.461, row: 0 },
+            { n: '06', title: 'PACE MYSELF', thumb: 'assets/57f69e58ebfd5da07d9774eb756dc3a4.jpg', src: 'assets/57f69e58ebfd5da07d9774eb756dc3a4.jpg', ar: 0.413, row: 1 },
+            { n: '07', title: 'TRENDS', thumb: 'assets/3b2f8a698b690f5378e151d9fc3d23a0.jpg', src: 'assets/3b2f8a698b690f5378e151d9fc3d23a0.jpg', ar: 0.256, row: 1 },
+            { n: '08', title: 'TODAY’S NUTRIENTS', thumb: 'assets/fd8d6ae24fceeedadb5e00bdc8257ba4.jpg', src: 'assets/fd8d6ae24fceeedadb5e00bdc8257ba4.jpg', ar: 0.285, row: 1 },
+            { n: '09', title: 'DIETARY SUMMARY', thumb: 'assets/4cdf6c0c4353ab7a96132c57cc44fa9d.jpg', src: 'assets/4cdf6c0c4353ab7a96132c57cc44fa9d.jpg', ar: 0.303, row: 1 },
+            { n: '10', title: 'RECORD', thumb: 'assets/42b623da80c3b55af6605dc724deceae.jpg', src: 'assets/42b623da80c3b55af6605dc724deceae.jpg', ar: 0.457, row: 2 },
+            { n: '11', title: 'RECORDING', thumb: 'assets/f8b8c5e0bc97556124e557bb031cf212.jpg', src: 'assets/f8b8c5e0bc97556124e557bb031cf212.jpg', ar: 0.457, row: 2 },
+            { n: '12', title: 'WRITE', thumb: 'assets/33cc360ca3b980df1ef62eb6449bfe87.jpg', src: 'assets/33cc360ca3b980df1ef62eb6449bfe87.jpg', ar: 0.452, row: 2 },
+            { n: '13', title: 'JOURNAL', thumb: 'assets/50cb3cff4020209e4d7c9e4314fa5023.jpg', src: 'assets/50cb3cff4020209e4d7c9e4314fa5023.jpg', ar: 0.400, row: 2 },
+            { n: '14', title: 'JOURNAL ENTRY', thumb: 'assets/e2a45eeed28b06e9f594a8382d4c7152.jpg', src: 'assets/e2a45eeed28b06e9f594a8382d4c7152.jpg', ar: 0.445, row: 2 },
+            { n: '15', title: 'REFLECTION', thumb: 'assets/60893e463f077dbaa5ec122492fac3bb.jpg', src: 'assets/60893e463f077dbaa5ec122492fac3bb.jpg', ar: 0.323, row: 2 } ] } ] },
+        { label: 'TESTING', title: 'FIVE TESTERS, ONE CONFUSING GALLERY', blocks: [
+          { type: 'p', text: 'I tested the first version with five people. They explored the app and answered five questions about clarity, low-energy days, features and how the app made them feel.' },
+          { type: 'quotes', items: ['Comfortable.', 'Reassured.', 'Low-pressure and friendly.', 'Encouraged.'] },
+          { type: 'stat', value: '3/5', text: 'testers found the gallery confusing or unnecessary as a main feature.' },
+          { type: 'test', name: 'VERSION 1 → VERSION 2', images: [{ src: 'assets/fc7e81621f13ef9ab78c266ee2ced967.jpg', ar: 0.255 }, { src: 'assets/3840bcd3057d31405ff5b34abea89392.jpg', ar: 0.362 }, { src: 'assets/2d35c36e34fe4da2ea5b30afb7c7ba2f.jpg', ar: 0.461 }],
+            text: 'The first version put a lot on one screen, and the gallery had its own page. Testers liked the calm layout and the voice journaling, but wanted a clearer start, simpler paths on tired days and a link between food and energy.',
+            change: 'Removed the breathing exercise, added a short introduction, let users pick an energy, food or journaling home screen, added food and tiredness insights, moved the gallery into the journal as photos, and cut the navigation to three icons.' },
+          { type: 'table', strongFirst: true, head: ['FEEDBACK', 'WHAT I CHANGED'], rows: [
+            ['Purpose not clear at first', 'A short introduction to the app'],
+            ['Wanted simpler paths on tired days', 'Choose your own home screen, three-icon navigation'],
+            ['Gallery felt confusing', 'Photos now live inside the journal'],
+            ['Wanted to see how food affects energy', 'Food and tiredness insights'],
+            ['Breathing exercise felt unneeded', 'Removed'] ] } ] },
+        { label: 'REFLECTION', title: '', blocks: [
+          { type: 'callout', text: 'USERS DON’T JUST NEED FEATURES, THEY NEED TO FEEL UNDERSTOOD.', sub: 'Next I’d ground the nutrition insights in real health data or clinician input, make foggy days more hands-free, and explore the caregiver and friend features I left out, like sending a healing postcard to someone close.' } ] }
+      ] },
     { title: 'READING A WAVE', year: '2025', category: 'INTERACTIVE READING / PROTOTYPE', client: 'INTERACTIVE DESIGN 2 (ID2), UXD THUAS', role: 'CONCEPT + DESIGN',
       tools: 'FIGMA', image: 'assets/ca01303c3858550bec773c1f9458bfc3.jpg',
       destination: 'https://www.figma.com/proto/mpTaE6it9HicdZKX8nytQi/Reading-a-Wave?node-id=137-1116&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=137%3A1116&page-id=35%3A21',
@@ -724,7 +818,7 @@ class Component extends DCLogic {
     if (t === 'table') {
       o.cols = b.head.length;
       o.headCells = b.head.map((x) => ({ text: x }));
-      o.rowList = b.rows.map((r) => ({ cells: r.map((x, j) => ({ text: x, cls: b.strongFirst && j === 0 ? 'strong' : '' })) }));
+      o.rowList = b.rows.map((r) => ({ cells: r.map((x, j) => ({ text: x, cls: b.strongFirst && j === 0 ? 'strong' : '', l: b.strongFirst && j === 0 ? '' : (b.head[j] || '') })) }));
     }
     if (t === 'list') { o.listItems = (b.items || []).map((x) => ({ t: x.t || '', b: x.b || '', hasT: !!x.t })); o.listCls = b.cols ? 'g' + b.cols : ''; }
     if (t === 'callout') { o.cls = (b.red ? 'red ' : '') + (b.size === 'm' ? 'm' : ''); o.hasSub = !!b.sub; o.sub = b.sub || ''; o.subCls = b.bigSub ? 'big' : ''; }
@@ -740,6 +834,7 @@ class Component extends DCLogic {
       its.forEach((x, k) => { const r = x.row || 0; (rows[r] = rows[r] || { items: [] }).items.push({ n: x.n, title: x.title, thumb: x.thumb, ar: x.ar, open: () => this.openBoard(its, k) }); });
       o.rows = rows.filter(Boolean);
       o.hint = b.hint || (its.length + ' CLUSTERS FROM THE DATA CARD WALL. CLICK ONE TO LOOK CLOSER.');
+      o.tallCls = its.length && its.every((x) => (x.ar || 1) < 0.7) ? 'tall' : '';
     }
     if (t === 'polaroids') { const R = [-3, 2, -1.5, 3, -2.5, 1.5, -1, 2.5]; o.pols = (b.items || []).map((x, k) => ({ src: x.src, cap: x.cap || '', r: R[k % R.length], y: (k % 3 === 1 ? 6 : 0) })); }
     if (t === 'visual') { o.hasSrc = !!b.src; o.noSrc = !b.src; o.src = b.src || ''; o.vcls = (b.src ? 'has' : '') + (b.narrow ? ' narrow' : ''); }

@@ -1,8 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Jennieration / Home</title>
 <link rel="icon" type="image/svg+xml" href="assets/a302859751994c66e33da73956313bef.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/01a9be2de7df7f6dbded3baa6c2c7a72.png">
@@ -58,7 +57,8 @@ body{margin:0;background:#fff}
 .pg-home .stage{width:calc(var(--u) * 1000);height:calc(var(--u) * 2000)}
 .pg-home .nav{left:calc(var(--u) * 37);top:calc(var(--u) * 30);font-size:calc(var(--u) * 100)}
 .pg-home .dots{width:calc(var(--u) * 1000);height:calc(var(--u) * 2000)}
-.pg-home .script{left:calc(var(--u) * 12.1);top:calc(var(--u) * 609.7);width:calc(var(--u) * 979.4)}
+/* the name keeps the desktop size set on the canvas (1294 x 547px); on phones it is scaled down to fit the screen, same proportions */
+.pg-home .script{left:calc(var(--u) * 12.1) !important;top:calc(var(--u) * 562) !important;right:auto !important;bottom:auto !important;margin:0 !important;width:calc(var(--u) * 979.4) !important;height:calc(var(--u) * 414) !important}
 .pg-home .ux{left:auto;right:calc(var(--u) * 40);top:calc(var(--u) * 1190);font-size:calc(var(--u) * 46);transform-origin:100% 0}
 .pg-home .para{left:calc(var(--u) * 40);top:calc(var(--u) * 1420);font-size:calc(var(--u) * 36);line-height:calc(var(--u) * 40.7)}
 .pg-home .ph-cap{font-size:calc(var(--u) * 34)}
@@ -81,7 +81,7 @@ body{margin:0;background:#fff}
 <a href="Jennieration.dc.html">JENNIE.RATION</a>
 <a href="About.dc.html" aria-label="About me">ABOUTME</a>
 </nav>
-<h1 class="hg"><img class="script" src="assets/e5025d51e7156b45b8131e38cc787e32.png" alt="Jennifer Kapend Fund" draggable="false"></h1>
+<h1 class="hg"></h1>
 <p class="ux">UX DESIGNER</p>
 <p class="para"><span class="l1">A LOT OF CURIOSITY, A LITTLE BIT OF</span><span class="l2">EXPERIMENTING, AND AS FOR THE</span><span class="l3">REST, I’M STILL FIGURING IT OUT...</span></p>
 <canvas class="dots" ref="{{dotsRef}}" aria-hidden="true"></canvas>
@@ -104,7 +104,7 @@ body{margin:0;background:#fff}
 <sc-for list="{{zones}}" as="z" hint-placeholder-count="0">
 <button class="zone" type="button" aria-label="Reveal {{z.label}}" aria-expanded="{{z.expanded}}" style="left: calc(var(--u) * {{z.x}}); top: calc(var(--u) * {{z.y}}); width: calc(var(--u) * {{z.w}}); height: calc(var(--u) * {{z.h}})" onPointerDown="{{z.down}}" onPointerEnter="{{z.enter}}" onPointerLeave="{{z.leave}}" onClick="{{z.click}}" onFocus="{{z.focus}}" onBlur="{{z.blur}}"></button>
 </sc-for>
-</div>
+<img class="script" src="assets/e5025d51e7156b45b8131e38cc787e32.png" alt="Jennifer Kapend Fund" draggable="false" style="height: 547px; width: 1294px; top: 0px; position: absolute; left: 0px; object-fit: fill; opacity: 1; right: 0px; margin-left: auto; margin-right: auto; bottom: 0px; margin-top: auto; margin-bottom: auto"></div>
 </main>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1018}}'>

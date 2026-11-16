@@ -1,8 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Jennieration / Jennie.ration</title>
 <link rel="icon" type="image/svg+xml" href="assets/a302859751994c66e33da73956313bef.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/01a9be2de7df7f6dbded3baa6c2c7a72.png">
@@ -78,7 +77,8 @@ body{margin:0;background:#000}
 .pg-jen .ex-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(20px,4vw,64px);margin-top:clamp(24px,4vw,56px);align-items:start}
 .pg-jen .ex-hero{background:#000;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
 .pg-jen .ex-hero img{display:block;width:100%;height:100%;object-fit:contain}
-.pg-jen .ex-hero-vid{display:block;width:100%;height:100%;object-fit:cover}
+.pg-jen .ex-hero-vid{display:block;width:100%;height:100%;object-fit:contain}
+.pg-jen .ex-hero:has(.ex-hero-vid){background:#efefef}
 .pg-jen .asm-intro{max-width:760px;margin-top:clamp(40px,5vw,80px)}
 .pg-jen .ex-hero .o-cap{font-size:20px;left:14px;bottom:12px}
 .pg-jen .ex-p{margin:0 0 1em;font-family:'Archivo',Arial,sans-serif;font-size:clamp(16px,1.25vw,19px);line-height:1.55}
@@ -272,9 +272,11 @@ body{margin:0;background:#000}
 .pg-jen .o-h{font-size:calc(var(--u) * 200)}
 .pg-jen .o-sub{font-size:calc(var(--u) * 44)}
 .pg-jen .o-grid{gap:calc(var(--u) * 28) calc(var(--u) * 24);margin-top:calc(var(--u) * 36)}
-.pg-jen .o-t{font-size:calc(var(--u) * 34)}
-.pg-jen .o-d{display:none}
-.pg-jen .o-tag{font-size:calc(var(--u) * 24)}
+/* phone tiles: three across, so all six fit on screen; the long description is left out (it would be unreadably small) */
+.pg-jen .o-t{font-size:calc(var(--u) * 46)}
+.pg-jen .o-d{display:none !important}
+.pg-jen .o-tag{font-size:calc(var(--u) * 36)}
+.pg-jen .o-more{font-size:calc(var(--u) * 38)}
 .pg-jen .o-cap{font-size:calc(var(--u) * 28)}
 .pg-jen .pl{left:calc(var(--u) * 300);width:calc(var(--u) * 388);font-size:calc(var(--u) * 170)}
 .pg-jen .pl1{top:calc(var(--u) * 60)}
@@ -282,7 +284,12 @@ body{margin:0;background:#000}
 .pg-jen .pl3{top:calc(var(--u) * 460)}
 .pg-jen .pl4{top:calc(var(--u) * 660)}
 .pg-jen .portrait{left:calc(var(--u) * 450);top:calc(var(--u) * 442);width:calc(var(--u) * 237);height:calc(var(--u) * 198)}
-.pg-jen .portrait .go{opacity:1;transform:none;font-size:calc(var(--u) * 34)}
+.pg-jen .portrait .go{opacity:1;transform:none;font-size:calc(var(--u) * 40)}
+/* side pages on phones: long titles wrap instead of running off the screen, prev/next step aside while you scroll */
+.pg-jen .ex-h{font-size:clamp(34px,10vw,96px);overflow-wrap:break-word}
+.pg-jen .ex-pn{transition:opacity .25s ease,transform .3s ease}
+.pg-jen .ex-pn.moving{opacity:0;transform:translateY(12px);pointer-events:none}
+.pg-jen .ex-pn-b{height:44px;min-width:44px;font-size:26px}
 }
 @media (prefers-reduced-motion: reduce){
 .jr.pg-jen,.pg-jen .lb{animation:none}
@@ -567,7 +574,7 @@ class Component extends DCLogic {
         'An interactive prototype where your body becomes the way into art. You strike a pose in front of the camera, it gets matched to a figure in a painting, and an AI-generated text layer tells you more about the work you landed on.',
         'To build the pose library I made my own annotation tool. I drop in paintings from the Rijksmuseum collection, from The Milkmaid to Paul healing a man who could not walk, it detects the figures, and I check and fix every skeleton by hand before exporting them all to one poses.json. So far that’s 15 paintings. The painting info I add there feeds the AI text, so it stays factual.'
       ],
-      facts: [{ k: 'WHAT', v: 'POSE MATCHING TO PAINTINGS' }, { k: 'LAYER', v: 'AI-GENERATED TEXT' }, { k: 'TOOLS', v: 'FIGMA, [ADD YOUR OTHER TOOLS]' }],
+      facts: [{ k: 'WHAT', v: 'POSE MATCHING TO PAINTINGS' }, { k: 'LAYER', v: 'AI-GENERATED TEXT' }, { k: 'TOOLS', v: 'FIGMA, AI' }],
       galTitle: 'THE DESIGN AND THE TOOL',
       gallery: [
         { src: 'assets/26c743f673f48a469550ccd1acf061d9.jpg', cap: 'START SCREEN: CLAP YOUR HANDS TO START' },
@@ -1300,7 +1307,20 @@ class Component extends DCLogic {
     frame();
   }
 
-  exRef = (el) => { if (el && el !== this.exEl) { this.exEl = el; el.focus({ preventScroll: true }); } if (!el) this.exEl = null; };
+  exRef = (el) => {
+    if (el && el !== this.exEl) {
+      this.exEl = el; el.focus({ preventScroll: true });
+      // phones: the prev/next buttons step aside while you scroll so they never sit on the text, back when you stop
+      el.addEventListener('scroll', () => {
+        if (!window.matchMedia('(max-aspect-ratio: 1/1)').matches) return;
+        const pn = el.parentNode && el.parentNode.querySelector('.ex-pn');
+        if (!pn) return;
+        pn.classList.add('moving');
+        clearTimeout(this.pnT); this.pnT = setTimeout(() => pn.classList.remove('moving'), 450);
+      }, { passive: true });
+    }
+    if (!el) this.exEl = null;
+  };
   vidRef = (el) => { if (el) { el.muted = true; el.loop = true; const p = el.play && el.play(); if (p && p.catch) p.catch(() => {}); } };
   exKey = (e) => { if (e.key === 'Escape') { if (this.state.zoom) this.zoomClose(); else this.closeEx(); } };
   // FULL-SIZE IMAGE POP-UP on example pages
