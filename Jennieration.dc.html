@@ -78,6 +78,8 @@ body{margin:0;background:#000}
 .pg-jen .ex-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(20px,4vw,64px);margin-top:clamp(24px,4vw,56px);align-items:start}
 .pg-jen .ex-hero{background:#000;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
 .pg-jen .ex-hero img{display:block;width:100%;height:100%;object-fit:contain}
+.pg-jen .ex-hero-vid{display:block;width:100%;height:100%;object-fit:cover}
+.pg-jen .asm-intro{max-width:760px;margin-top:clamp(40px,5vw,80px)}
 .pg-jen .ex-hero .o-cap{font-size:20px;left:14px;bottom:12px}
 .pg-jen .ex-p{margin:0 0 1em;font-family:'Archivo',Arial,sans-serif;font-size:clamp(16px,1.25vw,19px);line-height:1.55}
 .pg-jen .ex-lead{font-family:inherit;font-size:clamp(26px,2.4vw,38px);line-height:1;letter-spacing:-.01em;margin:0 0 .7em}
@@ -92,6 +94,29 @@ body{margin:0;background:#000}
 .pg-jen .ex-tt-go:hover{color:#B80000}
 .pg-jen .ex-tt-go:focus-visible{outline:2px solid #B80000;outline-offset:4px}
 .pg-jen .ex-tt-note{margin:-6px 0 18px;max-width:60ch;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:clamp(15px,1.1vw,18px);line-height:1.4;color:#000}
+/* CABFAB SHOTS: the lamp stays pinned in the background and clicks together as you scroll,
+   while the step captions scroll past over it */
+.pg-jen .ex{overflow-x:hidden}
+.pg-jen .asm{position:relative;height:700vh;width:100vw;margin:clamp(30px,4vw,60px) 0 clamp(30px,4vw,60px) calc(50% - 50vw);background:#f4f4f2}
+.pg-jen .asm-pin{position:sticky;top:0;height:100vh;overflow:hidden}
+.pg-jen .asm-stage,.pg-jen .asm-glow{position:absolute;inset:0}
+.pg-jen .asm-stage canvas{display:block;width:100%;height:100%}
+.pg-jen .asm-glow{pointer-events:none;opacity:0;background:radial-gradient(circle at 63% 50%,rgba(255,140,30,.5),rgba(255,140,30,0) 55%)}
+.pg-jen .asm-load{position:absolute;inset:0;display:grid;place-items:center;font-size:clamp(26px,2.6vw,40px);color:#929292;transition:opacity .6s}
+.pg-jen .asm-bar{position:absolute;left:0;bottom:0;height:4px;width:0;background:#B80000}
+.pg-jen .asm-steps{position:absolute;inset:0;pointer-events:none}
+.pg-jen .asm-step{position:absolute;left:clamp(18px,4vw,80px);height:100vh;display:flex;align-items:flex-end;padding-bottom:clamp(30px,7vh,80px);box-sizing:border-box}
+.pg-jen .asm-card{max-width:min(36vw,520px)}
+.pg-jen .asm-step.intro .asm-p{max-width:46ch}
+.pg-jen .asm-n{display:block;font-size:clamp(22px,2.4vw,40px);line-height:1;color:#B80000}
+.pg-jen .asm-h{margin:6px 0 12px;font-weight:400;font-size:clamp(52px,6.4vw,120px);line-height:.88;letter-spacing:-.04em}
+.pg-jen .asm-p{margin:0;max-width:38ch;font-family:'Archivo',Arial,sans-serif;font-size:clamp(15px,1.25vw,19px);line-height:1.5}
+@media (max-aspect-ratio: 1/1){
+.pg-jen .asm-glow{background:radial-gradient(circle at 50% 36%,rgba(255,140,30,.5),rgba(255,140,30,0) 55%)}
+.pg-jen .asm-step{right:18px;left:18px}
+.pg-jen .asm-card{max-width:none;background:rgba(244,244,242,.88);padding:14px 16px}
+.pg-jen .asm-h{font-size:clamp(52px,15vw,110px)}
+}
 .pg-jen .ex-tt{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,1.6vw,24px)}
 .pg-jen .ex-tt figure{margin:0}
 .pg-jen .ex-tt video{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;background:#f2f2f2}
@@ -364,6 +389,7 @@ body{margin:0;background:#000}
 <div class="ex-hero">
 <sc-if value="{{ex.hasImg}}" hint-placeholder-val="{{false}}"><button class="zbtn zfill" type="button" aria-label="View full size" onClick="{{zoomOpen}}" data-src="{{ex.src}}" data-alt="{{ex.title}}"><img src="{{ex.src}}" alt="{{ex.title}}"></button></sc-if>
 <sc-if value="{{ex.noImg}}" hint-placeholder-val="{{true}}"><span class="o-cap">[{{ex.caption}}]</span></sc-if>
+<sc-if value="{{ex.hasHeroVid}}" hint-placeholder-val="{{false}}"><video class="ex-hero-vid" src="{{ex.heroVid}}" poster="{{ex.heroPoster}}" ref="{{vidRef}}" autoPlay="{{true}}" muted="{{true}}" loop="{{true}}" playsInline="{{true}}" preload="auto" aria-label="{{ex.title}}, turning"></video></sc-if>
 </div>
 <div>
 <p class="ex-lead">{{ex.text}}</p>
@@ -401,6 +427,12 @@ body{margin:0;background:#000}
 <h3 class="ex-gh">{{ex.videoTitle}}</h3>
 <video class="ex-vid" src="{{ex.video}}" poster="{{ex.videoPoster}}" ref="{{vidRef}}" autoPlay="{{true}}" muted="{{true}}" loop="{{true}}" playsInline="{{true}}" preload="auto" aria-label="{{ex.title}} video"></video>
 <sc-if value="{{ex.hasVNote}}" hint-placeholder-val="{{false}}"><p class="ex-vnote">{{ex.videoNote}}</p></sc-if>
+</sc-if>
+<sc-if value="{{ex.hasAsm}}" hint-placeholder-val="{{false}}">
+<section class="asm" ref="{{asmRef}}" data-src="{{ex.asmData}}" aria-label="CabFab lamp, assembled piece by piece as you scroll">
+<div class="asm-pin"><div class="asm-glow"></div><div class="asm-stage"></div><div class="asm-load">LOADING THE LAMP</div><div class="asm-bar"></div></div>
+<div class="asm-steps"><sc-for list="{{ex.asmSteps}}" as="st" hint-placeholder-count="8"><div class="asm-step {{st.cls}}" style="top: {{st.top}}%"><div class="asm-card"><span class="asm-n">{{st.n}}</span><h3 class="asm-h">{{st.t}}</h3><p class="asm-p">{{st.p}}</p></div></div></sc-for></div>
+</section>
 </sc-if>
 <sc-if value="{{ex.hasMoreVids}}" hint-placeholder-val="{{false}}"><sc-for list="{{ex.moreVids}}" as="mv" hint-placeholder-count="1">
 <h3 class="ex-gh">{{mv.title}}</h3>
@@ -485,18 +517,16 @@ class Component extends DCLogic {
         { src: 'assets/ba7965197f7f82c86fd06bd4d8dbc7b9.jpg', cap: "IT'S MY BIRTHDAY" }
       ] },
     { title: '3D SCULPTING / MODELING', tag: '3D', caption: 'RENDER', thumb: 'assets/72252eac52df70e83219c5f52067fcf9.jpg', tileVideo: 'assets/f95b359ce2f1f2ce4bdea2a49c2e70c4.mp4', src: null,
-      text: 'Characters, objects and little worlds, sculpted and modeled in 3D.',
-      about: ['[Write a few lines about your 3D work here: what you like to sculpt or model, the tools you use and what you are exploring.]'],
-      facts: [{ k: 'TOOLS', v: '[ADD YOUR TOOLS]' }, { k: 'FOCUS', v: 'SCULPTING + MODELING' }],
-      video: 'assets/f95b359ce2f1f2ce4bdea2a49c2e70c4.mp4', videoPoster: 'assets/72252eac52df70e83219c5f52067fcf9.jpg', videoTitle: 'CAB FAB LAMP',
-      videoNote: 'A touchpoint for the Caballerofabriek, made for my Shared Spaces project. People who work there tap their phone on the lamp to check in and out: an NFC tag inside opens our connected app, where they connect with each other and collect points, and the light reacts to every tap. The letters, panel, frame and back plate are 14 printed parts that clip together, no glue or screws.',
+      text: 'Objects, characters sculpted and modeled in 3D.',
+      about: ['I got into 3D during my exchange at SeoulTech, where the Digital Fabrication class had me model my first objects: the ornaments for Cabinet of Wonder. Since then I love designing things that end up as real objects you can hold, printed, assembled and used, like the CabFab lamp for my Shared Spaces project. Right now I\u2019m exploring how parts fit and click together, and how a 3D object can become a touchpoint people interact with.'],
+      facts: [{ k: 'TOOLS', v: 'FUSION 360, NOMAD SCULPT, BLENDER, AI' }, { k: 'FOCUS', v: 'SCULPTING + MODELING' }],
+      // the turning lamp is the main preview at the top of the page
+      heroVideo: 'assets/f95b359ce2f1f2ce4bdea2a49c2e70c4.mp4', heroPoster: 'assets/72252eac52df70e83219c5f52067fcf9.jpg',
+      // the lamp model (gzipped glTF as a script): it assembles in the background as you scroll
+      assembly: 'assets/d38014d50c81b9d689cad6547c2cc14f.js', assemblyTitle: 'CAB FAB LAMP', assemblyKicker: 'SHARED SPACES / CABALLEROFABRIEK',
+      assemblyText: 'A touchpoint for the Caballerofabriek, made for my Shared Spaces project. People who work there tap their phone on the lamp to check in and out: an NFC tag inside opens our connected app, where they connect with each other and collect points, and the light reacts to every tap. It is 14 printed parts that clip together, no glue or screws. Keep scrolling to put it together.',
       // turntable loops in groups under the main video. link = title of another entry to jump to.
       ttGroups: [
-        { title: 'THE LETTER SHELLS', items: [
-          { src: 'assets/71418982f0312c363805e56e63901f5b.mp4', poster: 'assets/f24b246ab4df7a226c1ef77cd9ffc37d.jpg', cap: 'SHELL C' },
-          { src: 'assets/8105ca44b086dd9cd12fe7e7943528cf.mp4', poster: 'assets/402f76a80f8f19afd227a11a83f30c8c.jpg', cap: 'SHELL B, TOP' },
-          { src: 'assets/ce2177a0922f87d35ecb48393aa60072.mp4', poster: 'assets/283a44e448ebf7715c777e722f84f5bf.jpg', cap: 'SHELL F' },
-          { src: 'assets/e562e79fbb78d9973923fd88187a510f.mp4', poster: 'assets/909dab02bb6149447ac7859a716cf8de.jpg', cap: 'SHELL A, RIGHT HALVES' } ] },
         { title: 'THE ORNAMENTS', link: 'CABINET OF WONDER', linkLabel: 'SEE THE PROJECT',
           note: 'My first 3D models, made when I was introduced to 3D modeling in the Digital Fabrication class at SeoulTech, for the Cabinet of Wonder ornaments.',
           items: [
@@ -874,6 +904,7 @@ class Component extends DCLogic {
   }
 
   componentWillUnmount() {
+    this.asmKill();
     this.colStop();
     window.removeEventListener('pointermove', this.onColMove);
     this.horseStop();
@@ -1115,6 +1146,160 @@ class Component extends DCLogic {
   goEx = (e) => { const i = +e.currentTarget.getAttribute('data-ex'); if (i >= 0) { this.setState({ ex: i, zoom: null }); const sc = this.exEl; if (sc && sc.scrollTo) sc.scrollTo(0, 0); } };
   openEx = (i) => { this.exFrom = document.activeElement; this.setState({ ex: i }); };
   closeEx = () => { this.setState({ ex: null, zoom: null }); const f = this.exFrom; if (f && f.focus) setTimeout(() => { f.focus({ preventScroll: true }); this.unshift(); }, 0); };
+  // ---------- CABFAB LAMP, assembled by scrolling (shots) ----------
+  ASM_STEPS = [
+    { at: 0.00, t: '14 PARTS', p: 'Everything printed flat and laid out. Keep scrolling and they click together, in the same order you would build it.' },
+    { at: 0.08, t: 'FRAME', p: 'The two frame halves slide together. Diamond keys at the seam drop into their holes.' },
+    { at: 0.20, t: 'BACK PLATE', p: 'The dark red back pushes onto the frame. Its pins click through the floor, and the right piece locks the seam.' },
+    { at: 0.32, t: 'LIGHT PANEL', p: 'The white diffuser goes on the front. The frame pins click through it.' },
+    { at: 0.44, t: 'THE A PAIRS', p: 'Each A is two halves keyed sideways. Join them first, then push the pair onto the panel.' },
+    { at: 0.62, t: 'C ON F', p: 'C sits on top of F, keys down. Both go onto the panel together.' },
+    { at: 0.80, t: 'B ON B', p: 'Top B on bottom B, then onto the panel. Once on, nothing can slide off sideways.' },
+    { at: 0.94, t: 'LIGHTS ON', p: '30 LEDs behind the letters, an NFC tag in the back. Tap in.' }
+  ];
+  ASM_PARTS = {
+    'frame:frame_L': { lat: [-45, 0], depth: 0, L: [0.08, 0.19], D: [0, 0] },
+    'frame:frame_R': { lat: [45, 0], depth: 0, L: [0.08, 0.19], D: [0, 0] },
+    'back:back_L': { lat: [-35, 0], depth: -150, L: [0.20, 0.27], D: [0.24, 0.32] },
+    'back:back_R': { lat: [35, 0], depth: -150, L: [0.20, 0.27], D: [0.24, 0.32] },
+    'panel:panel_L': { lat: [-35, 0], depth: 90, L: [0.32, 0.38], D: [0.36, 0.44] },
+    'panel:panel_R': { lat: [35, 0], depth: 90, L: [0.32, 0.38], D: [0.36, 0.44] },
+    'shell:2_top_midleft_A': { lat: [-28, 18], depth: 140, L: [0.44, 0.52], D: [0.52, 0.62] },
+    'shell:3_top_midright_A': { lat: [28, 18], depth: 140, L: [0.44, 0.52], D: [0.52, 0.62] },
+    'shell:6_bottom_midleft_A': { lat: [-28, -18], depth: 140, L: [0.44, 0.52], D: [0.52, 0.62] },
+    'shell:7_bottom_midright_A': { lat: [28, -18], depth: 140, L: [0.44, 0.52], D: [0.52, 0.62] },
+    'shell:1_top_left_C': { lat: [-70, 45], depth: 160, L: [0.62, 0.70], D: [0.70, 0.80], xd: 1 },
+    'shell:5_bottom_left_F': { lat: [-70, -15], depth: 160, L: [0.62, 0.70], D: [0.70, 0.80], xd: 1 },
+    'shell:4_top_right_B': { lat: [70, 45], depth: 160, L: [0.80, 0.86], D: [0.86, 0.94], xd: 1 },
+    'shell:8_bottom_right_B': { lat: [70, -15], depth: 160, L: [0.80, 0.86], D: [0.86, 0.94], xd: 1 }
+  };
+
+  asmRef = (el) => { if (el) { if (!this.asm || this.asm.el !== el) this.asmInit(el); } else this.asmKill(); };
+
+  asmKill() {
+    const a = this.asm; this.asm = null;
+    if (!a) return;
+    a.alive = false;
+    cancelAnimationFrame(a.raf);
+    if (a.ro) a.ro.disconnect();
+    if (a.offMove) a.offMove();
+    if (a.renderer) { a.renderer.dispose(); if (a.renderer.domElement.parentNode) a.renderer.domElement.remove(); }
+  }
+
+  asmInit(el) {
+    this.asmKill();
+    const a = { el: el, alive: true, prog: 0, mx: 0, my: 0 };
+    this.asm = a;
+    const src = el.getAttribute('data-src');
+    const pin = el.querySelector('.asm-pin'), stageEl = el.querySelector('.asm-stage'), glowEl = el.querySelector('.asm-glow');
+    const barEl = el.querySelector('.asm-bar'), loadEl = el.querySelector('.asm-load');
+    const B = 'https://cdn.jsdelivr.net/npm/three@0.160.0/';
+    const data = () => window.LAMP_GZ_B64 ? Promise.resolve() : new Promise((res, rej) => {
+      const sc = document.createElement('script'); sc.src = src; sc.onload = res; sc.onerror = rej; document.head.appendChild(sc);
+    });
+    Promise.all([
+      import(B + '+esm'),
+      import(B + 'examples/jsm/loaders/GLTFLoader.js/+esm'),
+      import(B + 'examples/jsm/utils/BufferGeometryUtils.js/+esm'),
+      import(B + 'examples/jsm/environments/RoomEnvironment.js/+esm'),
+      data()
+    ]).then(([THREE, GL, BU, RE]) => {
+      if (!a.alive) return;
+      const bin = Uint8Array.from(atob(window.LAMP_GZ_B64), (c) => c.charCodeAt(0));
+      const stream = new Blob([bin]).stream().pipeThrough(new DecompressionStream('gzip'));
+      return new Response(stream).arrayBuffer().then((buf) => {
+        if (!a.alive) return;
+        this.asmBuild(a, THREE, GL.GLTFLoader, BU.toCreasedNormals, RE.RoomEnvironment, buf, pin, stageEl, glowEl, barEl, loadEl);
+      });
+    }).catch((err) => { if (loadEl) loadEl.textContent = 'THE LAMP COULD NOT LOAD'; console.error(err); });
+  }
+
+  asmBuild(a, THREE, GLTFLoader, toCreasedNormals, RoomEnvironment, buf, pin, stageEl, glowEl, barEl, loadEl) {
+    const ease = (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    const seg = (p, r) => r[1] <= r[0] ? 1 : ease(Math.min(1, Math.max(0, (p - r[0]) / (r[1] - r[0]))));
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    a.renderer = renderer;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setClearColor(0x000000, 0);
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    stageEl.appendChild(renderer.domElement);
+    const scene = new THREE.Scene();
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+    const camera = new THREE.PerspectiveCamera(32, 1, 1, 3000);
+    scene.add(new THREE.HemisphereLight(0xfff1e0, 0x2a1410, 0.6));
+    const key = new THREE.DirectionalLight(0xffffff, 1.6); key.position.set(250, 300, 400); scene.add(key);
+    const rim = new THREE.DirectionalLight(0xff8040, 0.8); rim.position.set(-300, -100, -300); scene.add(rim);
+    const glow = new THREE.PointLight(0xffa040, 0, 600, 1.4); glow.position.set(0, 0, 30); scene.add(glow);
+    const size = () => {
+      const w = pin.clientWidth, h = pin.clientHeight, wide = w > h;
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      // lamp to the right on wide screens (captions on the left), higher up on phones (captions below)
+      camera.setViewOffset(w, h, wide ? -w * 0.13 : 0, wide ? 0 : h * 0.16, w, h);
+      camera.updateProjectionMatrix();
+    };
+    size();
+    a.ro = new ResizeObserver(size); a.ro.observe(pin);
+    const mv = (e) => { const r = pin.getBoundingClientRect(); a.mx = (e.clientX - r.left) / r.width * 2 - 1; a.my = (e.clientY - r.top) / r.height * 2 - 1; };
+    pin.addEventListener('pointermove', mv); a.offMove = () => pin.removeEventListener('pointermove', mv);
+    const MAT = {
+      shell: new THREE.MeshPhysicalMaterial({ color: 0xff8a1c, roughness: 0.35, metalness: 0, transparent: true, opacity: 0.92, clearcoat: 0.3, emissive: 0xffa030, emissiveIntensity: 0 }),
+      panel: new THREE.MeshStandardMaterial({ color: 0xdedad4, roughness: 0.8, emissive: 0xffd9a0, emissiveIntensity: 0 }),
+      frame: new THREE.MeshStandardMaterial({ color: 0xcfcbc5, roughness: 0.6 }),
+      back: new THREE.MeshStandardMaterial({ color: 0x8a0d0d, roughness: 0.55 })
+    };
+    const P = this.ASM_PARTS, parts = [];
+    new GLTFLoader().parse(buf, '', (gltf) => {
+      if (!a.alive) return;
+      const model = gltf.scene;
+      model.rotation.x = Math.PI / 2;
+      scene.add(model);
+      model.updateMatrixWorld(true);
+      model.position.sub(new THREE.Box3().setFromObject(model).getCenter(new THREE.Vector3()));
+      model.traverse((o) => {
+        if (!o.isMesh) return;
+        const raw = o.userData.name || o.name || (o.parent && (o.parent.userData.name || o.parent.name)) || '';
+        const name = Object.keys(P).find((k) => k === raw || k.replace(':', '') === raw.replace(':', '')) || raw;
+        const kind = ['shell', 'panel', 'frame', 'back'].find((k) => raw.indexOf(k) === 0);
+        let g = o.geometry; g.deleteAttribute('color');
+        o.geometry = toCreasedNormals(g, THREE.MathUtils.degToRad(35));
+        o.material = MAT[kind] || MAT.frame;
+        if (P[name]) parts.push({ o: o, c: P[name], base: o.position.clone() });
+      });
+      loadEl.style.opacity = 0;
+      a.parts = parts.length;
+    }, (err) => { loadEl.textContent = 'THE LAMP COULD NOT LOAD'; console.error(err); });
+    const clock = new THREE.Clock();
+    const frame = () => {
+      if (!a.alive) return;
+      a.raf = requestAnimationFrame(frame);
+      const r = a.el.getBoundingClientRect(), vh = pin.clientHeight;
+      if (r.bottom < -50 || r.top > window.innerHeight + 50) return;   // off screen: skip the work
+      const target = Math.min(1, Math.max(0, (-r.top - vh) / Math.max(1, r.height - 2 * vh)));
+      a.prog += (target - a.prog) * (window.__asmSnap ? 1 : 0.1);
+      const p = a.prog, t = clock.getElapsedTime();
+      for (const q of parts) {
+        const kL = 1 - seg(p, q.c.L), kD = 1 - seg(p, q.c.D), kx = q.c.xd ? kD : kL;
+        q.o.position.set(q.base.x + q.c.lat[0] * kx, q.base.y + q.c.depth * kD, q.base.z - q.c.lat[1] * kL);
+      }
+      // three-quarter view while it is in pieces, swinging to the front as it closes
+      const ang = THREE.MathUtils.lerp(0.95, 0.5, ease(Math.min(p / 0.9, 1))) - 0.36 * seg(p, [0.9, 1]) + a.mx * 0.06 + Math.sin(t * 0.3) * 0.02 * (1 - p);
+      const el = THREE.MathUtils.lerp(0.32, 0.06, ease(Math.min(p / 0.95, 1))) - a.my * 0.04;
+      const dist = THREE.MathUtils.lerp(1050, 600, ease(p)) * Math.max(1, 1.25 / camera.aspect);
+      camera.position.set(Math.sin(ang) * Math.cos(el) * dist, Math.sin(el) * dist, Math.cos(ang) * Math.cos(el) * dist);
+      camera.lookAt(0, -5, 20);
+      const on = seg(p, [0.94, 1]), fl = on > 0 ? 1 + Math.sin(t * 2.2) * 0.03 : 1;
+      MAT.shell.emissiveIntensity = on * 0.9 * fl;
+      MAT.panel.emissiveIntensity = on * 0.5;
+      glow.intensity = on * 9000;
+      glowEl.style.opacity = on * fl;
+      barEl.style.width = (p * 100).toFixed(2) + '%';
+      renderer.render(scene, camera);
+    };
+    frame();
+  }
+
   exRef = (el) => { if (el && el !== this.exEl) { this.exEl = el; el.focus({ preventScroll: true }); } if (!el) this.exEl = null; };
   vidRef = (el) => { if (el) { el.muted = true; el.loop = true; const p = el.play && el.play(); if (p && p.catch) p.catch(() => {}); } };
   exKey = (e) => { if (e.key === 'Escape') { if (this.state.zoom) this.zoomClose(); else this.closeEx(); } };
@@ -1247,7 +1432,7 @@ class Component extends DCLogic {
       ex: (() => {
         const o = this.othersData[this.state.ex] || this.othersData[0];
         const gal = o.gallery || [];
-        return { title: o.title, tag: o.tag, text: o.text, caption: o.caption, hasImg: !!o.src, noImg: !o.src, src: o.src || '',
+        return { title: o.title, tag: o.tag, text: o.text, caption: o.caption, hasImg: !!o.src && !o.heroVideo, noImg: !o.src && !o.heroVideo, src: o.src || '',
           about: (o.about || []).map((t) => ({ t: t })), facts: o.facts || [], hasGal: gal.length > 0 && !o.wall, hasModels: !!(o.models && o.models.length), models: o.models || [], modelTitle: o.modelTitle || '3D', hasTT: !!(o.ttGroups && o.ttGroups.length), ttGroups: (o.ttGroups || []).map((g) => { const k = g.link ? this.othersData.findIndex((x) => x.title === g.link) : -1; return { title: g.title, items: g.items, hasNote: !!g.note, note: g.note || '', hasLink: k >= 0, linkEx: k, linkLabel: g.linkLabel || 'SEE THE PROJECT' }; }), hasFx: !!(o.effects && o.effects.length), fx: (o.effects || []).map((f, k) => ({ n: String(k + 1).padStart(2, '0'), title: f.title, video: f.video, poster: f.poster || '', hasNote: !!f.note, note: f.note || '', hasV2: !!f.video2, video2: f.video2 || '', poster2: f.poster2 || '', hasGal: !!(f.gallery && f.gallery.length), gallery: f.gallery || [] })), hasMoreVids: !!(o.moreVideos && o.moreVideos.length), moreVids: (o.moreVideos || []).map((v) => ({ title: v.title, src: v.src, poster: v.poster || '', hasNote: !!v.note, note: v.note || '' })), hasVNote: !!o.videoNote, videoNote: o.videoNote || '', hasVideo: !!o.video, video: o.video || '', videoPoster: o.videoPoster || '', videoTitle: o.videoTitle || 'VIDEO',
           isEd: !!o.editorial, edHero: o.editorial ? o.editorial.hero : '',
           edSpread: o.editorial ? o.editorial.spread.map((r, k) => ({ n: r.n, h: r.h, text: r.text, img: r.img, cap: r.cap, r: r.r || 0, side: k % 2 ? 'flip' : '', items: r.items || [] })) : [],
@@ -1257,10 +1442,10 @@ class Component extends DCLogic {
             const port = !!this.state.mobile, key = this.state.ex + (port ? 'p' : 'l'), W = port ? 900 : 1600, H = port ? 1600 : 900;
             if (!this.wallPos[key]) this.wallPos[key] = o.wall.map((w, k) => ({ x: port && w.m ? w.m[0] : w.x, y: port && w.m ? w.m[1] : w.y, z: k + 1, drag: false }));
             return o.wall.map((w, k) => { const q = this.wallPos[key][k], ww = port && w.m ? w.m[2] : w.w; return { i: k, n: k + 1, src: w.src, x: (q.x / W * 100).toFixed(2), y: (q.y / H * 100).toFixed(2), w: (ww / W * 100).toFixed(2), r: w.r, z: q.z, cls: q.drag ? 'drag' : '', t1: (w.t || [])[0] || '', t2: (w.t || [])[1] || '' }; });
-          })(), hasEmbed: !!o.embed, embed: o.embed || '', embedLink: o.embedLink || o.embed || '', embedTitle: o.embedTitle || 'PROTOTYPE', embedText: o.embedText || '', hasEmbedImg: !!o.embedImg, embedUrl: o.embedUrl || 'figma.com', embedImg: o.embedImg || '', galTitle: o.galTitle || 'MORE', galCls: o.galBig ? 'big' : '', gallery: gal };
+          })(), hasEmbed: !!o.embed, embed: o.embed || '', embedLink: o.embedLink || o.embed || '', embedTitle: o.embedTitle || 'PROTOTYPE', embedText: o.embedText || '', hasEmbedImg: !!o.embedImg, embedUrl: o.embedUrl || 'figma.com', embedImg: o.embedImg || '', hasAsm: !!o.assembly, asmData: o.assembly || '', asmTitle: o.assemblyTitle || '', asmText: o.assemblyText || '', hasHeroVid: !!o.heroVideo, heroVid: o.heroVideo || '', heroPoster: o.heroPoster || '', asmSteps: o.assembly ? [{ n: o.assemblyKicker || '', t: o.assemblyTitle || '', p: o.assemblyText || '', top: '0', cls: 'intro' }].concat(this.ASM_STEPS.map((x, k) => ({ n: String(k).padStart(2, '0') + ' / ' + String(this.ASM_STEPS.length - 1).padStart(2, '0'), t: x.t, p: x.p, top: ((100 + x.at * 500) / 700 * 100).toFixed(2), cls: '' }))) : [], galTitle: o.galTitle || 'MORE', galCls: o.galBig ? 'big' : '', gallery: gal };
       })(),
       goEx: this.goEx, zoomOpen: this.zoomOpen, zoomClose: this.zoomClose, zoomOn: !!this.state.zoom, zoomSrc: this.state.zoom ? this.state.zoom.src : '', zoomAlt: this.state.zoom ? this.state.zoom.alt : '',
-      vidRef: this.vidRef, closeEx: this.closeEx, exRef: this.exRef, exKey: this.exKey, wallRef: this.wallRef, wDown: this.wDown, wMove: this.wMove, wUp: this.wUp, wClick: this.wClick
+      vidRef: this.vidRef, asmRef: this.asmRef, closeEx: this.closeEx, exRef: this.exRef, exKey: this.exKey, wallRef: this.wallRef, wDown: this.wDown, wMove: this.wMove, wUp: this.wUp, wClick: this.wClick
     };
   }
 }
