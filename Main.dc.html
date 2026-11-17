@@ -327,15 +327,20 @@ class Component extends DCLogic {
   dotsBuild() {
     const d = this.dotsSrc, mob = !!this.state.mobile;
     if (!d) return;
-    const ns = Math.floor(d.small.length / 2), nb = Math.floor((d.big || []).length / 3), n = ns + nb;
+    // phone: the cloud is thinned out (every other small dot), dots stay small and the cloud is spread
+    // wider around the name, so the lettering stays readable through it
+    const step = mob ? 2 : 1, spread = mob ? 1.35 : 1, cx = 502, cy = 769;
+    const ns = Math.floor(d.small.length / 2 / step), nb = Math.floor((d.big || []).length / 3), n = ns + nb;
     const P = new Float32Array(n * 8);
     // mobile: same composition scaled to 0.55 and moved down (matches the script lettering)
-    const k = mob ? 0.55 : 1, X = mob ? -49.5 : 0, Y = mob ? 380 : 0, grow = mob ? 1.45 : 1;
+    const k = mob ? 0.55 : 1, X = mob ? -49.5 : 0, Y = mob ? 380 : 0, grow = mob ? 1.1 : 1;
     const put = (i, x, y, sz) => {
-      const hx = X + k * x, hy = Y + k * y, o = i * 8;
+      let hx = X + k * x, hy = Y + k * y;
+      if (mob) { hx = cx + (hx - cx) * spread; hy = cy + (hy - cy) * spread; }
+      const o = i * 8;
       P[o] = hx; P[o + 1] = hy; P[o + 2] = hx; P[o + 3] = hy; P[o + 7] = sz;
     };
-    for (let i = 0; i < ns; i++) put(i, d.small[2 * i], d.small[2 * i + 1], (d.size || 4.2) * k * grow);
+    for (let i = 0; i < ns; i++) put(i, d.small[2 * i * step], d.small[2 * i * step + 1], (d.size || 4.2) * k * grow);
     for (let j = 0; j < nb; j++) put(ns + j, d.big[3 * j], d.big[3 * j + 1], -2 * d.big[3 * j + 2] * k * grow); // negative = round dot
     this.dots = { n: n, P: P, mob: mob, W: mob ? 1000 : 2000 };
   }
