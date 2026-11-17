@@ -71,15 +71,20 @@ body{margin:0;background:#fff}
 .jr.pg-home{position:relative}
 .jr.pg-home.stacked .nav{display:none}
 .jr.pg-home.stacked .horse{display:none}
+
+/* menu hover: a small line slides in under the word (mouse only, phones just tap) */
+.pg-home .nav a[data-hint]{position:relative}
+.pg-home .nav a[data-hint]::after{content:attr(data-hint);position:absolute;left:.06em;top:100%;margin-top:.1em;font-size:.34em;letter-spacing:.02em;line-height:1;white-space:nowrap;color:#B80000;opacity:0;transform:translateY(-.35em);transition:opacity .25s ease,transform .3s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+@media (hover:hover){.pg-home .nav a[data-hint]:hover::after,.pg-home .nav a[data-hint]:focus-visible::after{opacity:1;transform:none}}
 </style>
 </helmet>
 <main class="jr bb pg-home {{stackCls}}">
 <div class="stage" onPointerMove="{{onDotsMove}}" onPointerDown="{{onDotsMove}}" onPointerLeave="{{onDotsLeave}}">
 <nav class="nav" aria-label="Main">
 <a class="is-active" href="Main.dc.html" aria-current="page">HOME</a>
-<a href="Projects.dc.html">PROJECTS</a>
-<a href="Jennieration.dc.html">JENNIE.RATION</a>
-<a href="About.dc.html" aria-label="About me">ABOUTME</a>
+<a href="Projects.dc.html" data-hint="SELECTED WORK">PROJECTS</a>
+<a href="Jennieration.dc.html" data-hint="MY PLAYGROUND">JENNIE.RATION</a>
+<a href="About.dc.html" data-hint="WHO AM I?" aria-label="About me">ABOUTME</a>
 </nav>
 <h1 class="hg"></h1>
 <p class="ux">UX DESIGNER</p>

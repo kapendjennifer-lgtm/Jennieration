@@ -44,12 +44,29 @@ body{margin:0;background:#000}
 @media (prefers-reduced-motion: reduce){
 .site-nav,.site-nav a,.site-curtain{transition:none}
 }
+
+/* menu hover: a small red line slides in under the word (mouse only, phones just tap).
+   The menu itself blends with the page (difference), which would turn red into cyan, so the lines live in
+   their own layer at the exact same spot, with the words kept invisible just to get the spacing right */
+.site-hints{position:fixed;z-index:2001;left:calc(100vw / 2000 * 54);top:calc(100vw / 2000 * 22);display:flex;font-family:'Bebas Neue','JR Bebas',Impact,'Arial Narrow',sans-serif;font-weight:400;font-size:calc(100vw / 2000 * 83);line-height:1;letter-spacing:-.09em;white-space:nowrap;pointer-events:none;transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .35s ease}
+.site-hints>span{position:relative;display:block}
+.site-hints i{font-style:normal;visibility:hidden}
+.site-hints b{position:absolute;left:.06em;top:100%;margin-top:.1em;font-weight:400;font-size:.34em;letter-spacing:.02em;line-height:1;white-space:nowrap;color:#B80000;opacity:0;transform:translateY(-.35em);transition:opacity .25s ease,transform .3s cubic-bezier(.2,.8,.2,1)}
+.site-nav.hide+.site-hints{transform:translateY(-150%);opacity:0}
+@media (hover:hover){
+.site-nav:has(a:nth-child(2):hover)+.site-hints>span:nth-child(2) b,.site-nav:has(a:nth-child(2):focus-visible)+.site-hints>span:nth-child(2) b,
+.site-nav:has(a:nth-child(3):hover)+.site-hints>span:nth-child(3) b,.site-nav:has(a:nth-child(3):focus-visible)+.site-hints>span:nth-child(3) b,
+.site-nav:has(a:nth-child(4):hover)+.site-hints>span:nth-child(4) b,.site-nav:has(a:nth-child(4):focus-visible)+.site-hints>span:nth-child(4) b{opacity:1;transform:none}
+}
+@media (max-aspect-ratio: 1/1){.site-hints{left:calc(100vw / 1000 * 37);top:calc(100vw / 1000 * 30);font-size:calc(100vw / 1000 * 92)}}
+@media (prefers-reduced-motion: reduce){.site-hints,.site-hints b{transition:none}}
 </style>
 </helmet>
 <div class="site" ref="{{siteRef}}">
 <nav class="site-nav {{navCls}}" aria-label="Main" ref="{{navRef}}">
 <sc-for list="{{links}}" as="l" hint-placeholder-count="4"><a class="{{l.cls}}" href="{{l.href}}" aria-label="{{l.aria}}" aria-current="{{l.cur}}" onClick="{{l.go}}">{{l.label}}</a></sc-for>
 </nav>
+<div class="site-hints" aria-hidden="true"><sc-for list="{{links}}" as="l" hint-placeholder-count="4"><span><i>{{l.label}}</i><b>{{l.hint}}</b></span></sc-for></div>
 <div class="site-curtain {{curtainCls}}" aria-hidden="true"></div>
 <section class="site-sec" id="home" style="z-index: 1"><div class="site-in"><dc-import name="Main" stacked="{{true}}" hint-size="100%,100vh"></dc-import><div class="site-shade"></div></div></section>
 <section class="site-sec" id="projects" style="z-index: 2"><div class="site-in"><dc-import name="Projects" stacked="{{true}}" hint-size="100%,100vh"></dc-import><div class="site-shade"></div></div></section>
@@ -63,9 +80,9 @@ class Component extends DCLogic {
 
   SECTIONS = [
     { id: 'home', label: 'HOME' },
-    { id: 'projects', label: 'PROJECTS' },
-    { id: 'jennieration', label: 'JENNIE.RATION' },
-    { id: 'about', label: 'ABOUTME', aria: 'About me' }
+    { id: 'projects', label: 'PROJECTS', hint: 'SELECTED WORK' },
+    { id: 'jennieration', label: 'JENNIE.RATION', hint: 'MY PLAYGROUND' },
+    { id: 'about', label: 'ABOUTME', aria: 'About me', hint: 'WHO AM I?' }
   ];
 
   siteRef = (el) => { this.siteEl = el || null; };
@@ -210,7 +227,7 @@ class Component extends DCLogic {
     return {
       siteRef: this.siteRef, navRef: this.navRef,
       navCls: this.state.hidden ? 'hide' : '', curtainCls: this.state.curtain,
-      links: this.SECTIONS.map((s) => ({ href: '#' + s.id, label: s.label, aria: s.aria || s.label, cls: s.id === act ? 'on' : '', cur: s.id === act ? 'true' : 'false', go: this.go }))
+      links: this.SECTIONS.map((s) => ({ href: '#' + s.id, label: s.label, aria: s.aria || s.label, cls: s.id === act ? 'on' : '', cur: s.id === act ? 'true' : 'false', hint: s.hint || '', go: this.go }))
     };
   }
 }

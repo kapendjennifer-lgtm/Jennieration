@@ -300,6 +300,11 @@ body{margin:0;background:#000}
 .jr.pg-jen{position:relative}
 .jr.pg-jen.stacked .nav{display:none}
 .jr.pg-jen.stacked .horse{display:none}
+
+/* menu hover: a small line slides in under the word (mouse only, phones just tap) */
+.pg-jen .nav a[data-hint]{position:relative}
+.pg-jen .nav a[data-hint]::after{content:attr(data-hint);position:absolute;left:.06em;top:100%;margin-top:.1em;font-size:.34em;letter-spacing:.02em;line-height:1;white-space:nowrap;color:#B80000;opacity:0;transform:translateY(-.35em);transition:opacity .25s ease,transform .3s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+@media (hover:hover){.pg-jen .nav a[data-hint]:hover::after,.pg-jen .nav a[data-hint]:focus-visible::after{opacity:1;transform:none}}
 </style>
 </helmet>
 <main class="jr bb pg-jen {{stackCls}}">
@@ -307,9 +312,9 @@ body{margin:0;background:#000}
 <div class="pin" ref="{{pinRef}}">
 <nav class="nav {{navCls}}" aria-label="Main">
 <a href="Main.dc.html">HOME</a>
-<a href="Projects.dc.html">PROJECTS</a>
-<a class="is-active" href="Jennieration.dc.html" aria-current="page" aria-hidden="true" tabindex="-1" style="visibility: hidden">JENNIE.RATION</a>
-<a href="About.dc.html" aria-label="About me">ABOUTME</a>
+<a href="Projects.dc.html" data-hint="SELECTED WORK">PROJECTS</a>
+<a class="is-active" href="Jennieration.dc.html" data-hint="MY PLAYGROUND" aria-current="page" aria-hidden="true" tabindex="-1" style="visibility: hidden">JENNIE.RATION</a>
+<a href="About.dc.html" data-hint="WHO AM I?" aria-label="About me">ABOUTME</a>
 </nav>
 <sc-if value="{{moved}}" hint-placeholder-val="{{false}}">
 <button class="reset {{navCls}}" type="button" onClick="{{reset}}">RESET POSTERS</button>

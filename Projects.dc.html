@@ -276,6 +276,11 @@ body{margin:0;background:#fff}
 .jr.pg-projects{position:relative}
 .jr.pg-projects.stacked .nav{display:none}
 .jr.pg-projects.stacked .horse{display:none}
+
+/* menu hover: a small line slides in under the word (mouse only, phones just tap) */
+.pg-projects .nav a[data-hint]{position:relative}
+.pg-projects .nav a[data-hint]::after{content:attr(data-hint);position:absolute;left:.06em;top:100%;margin-top:.1em;font-size:.34em;letter-spacing:.02em;line-height:1;white-space:nowrap;color:#B80000;opacity:0;transform:translateY(-.35em);transition:opacity .25s ease,transform .3s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+@media (hover:hover){.pg-projects .nav a[data-hint]:hover::after,.pg-projects .nav a[data-hint]:focus-visible::after{opacity:1;transform:none}}
 </style>
 </helmet>
 <main class="jr bb pg-projects {{stackCls}}">
@@ -363,9 +368,9 @@ body{margin:0;background:#fff}
 <div class="stage">
 <nav class="nav" aria-label="Main">
 <a href="Main.dc.html">HOME</a>
-<a class="is-active" href="Projects.dc.html" aria-current="page" aria-hidden="true" tabindex="-1" style="visibility: hidden">PROJECTS</a>
-<a href="Jennieration.dc.html">JENNIE.RATION</a>
-<a href="About.dc.html" aria-label="About me">ABOUTME</a>
+<a class="is-active" href="Projects.dc.html" data-hint="SELECTED WORK" aria-current="page" aria-hidden="true" tabindex="-1" style="visibility: hidden">PROJECTS</a>
+<a href="Jennieration.dc.html" data-hint="MY PLAYGROUND">JENNIE.RATION</a>
+<a href="About.dc.html" data-hint="WHO AM I?" aria-label="About me">ABOUTME</a>
 </nav>
 <h1 class="title" style="left: 40px; top: 125px; position: absolute">PROJECTS</h1>
 <div class="desc {{descCls}}" aria-live="polite" style="width: 407px; left: 965px; top: 110px; position: absolute">

@@ -137,6 +137,11 @@ body{margin:0;background:#fff}
 
 .jr.pg-about{position:relative}
 .jr.pg-about.stacked .nav{display:none}
+
+/* menu hover: a small line slides in under the word (mouse only, phones just tap) */
+.pg-about .nav a[data-hint]{position:relative}
+.pg-about .nav a[data-hint]::after{content:attr(data-hint);position:absolute;left:.06em;top:100%;margin-top:.1em;font-size:.34em;letter-spacing:.02em;line-height:1;white-space:nowrap;color:#B80000;opacity:0;transform:translateY(-.35em);transition:opacity .25s ease,transform .3s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+@media (hover:hover){.pg-about .nav a[data-hint]:hover::after,.pg-about .nav a[data-hint]:focus-visible::after{opacity:1;transform:none}}
 </style>
 </helmet>
 <main class="jr bb pg-about {{stackCls}}">
@@ -144,8 +149,8 @@ body{margin:0;background:#fff}
 <canvas class="dots" ref="{{dotsRef}}" aria-hidden="true"></canvas>
 <nav class="nav" aria-label="Main">
 <a href="Main.dc.html">HOME</a>
-<a href="Projects.dc.html">PROJECTS</a>
-<a href="Jennieration.dc.html">JENNIE.RATION</a>
+<a href="Projects.dc.html" data-hint="SELECTED WORK">PROJECTS</a>
+<a href="Jennieration.dc.html" data-hint="MY PLAYGROUND">JENNIE.RATION</a>
 </nav>
 <div class="ab-l {{knCls}}">
 <h1 class="ab-h">ABOUT ME</h1>
