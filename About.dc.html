@@ -142,6 +142,13 @@ body{margin:0;background:#fff}
 .pg-about .nav a[data-hint]{position:relative}
 .pg-about .nav a[data-hint]::after{content:attr(data-hint);position:absolute;left:.06em;top:100%;margin-top:.1em;font-size:.34em;letter-spacing:.02em;line-height:1;white-space:nowrap;color:#B80000;opacity:0;transform:translateY(-.35em);transition:opacity .25s ease,transform .3s cubic-bezier(.2,.8,.2,1);pointer-events:none}
 @media (hover:hover){.pg-about .nav a[data-hint]:hover::after,.pg-about .nav a[data-hint]:focus-visible::after{opacity:1;transform:none}}
+
+/* downloads + linkedin under the contact form */
+.pg-about .ab-dl{display:flex;justify-content:center;flex-wrap:wrap;gap:calc(var(--u) * 10) calc(var(--u) * 26);margin-top:calc(var(--u) * 56);transform:translateX(calc(var(--u) * -8))}
+.pg-about .ab-dlk{font-family:'Archivo',Arial,sans-serif;font-weight:500;font-size:calc(var(--u) * 16);letter-spacing:.1em;line-height:1.4;color:#222;text-decoration:none;white-space:nowrap;transition:color .25s ease}
+.pg-about .ab-dlk:hover{color:#B80000}
+.pg-about .ab-dlk:focus-visible{outline:2px solid #B80000;outline-offset:4px}
+@media (max-aspect-ratio: 1/1){.pg-about .ab-dl{transform:none;margin-top:calc(var(--u) * 70);gap:calc(var(--u) * 24) calc(var(--u) * 40)}.pg-about .ab-dlk{font-size:calc(var(--u) * 28)}}
 </style>
 </helmet>
 <main class="jr bb pg-about {{stackCls}}">
@@ -175,6 +182,11 @@ body{margin:0;background:#fff}
 <button class="ab-send" type="submit">( SEND )</button>
 <sc-if value="{{hasNote}}" hint-placeholder-val="{{false}}"><p class="ab-msg" role="status">{{note}}</p></sc-if>
 </form>
+<div class="ab-dl">
+<a class="ab-dlk" href="files/Jennifer-Kapend-Fund-Portfolio.pdf" download="Jennifer-Kapend-Fund-Portfolio.pdf">( PORTFOLIO PDF ↓︎ )</a>
+<a class="ab-dlk" href="files/Jennifer-Kapend-Fund-Resume.pdf" download="Jennifer-Kapend-Fund-Resume.pdf">( RESUME ↓︎ )</a>
+<a class="ab-dlk" href="https://www.linkedin.com/in/jennifer-kapend-fund-023271278" target="_blank" rel="noopener">( LINKEDIN ↑︎ )</a>
+</div>
 </section>
 </section>
 <div class="horse" ref="{{horseRef}}" aria-hidden="true"></div>
