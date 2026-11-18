@@ -19,7 +19,7 @@ html,body,.pg-home *{scrollbar-width:none;-ms-overflow-style:none}
 html::-webkit-scrollbar,body::-webkit-scrollbar,.pg-home *::-webkit-scrollbar{display:none;width:0;height:0}
 body{margin:0;background:#fff}
 .pg-home a{color:#929292}.pg-home a:hover{color:#000}
-.jr.pg-home{--u:calc(100vw / 2000);min-height:100vh;background:#fff;display:flex;flex-direction:column;align-items:center;overflow:hidden;animation:jrIn .7s cubic-bezier(.2,.7,.2,1) both}
+.jr.pg-home{--u:min(calc(100vw / 2000), calc(100vh / 1414));min-height:100vh;background:#fff;display:flex;flex-direction:column;align-items:center;overflow:hidden;animation:jrIn .7s cubic-bezier(.2,.7,.2,1) both}
 @keyframes jrIn{from{opacity:0}to{opacity:1}}
 .pg-home .stage{position:relative;flex:none;width:calc(var(--u) * 2000);height:calc(var(--u) * 1414)}
 .pg-home.bb,.pg-home .bb{font-family:'Bebas Neue',Impact,'Arial Narrow',sans-serif;font-weight:400}
@@ -38,6 +38,8 @@ body{margin:0;background:#fff}
 .pg-home .ux,.pg-home .para{font-family:'JR Archivo Black','Archivo Black','Arial Black',sans-serif}
 .pg-home .dots{position:absolute;z-index:2;display:block;left:0;top:0;width:calc(var(--u) * 2000);height:calc(var(--u) * 1414);pointer-events:none;filter:blur(calc(var(--u) * .25))}
 .pg-home .script{position:absolute;z-index:3;display:block;left:calc(var(--u) * 112.07);top:calc(var(--u) * 417.66);width:calc(var(--u) * 1780.69);height:auto;pointer-events:none;-webkit-user-select:none;user-select:none}
+/* the name keeps the size set on the canvas (1294 x 547px at a 1440px wide screen) but scales with the page, so it never runs off smaller screens */
+.pg-home .script{width:calc(var(--u) * 1797) !important;height:calc(var(--u) * 760) !important}
 .pg-home .ux{position:absolute;z-index:3;margin:0;left:calc(var(--u) * 1571);top:calc(var(--u) * 510.7);font-size:calc(var(--u) * 28.3);line-height:1;transform:scaleX(.827);transform-origin:0 0;white-space:nowrap;color:#000;pointer-events:none}
 .pg-home .para{position:absolute;z-index:3;margin:0;left:calc(var(--u) * 160);top:calc(var(--u) * 1124);font-size:calc(var(--u) * 21.4);line-height:calc(var(--u) * 24.2);color:#000;pointer-events:none}
 .pg-home .para span{display:block;white-space:nowrap;transform-origin:0 0}

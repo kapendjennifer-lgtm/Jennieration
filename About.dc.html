@@ -21,7 +21,7 @@ body{margin:0;background:#fff}
 .pg-about a{color:#929292}.pg-about a:hover{color:#000}
 @font-face{font-family:'JR Archivo Black';src:url('assets/3429cd084335248b07bff22b36ee4315.woff2') format('woff2');font-display:block}
 @font-face{font-family:'JR Bebas';src:url('assets/1bbf7e03620b8f544b7315d2d6de3f3e.woff2') format('woff2');font-display:block}
-.jr.pg-about{--u:calc(100vw / 2000);background:#fff;color:#000;overflow-x:clip;animation:jrIn .7s cubic-bezier(.2,.7,.2,1) both}
+.jr.pg-about{--u:min(calc(100vw / 2000), calc(100vh / 1414));background:#fff;color:#000;overflow-x:clip;animation:jrIn .7s cubic-bezier(.2,.7,.2,1) both}
 @keyframes jrIn{from{opacity:0}to{opacity:1}}
 .pg-about.bb,.pg-about .bb{font-family:'Bebas Neue',Impact,'Arial Narrow',sans-serif;font-weight:400}
 .jr.pg-about,.jr.pg-about *{cursor:url('assets/60d61bf74bad9bb579c50f5afd35cef6.png') 17 21,auto !important}
@@ -33,7 +33,7 @@ body{margin:0;background:#fff}
 .pg-about .nav a:focus-visible{outline:2px solid #B80000;outline-offset:2px}
 
 /* THE PAGE: one 2000 x 1414 spread. Text left, photo in the middle, contact right, dots around. */
-.pg-about .ab{position:relative;width:calc(var(--u) * 2000);height:calc(var(--u) * 1414);overflow:hidden}
+.pg-about .ab{position:relative;width:calc(var(--u) * 2000);height:calc(var(--u) * 1414);overflow:hidden;margin:0 auto}
 .pg-about .dots{position:absolute;z-index:0;left:0;top:0;width:calc(var(--u) * 2000);height:calc(var(--u) * 1414);filter:blur(calc(var(--u) * .5));pointer-events:none}
 
 .pg-about .ab-l{position:absolute;z-index:2;left:calc(var(--u) * 115);top:calc(var(--u) * 150);width:calc(var(--u) * 399);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-weight:400;font-size:calc(var(--u) * 25);line-height:calc(var(--u) * 25.2);letter-spacing:-.015em;color:#000}
