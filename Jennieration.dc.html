@@ -299,6 +299,8 @@ body{margin:0;background:#000}
 
 .jr.pg-jen{position:relative}
 .jr.pg-jen.stacked .nav{display:none}
+/* one long page: the runway ends when the posters are spread (76% of the cycle), so About comes right after */
+.jr.pg-jen.stacked .runway{height:602vh}
 .jr.pg-jen.stacked .horse{display:none}
 
 /* menu hover: a small line slides in under the word (mouse only, phones just tap) */
@@ -1031,8 +1033,9 @@ class Component extends DCLogic {
     // scroll back to the start and keep counting cycles (base), so the animation never snaps.
     const P = Math.min(1, y / total);
     if (this.props.stacked) {
-      // inside the one long page: play the cycle once, then let the page carry on to About
-      this.target = P;
+      // inside the one long page: play the cycle only until the posters are fully spread out (0.76),
+      // then the page carries straight on to About instead of stacking them back up
+      this.target = P * 0.76;
     } else if (P >= 0.995 && !this.wrapping) {
       this.wrapping = true;
       this.base = (this.base || 0) + 1;
