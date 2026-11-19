@@ -120,6 +120,8 @@ body{margin:0;background:#000}
 .pg-jen .ex-tt{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,1.6vw,24px)}
 .pg-jen .ex-tt figure{margin:0}
 .pg-jen .ex-tt video{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;background:#f2f2f2}
+.pg-jen .ex-tt .zbtn{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in}
+.pg-jen .ex-tt img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;background:#f2f2f2}
 .pg-jen .ex-tt figcaption{margin-top:8px;font-size:clamp(20px,1.8vw,30px);line-height:1;color:#929292}
 .pg-jen .ex-mod{margin:0 0 clamp(20px,3vw,40px)}
 .pg-jen .ex-mv{display:block;width:100%;aspect-ratio:4/3;background:#f2f2f2;--poster-color:#f2f2f2}
@@ -457,7 +459,7 @@ body{margin:0;background:#000}
 <sc-for list="{{ex.ttGroups}}" as="tg" hint-placeholder-count="1">
 <div class="ex-tt-head"><h3 class="ex-gh">{{tg.title}}</h3><sc-if value="{{tg.hasLink}}" hint-placeholder-val="{{false}}"><button class="ex-tt-go" type="button" data-ex="{{tg.linkEx}}" onClick="{{goEx}}">{{tg.linkLabel}} ↗</button></sc-if></div>
 <sc-if value="{{tg.hasNote}}" hint-placeholder-val="{{false}}"><p class="ex-tt-note">{{tg.note}}</p></sc-if>
-<div class="ex-tt"><sc-for list="{{tg.items}}" as="v" hint-placeholder-count="2"><figure><video src="{{v.src}}" poster="{{v.poster}}" ref="{{vidRef}}" autoPlay="{{true}}" muted="{{true}}" loop="{{true}}" playsInline="{{true}}" preload="auto" aria-label="{{v.cap}}"></video><figcaption>{{v.cap}}</figcaption></figure></sc-for></div>
+<div class="ex-tt"><sc-for list="{{tg.items}}" as="v" hint-placeholder-count="2"><figure><sc-if value="{{v.isImg}}" hint-placeholder-val="{{false}}"><button class="zbtn" type="button" aria-label="View {{v.cap}} full size" onClick="{{zoomOpen}}" data-src="{{v.img}}" data-alt="{{v.cap}}"><img src="{{v.img}}" alt="{{v.cap}}"></button></sc-if><sc-if value="{{v.isVid}}" hint-placeholder-val="{{true}}"><video src="{{v.src}}" poster="{{v.poster}}" ref="{{vidRef}}" autoPlay="{{true}}" muted="{{true}}" loop="{{true}}" playsInline="{{true}}" preload="auto" aria-label="{{v.cap}}"></video></sc-if><figcaption>{{v.cap}}</figcaption></figure></sc-for></div>
 </sc-for>
 </sc-if>
 <sc-if value="{{ex.hasFx}}" hint-placeholder-val="{{false}}"><sc-for list="{{ex.fx}}" as="fx" hint-placeholder-count="2">
@@ -545,7 +547,12 @@ class Component extends DCLogic {
           note: 'My first 3D models, made when I was introduced to 3D modeling in the Digital Fabrication class at SeoulTech, for the Cabinet of Wonder ornaments.',
           items: [
           { src: 'assets/36cc42fab1659165759c5f116343d717.mp4', poster: 'assets/e2dcfac51565ff4a2547312dc719b7d4.jpg', cap: 'THE WISH' },
-          { src: 'assets/ff966529f33fd689d32610260f25c165.mp4', poster: 'assets/986c194dce2549b835a5444938c7e8f5.jpg', cap: 'THE WATCHER' } ] }
+          { src: 'assets/ff966529f33fd689d32610260f25c165.mp4', poster: 'assets/986c194dce2549b835a5444938c7e8f5.jpg', cap: 'THE WATCHER' } ] },
+        { title: 'NOMAD SCULPT',
+          note: 'Learning character sculpting in Nomad Sculpt on my iPad: a chubby little character built from separate parts (head, ears, body, arms, legs) and shaped with the clay brushes.',
+          items: [
+          { img: 'assets/8ddc163433fcb9eacc8993704ba22233.jpg', cap: 'THE RENDER' },
+          { src: 'assets/a8f9ce6c4ccf3245929b847d3bb04826.mp4', poster: 'assets/cd0fe06e4f1c754c05901b632ff77722.jpg', cap: 'TURNING IT AROUND' } ] }
       ] },
     { title: 'EXPERIMENTING WITH TOUCHDESIGNER', tag: 'TOUCHDESIGNER / MEDIAPIPE', caption: 'PARTICLES', thumb: 'assets/8ce6043bd18880f32446fc71c5795cd8.jpg', src: 'assets/72a4d9dc7f9dec2be2a32f615ff1cb01.jpg',
       text: 'Learning TouchDesigner one effect at a time, with my webcam as the input.',
@@ -1461,7 +1468,7 @@ class Component extends DCLogic {
         const o = this.othersData[this.state.ex] || this.othersData[0];
         const gal = o.gallery || [];
         return { title: o.title, tag: o.tag, text: o.text, caption: o.caption, hasImg: !!o.src && !o.heroVideo, noImg: !o.src && !o.heroVideo, src: o.src || '',
-          about: (o.about || []).map((t) => ({ t: t })), facts: o.facts || [], hasGal: gal.length > 0 && !o.wall, hasModels: !!(o.models && o.models.length), models: o.models || [], modelTitle: o.modelTitle || '3D', hasTT: !!(o.ttGroups && o.ttGroups.length), ttGroups: (o.ttGroups || []).map((g) => { const k = g.link ? this.othersData.findIndex((x) => x.title === g.link) : -1; return { title: g.title, items: g.items, hasNote: !!g.note, note: g.note || '', hasLink: k >= 0, linkEx: k, linkLabel: g.linkLabel || 'SEE THE PROJECT' }; }), hasFx: !!(o.effects && o.effects.length), fx: (o.effects || []).map((f, k) => ({ n: String(k + 1).padStart(2, '0'), title: f.title, video: f.video, poster: f.poster || '', hasNote: !!f.note, note: f.note || '', hasV2: !!f.video2, video2: f.video2 || '', poster2: f.poster2 || '', hasGal: !!(f.gallery && f.gallery.length), gallery: f.gallery || [] })), hasMoreVids: !!(o.moreVideos && o.moreVideos.length), moreVids: (o.moreVideos || []).map((v) => ({ title: v.title, src: v.src, poster: v.poster || '', hasNote: !!v.note, note: v.note || '' })), hasVNote: !!o.videoNote, videoNote: o.videoNote || '', hasVideo: !!o.video, video: o.video || '', videoPoster: o.videoPoster || '', videoTitle: o.videoTitle || 'VIDEO',
+          about: (o.about || []).map((t) => ({ t: t })), facts: o.facts || [], hasGal: gal.length > 0 && !o.wall, hasModels: !!(o.models && o.models.length), models: o.models || [], modelTitle: o.modelTitle || '3D', hasTT: !!(o.ttGroups && o.ttGroups.length), ttGroups: (o.ttGroups || []).map((g) => { const k = g.link ? this.othersData.findIndex((x) => x.title === g.link) : -1; return { title: g.title, items: g.items.map((v) => ({ src: v.src || '', poster: v.poster || '', cap: v.cap, img: v.img || '', isImg: !!v.img, isVid: !v.img })), hasNote: !!g.note, note: g.note || '', hasLink: k >= 0, linkEx: k, linkLabel: g.linkLabel || 'SEE THE PROJECT' }; }), hasFx: !!(o.effects && o.effects.length), fx: (o.effects || []).map((f, k) => ({ n: String(k + 1).padStart(2, '0'), title: f.title, video: f.video, poster: f.poster || '', hasNote: !!f.note, note: f.note || '', hasV2: !!f.video2, video2: f.video2 || '', poster2: f.poster2 || '', hasGal: !!(f.gallery && f.gallery.length), gallery: f.gallery || [] })), hasMoreVids: !!(o.moreVideos && o.moreVideos.length), moreVids: (o.moreVideos || []).map((v) => ({ title: v.title, src: v.src, poster: v.poster || '', hasNote: !!v.note, note: v.note || '' })), hasVNote: !!o.videoNote, videoNote: o.videoNote || '', hasVideo: !!o.video, video: o.video || '', videoPoster: o.videoPoster || '', videoTitle: o.videoTitle || 'VIDEO',
           isEd: !!o.editorial, edHero: o.editorial ? o.editorial.hero : '',
           edSpread: o.editorial ? o.editorial.spread.map((r, k) => ({ n: r.n, h: r.h, text: r.text, img: r.img, cap: r.cap, r: r.r || 0, side: k % 2 ? 'flip' : '', items: r.items || [] })) : [],
           hasWall: !!o.wall, showIntro: !o.wall && !o.editorial, mode: o.wall ? 'wallmode' : '', wallCls: this.state.mobile ? 'port' : '',
