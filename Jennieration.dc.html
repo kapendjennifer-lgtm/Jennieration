@@ -687,21 +687,32 @@ class Component extends DCLogic {
   // Optional per-slot override by poster id, e.g. 't3': { title, src }
   artwork = {};
 
-  // How many spots the wall has: exactly one per poster, so nothing repeats.
-  // 15 posters fill the first view (t0..t7 on top, b1..b7 below); the rest go into the two final stacks.
-  slotCounts() {
-    const extra = Math.max(0, Math.min(32, this.posterList.length - 15));
-    return { kt: Math.ceil(extra / 2), kb: Math.floor(extra / 2) };
-  }
+  // The wall has 52 spots: top row t-16 ... t11, bottom row b0 ... b23. Each poster is used at most twice;
+  // with fewer than 26 posters the last spots (t10, t11, off screen to the right) keep the red gradient.
   artFor(id) {
     if (this.artwork[id]) return this.artwork[id];
     if (!this._artMap) {
-      const c = this.slotCounts();
-      // most visible spots first: the top of each final stack, then the posters you see at the start
-      const order = ['t0', 'b' + (7 + c.kb), 'b7', 't1', 'b6', 't2', 'b5', 't3', 'b4', 't4', 'b3', 't5', 'b2', 't6', 'b1', 't7'];
-      for (let k = 1; k <= Math.max(c.kt, c.kb); k++) { if (k <= c.kt) order.push('t-' + k); if (k < c.kb) order.push('b' + (7 + c.kb - k)); }
-      this._artMap = {};
-      order.forEach((pid, i) => { if (this.posterList[i]) this._artMap[pid] = this.posterList[i]; });
+      // 1) every poster once, most visible spots first: the tops of the final stacks, then the posters you see at the start
+      const order = ['t0', 'b23', 'b7', 't1', 'b6', 't2', 'b5', 't3', 'b4', 't4', 'b3', 't5', 'b2', 't6', 'b1', 't7'];
+      for (let k = 1; k <= 16; k++) { order.push('t-' + k); if (23 - k > 7) order.push('b' + (23 - k)); }
+      ['t8', 't9', 'b0', 't10', 't11'].forEach((x) => order.push(x));
+      const P = this.posterList, map = {}, used = P.map(() => []);
+      order.forEach((pid, i) => { if (P[i]) { map[pid] = P[i]; used[i].push(pid); } });
+      // 2) fill the rest with a second copy (never more than two), keeping the copies apart:
+      //    not both in the same view (the start view or the final stacks), and if possible not in the same row
+      const view = (pid) => { const n = parseInt(pid.slice(1), 10); return pid[0] === 't' ? (n <= 0 ? 'end' : 'start') : (n >= 7 ? 'end' : 'start'); };
+      order.forEach((pid) => {
+        if (map[pid]) return;
+        let best = -1, bs = 1e9;
+        P.forEach((p, i) => {
+          if (used[i].length >= 2) return;
+          const o = used[i][0] || '';
+          const sc = (used[i].length ? 0 : -10) + (o && view(o) === view(pid) ? 4 : 0) + (o && o[0] === pid[0] ? 1 : 0);
+          if (sc < bs) { bs = sc; best = i; }
+        });
+        if (best >= 0) { map[pid] = P[best]; used[best].push(pid); }
+      });
+      this._artMap = map;
     }
     return this._artMap[id] || {};
   }
@@ -1099,17 +1110,15 @@ class Component extends DCLogic {
       out.push({ id: id, baseX: sx + (fx - sx) * s, y: y, w: L.W, h: L.H, z: z, color: color, title: art.title || label, src: art.src || null });
     };
     let n = 0;
-    // one spot per poster: the final stacks get fewer, more spread out posters (same total width as before)
-    const c = this.slotCounts(), stT = c.kt ? L.step * 16 / c.kt : 0, stB = c.kb ? L.step * 16 / c.kb : 0;
-    for (let i = -c.kt; i <= 7; i++) {
+    for (let i = -16; i <= 11; i++) {
       const sx = i >= 0 ? L.topSpread0 + L.pitch * i : L.topSpread0 - L.gapL - L.pitch + (i + 1) * L.inSp;
-      const fx = i <= 0 ? L.topSlot0 + stT * (i + c.kt) : right + 60 + L.pitch * (i - 1);
+      const fx = i <= 0 ? L.topSlot0 + L.step * (i + 16) : right + 60 + L.pitch * (i - 1);
       const color = i <= 0 ? this.STACK[(i + 16) % this.STACK.length] : this.CYCLE[i % 7];
       add('t' + i, sx, fx, L.topY, i + 40, color, 'POSTER T' + (i + 17));
     }
-    for (let j = 1; j <= 7 + c.kb; j++) {
+    for (let j = 0; j <= 23; j++) {
       const sx = j <= 7 ? L.botSpreadEnd - L.pitch * (7 - j) : Math.max(L.botSpreadEnd + L.pitch, right + 20) + L.inSp * (j - 8);
-      const fx = j >= 7 ? L.botSlot0 + stB * (j - 7) : -L.pitch - 60 - L.pitch * (6 - j);
+      const fx = j >= 7 ? L.botSlot0 + L.step * (j - 7) : -L.pitch - 60 - L.pitch * (6 - j);
       const color = j <= 7 ? this.CYCLE[j % 7] : this.STACK[(j - 7) % this.STACK.length];
       add('b' + j, sx, fx, L.botY, j + 2, color, 'POSTER B' + (j + 1));
     }
