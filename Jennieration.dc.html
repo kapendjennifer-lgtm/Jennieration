@@ -66,6 +66,15 @@ body{margin:0;background:#000}
 .pg-jen .o-img img,.pg-jen .o-img video{transition:transform .6s cubic-bezier(.2,.8,.2,1)}
 .pg-jen .o-item:hover .o-img img,.pg-jen .o-item:focus-visible .o-img img,.pg-jen .o-item:hover .o-img video,.pg-jen .o-item:focus-visible .o-img video{transform:scale(1.05)}
 .pg-jen .o-more{position:absolute;right:calc(var(--u) * 10);bottom:calc(var(--u) * 8);font-size:calc(var(--u) * 30);line-height:1;color:#fff;opacity:0;transform:translateX(calc(var(--u) * -8));transition:opacity .25s ease,transform .35s ease}
+/* WORK IN PROGRESS: a see-through red veil with IN PROGRESS, on hover over the tile and always on the project's own page */
+.pg-jen .wip-veil{position:absolute;inset:0;z-index:3;display:flex;align-items:center;justify-content:center;background:rgba(184,0,0,.55);color:#fff;font-family:'Bebas Neue','JR Bebas',Impact,'Arial Narrow',sans-serif;font-weight:400;font-size:calc(var(--u) * 64);letter-spacing:.04em;line-height:1;pointer-events:none;opacity:0;transition:opacity .3s ease}
+.pg-jen .wip-veil span{transform:translateY(calc(var(--u) * 8));transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.pg-jen .o-item:hover .wip-veil,.pg-jen .o-item:focus-visible .wip-veil,.pg-jen .wip-veil.on{opacity:1}
+.pg-jen .o-item:hover .wip-veil span,.pg-jen .o-item:focus-visible .wip-veil span,.pg-jen .wip-veil.on span{transform:none}
+.pg-jen .o-img.wip .o-more{z-index:4}
+.pg-jen .ex-hero .wip-veil{font-size:clamp(28px,calc(var(--u) * 110),96px)}
+@media (hover: none){.pg-jen .o-img .wip-veil{opacity:1}.pg-jen .o-img .wip-veil span{transform:none}}
+@media (prefers-reduced-motion: reduce){.pg-jen .wip-veil,.pg-jen .wip-veil span{transition:none}}
 .pg-jen .o-item:hover .o-more,.pg-jen .o-item:focus-visible .o-more{opacity:1;transform:none}
 .pg-jen .o-item:hover .o-t{color:#B80000}
 .pg-jen .o-item:focus-visible{outline:2px solid #B80000;outline-offset:4px}
@@ -370,11 +379,12 @@ body{margin:0;background:#000}
 <div class="o-grid">
 <sc-for list="{{others}}" as="o" hint-placeholder-count="5">
 <button class="o-item" type="button" aria-label="Open {{o.title}}" onClick="{{o.open}}" style="transform: translateX(calc(var(--u) * {{o.shift}}))">
-<span class="o-img" style="display: block">
+<span class="o-img {{o.wipCls}}" style="display: block">
 <sc-if value="{{o.hasVid}}" hint-placeholder-val="{{false}}"><video src="{{o.vid}}" poster="{{o.src}}" ref="{{vidRef}}" autoPlay="{{true}}" muted="{{true}}" loop="{{true}}" playsInline="{{true}}" preload="metadata" aria-hidden="true"></video></sc-if>
 <sc-if value="{{o.hasStill}}" hint-placeholder-val="{{false}}"><img src="{{o.src}}" alt=""></sc-if>
 <sc-if value="{{o.noImg}}" hint-placeholder-val="{{true}}"><span class="o-cap">[{{o.caption}}]</span></sc-if>
 <span class="o-more" aria-hidden="true">OPEN →</span>
+<sc-if value="{{o.wip}}" hint-placeholder-val="{{false}}"><span class="wip-veil" aria-hidden="true"><span>IN PROGRESS</span></span></sc-if>
 </span>
 <span class="o-t" style="display: block">{{o.title}}</span>
 <span class="o-d" style="display: block">{{o.text}}</span>
@@ -414,10 +424,11 @@ body{margin:0;background:#000}
 </sc-if>
 <sc-if value="{{ex.showIntro}}" hint-placeholder-val="{{true}}">
 <div class="ex-grid">
-<div class="ex-hero">
+<div class="ex-hero {{ex.wipCls}}">
 <sc-if value="{{ex.hasImg}}" hint-placeholder-val="{{false}}"><button class="zbtn zfill" type="button" aria-label="View full size" onClick="{{zoomOpen}}" data-src="{{ex.src}}" data-alt="{{ex.title}}"><img src="{{ex.src}}" alt="{{ex.title}}"></button></sc-if>
 <sc-if value="{{ex.noImg}}" hint-placeholder-val="{{true}}"><span class="o-cap">[{{ex.caption}}]</span></sc-if>
 <sc-if value="{{ex.hasHeroVid}}" hint-placeholder-val="{{false}}"><video class="ex-hero-vid" src="{{ex.heroVid}}" poster="{{ex.heroPoster}}" ref="{{vidRef}}" autoPlay="{{true}}" muted="{{true}}" loop="{{true}}" playsInline="{{true}}" preload="auto" aria-label="{{ex.title}}, turning"></video></sc-if>
+<sc-if value="{{ex.wip}}" hint-placeholder-val="{{false}}"><span class="wip-veil on" aria-hidden="true"><span>IN PROGRESS</span></span></sc-if>
 </div>
 <div>
 <p class="ex-lead">{{ex.text}}</p>
@@ -594,7 +605,7 @@ class Component extends DCLogic {
           gallery: [
             { src: 'assets/df11f7087a7850cfae30cbff1d90ee0d.jpg', cap: 'HAND TRACKING, CORNER PIN, PIXELATE, CHANGE COLOR, FEEDBACK' } ] }
       ] },
-    { title: 'STRIKE A POSE', tag: 'POSE MATCHING / AI', caption: 'POSE', thumb: 'assets/ad9d38dd0cc48c96bd7cb280330bd974.jpg', src: 'assets/f7e46bf150f8acf143fcf42de764ff9c.jpg',
+    { title: 'STRIKE A POSE', tag: 'POSE MATCHING / AI', caption: 'POSE', wip: true, thumb: 'assets/ad9d38dd0cc48c96bd7cb280330bd974.jpg', src: 'assets/f7e46bf150f8acf143fcf42de764ff9c.jpg',
       text: 'Strike the pose of a painting and see which artwork you match.',
       about: [
         'An interactive prototype where your body becomes the way into art. You strike a pose in front of the camera, it gets matched to a figure in a painting, and an AI-generated text layer tells you more about the work you landed on.',
@@ -1489,7 +1500,7 @@ class Component extends DCLogic {
       hint2Opacity: (this.state.pp < 0.42 || this.state.pp > 0.97 ? Math.max(Math.max(0, 1 - Math.min(this.state.pp, 1 - this.state.pp) / 0.03) * q, Math.max(0, (r - 0.85) / 0.15)) : 0).toFixed(3),
       hint2Text: r > 0.5 ? 'KEEP SCROLLING' : 'SCROLL DOWN',
       otherOpacity: Math.min(1, r * 1.6).toFixed(3),
-      others: this.othersData.map((o, i) => ({ open: () => this.openEx(i), title: o.title, tag: o.tag, text: o.text, caption: o.caption, hasImg: !!(o.thumb || o.src), noImg: !(o.thumb || o.src), hasVid: !!o.tileVideo, vid: o.tileVideo || '', hasStill: !!(o.thumb || o.src) && !o.tileVideo, src: o.thumb || o.src || '', shift: m ? 0 : ((1 - r) * (160 + 70 * i)).toFixed(1) })),
+      others: this.othersData.map((o, i) => ({ open: () => this.openEx(i), title: o.title, tag: o.tag, text: o.text, caption: o.caption, wip: !!o.wip, wipCls: o.wip ? 'wip' : '', hasImg: !!(o.thumb || o.src), noImg: !(o.thumb || o.src), hasVid: !!o.tileVideo, vid: o.tileVideo || '', hasStill: !!(o.thumb || o.src) && !o.tileVideo, src: o.thumb || o.src || '', shift: m ? 0 : ((1 - r) * (160 + 70 * i)).toFixed(1) })),
       panelHidden: q < 0.02,
       shift1: (off * 60).toFixed(1), shift2: (off * 120).toFixed(1), shift3: (off * 180).toFixed(1), shift4: (off * 240).toFixed(1),
       lbOpen: !!sel,
@@ -1500,7 +1511,7 @@ class Component extends DCLogic {
       ex: (() => {
         const o = this.othersData[this.state.ex] || this.othersData[0];
         const gal = o.gallery || [];
-        return { title: o.title, tag: o.tag, text: o.text, caption: o.caption, hasImg: !!o.src && !o.heroVideo, noImg: !o.src && !o.heroVideo, src: o.src || '',
+        return { title: o.title, tag: o.tag, text: o.text, caption: o.caption, wip: !!o.wip, wipCls: o.wip ? 'wip' : '', hasImg: !!o.src && !o.heroVideo, noImg: !o.src && !o.heroVideo, src: o.src || '',
           about: (o.about || []).map((t) => ({ t: t })), facts: o.facts || [], hasGal: gal.length > 0 && !o.wall, hasModels: !!(o.models && o.models.length), models: o.models || [], modelTitle: o.modelTitle || '3D', hasTT: !!(o.ttGroups && o.ttGroups.length), ttGroups: (o.ttGroups || []).map((g) => { const k = g.link ? this.othersData.findIndex((x) => x.title === g.link) : -1; return { title: g.title, items: g.items.map((v) => ({ src: v.src || '', poster: v.poster || '', cap: v.cap, img: v.img || '', isImg: !!v.img, isVid: !v.img })), hasNote: !!g.note, note: g.note || '', hasLink: k >= 0, linkEx: k, linkLabel: g.linkLabel || 'SEE THE PROJECT' }; }), hasFx: !!(o.effects && o.effects.length), fx: (o.effects || []).map((f, k) => ({ n: String(k + 1).padStart(2, '0'), title: f.title, video: f.video, poster: f.poster || '', hasNote: !!f.note, note: f.note || '', hasV2: !!f.video2, video2: f.video2 || '', poster2: f.poster2 || '', hasGal: !!(f.gallery && f.gallery.length), gallery: f.gallery || [] })), hasMoreVids: !!(o.moreVideos && o.moreVideos.length), moreVids: (o.moreVideos || []).map((v) => ({ title: v.title, src: v.src, poster: v.poster || '', hasNote: !!v.note, note: v.note || '' })), hasVNote: !!o.videoNote, videoNote: o.videoNote || '', hasVideo: !!o.video, video: o.video || '', videoPoster: o.videoPoster || '', videoTitle: o.videoTitle || 'VIDEO',
           isEd: !!o.editorial, edHero: o.editorial ? o.editorial.hero : '',
           edSpread: o.editorial ? o.editorial.spread.map((r, k) => ({ n: r.n, h: r.h, text: r.text, img: r.img, cap: r.cap, r: r.r || 0, side: k % 2 ? 'flip' : '', items: r.items || [] })) : [],
