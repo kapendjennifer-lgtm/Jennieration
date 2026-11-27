@@ -6,7 +6,7 @@
 <title>Poster Zine Maker / JENNIERATION</title><link rel="icon" type="image/png" sizes="32x32" href="../assets/01a9be2de7df7f6dbded3baa6c2c7a72.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 /* VOICE: playful, hand-made, a photocopied zine from a design student
    IDEA: a poster wall you pick from, folded into an 8-page mini zine
@@ -99,12 +99,21 @@ input[type=range]{width:min(320px,70vw);accent-color:var(--red);height:44px}
 [hidden]{display:none!important}
 @media(max-width:700px){.bar span{display:none}.bar{padding-block:8px}.hero{grid-template-columns:minmax(0,1fr)}.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.card .t{font-size:12px}.badge{width:30px;height:30px;font-size:17px;line-height:30px;top:-8px;right:-6px}}
 @media(prefers-reduced-motion:reduce){.leaf,.book,.card .img{transition:none}}
-.back{padding:16px max(5vw,16px) 0;font:600 13px/1 Inter,system-ui,sans-serif;letter-spacing:.06em}.back a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:4px}.back a:hover{color:var(--red)}
+/* BACK LINK: works like the menu on jennieration.com. Fixed at the top left in Bebas, flips its colour against
+   whatever is behind it (difference blend), slides away while you scroll and comes back the moment you stop */
+.back{position:fixed;z-index:1000;left:calc(100vw / 2000 * 54);top:calc(100vw / 2000 * 22);mix-blend-mode:difference;font-family:'Bebas Neue',Impact,'Arial Narrow',sans-serif;font-weight:400;font-size:calc(100vw / 2000 * 83);line-height:1;letter-spacing:-.01em;white-space:nowrap;transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .35s ease}
+.back.hide{transform:translateY(-150%);opacity:0;pointer-events:none}
+.back a{display:block;color:#fff;text-decoration:none;transition:color .35s ease}
+.back a:hover{color:#929292}
+.back a:focus-visible{outline:2px solid #fff;outline-offset:3px}
+body{padding-top:calc(100vw / 2000 * 120)}
+@media (max-aspect-ratio: 1/1){.back{left:calc(100vw / 1000 * 37);top:calc(100vw / 1000 * 30);font-size:calc(100vw / 1000 * 74)}body{padding-top:calc(100vw / 1000 * 110)}}
+@media (prefers-reduced-motion: reduce){.back,.back a{transition:none}}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
 </head>
 <body>
-<nav class="back"><a href="../#jennieration">← BACK TO JENNIE.RATION</a></nav>
+<nav class="back" id="back" aria-label="Back to the portfolio"><a href="../#jennieration">← BACK TO JENNIE.RATION</a></nav>
 <header class="band"><div class="wrap hero">
   <div>
     <h1 id="h1">Created to create</h1>
@@ -435,6 +444,11 @@ $('#png').onclick=async()=>{const c=await printSheet();if(dl){try{const bl=await
 let rt;new ResizeObserver(()=>{clearTimeout(rt);rt=setTimeout(()=>{if(!$('#vflip').hidden)sizeBook();else sizeSheet()},120)}).observe(document.body);
 grid();build();
 }
+</script>
+<script>
+// the back link hides while scrolling and returns shortly after you stop, like the menu on the main site
+(()=>{const n=document.getElementById('back');if(!n)return;let t;
+addEventListener('scroll',()=>{n.classList.add('hide');clearTimeout(t);t=setTimeout(()=>n.classList.remove('hide'),180)},{passive:true});})();
 </script>
 </body>
 </html>
