@@ -141,20 +141,20 @@ body{padding-top:calc(100vw / 2000 * 120)}
 
 <section class="band stage" id="zine"><div class="wrap">
   <h2 id="h2">Your zine</h2>
-  <p class="lede">Eight pages: cover, six posters, back. Tap a page or swipe to turn it.</p>
+  <p class="lede">Eight pages: cover, six posters, back. Fold the sheet step by step, or flip through it.</p>
   <div class="views" role="group" aria-label="View">
-    <button class="on" data-v="flip">Flip through</button>
-    <button data-v="sheet">Unfold the sheet</button>
+    <button class="on" data-v="sheet">Unfold the sheet</button>
+    <button data-v="flip">Flip through</button>
     <button class="go" id="pdf">Download print PDF</button>
     <button id="png">Save sheet as image</button>
   </div>
 
-  <div id="vflip">
+  <div id="vflip" hidden>
     <div class="bookwrap"><div class="book" id="book"></div></div>
     <div class="nav"><button id="prev" aria-label="Previous page">Back</button><span class="pg" id="pg">Cover</span><button id="next" aria-label="Next page">Next</button></div>
   </div>
 
-  <div id="vsheet" hidden>
+  <div id="vsheet">
     <div class="fstage" id="fstage" tabindex="0" aria-label="Paper fold. Drag on the paper to fold it, or use the arrow keys.">
       <div class="cam" id="cam"></div>
       <div class="hint" id="fhint"><svg id="farrow" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 6v26M10 22l10 10 10-10" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span id="ftext">Drag down to fold the sheet in half</span></div>
@@ -443,6 +443,8 @@ $('#png').onclick=async()=>{const c=await printSheet();if(dl){try{const bl=await
 
 let rt;new ResizeObserver(()=>{clearTimeout(rt);rt=setTimeout(()=>{if(!$('#vflip').hidden)sizeBook();else sizeSheet()},120)}).observe(document.body);
 grid();build();
+// first view: the unfolded sheet
+requestAnimationFrame(()=>sizeSheet());
 }
 </script>
 <script>
