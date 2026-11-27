@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Poster Zine Maker / JENNIERATION</title><link rel="icon" type="image/png" sizes="32x32" href="../assets/01a9be2de7df7f6dbded3baa6c2c7a72.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE: playful, hand-made, a photocopied zine from a design student
+   IDEA: a poster wall you pick from, folded into an 8-page mini zine
+   PICTURE: the posters themselves, then the zine flipping and unfolding
+   COLOUR and TYPE: paper white, ink black, poster red; Anton titles, Instrument Serif captions
+   LAYOUT: title, poster wall, sticky picker bar, zine stage with flip / sheet views */
+:root{color-scheme:light dark;--bg:light-dark(#efece4,#141312);--ink:light-dark(#141312,#efece4);--soft:light-dark(#6d6860,#a29d94);--card:light-dark(#fffdf8,#201f1d);--line:light-dark(#d8d3c8,#34322f);--red:#e3241b;--paper:#f4f1ea}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif;overflow-x:clip}
+.band{padding:clamp(24px,4vw,56px) max(5vw,16px)}
+.wrap{max-width:1240px;margin:0 auto}
+h1,h2{font-family:Anton,Impact,sans-serif;font-weight:400;line-height:1.05;margin:0;text-wrap:balance}
+h1{font-size:clamp(40px,7vw,84px)}h2{font-size:clamp(30px,4vw,46px)}
+.lede{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-size:clamp(20px,2.4vw,26px);color:var(--soft);margin:.4em 0 0;max-width:40ch}
+.hero{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:24px;align-items:end}
+label{font-size:14px;font-weight:600;display:block;margin-bottom:6px}
+input[type=text]{width:100%;font:16px Inter,sans-serif;padding:12px 14px;border:2px solid var(--ink);border-radius:0;background:var(--card);color:var(--ink)}
+input:focus-visible,button:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 16px}
+button{font:600 15px Inter,sans-serif;min-height:44px;padding:0 18px;border:2px solid var(--ink);background:var(--card);color:var(--ink);cursor:pointer;border-radius:0}
+button.on{background:var(--ink);color:var(--bg)}
+button.go{background:var(--red);border-color:var(--red);color:#fff}
+button:disabled{opacity:.45;cursor:not-allowed}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:18px}
+.card{position:relative;padding:0;border:0;background:none;min-height:0;text-align:left;font-weight:400;cursor:pointer}
+.card .img{display:block;aspect-ratio:1/1.414;background:#ddd center/cover no-repeat;box-shadow:0 2px 0 rgba(0,0,0,.08),0 10px 22px -12px rgba(0,0,0,.5);transition:transform .2s}
+.card:hover .img{transform:translateY(-4px) rotate(-1deg)}
+.card.sel .img{outline:4px solid var(--red);outline-offset:3px}
+.card .t{display:block;font-size:13px;font-weight:600;margin-top:10px;line-height:1.3}
+.badge{position:absolute;top:-10px;right:-10px;width:36px;height:36px;border-radius:50%;background:var(--red);color:#fff;font:20px/36px Anton,sans-serif;text-align:center;display:none}
+.card.sel .badge{display:block}
+.bar{position:sticky;bottom:0;z-index:20;background:var(--ink);color:var(--bg);padding:12px max(5vw,16px);display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.bar b{font-family:Anton,sans-serif;font-weight:400;font-size:22px;letter-spacing:.01em}
+.bar span{font-size:14px;opacity:.8}
+.stage{background:var(--ink);color:var(--bg)}
+.stage .lede{color:light-dark(#b8b2a7,#6d6860)}
+.views{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0 28px}
+.stage button{background:transparent;color:var(--bg);border-color:var(--bg)}
+.stage button.on{background:var(--bg);color:var(--ink)}
+.stage button.go{background:var(--red);border-color:var(--red);color:#fff}
+.bookwrap{display:flex;justify-content:center;padding:10px 0 6px;overflow:hidden}
+.book{position:relative;perspective:2200px;transition:transform .7s cubic-bezier(.3,.7,.2,1)}
+.leaf{position:absolute;left:50%;top:0;width:50%;height:100%;transform-origin:left center;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.3,.7,.2,1);cursor:pointer}
+.leaf.flipped{transform:rotateY(-180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--paper) center/cover;box-shadow:0 18px 40px -18px rgba(0,0,0,.8)}
+.face.back{transform:rotateY(180deg)}
+.face::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.18),transparent 9%)}
+.face.back::after{background:linear-gradient(270deg,rgba(0,0,0,.18),transparent 9%)}
+.nav{display:flex;justify-content:center;gap:10px;align-items:center;margin-top:20px}
+.nav .pg{min-width:120px;text-align:center;font-size:14px}
+.fstage{position:relative;height:clamp(380px,68vh,620px);perspective:1700px;perspective-origin:50% 38%;overflow:hidden;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none;background:radial-gradient(ellipse at 50% 70%,light-dark(#2c2a27,#e6e1d7) 0,transparent 65%)}
+.fstage:active{cursor:grabbing}.fstage:focus-visible{outline:3px solid var(--red);outline-offset:-3px}
+.cam{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d}
+.pan{position:absolute;left:0;top:0;transform-style:preserve-3d;transform-origin:0 0}
+.pan .f,.pan .b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
+.pan .f img{display:block;width:100%;height:100%}
+.pan.up .f img{transform:rotate(180deg)}
+.pan .b{transform:rotateY(180deg);background:#f2efe7 linear-gradient(135deg,rgba(0,0,0,.03),rgba(255,255,255,.04))}
+.pan .f::before,.pan .b::before{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 .5px rgba(0,0,0,.18);z-index:1;pointer-events:none}
+.sh{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none;z-index:2}
+.floor{position:absolute;left:0;top:0;transform-origin:0 0;pointer-events:none;background:radial-gradient(closest-side,color-mix(in srgb,var(--ink) 30%,transparent),color-mix(in srgb,var(--ink) 62%,transparent) 45%,var(--ink) 100%)}
+.floor::after{content:"";position:absolute;inset:0;background:radial-gradient(closest-side at 46% 44%,rgba(255,255,255,.07),transparent 40%)}
+.shs{position:absolute;inset:0;opacity:.62}
+.shs i{position:absolute;left:0;top:0;width:100px;height:100px;background:#000;transform-origin:0 0}
+.pan.refl{pointer-events:none}
+.pan.refl .f,.pan.refl .b{-webkit-mask-image:linear-gradient(to top,#000,transparent 70%);mask-image:linear-gradient(to top,#000,transparent 70%)}
+.pan.refl.up .f,.pan.refl.up .b{-webkit-mask-image:linear-gradient(to bottom,#000,transparent 70%);mask-image:linear-gradient(to bottom,#000,transparent 70%)}
+.cut{position:absolute;left:0;top:-1.5px;height:3px;transform-origin:0 50%;background:repeating-linear-gradient(90deg,var(--red) 0 8px,transparent 8px 14px)}
+.cut i{position:absolute;left:0;top:0;bottom:0;background:var(--red)}
+.cut svg{position:absolute;top:-14px;width:30px;height:30px;color:var(--red);margin-left:-6px}
+.hint{position:absolute;left:0;right:0;bottom:14px;display:flex;gap:10px;align-items:center;justify-content:center;font-weight:600;font-size:15px;color:var(--bg);pointer-events:none;text-align:center;padding:0 12px}
+.hint svg{width:30px;height:30px;flex:none;color:var(--red);animation:nudge 1.4s ease-in-out infinite}
+@keyframes nudge{50%{translate:var(--nx,0) var(--ny,6px)}}
+.steps li.now{color:var(--bg)}.steps li.now::before{text-decoration:underline}
+.seg{display:flex}.seg button+button{border-left:0}
+.fstage.turn{cursor:move}
+.ctl{display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:center;margin-top:22px}
+input[type=range]{width:min(320px,70vw);accent-color:var(--red);height:44px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px 22px;margin:30px 0 0;padding:0;list-style:none;counter-reset:s}
+.steps li{counter-increment:s;font-size:15px;color:light-dark(#d6d0c4,#3a3733)}
+.steps li::before{content:counter(s);display:block;font:28px Anton,sans-serif;color:var(--red)}
+.edit{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:16px}
+.edit input{border-color:var(--bg);background:transparent;color:var(--bg)}
+.edit label{color:light-dark(#d6d0c4,#3a3733)}
+.note{font-size:14px;margin-top:14px;color:light-dark(#b8b2a7,#6d6860)}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--red);color:#fff;padding:10px 16px;font-weight:600;font-size:14px;z-index:50;display:none}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:60;display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:20px;color:#fff;text-align:center}
+.modal img{max-width:100%;max-height:75vh;background:#fff}
+[hidden]{display:none!important}
+@media(max-width:700px){.bar span{display:none}.bar{padding-block:8px}.hero{grid-template-columns:minmax(0,1fr)}.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.card .t{font-size:12px}.badge{width:30px;height:30px;font-size:17px;line-height:30px;top:-8px;right:-6px}}
+@media(prefers-reduced-motion:reduce){.leaf,.book,.card .img{transition:none}}
+.back{padding:16px max(5vw,16px) 0;font:600 13px/1 Inter,system-ui,sans-serif;letter-spacing:.06em}.back a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:4px}.back a:hover{color:var(--red)}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+</head>
+<body>
+<nav class="back"><a href="../#jennieration">← BACK TO JENNIE.RATION</a></nav>
+<header class="band"><div class="wrap hero">
+  <div>
+    <h1 id="h1">Created to create</h1>
+    <p class="lede">Pick six posters from the wall. They become pages 2 to 7 of a mini zine you can flip through here, or print on one A4 sheet and fold.</p>
+  </div>
+  <div>
+    <label for="title">Zine title</label>
+    <input type="text" id="title" maxlength="40" value="Created to create">
+  </div>
+</div></header>
+
+<main>
+<section class="band" style="padding-top:0"><div class="wrap">
+  <div class="chips" role="group" aria-label="Filter posters">
+    <button class="on" data-f="all">All posters</button>
+    <button data-f="xlab">XLAB Radio</button>
+    <button data-f="other">Everything else</button>
+    <button id="clear">Clear picks</button>
+  </div>
+  <div class="grid" id="grid"></div>
+</div></section>
+
+<div class="bar"><div><b id="count">6 of 6 picked</b> <span id="hint">Tap a poster to drop it. The order you pick is the page order.</span></div>
+<button class="go" id="make">Make the zine</button></div>
+
+<section class="band stage" id="zine"><div class="wrap">
+  <h2 id="h2">Your zine</h2>
+  <p class="lede">Eight pages: cover, six posters, back. Tap a page or swipe to turn it.</p>
+  <div class="views" role="group" aria-label="View">
+    <button class="on" data-v="flip">Flip through</button>
+    <button data-v="sheet">Unfold the sheet</button>
+    <button class="go" id="pdf">Download print PDF</button>
+    <button id="png">Save sheet as image</button>
+  </div>
+
+  <div id="vflip">
+    <div class="bookwrap"><div class="book" id="book"></div></div>
+    <div class="nav"><button id="prev" aria-label="Previous page">Back</button><span class="pg" id="pg">Cover</span><button id="next" aria-label="Next page">Next</button></div>
+  </div>
+
+  <div id="vsheet" hidden>
+    <div class="fstage" id="fstage" tabindex="0" aria-label="Paper fold. Drag on the paper to fold it, or use the arrow keys.">
+      <div class="cam" id="cam"></div>
+      <div class="hint" id="fhint"><svg id="farrow" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 6v26M10 22l10 10 10-10" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span id="ftext">Drag down to fold the sheet in half</span></div>
+    </div>
+    <div class="ctl">
+      <div class="seg" role="group" aria-label="What dragging does"><button class="on" id="mfold" aria-pressed="true">Fold</button><button id="mturn" aria-pressed="false">Turn</button></div>
+      <button id="freset">Reset view</button>
+      <button id="fback">Back a step</button>
+      <input type="range" id="fprog" min="0" max="800" value="0" aria-label="Fold and page progress">
+      <button id="fnext">Next step</button>
+      <button class="go" id="play">Play the whole fold</button>
+    </div>
+    <ol class="steps" id="fsteps">
+      <li>Fold the A4 sheet in half the long way, print on the outside.</li>
+      <li>Cut along the fold, only through the middle two panels.</li>
+      <li>Push the two ends toward each other so the cut opens into a plus.</li>
+      <li>Swing the pages round and flatten them into a booklet, cover on top.</li>
+      <li>Open it and turn the pages, right there on the table.</li>
+    </ol>
+  </div>
+
+  <h2 style="font-size:28px;margin-top:44px">Edit the captions</h2>
+  <div class="edit" id="edit"></div>
+  <p class="note" id="savenote">Changes update the zine as you type.</p>
+</div></section>
+</main>
+
+<div class="toast" id="toast"></div>
+<div class="modal" id="modal"><p>Right-click or long-press the sheet to save it.</p><img id="mimg" alt="Printable zine sheet"><button id="mclose" style="background:#fff;color:#000;border-color:#fff">Close</button></div>
+
+<script>
+{
+const P=[
+['2333b68b9c2f22547dfdc868a3b20564','Horse Gems','Wild horses stitched into the sky.',0],
+['4e7bb65f981113b9b2bec83fc287d0a8','Kendrick Lamar','A tribute in torn paper and red stars.',0],
+['374b15fa1e1695645edd15a307dfd40b','Run Away With Me','An invitation, set in rhinestones.',0],
+['b8eeab87f35fe055ba8fe757185b2628','Other Side of Fear','A reminder to jump anyway.',0],
+['c0c0c42fee03c4c952df188e9eeac3b0',"Don't Kill My Vibe",'Loud type, louder mouth.',0],
+['b17611377980121842b94299281b9e16','Listen to the Race','The Leiden Marathon, live on air.',1],
+['b36beef12d5ee105d85b4b57f9246298','Forever Young','Party hats and pixel script.',0],
+['31baa43bdb1fda22cb4b4d4fccceef87','Rhythms of Congo','Rumba, ndombolo and the roots of it all.',1],
+['a508ad917b62eafb1eeac03e40a3d7d8','Pink Floral','Pixel flowers cut out of a summer field.',0],
+['5e9e6635d484e1a493ddf88c5c9799ac','Running for the Thrill','An hour of music for the run.',1],
+['a1e1c93230b9c8fc05e7bb1da8a1c66b','Running, Sideways','Same run, flipped on its side.',1],
+['4add28f362d9d60f21e257cf66a9b5b4','Neo Soul','The show that survived a server crash.',1],
+['4520a6884005f3bc1b4b8d639a0fd09d',"Don't Forget to Dance",'A gentle reminder, in red.',0],
+['2c2bb02f1d8361f616976b0cea3f3302','Rain','Drawn on a grey Hague afternoon.',0],
+['75bbffd73f176afccfffe16ffba40916','Sinners','A fan poster for a night to survive.',0],
+['9dc211a7694547225d3bdfb037303a35','Sausage','A very, very long dog.',0],
+['7e37b2e25cbb802d64b6c81a090ed38b','Dune','A fan poster from the desert.',0],
+['457bd26af262db1d40497ffb43d9303b','About to Get Good','Sitting at the edge of something good.',0],
+['d694feee899018e1c1251209a43eaeac','Audacity','A butterfly, a mirror and some nerve.',0],
+['c9c9ff3d047aad3d5abe408b93de9984','The Band','Every instrument, drawn by hand.',0],
+['f7697b3d5cfd5e18ff6067190be393d0',"Let's Have a Talk","Jennie's on the phone.",1],
+['2f069bc9f2c59c6bf408547f9a97c5da','When I Grow Up','Childhood dreams with Maria and Emma.',1],
+['ba7965197f7f82c86fd06bd4d8dbc7b9',"It's My Birthday",'Turning 21, live on air.',1],
+['aae42ec4004e5376a6a6a2c510f084be','Freaky Friday','Two hosts, one loud Friday, with Emma.',1],
+['afc2c3e3210d891fff1c8e958589c8ef','Board Game Night','Cards on the table, music on.',1]
+].map(([id,t,c,x])=>({id,t,c,x:!!x,src:'posters/'+id+'.jpg'}));
+const byId=Object.fromEntries(P.map(p=>[p.id,p]));
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const MAX=6;
+let pick=['4add28f362d9d60f21e257cf66a9b5b4','b17611377980121842b94299281b9e16','31baa43bdb1fda22cb4b4d4fccceef87','f7697b3d5cfd5e18ff6067190be393d0','2f069bc9f2c59c6bf408547f9a97c5da','afc2c3e3210d891fff1c8e958589c8ef'];
+let title='Created to create',caps={},filter='all';
+try{const s=JSON.parse(localStorage.getItem('zine-v1')||'null');if(s){if(Array.isArray(s.pick))pick=s.pick.filter(i=>byId[i]).slice(0,MAX);if(typeof s.title==='string')title=s.title;if(s.caps)caps=s.caps}}catch(e){}
+const save=()=>{try{localStorage.setItem('zine-v1',JSON.stringify({pick,title,caps}))}catch(e){}};
+const cap=id=>caps[id]!=null?caps[id]:byId[id].c;
+
+/* images */
+const imgs={};
+const load=id=>imgs[id]||(imgs[id]=new Promise(r=>{const i=new Image();i.onload=()=>r(i);i.onerror=()=>r(null);i.src=byId[id].src}));
+
+/* gallery */
+function grid(){
+  $('#grid').innerHTML=P.filter(p=>filter==='all'||(filter==='xlab')===p.x).map(p=>{const n=pick.indexOf(p.id);
+    return `<button class="card${n>=0?' sel':''}" data-id="${p.id}" aria-pressed="${n>=0}"><span class="img" style="background-image:url(${p.src})"></span><span class="badge">${n>=0?n+1:''}</span><span class="t">${esc(p.t)}</span></button>`}).join('');
+  const k=pick.length;$('#count').textContent=k+' of '+MAX+' picked';
+  $('#hint').textContent=k<MAX?'Pick '+(MAX-k)+' more. The order you pick is the page order.':'Tap a poster to drop it. The order you pick is the page order.';
+  $('#make').disabled=k<MAX;
+}
+$('#grid').addEventListener('click',e=>{const b=e.target.closest('.card');if(!b)return;const id=b.dataset.id,n=pick.indexOf(id);
+  if(n>=0)pick.splice(n,1);else if(pick.length<MAX)pick.push(id);else{toast('Six is the max. Tap one to drop it first.');return}
+  save();grid();if(pick.length===MAX)build()});
+document.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{filter=b.dataset.f;document.querySelectorAll('[data-f]').forEach(x=>x.classList.toggle('on',x===b));grid()});
+$('#clear').onclick=()=>{pick=[];save();grid()};
+$('#make').onclick=()=>{build();$('#zine').scrollIntoView({behavior:'smooth'})};
+let tt;function toast(m){const t=$('#toast');t.textContent=m;t.style.display='block';clearTimeout(tt);tt=setTimeout(()=>t.style.display='none',2200)}
+
+/* page drawing, one source for screen and print */
+const PW=1000,PH=1414;
+function wrap(ctx,text,maxW){const words=text.split(/\s+/),lines=[];let l='';for(const w of words){const t=l?l+' '+w:w;if(ctx.measureText(t).width>maxW&&l){lines.push(l);l=w}else l=t}if(l)lines.push(l);return lines}
+function grain(ctx,W,H,a){const n=Math.round(W*H/90);ctx.fillStyle=`rgba(0,0,0,${a})`;let s=7;for(let i=0;i<n;i++){s=(s*9301+49297)%233280;const x=s/233280*W;s=(s*9301+49297)%233280;ctx.fillRect(x,s/233280*H,1.6,1.6)}}
+function fit(ctx,im,x,y,w,h,shadow){const r=Math.min(w/im.width,h/im.height),iw=im.width*r,ih=im.height*r,ix=x+(w-iw)/2,iy=y+(h-ih)/2;
+  if(shadow){ctx.save();ctx.shadowColor='rgba(0,0,0,.35)';ctx.shadowBlur=w*.04;ctx.shadowOffsetY=w*.015;ctx.fillStyle='#fff';ctx.fillRect(ix,iy,iw,ih);ctx.restore()}
+  ctx.drawImage(im,ix,iy,iw,ih);return{ix,iy,iw,ih}}
+async function page(n,s){
+  const c=document.createElement('canvas');c.width=PW*s;c.height=PH*s;const x=c.getContext('2d');x.scale(s,s);const W=PW,H=PH;
+  if(n===1){
+    x.fillStyle='#e3241b';x.fillRect(0,0,W,H);grain(x,W,H,.08);
+    const ims=await Promise.all(pick.slice(0,3).map(load));const rot=[-.09,.06,-.02],off=[[-.22,.02],[.2,-.03],[0,.08]];
+    for(let i=ims.length-1;i>=0;i--){if(!ims[i])continue;x.save();x.translate(W*(.5+off[i][0]),H*(.66+off[i][1]));x.rotate(rot[i]);fit(x,ims[i],-W*.24,-H*.2,W*.48,H*.4,true);x.restore()}
+    const T=(title||' ').toUpperCase();let fs=260,lines;
+    do{x.font=`${fs}px Anton`;lines=wrap(x,T,W*.86);fs-=6}while(fs>60&&(lines.length*fs*1.0>H*.36||lines.some(l=>x.measureText(l).width>W*.86)));
+    fs+=6;x.fillStyle='#f4f1ea';x.textBaseline='top';lines.forEach((l,i)=>x.fillText(l,W*.07,H*.06+i*fs*.98));
+    x.font='600 30px Inter';x.fillText('Posters by Jennifer Kapend Fund',W*.07,H*.93);
+    x.textAlign='right';x.fillText('Issue 01',W*.93,H*.93);
+  }else if(n===8){
+    x.fillStyle='#141312';x.fillRect(0,0,W,H);grain(x,W,H,.25);
+    x.fillStyle='#e3241b';x.font='96px Anton';x.textBaseline='top';x.fillText('INSIDE',W*.08,H*.07);
+    x.font='600 30px Inter';x.fillStyle='#efece4';
+    pick.forEach((id,i)=>{x.fillText(byId[id].t,W*.08,H*.2+i*H*.055);x.textAlign='right';x.fillText('p. '+(i+2),W*.92,H*.2+i*H*.055);x.textAlign='left'});
+    x.font='italic 56px "Instrument Serif"';x.fillStyle='#a29d94';
+    wrap(x,'Made by hand in The Hague, one poster at a time.',W*.84).forEach((l,i)=>x.fillText(l,W*.08,H*.6+i*64));
+    let fs=150;x.font=fs+'px Anton';while(x.measureText('JENNIERATION.COM').width>W*.84){fs-=4;x.font=fs+'px Anton'}
+    x.fillStyle='#efece4';x.fillText('JENNIERATION.COM',W*.08,H*.8);
+    x.font='600 28px Inter';x.fillStyle='#a29d94';x.fillText('Jennifer Kapend Fund',W*.08,H*.8+fs+18);
+  }else{
+    const id=pick[n-2],p=byId[id],im=await load(id);
+    x.fillStyle='#f4f1ea';x.fillRect(0,0,W,H);grain(x,W,H,.06);
+    if(im)fit(x,im,W*.09,H*.055,W*.82,H*.73,true);
+    x.textBaseline='top';x.fillStyle='#141312';x.font='64px Anton';x.fillText(p.t.toUpperCase(),W*.09,H*.815);
+    x.font='italic 46px "Instrument Serif"';x.fillStyle='#3a3733';
+    wrap(x,cap(id),W*.82).slice(0,2).forEach((l,i)=>x.fillText(l,W*.09,H*.815+78+i*50));
+    x.font='600 24px Inter';x.fillStyle='#e3241b';x.textAlign='right';x.fillText(String(n),W*.93,H*.955);
+  }
+  return c;
+}
+
+/* flip book */
+let urls=[],at=0,bw=0;
+function sizeBook(){const avail=Math.min($('#zine .wrap').clientWidth,980);const pw=Math.max(140,Math.min(380,avail/2-6));const b=$('#book');b.style.width=pw*2+'px';b.style.height=pw*1.414+'px';bw=pw*2;pos()}
+function book(){
+  const b=$('#book');let h='';for(let i=0;i<4;i++)h+=`<div class="leaf" data-i="${i}"><div class="face" style="background-image:url(${urls[i*2]})"></div><div class="face back" style="background-image:url(${urls[i*2+1]})"></div></div>`;
+  b.innerHTML=h;b.querySelectorAll('.leaf').forEach(l=>l.onclick=()=>{if(swiped){swiped=0;return}+l.dataset.i<at?go(at-1):go(at+1)});pos();
+}
+function pos(){const b=$('#book'),L=b.querySelectorAll('.leaf');
+  L.forEach((l,i)=>{l.classList.toggle('flipped',i<at);l.style.zIndex=i<at?i+1:10-i});
+  b.style.transform=at===0?'translateX(-25%)':at===4?'translateX(25%)':'none';
+  $('#pg').textContent=at===0?'Cover':at===4?'Back cover':'Pages '+(at*2)+' and '+(at*2+1);
+  $('#prev').disabled=at===0;$('#next').disabled=at===4}
+function go(n){n=Math.max(0,Math.min(4,n));if(n===at)return;const L=$('#book').querySelectorAll('.leaf'),i=n>at?at:n;at=n;if(L[i])L[i].style.zIndex=50;setTimeout(pos,450);
+  L.forEach((l,k)=>l.classList.toggle('flipped',k<at));$('#book').style.transform=at===0?'translateX(-25%)':at===4?'translateX(25%)':'none';
+  $('#pg').textContent=at===0?'Cover':at===4?'Back cover':'Pages '+(at*2)+' and '+(at*2+1);$('#prev').disabled=at===0;$('#next').disabled=at===4}
+$('#prev').onclick=()=>go(at-1);$('#next').onclick=()=>go(at+1);
+document.addEventListener('keydown',e=>{if(e.target.tagName==='INPUT'||$('#vflip').hidden)return;if(e.key==='ArrowRight')go(at+1);if(e.key==='ArrowLeft')go(at-1)});
+let sx=null,swiped=0;$('#book').addEventListener('pointerdown',e=>{sx=e.clientX;swiped=0});$('#book').addEventListener('pointerup',e=>{if(sx==null)return;const d=e.clientX-sx;sx=null;if(Math.abs(d)>40){swiped=1;go(at+(d<0?1:-1))}},true);
+
+/* fold: a rigid-paper 3D model of the one-sheet zine fold, standing on a glossy table.
+   progress FP runs 0..8: 0-4 folds the sheet, 4-8 turns the pages of the finished booklet.
+   top row of the sheet is printed upside down */
+const LAY=[[5,4,3,2],[6,7,8,1]];
+let FP=0,fw=0,fh=0,pans=[],cutEl=null,floorEl=null,shEls=[];
+const ease=t=>t<.5?2*t*t:1-(-2*t+2)**2/2;
+const seg=(p,a)=>Math.max(0,Math.min(1,p-a));
+const LIGHT=[.35,.8,-.95];/* direction the light travels: down, to the right, away from you */
+function panHTML(n,cls){return `<div class="pan${cls}"><div class="f"><img src="${urls[n-1]}" alt="" draggable="false"><span class="sh"></span></div><div class="b"><span class="sh"></span></div></div>`}
+function sheet(){const cam=$('#cam');cam.innerHTML='';pans=[];shEls=[];
+  floorEl=document.createElement('div');floorEl.className='floor';floorEl.innerHTML='<div class="shs"></div>';cam.appendChild(floorEl);
+  const shs=floorEl.firstChild;
+  LAY.forEach((row,r)=>row.forEach((n,c)=>{const t=document.createElement('template');
+    t.innerHTML=panHTML(n,' refl'+(r===0?' up':''));const rf=t.content.firstChild;cam.appendChild(rf);
+    t.innerHTML=panHTML(n,r===0?' up':'');const el=t.content.firstChild;el.querySelector('img').alt='Page '+n;cam.appendChild(el);
+    const sd=document.createElement('i');shs.appendChild(sd);
+    pans.push({el,rf,sd,r,c,f:el.querySelector('.f .sh'),b:el.querySelector('.b .sh'),rff:rf.querySelector('.f .sh'),rfb:rf.querySelector('.b .sh')})}));
+  cutEl=document.createElement('div');cutEl.className='cut';cutEl.innerHTML='<i></i><svg viewBox="0 0 30 30" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="6" cy="8" r="4"/><circle cx="6" cy="22" r="4"/><path d="M9.5 10.5L27 20M9.5 19.5L27 10"/></g></svg>';cam.appendChild(cutEl);
+  sizeSheet()}
+function sizeSheet(){const st=$('#fstage');if(!st)return;fw=Math.max(50,Math.min(st.clientWidth*.8/4,st.clientHeight*.66/2/1.414));fh=fw*1.414;
+  pans.forEach(p=>{for(const e of [p.el,p.rf]){e.style.width=fw+'px';e.style.height=fh+'px'}});
+  if(floorEl){const F=fw*9;floorEl.style.width=floorEl.style.height=F+'px'}render()}
+/* leaf of the finished booklet each panel belongs to: 0 cover/2, 1 pages 3/4, 2 pages 5/6, 3 pages 7/back */
+const leafOf=p=>p.c===3?0:p.c===0?2:p.r===0?1:3;
+function pose(p){const w=fw,h=fh,F=Math.min(FP,4),R=Math.max(0,FP-4),a1=ease(seg(F,0)),th=ease(seg(F,2))*90,d=ease(seg(F,3)),cx=p.c*w-2*w;
+  const flip=` translate3d(0,${h}px,0) rotateX(180deg)`;
+  if(F<=2){if(p.r===1)return`translate3d(${cx}px,0,0)`;return`translate3d(${cx}px,0,-1px) rotateX(${a1*180}deg) translate3d(0,${-h}px,0)`}
+  const t=th*Math.PI/180,a=w*Math.cos(t),b=w*Math.sin(t),back=p.r===0;
+  const slot=[`translate3d(${-a-w}px,0,${back?-1:0}px)`,
+    back?`translate3d(${-a}px,0,-1px) rotateY(${th}deg)`:`translate3d(${-a}px,0,0) rotateY(${-th}deg)`,
+    back?`translate3d(0,0,${-b-1}px) rotateY(${-th}deg)`:`translate3d(0,0,${b}px) rotateY(${th}deg)`,
+    `translate3d(${a}px,0,${back?-1:0}px)`][p.c];
+  /* closing: every arm swings round the spine in order, so nothing passes through anything */
+  const arm=p.c===3?0:p.c===0?180:back?90:270,L=leafOf(p),g=3.5,sep=p.c===1||p.c===2?' translate3d(0,0,0.9px)':'';
+  if(F<4)return`translate3d(0,0,${-L*g*d}px) rotateY(${-arm*d}deg) `+slot+(back?flip:'')+sep;
+  /* reading: each leaf turns round the spine through your side, from the right pile to the left pile */
+  const e=ease(Math.max(0,Math.min(1,R-L))),o=Math.max(0,Math.min(1,R*2,(4-R)*2)),tau=o*14;
+  const psi=tau+(180-2*tau)*e,dep=(L+(3-2*L)*e)*g,lift=Math.sin(e*Math.PI)*w*.06;
+  return`translate3d(0,0,${-dep+lift}px) rotateY(${-psi}deg) rotateY(${-arm}deg) `+slot+(back?flip:'')+sep}
+function shade(t){let n=[0,0,1];try{const m=new DOMMatrix(t);n=[m.m31,m.m32,m.m33]}catch(e){}const l=[-LIGHT[0],-LIGHT[1],-LIGHT[2]],k=Math.hypot(...l);
+  const dot=(n[0]*l[0]+n[1]*l[1]+n[2]*l[2])/k;return[.42*(1-Math.max(0,dot))**1.4,.42*(1-Math.max(0,-dot))**1.4]}
+function render(){if(!pans.length)return;const w=fw,h=fh,F=Math.min(FP,4),R=Math.max(0,FP-4);
+  /* camera: front view of the flat sheet, down onto the plus, back to the cover, then a reading view of the open spread */
+  const st=$('#fstage'),SW=st.clientWidth,SH=st.clientHeight,closedSc=Math.min(.62*SW/w,.62*SH/h),readSc=Math.min(.84*SW/(2*w),.6*SH/h);
+  const K=[[16,0,1],[22,-8,1.05],[30,-14,1.1],[58,-24,1.25],[14,-14,closedSc]],i=Math.min(3,Math.floor(F)),f=ease(F-i),A=K[i],B=K[i+1],lerp=(x,y,k)=>x+(y-x)*(k==null?f:k);
+  const o=Math.max(0,Math.min(1,R*2,(4-R)*2)),oe=ease(o);let rx=lerp(A[0],B[0]),ry=lerp(A[1],B[1]),sc=lerp(A[2],B[2]);
+  if(F>=4){rx=lerp(14,20,oe);ry=lerp(-14,0,oe);sc=lerp(closedSc,readSc,oe)}
+  rx+=pitch;ry+=yaw;sc*=zoom;
+  const oy=h/2*ease(seg(F,0)),ox=F<4?w/2*ease(seg(F,3)):w/2*(1-ease(Math.min(1,R)))-w/2*ease(seg(R,3));
+  $('#cam').style.transform=`scale3d(${sc},${sc},${sc}) rotateX(${-rx}deg) rotateY(${ry}deg) translate3d(${-ox}px,${-oy}px,0)`;
+  /* table: shown from above, faded out when you look from underneath */
+  const vis=Math.max(0,Math.min(1,(rx-2)/10));
+  const Fs=w*9;floorEl.style.transform=`translate3d(${ox-Fs/2}px,${h}px,${-Fs/2}px) rotateX(90deg)`;floorEl.style.opacity=vis;
+  const mir=`matrix3d(1,0,0,0,0,-1,0,0,0,0,1,0,0,${2*h},0,1) `,lx=LIGHT[0]/LIGHT[1],lz=LIGHT[2]/LIGHT[1],u0=ox-Fs/2,v0=-Fs/2;
+  pans.forEach(p=>{const t=pose(p);p.el.style.transform=t;const [sf,sb]=shade(t);p.f.style.opacity=sf.toFixed(3);p.b.style.opacity=sb.toFixed(3);
+    p.rf.style.transform=mir+t;p.rf.style.opacity=(.55*vis).toFixed(3);p.rff.style.opacity=sf.toFixed(3);p.rfb.style.opacity=sb.toFixed(3);
+    /* cast shadow: the panel projected onto the table along the light, as a parallelogram */
+    let m;try{m=new DOMMatrix(t)}catch(e){return}
+    const pr=(x,y)=>{const q=m.transformPoint(new DOMPoint(x,y,0)),k=h-q.y;return[q.x+k*lx-u0,q.z+k*lz-v0]};
+    const p0=pr(0,0),p1=pr(w,0),p2=pr(0,h);
+    p.sd.style.transform=`matrix(${(p1[0]-p0[0])/100},${(p1[1]-p0[1])/100},${(p2[0]-p0[0])/100},${(p2[1]-p0[1])/100},${p0[0]},${p0[1]})`});
+  floorEl.firstChild.style.filter=`blur(${Math.max(3,w*.05)}px)`;
+  const k=seg(F,1);cutEl.style.display=F>.85&&F<2.02?'block':'none';cutEl.style.width=2*w+'px';cutEl.style.transform=`translate3d(${-w}px,0,1px)`;
+  cutEl.querySelector('i').style.width=k*100+'%';cutEl.querySelector('svg').style.left=k*100+'%';
+  $('#fprog').value=Math.round(FP*100);ui()}
+const HINT=['Drag down to fold the sheet in half','Drag right along the red line to cut','Drag the ends toward the middle','Drag left to close it into a booklet','Folded. Drag left to open it','Pages 2 and 3. Drag left to turn the page','Pages 4 and 5. Drag left to turn the page','Pages 6 and 7. Drag left to turn the page'];
+const ARROW=[0,-90,90,90,90,90,90,90];
+function ui(){const done=FP>=7.999,mid=FP%1>0.001,s=Math.min(7,Math.floor(FP+1e-6)),idx=mid?Math.floor(FP):s;
+  $('#fback').disabled=FP<=0;$('#fnext').disabled=done;$('#fnext').textContent=FP>=4?'Turn the page':'Next step';$('#fback').textContent=FP>4?'Page back':'Back a step';
+  if(mode==='turn'){$('#ftext').textContent='Drag to turn it around. Scroll or pinch to zoom.';$('#farrow').style.display='none';document.querySelectorAll('#fsteps li').forEach(li=>li.classList.remove('now'));return}
+  $('#ftext').textContent=done?'Back cover. Drag right to page back.':HINT[idx];
+  const ar=$('#farrow');ar.style.display='block';ar.style.transform=`rotate(${done?-90:ARROW[idx]}deg)`;
+  document.querySelectorAll('#fsteps li').forEach((li,k)=>li.classList.toggle('now',k===Math.min(4,idx)))}
+function setP(v){FP=Math.max(0,Math.min(8,v));render()}
+let anim;function animTo(t,ms){cancelAnimationFrame(anim);const p0=FP,t0=performance.now(),D=ms||Math.max(300,Math.abs(t-p0)*900);const st=n=>{const k=Math.min(1,(n-t0)/D);setP(p0+(t-p0)*k);if(k<1)anim=requestAnimationFrame(st)};anim=requestAnimationFrame(st)}
+$('#fnext').onclick=()=>{stopSpin();if(mode==='turn')setMode('fold');animTo(Math.min(8,Math.floor(FP+1e-6)+1))};
+$('#fback').onclick=()=>{stopSpin();if(mode==='turn')setMode('fold');animTo(Math.max(0,Math.ceil(FP-1e-6)-1))};
+$('#fprog').oninput=e=>{cancelAnimationFrame(anim);setP(e.target.value/100)};
+$('#play').onclick=()=>{cancelAnimationFrame(anim);stopSpin();yaw=0;pitch=0;zoom=1;setMode('fold');setP(0);let i=0;const nxt=()=>{if(i>=8)return;i++;const t0=performance.now(),p0=FP,D=i>4?1100:1300;const st=n=>{const k=Math.min(1,(n-t0)/D);setP(p0+(i-p0)*k);if(k<1)anim=requestAnimationFrame(st);else setTimeout(()=>{if(FP===i)nxt()},i===4?900:450)};anim=requestAnimationFrame(st)};setTimeout(nxt,250)};
+/* drag: folds the paper and turns the pages in Fold mode, turns the whole zine in Turn mode (right-drag or shift-drag turns too). two fingers or the wheel zoom */
+let mode='fold',yaw=0,pitch=0,zoom=1,spin=0,dg=null;const fs=$('#fstage'),pts=new Map();let pinch=null;
+function setMode(m){mode=m;$('#mfold').classList.toggle('on',m==='fold');$('#mturn').classList.toggle('on',m==='turn');$('#mfold').setAttribute('aria-pressed',m==='fold');$('#mturn').setAttribute('aria-pressed',m==='turn');fs.classList.toggle('turn',m==='turn');render()}
+$('#mfold').onclick=()=>{stopSpin();setMode('fold')};$('#mturn').onclick=()=>{setMode('turn');if(FP%4===0&&FP>0)startSpin()};
+$('#freset').onclick=()=>{stopSpin();const y0=yaw,p0=pitch,z0=zoom,t0=performance.now();const st=n=>{const k=ease(Math.min(1,(n-t0)/500));yaw=y0*(1-k);pitch=p0*(1-k);zoom=z0+(1-z0)*k;render();if(k<1)requestAnimationFrame(st)};requestAnimationFrame(st)};
+function stopSpin(){cancelAnimationFrame(spin);spin=0}
+function startSpin(){if(spin||matchMedia('(prefers-reduced-motion: reduce)').matches)return;let last=performance.now();const st=n=>{yaw+=(n-last)*.018;last=n;render();spin=requestAnimationFrame(st)};spin=requestAnimationFrame(st)}
+const dirFor=(s,x)=>{const r=fs.getBoundingClientRect();return s===0?[0,1]:s===1?[1,0]:s===2?[x>r.left+r.width/2?-1:1,0]:[-1,0]};
+fs.addEventListener('contextmenu',e=>e.preventDefault());
+fs.addEventListener('pointerdown',e=>{cancelAnimationFrame(anim);stopSpin();pts.set(e.pointerId,{x:e.clientX,y:e.clientY});fs.setPointerCapture(e.pointerId);
+  if(pts.size===2){const [a,b]=[...pts.values()];pinch={d:Math.hypot(a.x-b.x,a.y-b.y),z:zoom};dg=null;return}
+  const turn=mode==='turn'||e.button===2||e.shiftKey,step=FP>=8?7:Math.floor(FP+1e-6);
+  dg={turn,x:e.clientX,y:e.clientY,lx:e.clientX,ly:e.clientY,p:FP,step,dir:dirFor(step,e.clientX),len:Math.max(160,fw*1.6)}});
+fs.addEventListener('pointermove',e=>{if(!pts.has(e.pointerId))return;pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(pinch&&pts.size===2){const [a,b]=[...pts.values()];zoom=Math.max(.5,Math.min(2.6,pinch.z*Math.hypot(a.x-b.x,a.y-b.y)/pinch.d));render();return}
+  if(!dg)return;
+  if(dg.turn){yaw+=(e.clientX-dg.lx)*.45;pitch=Math.max(-80,Math.min(80,pitch-(e.clientY-dg.ly)*.35));dg.lx=e.clientX;dg.ly=e.clientY;render();return}
+  let v=((e.clientX-dg.x)*dg.dir[0]+(e.clientY-dg.y)*dg.dir[1])/dg.len;
+  /* dragging backwards from a finished step goes back into the step before */
+  if(v<0&&dg.p===dg.step&&dg.step>0&&FP<=dg.step+1e-6){dg.step--;dg.dir=dirFor(dg.step,dg.x);v=((e.clientX-dg.x)*dg.dir[0]+(e.clientY-dg.y)*dg.dir[1])/dg.len}
+  setP(Math.max(dg.step,Math.min(dg.step+1,dg.p+v)))});
+const end=e=>{pts.delete(e.pointerId);if(pts.size<2)pinch=null;if(!dg)return;const was=dg;dg=null;if(was.turn)return;const f=FP-was.step;
+  if(f>0&&f<1){const fwd=FP>was.p;animTo(fwd?(f>.3?was.step+1:was.step):(f<.7?was.step:was.step+1),350)}};
+fs.addEventListener('pointerup',end);fs.addEventListener('pointercancel',end);
+fs.addEventListener('wheel',e=>{e.preventDefault();stopSpin();zoom=Math.max(.5,Math.min(2.6,zoom*Math.exp(-e.deltaY*.0015)));render()},{passive:false});
+fs.addEventListener('keydown',e=>{if(mode==='turn'&&e.key.startsWith('Arrow')){e.preventDefault();stopSpin();if(e.key==='ArrowLeft')yaw-=10;if(e.key==='ArrowRight')yaw+=10;if(e.key==='ArrowUp')pitch=Math.min(80,pitch+10);if(e.key==='ArrowDown')pitch=Math.max(-80,pitch-10);render();return}if(e.key==='ArrowRight'||e.key==='ArrowDown'){e.preventDefault();$('#fnext').click()}if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();$('#fback').click()}});
+document.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>{const v=b.dataset.v;document.querySelectorAll('[data-v]').forEach(x=>x.classList.toggle('on',x===b));$('#vflip').hidden=v!=='flip';$('#vsheet').hidden=v!=='sheet';if(v==='sheet')sizeSheet();else sizeBook()});
+
+/* captions editor */
+function editor(){$('#edit').innerHTML=pick.map((id,i)=>`<div><label for="c${i}">Page ${i+2}: ${esc(byId[id].t)}</label><input type="text" id="c${i}" data-id="${id}" maxlength="60" value="${esc(cap(id))}"></div>`).join('')}
+let deb;$('#edit').addEventListener('input',e=>{const id=e.target.dataset.id;if(!id)return;caps[id]=e.target.value;save();clearTimeout(deb);deb=setTimeout(build,350)});
+$('#title').value=title;$('#title').addEventListener('input',e=>{title=e.target.value;$('#h1').textContent=title||'Untitled';save();clearTimeout(deb);deb=setTimeout(build,350)});
+$('#h1').textContent=title||'Untitled';
+
+/* build */
+let busy=0;
+async function build(){if(pick.length<MAX)return;const me=++busy;await document.fonts.ready;
+  try{await Promise.all([document.fonts.load('64px Anton'),document.fonts.load('italic 46px "Instrument Serif"'),document.fonts.load('600 24px Inter')])}catch(e){}
+  const cs=[];for(let n=1;n<=8;n++)cs.push(await page(n,.72));if(me!==busy)return;
+  urls=cs.map(c=>c.toDataURL('image/jpeg',.88));$('#h2').textContent=(title||'Your zine');book();sheet();editor();sizeBook()}
+
+/* print */
+async function printSheet(){const s=1.66,c=document.createElement('canvas');const pw=PW*s*0.7071,W=Math.round(pw*4),H=Math.round(pw*1.414*2);c.width=W;c.height=H;const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,W,H);
+  const cw2=W/4,ch2=H/2;for(let r=0;r<2;r++)for(let k=0;k<4;k++){const n=LAY[r][k],pc=await page(n,cw2/PW);x.save();if(r===0){x.translate(k*cw2+cw2,ch2);x.rotate(Math.PI)}else x.translate(k*cw2,ch2);x.drawImage(pc,0,0,cw2,ch2);x.restore()}
+  x.setLineDash([10,10]);x.strokeStyle='rgba(0,0,0,.3)';x.lineWidth=2;for(let i=1;i<4;i++){x.beginPath();x.moveTo(cw2*i,0);x.lineTo(cw2*i,H);x.stroke()}x.beginPath();x.moveTo(0,ch2);x.lineTo(W,ch2);x.stroke();
+  x.setLineDash([]);x.strokeStyle='#e3241b';x.lineWidth=4;x.beginPath();x.moveTo(cw2,ch2);x.lineTo(cw2*3,ch2);x.stroke();return c}
+const fname=()=>((title||'zine').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'zine')+'-print';
+function showImg(c){$('#mimg').src=c.toDataURL('image/jpeg',.92);$('#modal').style.display='flex'}
+$('#mclose').onclick=()=>$('#modal').style.display='none';
+// on claude.ai the downloads tool saves files; on jennieration.com a normal browser download does the same job
+const plainDl={save:async({filename,data})=>{const u=URL.createObjectURL(data),a=document.createElement('a');a.href=u;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),4000)}};
+let dl=window.claude?null:plainDl;(async()=>{try{if(window.claude&&claude.use)dl=await claude.use('downloads')}catch(e){}})();
+$('#pdf').onclick=async()=>{const b=$('#pdf');b.disabled=true;b.textContent='Making the PDF';
+  try{const c=await printSheet();if(!window.jspdf||!dl){showImg(c);toast(dl?'PDF tool did not load, here is the image':'Downloads are off here, so here is the image');return}
+    const pdf=new jspdf.jsPDF({orientation:'landscape',unit:'mm',format:'a4'});pdf.addImage(c.toDataURL('image/jpeg',.92),'JPEG',0,0,297,210);
+    await dl.save({filename:fname()+'.pdf',data:pdf.output('blob')});toast('PDF saved')}
+  catch(e){toast('The download was not saved')}finally{b.disabled=false;b.textContent='Download print PDF'}};
+$('#png').onclick=async()=>{const c=await printSheet();if(dl){try{const bl=await new Promise(r=>c.toBlob(r,'image/png'));await dl.save({filename:fname()+'.png',data:bl});toast('Image saved');return}catch(e){}}showImg(c)};
+
+let rt;new ResizeObserver(()=>{clearTimeout(rt);rt=setTimeout(()=>{if(!$('#vflip').hidden)sizeBook();else sizeSheet()},120)}).observe(document.body);
+grid();build();
+}
+</script>
+</body>
+</html>

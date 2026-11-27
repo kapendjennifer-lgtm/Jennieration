@@ -35,6 +35,17 @@ body{margin:0;background:#000}
 .pg-jen .nav a.is-active{color:#fff}
 .pg-jen .nav.light a{color:#929292}
 .pg-jen .nav.light a:hover{color:#000}
+/* ZINE CALL TO ACTION: shows up next to the menu once the posters are all spread out */
+.pg-jen a.zine-cta{position:absolute;z-index:600;right:calc(100vw / 2000 * 54);top:calc(100vw / 2000 * 42);font-family:'Bebas Neue','JR Bebas',Impact,'Arial Narrow',sans-serif;font-weight:400;font-size:calc(100vw / 2000 * 46);line-height:1;letter-spacing:.01em;white-space:nowrap;color:#fff;text-decoration:underline;text-decoration-color:#B80000;text-decoration-thickness:calc(100vw / 2000 * 3);text-underline-offset:calc(100vw / 2000 * 7);transition:opacity .3s ease,color .25s ease}
+.pg-jen a.zine-cta:hover,.pg-jen a.zine-cta:focus-visible{color:#B80000}
+.pg-jen a.zine-cta:focus-visible{outline:2px solid #B80000;outline-offset:4px}
+.pg-jen .zine-arrow{display:inline-block;color:#B80000;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.pg-jen a.zine-cta:hover .zine-arrow{transform:translateX(.25em)}
+@media (max-aspect-ratio: 1/1){.pg-jen a.zine-cta{background:#000;padding:calc(100vw / 1000 * 10) calc(100vw / 1000 * 14) calc(100vw / 1000 * 14) 0;right:auto;left:calc(100vw / 1000 * 37);top:calc(100vw / 1000 * 128);font-size:calc(100vw / 1000 * 50);text-decoration-thickness:calc(100vw / 1000 * 3);text-underline-offset:calc(100vw / 1000 * 7)}}
+@media (prefers-reduced-motion: reduce){.pg-jen a.zine-cta,.pg-jen .zine-arrow{transition:none}}
+/* the reset button steps down under the zine link while that one is showing */
+.pg-jen .reset.low{top:calc(100vw / 2000 * 104)}
+@media (max-aspect-ratio: 1/1){.pg-jen .reset.low{top:calc(100vw / 1000 * 205)}}
 .pg-jen .hint{position:absolute;z-index:45;margin:0;left:calc(var(--u) * 1760);top:calc(var(--u) * 1322);font-size:calc(var(--u) * 40);line-height:1;letter-spacing:-.01em;color:#9B9B9B;white-space:nowrap;pointer-events:none;display:flex;gap:calc(var(--u) * 8)}
 .pg-jen .hint-arrow{display:inline-block;animation:bob 1.4s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(calc(var(--u) * 8))}}
@@ -321,8 +332,9 @@ body{margin:0;background:#000}
 <a href="About.dc.html" data-hint="WHO AM I?" aria-label="About me">ABOUTME</a>
 </nav>
 <sc-if value="{{moved}}" hint-placeholder-val="{{false}}">
-<button class="reset {{navCls}}" type="button" onClick="{{reset}}">RESET POSTERS</button>
+<button class="reset {{navCls}} {{resetLow}}" type="button" onClick="{{reset}}">RESET POSTERS</button>
 </sc-if>
+<a class="zine-cta" href="https://jennieration.com/zine/" style="opacity: {{zineOpacity}}; pointer-events: {{zinePe}}" tabindex="{{zineTab}}" aria-hidden="{{zineHidden}}">MAKE YOUR OWN ZINE WITH MY POSTERS <span class="zine-arrow" aria-hidden="true">→</span></a>
 <div class="stage" style="transform: translateX(calc(var(--u) * {{stageShift}}))">
 <sc-for list="{{posters}}" as="p" hint-placeholder-count="16">
 <button class="poster {{p.cls}}" type="button" data-id="{{p.id}}" aria-label="{{p.title}}: drag to move, press to open" style="--rot: {{p.rot}}deg; left: calc(var(--u) * {{p.x}}); top: calc(var(--u) * {{p.y}}); width: calc(var(--u) * {{p.w}}); height: calc(var(--u) * {{p.h}}); z-index: {{p.z}}; background: {{p.color}}; box-shadow: calc(var(--u) * -10) 0 calc(var(--u) * 26) rgba(0,0,0,{{p.shadow}})" onPointerEnter="{{onPEnter}}" onPointerDown="{{onPDown}}" onPointerMove="{{onPMove}}" onPointerUp="{{onPUp}}" onPointerCancel="{{onPUp}}" onLostPointerCapture="{{onPUp}}" onClick="{{onPClick}}">
@@ -1468,6 +1480,12 @@ class Component extends DCLogic {
       stageShift: m ? 0 : (-1238 * r).toFixed(1),
       navCls: r > 0.5 ? 'light' : '',
       hintOpacity: (Math.max(0, 1 - this.state.s / 0.08) * Math.max(0, 1 - q / 0.08)).toFixed(3),
+      // zine call to action: same moment as the hint, when every poster is spread out
+      zineOpacity: (Math.max(0, 1 - this.state.s / 0.06) * Math.max(0, 1 - q / 0.06)).toFixed(3),
+      zinePe: this.state.s < 0.03 && q < 0.03 ? 'auto' : 'none',
+      zineTab: this.state.s < 0.03 && q < 0.03 ? '0' : '-1',
+      zineHidden: this.state.s < 0.03 && q < 0.03 ? 'false' : 'true',
+      resetLow: this.state.s < 0.06 && q < 0.06 ? 'low' : '',
       hint2Opacity: (this.state.pp < 0.42 || this.state.pp > 0.97 ? Math.max(Math.max(0, 1 - Math.min(this.state.pp, 1 - this.state.pp) / 0.03) * q, Math.max(0, (r - 0.85) / 0.15)) : 0).toFixed(3),
       hint2Text: r > 0.5 ? 'KEEP SCROLLING' : 'SCROLL DOWN',
       otherOpacity: Math.min(1, r * 1.6).toFixed(3),
